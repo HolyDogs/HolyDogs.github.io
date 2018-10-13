@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【springmvc】工作流程理解（一） | XFF&#39;s blog</title>
+  <title>【JAVA8新特性】 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -175,44 +175,285 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2018-10-11T06:52:21.451Z" itemprop="datePublished">
-          2018-10-11
+      <time datetime="2018-10-13T06:35:59.026Z" itemprop="datePublished">
+          2018-10-13
       </time>
     
 </span>
-                <h1>【springmvc】工作流程理解（一）</h1>
+                <h1>【JAVA8新特性】</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<ol>
-<li>用户通过URL发送请求，到达<strong>DispatcherServlet-前端(核心)控制器</strong>(通过在web.xml中配置)</li>
-<li><strong>DispatcherServlet</strong>把请求转发给<strong>HandlerMapper-处理器映射器</strong>（在springmvc配置文件中注册）</li>
-<li><strong>HandlerMapper</strong>根据请求返回映射的<strong>controller控制器对象链</strong>给<strong>DispatcherServlet</strong></li>
-<li><strong>DispatcherServlet</strong>把<strong>controller</strong>对象处理链转发给<strong>HandlerAdapter处理器适配器（在springmvc配置文件中注册）</strong></li>
-<li><strong>HandlerAdapter</strong>根据请求通知<strong>controller处理器</strong>应该实现的方法（配置扫描、注解）</li>
-<li><strong>controller</strong>调用对应的方法，返回<strong>ModelAndView</strong>对象（配置注解）</li>
-<li>经<strong>HandlerAdapter</strong>又发送回<strong>DispatcherServlet</strong></li>
-<li><strong>DispatcherServlet</strong>将<strong>ModelAndView</strong>对象发送给<strong>ViewResolver</strong>视图解析器（在springmvc配置文件中配置）</li>
-<li><strong>ViewResolver</strong>对传来的<strong>Model</strong>（数据..）和<strong>View</strong>（对应的页面..）进行渲染返回给<strong>DispatcherServlet</strong></li>
-<li><strong>Response</strong> 响应给用户</li>
-</ol>
+      		<h2 id="一-Lambda表达式"><a href="#一-Lambda表达式" class="headerlink" title="(一)Lambda表达式"></a>(一)Lambda表达式</h2><p>java8新特性支持lambda表达式，能让代码看起来更简洁。</p>
+<pre><code>interface Aaa{
+public void printz(String z);
+}
+
+//老版本
+    String t=&quot;gggg&quot;;
+    Aaa olda=new Aaa() {
+
+        @Override
+        public void printz(String z) {
+            // TODO Auto-generated method stub
+            System.out.println(z);
+        }
+    };
+    olda.printz(t);
+
+    //JAVA 8
+    //变量t在只后不得更改值，否则会报错，Local variable t defined in an enclosing
+    //scope must be final or effectively final
+    //lambda表达式内部只能调用final修饰的变量
+    Aaa zAaa=((String z)-&gt;System.out.println(z+&quot;qq&quot;+t));
+    zAaa.printz(t);
+
+    //老版本
+    Runnable oldrunnable=new Runnable() {
+
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            System.out.println(&quot;helloWorld&quot;);
+        }
+    };
+    new Thread(oldrunnable).start();
+
+    //java 8
+    new Thread(()-&gt;System.out.print(&quot;helloWorld8&quot;)).start();
+</code></pre><p>结果<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw6ltopgbuj303k01q0hu.jpg" alt=""></p>
+<h2 id="（二）方法引用"><a href="#（二）方法引用" class="headerlink" title="（二）方法引用"></a>（二）方法引用</h2><pre><code>      List&lt;Name&gt; names = new ArrayList&lt;Name&gt;();
+
+      names.add(new Name(&quot;Bob&quot;));
+      names.add(new Name(&quot;JECK&quot;));
+      names.add(new Name(&quot;AICE&quot;));
+      names.add(new Name(&quot;SENCE&quot;));
+      names.add(new Name(&quot;MONTE&quot;));
+
+
+
+      names.forEach(Name::printz);
+}
+
+class Name{
+    private String name;
+    public Name(String name) {
+        this.name=name;
+    }
+
+    public void printz() {
+        System.out.println(name);
+    }
+}`
+</code></pre><p>输出<br>Bob<br>JECK<br>AICE<br>SENCE<br>MONTE</p>
+<h2 id="（三）函数式接口"><a href="#（三）函数式接口" class="headerlink" title="（三）函数式接口"></a>（三）函数式接口</h2><p>java8新提供了很多函数式接口，具体自行搜索，这里用其中一种做例子。</p>
+<pre><code>    public static void method1(List&lt;Integer&gt; list,Predicate&lt;Integer&gt; predicate) {
+    for (Integer integer : list) {
+        if(predicate.test(integer)) {
+            System.out.print(integer+&quot; &quot;);
+        }
+    }
+}
+    List&lt;Integer&gt; nIntegers=Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+    //如何获取list里大于5的元素呢？
+
+    //老方法
+    for (Integer integer : nIntegers) {
+        if(integer&gt;5) {
+            System.out.print(integer+&quot; &quot;);
+        }
+    }
+
+    System.out.println();
+
+    //运用java8提供的函数接口
+    method1(nIntegers, n-&gt;n&gt;5);
+
+    System.out.println();
+
+    //运用java8新特性省略方法，更简洁
+    nIntegers.stream().filter(n-&gt;n&gt;5).forEach(System.out::print);
+</code></pre><p>结果<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw6nh9r48ij303p01h0gw.jpg" alt=""></p>
+<h2 id="（四）默认方法"><a href="#（四）默认方法" class="headerlink" title="（四）默认方法"></a>（四）默认方法</h2><p>Java 8 新增了接口的默认方法。</p>
+<p>简单说，默认方法就是接口可以有实现方法，而且不需要实现类去实现其方法。</p>
+<p>我们只需在方法名前面加个default关键字即可实现默认方法<br>    为了解决接口的修改与现有的实现不兼容的问题。</p>
+<pre><code>public class Java8Test {
+
+@Test
+public void test() {
+    System.out.println(new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date()));
+    CarS car=new CarS();
+    car.ss();
+
+}
+
+public interface Car{
+default void haha() {
+    System.out.println(&quot;haha&quot;);
+}
+
+}
+public interface Bus{
+default void haha() {
+    System.out.println(&quot;heihei&quot;);
+}
+}
+public class CarS implements Car,Bus{
+
+public void ss() {
+    haha();
+}
+
+@Override
+public void haha() {
+    // TODO Auto-generated method stub
+    Bus.super.haha();
+    Car.super.haha();
+}
+}
+
+}
+</code></pre><h2 id="（五）Stream"><a href="#（五）Stream" class="headerlink" title="（五）Stream"></a>（五）Stream</h2><p>java8引入一种新的抽象称做流Stream，能以声明的方式来处理数据。</p>
+<p>下面代码实现了随机产生10个数，并把大于0的数输出。</p>
+<pre><code>Random random=new Random();
+random.ints().limit(10).filter(n-&gt;n&gt;0).forEach(System.out::println);
+</code></pre><h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw6teiaq9ij305j01g0mq.jpg" alt=""></h2><p>下面代码对list里的字符串重复拼接输出到5条记录的数组里，并输出数组。            </p>
+<pre><code>List&lt;String&gt; sList=Arrays.asList(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;,&quot;g&quot;);
+System.out.println(sList.stream().map(n-&gt;n+n).limit(5).collect(Collectors.toList()));
+</code></pre><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw6teszddcj306w00m0cp.jpg" alt=""></p>
+<p>另外，parallelStream()相对于stream()，是流并行处理方式。<br>统计结果的收集器</p>
+<pre><code>List&lt;Integer&gt; numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);                 
+IntSummaryStatistics  stats = numbers.stream().mapToInt((x) -&gt; x).summaryStatistics(); 
+System.out.println(&quot;列表中最大的数 : &quot; + stats.getMax()); 
+System.out.println(&quot;列表中最小的数 : &quot; + stats.getMin()); 
+System.out.println(&quot;所有数之和 : &quot; + stats.getSum());
+System.out.println(&quot;平均数 : &quot; + stats.getAverage());
+</code></pre><h2 id="（六）Optional类"><a href="#（六）Optional类" class="headerlink" title="（六）Optional类"></a>（六）Optional类</h2><p>一个可以存放null的容器，解决了nullpoint空指针问题。</p>
+<pre><code>    Integer value1 = null;
+Integer value2 = 222;
+Optional&lt;Integer&gt; a = Optional.ofNullable(value1);
+
+  // Optional.of - 如果传递的参数是 null，抛出异常 NullPointerException
+Optional&lt;Integer&gt; b = Optional.of(value2);
+
+System.out.println(a.orElse(555));
+System.out.println(b.get());
+</code></pre><p>输出555<br>222<br>其中a.orElse为如果为空值则取555，b若为空则抛出异常。</p>
+<h2 id="（七）Nashorn-JavaScript"><a href="#（七）Nashorn-JavaScript" class="headerlink" title="（七）Nashorn JavaScript"></a>（七）Nashorn JavaScript</h2><p>Nashorn 一个 javascript 引擎。</p>
+<p>从JDK 1.8开始，Nashorn取代Rhino(JDK 1.6, JDK1.7)成为Java的嵌入式JavaScript引擎。Nashorn完全支持ECMAScript 5.1规范以及一些扩展。它使用基于JSR 292的新语言特性，其中包含在JDK 7中引入的 invokedynamic，将JavaScript编译成Java字节码。</p>
+<p>与先前的Rhino实现相比，这带来了2到10倍的性能提升。</p>
+<p>实现了java和JavaScript互相调用。</p>
+<pre><code>ScriptEngineManager  scriptEngineManager = new  ScriptEngineManager(); 
+ScriptEngine  nashorn = scriptEngineManager.getEngineByName(&quot;nashorn&quot;); 
+String  name = &quot;Runoob&quot;; Integer  result = null; 
+try  {  
+nashorn.eval(&quot;print(&apos;&quot; + name + &quot;&apos;)&quot;);
+ result = (Integer)  
+ nashorn.eval(&quot;10 + 2&quot;); 
+ }catch(ScriptException  e){
+   System.out.println(&quot;执行脚本错误: &quot;+ e.getMessage()); 
+   }  
+   System.out.println(result.toString());
+</code></pre><p>输出Runoob  12</p>
+<pre><code>var  BigDecimal  =  Java.type(&apos;java.math.BigDecimal&apos;); 
+function calculate(amount, percentage)  { 
+var result =  new  BigDecimal(amount).multiply(  new  BigDecimal(percentage)).divide(new  BigDecimal(&quot;100&quot;),  2,  BigDecimal.ROUND_HALF_EVEN);
+return result.toPlainString();  }  
+var result = calculate(568000000000000000023,13.9);  
+print(result);
+</code></pre><p>命令行运行上诉程序 : jjs xxx.js<br>结果：78952000000000002017.94</p>
+<h2 id="（八）日期时间API"><a href="#（八）日期时间API" class="headerlink" title="（八）日期时间API"></a>（八）日期时间API</h2><p>旧版java中，日期时间相关的类存在诸多问题：<strong>非线程安全</strong>、<strong>设计差</strong>（java.util和java.sql中日期类名相同，但对应内容不一致，前者多了具体时间）、<strong>时区处理麻烦</strong>。</p>
+<p>java8在java.time包里引入了很多新的API：local、 zoned….</p>
+<pre><code>    // 获取当前的日期时间
+LocalDateTime currentTime = LocalDateTime.now();
+System.out.println(&quot;LocalDateTime.now: &quot; + currentTime);
+
+LocalDate date1 = currentTime.toLocalDate();
+System.out.println(&quot;localdatetime.tolocaldate=localdate: &quot; + date1);
+
+Month month = currentTime.getMonth();
+int day = currentTime.getDayOfMonth();
+int seconds = currentTime.getSecond();
+
+System.out.println(&quot;localdatetime.getmonth=month: &quot; + month +&quot;, localdatetime.getdayofmonth=int: &quot; + day +&quot;, localdatetime.getseconds=int: &quot; + seconds);
+
+//用当前时间，修改天数和年份
+LocalDateTime date2 = currentTime.withDayOfMonth(10).withYear(2012);
+System.out.println(&quot;date2: &quot; + date2);
+
+//设置一个日期对象的值
+LocalDate date3 = LocalDate.of(2014, Month.DECEMBER, 12);
+System.out.println(&quot;date3: &quot; + date3);
+
+//设置时间的值
+LocalTime date4 = LocalTime.of(22, 15);
+System.out.println(&quot;date4: &quot; + date4);
+
+//用另一种格式设置时间
+LocalTime date5 = LocalTime.parse(&quot;20:15:30&quot;);
+System.out.println(&quot;date5: &quot; + date5);
+</code></pre><p>输出：LocalDateTime.now: 2018-10-13T20:14:29.390<br>localdatetime.tolocaldate=localdate: 2018-10-13<br>localdatetime.getmonth=month: OCTOBER, localdatetime.getdayofmonth=int: 13, localdatetime.getseconds=int: 29<br>date2: 2012-10-10T20:14:29.390<br>date3: 2014-12-12<br>date4: 22:15<br>date5: 20:15:30</p>
+<p><strong>时区相关:</strong></p>
+<pre><code>    ZonedDateTime date1 = ZonedDateTime.parse(&quot;2015-12-03T10:15:30+05:30[Asia/Shanghai]&quot;);
+System.out.println(&quot;date1: &quot; + date1);
+
+ZoneId id = ZoneId.of(&quot;Europe/Paris&quot;);
+System.out.println(&quot;ZoneId: &quot; + id);
+
+ZoneId currentZone = ZoneId.systemDefault();
+System.out.println(&quot;当期时区: &quot; + currentZone);
+
+ZonedDateTime dateTime=ZonedDateTime.now(currentZone);
+System.out.println(&quot;当前时区时间:&quot;+dateTime);
+</code></pre><p>输出：<br>date1: 2015-12-03T10:15:30+08:00[Asia/Shanghai]<br>ZoneId: Europe/Paris<br>当期时区: Asia/Shanghai<br>当前时区时间:2018-10-13T20:20:45.466+08:00[Asia/Shanghai]</p>
 <hr>
-<p>上诉为自己总结，可能有些错误，是我初学理解不够深刻。</p>
+<p>时间相关的计算:计算上个月的今天是周几?</p>
+<pre><code>LocalDateTime currentTime = LocalDateTime.now();
+currentTime=currentTime.withMonth(currentTime.getMonthValue()-1);
+System.out.println(currentTime.getDayOfWeek());
+</code></pre><p>结果:THURSDAY</p>
+<h2 id="（九）Base64"><a href="#（九）Base64" class="headerlink" title="（九）Base64"></a>（九）Base64</h2><p>Java 8 内置了 Base64 编码的编码器和解码器。</p>
+<pre><code>   try {
+
+   // 使用基本编码
+   String base64encodedString = Base64.getEncoder().encodeToString(&quot;runoob?java8&quot;.getBytes(&quot;utf-8&quot;));
+   System.out.println(&quot;Base64 比那么字符串 (基本) :&quot; + base64encodedString);
+
+   // 解码
+   byte[] base64decodedBytes = Base64.getDecoder().decode(base64encodedString);
+
+   System.out.println(&quot;原始字符串: &quot; + new String(base64decodedBytes, &quot;utf-8&quot;));
+   base64encodedString = Base64.getUrlEncoder().encodeToString(&quot;TutorialsPoint?java8&quot;.getBytes(&quot;utf-8&quot;));
+   System.out.println(&quot;Base64 编码字符串 (URL) :&quot; + base64encodedString);
+
+   StringBuilder stringBuilder = new StringBuilder();
+
+   for (int i = 0; i &lt; 10; ++i) {
+      stringBuilder.append(UUID.randomUUID().toString());
+   }
+
+   byte[] mimeBytes = stringBuilder.toString().getBytes(&quot;utf-8&quot;);
+   String mimeEncodedString = Base64.getMimeEncoder().encodeToString(mimeBytes);
+   System.out.println(&quot;Base64 编码字符串 (MIME) :&quot; + mimeEncodedString);
+   byte[] aString=Base64.getMimeDecoder().decode(mimeEncodedString);
+   String aString2=new String(aString,&quot;utf-8&quot;);
+   System.out.println(aString2);
+
+}catch(UnsupportedEncodingException e){
+   System.out.println(&quot;Error :&quot; + e.getMessage());
+}
+</code></pre><p>结果:<br>Base64 比那么字符串 (基本) :cnVub29iP2phdmE4<br>原始字符串: runoob?java8<br>Base64 编码字符串 (URL) :VHV0b3JpYWxzUG9pbnQ_amF2YTg=<br>Base64 编码字符串 (MIME) :ZDEzM2E2MGEtNTllMS00ZGI5LWE5OWItNDFkNWMwZWU4ZWRlNzVkMmM5NTctMjFmNi00NTM3LWE2<br>NjQtMTUwNmJkOGU0ZWZjNDk0YjEyMTctM2RhZi00NDQ0LTgzNGItYzE0ZWFiY2ZhZWUxYzUxYjNj<br>N2MtMjQ0My00Y2UwLTlhZWItNjE0M2EzZDUzNmQ5OGNjMTgxZTgtMjg3MS00ZDY0LTg0MDktZTgw<br>MGE2OTNlZDdiM2QyOTBiNmQtYTUyYi00NzY3LWFjZmYtMWM0ODRiOGNmNGQzZjhkZjQ0MDItOWMw<br>Ni00YjMzLWEyZGUtZDcxYzc4N2NiZjBkMzQ2ZTY1OWQtMjU1OS00ZDVjLWE3ZjktMDQyMWNmYmY4<br>MjVlMmNhMDhkZGItMDU5OC00Yjk1LTg2ZjktNTdmYWRjZDBjMDBiOWYyYmMzYWMtZDAwNi00ZThk<br>LTlhNjQtNTU3OTcxODk1NjZi<br>d133a60a-59e1-4db9-a99b-41d5c0ee8ede75d2c957-21f6-4537-a664-1506bd8e4efc494b1217-3daf-4444-834b-c14eabcfaee1c51b3c7c-2443-4ce0-9aeb-6143a3d536d98cc181e8-2871-4d64-8409-e800a693ed7b3d290b6d-a52b-4767-acff-1c484b8cf4d3f8df4402-9c06-4b33-a2de-d71c787cbf0d346e659d-2559-4d5c-a7f9-0421cfbf825e2ca08ddb-0598-4b95-86f9-57fadcd0c00b9f2bc3ac-d006-4e8d-9a64-55797189566b</p>
 <hr>
-<p><strong><em>网图:</em></strong><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw4bmgbq81j30pj09h75h.jpg" alt=""></p>
+<h2 id="……"><a href="#……" class="headerlink" title="……"></a>……</h2><p>Over~</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2018/10/13/【JAVA8新特性】/" style="float: left;">
-        ← 【JAVA8新特性】
-    </a>
     
-    
-    <a class="pull-right" href="/2018/10/10/【好用的工具合集】/">
-        【好用的工具合集】 →
+    <a class="pull-right" href="/2018/10/11/【springmvc】工作流程理解（一）/">
+        【springmvc】工作流程理解（一） →
     </a>
     
 </nav>
