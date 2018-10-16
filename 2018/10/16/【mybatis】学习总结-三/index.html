@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【mybatis】多对多关系 | XFF&#39;s blog</title>
+  <title>【mybatis】学习总结(三) | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -175,130 +175,112 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2018-10-16T06:50:23.956Z" itemprop="datePublished">
+      <time datetime="2018-10-16T07:32:59.850Z" itemprop="datePublished">
           2018-10-16
       </time>
     
 </span>
-                <h1>【mybatis】多对多关系</h1>
+                <h1>【mybatis】学习总结(三)</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p><em>关于多对多关系，我看了很多网上的案例和讲解，觉得都说的不太清楚，决定自己结合之前学的hibernate多对多关系，自己写一篇有关的mybatis多对多关系总结。</em></p>
-<hr>
+      		<hr>
+<h2 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h2><p>为了使数据库压力更小，一般对实时性不高的数据采用延迟加载方式。什么叫延迟加载，比如：我们通过mapper接口调用查询的语句，然后在之后才对这个数据进行使用（比如输出），那么在输出的时候，数据库才会真正去运行这条语句返回查询的对象。</p>
+<p>开启延迟加载的方式：</p>
 <ul>
-<li><strong>首先，创建表，建立连接关系。</strong><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwa2l7b67ej30ib0e8jrg.jpg" alt=""></li>
+<li><strong>使用association实现延迟加载</strong></li>
 </ul>
+<p>在association标签里加入select和column属性，select指向查询关联数据的方法，column指向在主表中关联的列（外键那列）。</p>
 <ul>
-<li><strong>然后，插入示例数据。</strong><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwa2mq19o5j30ib0e8q30.jpg" alt=""></li>
+<li><p><strong>在全局配置文件中配置</strong></p>
+<pre><code>&lt;settings&gt;
+    &lt;setting name=&quot;lazyLoadingEnabled&quot; value=&quot;true&quot;/&gt;
+    &lt;setting name=&quot;aggressiveLazyLoading&quot; value=&quot;false&quot;/&gt;
+    &lt;setting name=&quot;cacheEnabled&quot; value=&quot;false&quot;/&gt;
+&lt;/settings&gt;
+</code></pre></li>
 </ul>
-<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwa2n7k9vwj30ib0e8glp.jpg" alt=""></p>
-<p>打印一下，记录<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwa2nxp4o4j30ib0kiaa1.jpg" alt=""></p>
-<p>分别为三张表，一张银行用户表，简单起见，只有id和name两列，一张银行卡表，有id和money两列，最后是一张关系维护表，有三列，id、对应用户的buserid、对应卡的bcardid。</p>
-<p>我设定的银行卡为家庭卡，可以多个人用一个账号，一个人可以用多张卡。</p>
-<h2 id="前提准备做完了，开始建立多对多关系映射。"><a href="#前提准备做完了，开始建立多对多关系映射。" class="headerlink" title="前提准备做完了，开始建立多对多关系映射。"></a>前提准备做完了，开始建立多对多关系映射。</h2><ol>
-<li>创建用户和卡的表对应的实体类，并设置对应的映射属性，分别加入一个list\<t>属性。如下：</t></li>
-</ol>
-<pre><code>package com.test.domain;
-
-import java.util.List;
-
-public class Buser {
-    private int id;
-    private String name;
-    private List&lt;Bcard&gt; bcards;
-
-    public List&lt;Bcard&gt; getBcards() {
-        return bcards;
-    }
-    public void setBcards(List&lt;Bcard&gt; bcards) {
-        this.bcards = bcards;
-    }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-}
-</code></pre><ol start="2">
-<li><p>创建并配置对应的mapper映射文件</p>
-<pre><code>&lt;mapper namespace=&quot;com.test.mapper.BuserMapper&quot;&gt;
-    &lt;resultMap type=&quot;buser&quot; id=&quot;resultUmap&quot;&gt;
-        &lt;id column=&quot;id&quot; property=&quot;id&quot; /&gt;
-        &lt;result column=&quot;name&quot; property=&quot;name&quot;/&gt;
-&lt;!--         &lt;collection property=&quot;uList&quot; ofType=&quot;com.test.domain.Ctou&quot;&gt;
-            &lt;id column=&quot;c_id&quot; property=&quot;id&quot; /&gt;
-            &lt;result column=&quot;buserid&quot; property=&quot;buserid&quot; /&gt;
-            &lt;result column=&quot;bcardid&quot; property=&quot;bcardid&quot; /&gt;
-        &lt;/collection&gt; --&gt;
-        &lt;collection property=&quot;bcards&quot; ofType=&quot;com.test.domain.Bcard&quot;&gt;
-                &lt;id column=&quot;b_id&quot; property=&quot;id&quot; /&gt;
-                &lt;result column=&quot;money&quot; property=&quot;money&quot; /&gt;
-        &lt;/collection&gt;
-    &lt;/resultMap&gt;
-
-    &lt;select id=&quot;selectMtoM&quot; parameterType=&quot;java.lang.Integer&quot; resultMap=&quot;resultUmap&quot;&gt;
-        SELECT buser.*,bcard.id b_id,bcard.money from buser,ctou,bcard
-        where buser.id=#{value} and buser.id=ctou.buserid and ctou.bcardid=bcard.id
-    &lt;/select&gt;
-&lt;/mapper&gt;
-</code></pre></li>
-</ol>
-<ol start="3">
-<li>创建对应接口和方法</li>
-</ol>
-<pre><code>public interface BuserMapper {
-    public Buser selectMtoM(Integer value) throws Exception;
-}
-</code></pre><ol start="4">
-<li><p>记得在总配置文件里配置</p>
-<pre><code>&lt;typeAliases&gt;
-    &lt;package name=&quot;com.me.domain&quot;/&gt;
-    &lt;package name=&quot;com.test.domain&quot;/&gt;
-&lt;/typeAliases&gt;
-
-&lt;mappers&gt;
-    &lt;!-- &lt;mapper resource=&quot;sqlmap/User.xml&quot;/&gt; --&gt;    
-    &lt;package name=&quot;com.me.mapper&quot;/&gt;
-
-     &lt;package name=&quot;com.test.mapper&quot;/&gt;
-&lt;/mappers&gt;
-</code></pre></li>
-<li><p>测试</p>
-<pre><code>Buser buser=buserMapper.selectMtoM(111);
-System.out.println(buser.getName());
-for (Bcard bcard : buser.getBcards()) {
-    System.out.println(bcard.getId()+&quot; &quot;+bcard.getMoney());
-}
-</code></pre></li>
-</ol>
-<ol start="6">
-<li>结果输出：<br>胡歌<br>1002 0<br>1003 10000</li>
-</ol>
-<hr>
-<p>反过来从bcard来查buser也一样的步骤。</p>
-<p>over~</p>
+<p>settings标签配置在property下面，typeAlias上面。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">延迟加载开关</th>
+<th style="text-align:left">全局性设置懒加载。如果设为‘false’，则所有相关联的都会被初始化加载。</th>
+<th style="text-align:right">lazyLoadingEnabled</th>
+<th style="text-align:center">默认为false</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">消极加载</td>
+<td style="text-align:left">当设置为‘true’的时候，懒加载的对象可能被任何懒属性全部加载。否则，每个属性都按需加载。</td>
+<td style="text-align:right">aggressiveLazyLoading</td>
+<td style="text-align:center">默认为true</td>
+</tr>
+<tr>
+<td style="text-align:left">二级缓存</td>
+<td style="text-align:left"><a href="#a">CLICK</a></td>
+<td style="text-align:right">cacheEnabled</td>
+<td style="text-align:center">默认为false</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>一级缓存</strong></li>
+</ul>
+<p>Mybatis默认开启一级缓存，在同一个SqlSession中，执行相同的查询SQL，第一次会去查询数据库，并写到缓存中；第二次直接从缓存中取。当执行SQL时两次查询中间发生了增删改操作，则SqlSession的缓存清空。<br>SqlSession关闭也清空，比如一个service调用的结束，会关闭一个sqlsession，则缓存结束。</p>
+<p><span id="a"></span></p>
+<ul>
+<li><strong>二级缓存</strong></li>
+</ul>
+<p>Mybatis需要手动设置启动二级缓存，除了在SqlMapConfig.xml设置二级缓存的总开关，还要在具体的mapper.xml中开启二级缓存,添加：</p>
+<pre><code>&lt;cache/&gt;
+</code></pre><p>二级缓存的作用域是同一个namespace下的mapper映射文件内容（HashMap），多个SqlSession共享。<br>在同一个namespace下的mapper文件中，执行相同的查询SQL，第一次会去查询数据库，并写到缓存中；第二次直接从缓存中取。当执行SQL时两次查询中间发生了增删改操作，则二级缓存清空。<br>一个SqlSession关闭不会导致二级缓存清空，如果设置了二级缓存，service重复被调用查询同一条记录，只会一直从二级缓存中查询。</p>
+<p><strong>实现序列化</strong></p>
+<p>由于二级缓存的数据不一定都是存储到内存中，它的存储介质多种多样，所以需要给缓存的对象执行序列化。</p>
+<p>如果该类存在父类，那么父类也要实现序列化。</p>
+<p><strong>设置禁用二级缓存</strong></p>
+<p>在select中添加属性useCache=”false”默认为true。</p>
+<p><strong>设置刷新二级缓存</strong></p>
+<p>在select中添加属性flushCache=”true”。</p>
+<h2 id="mybatis整合ehcache"><a href="#mybatis整合ehcache" class="headerlink" title="mybatis整合ehcache"></a>mybatis整合ehcache</h2><p>我们系统为了提高系统并发，性能、一般对系统进行分布式部署（集群部署方式）。</p>
+<p>不使用分布缓存，缓存的数据在各各服务单独存储，不方便系统开发。所以要使用分布式缓存对缓存数据进行集中管理。</p>
+<p>mybatis无法实现分布式缓存，需要和其它分布式缓存框架进行整合。</p>
+<ul>
+<li><strong>整合方法：</strong></li>
+</ul>
+<p>整合ehcache所需包：</p>
+<ul>
+<li>ehcache-core-2.6.11.jar</li>
+<li>mybatis-ehcache-1.1.0.jar</li>
+</ul>
+<p>设置mapper配置文件中</p>
+<pre><code>&lt;cache type=&quot;org.mybatis.caches.ehcache.EhcacheCache&quot;/&gt;
+</code></pre><p>加入ehcache的配置文件ehcache.xml（classpath下）：</p>
+<pre><code>&lt;ehcache xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:noNamespaceSchemaLocation=&quot;../config/ehcache.xsd&quot;&gt;
+    &lt;diskStore path=&quot;F:\develop\ehcache&quot; /&gt;
+    &lt;defaultCache 
+        maxElementsInMemory=&quot;1000&quot; 
+        maxElementsOnDisk=&quot;10000000&quot;
+        eternal=&quot;false&quot; 
+        overflowToDisk=&quot;false&quot; 
+        timeToIdleSeconds=&quot;120&quot;
+        timeToLiveSeconds=&quot;120&quot; 
+        diskExpiryThreadIntervalSeconds=&quot;120&quot;
+        memoryStoreEvictionPolicy=&quot;LRU&quot;&gt;
+    &lt;/defaultCache&gt;
+&lt;/ehcache&gt;
+</code></pre><hr>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2018/10/16/【mybatis】学习总结-三/" style="float: left;">
-        ← 【mybatis】学习总结(三)
-    </a>
     
-    
-    <a class="pull-right" href="/2018/10/15/【mybatis】学习总结(二)/">
-        【mybatis】学习总结(二) →
+    <a class="pull-right" href="/2018/10/16/【mybatis】多对多关系/">
+        【mybatis】多对多关系 →
     </a>
     
 </nav>
