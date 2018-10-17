@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【springmvc】工作流程理解（一） | XFF&#39;s blog</title>
+  <title>Category: mybatis | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -59,7 +59,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -192,113 +192,121 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2018-10-11T06:52:21.451Z" itemprop="datePublished">
-          2018-10-11
-      </time>
-    
-    
-    | 
-    <a href='/tags/springmvc/'>springmvc</a>
-    
-    
-</span>
-                <h1>【springmvc】工作流程理解（一）</h1>
+      <!-- ============================ Hero Image =========================== -->
+
+<section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                    <div>
+                        
+                        <h2>Life Is A <span>Struggle</span>,WELCOME。</h2>
+                        <p></p>
+                        
+                        <h2></h2>
+                        <p>开始时捱一些苦  栽种绝处的花</p>
+                        
+
+                    </div>
+                </div>
             </div>
+            <!-- // .col-md-12 -->
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<ol>
-<li>用户通过URL发送请求，到达<strong>DispatcherServlet-前端(核心)控制器</strong>(通过在web.xml中配置)</li>
-<li><strong>DispatcherServlet</strong>把请求转发给<strong>HandlerMapper-处理器映射器</strong>（在springmvc配置文件中注册）</li>
-<li><strong>HandlerMapper</strong>根据请求返回映射的<strong>controller控制器对象链</strong>给<strong>DispatcherServlet</strong></li>
-<li><strong>DispatcherServlet</strong>把<strong>controller</strong>对象处理链转发给<strong>HandlerAdapter处理器适配器（在springmvc配置文件中注册）</strong></li>
-<li><strong>HandlerAdapter</strong>根据请求通知<strong>controller处理器</strong>应该实现的方法（配置扫描、注解）</li>
-<li><strong>controller</strong>调用对应的方法，返回<strong>ModelAndView</strong>对象（配置注解）</li>
-<li>经<strong>HandlerAdapter</strong>又发送回<strong>DispatcherServlet</strong></li>
-<li><strong>DispatcherServlet</strong>将<strong>ModelAndView</strong>对象发送给<strong>ViewResolver</strong>视图解析器（在springmvc配置文件中配置）</li>
-<li><strong>ViewResolver</strong>对传来的<strong>Model</strong>（数据..）和<strong>View</strong>（对应的页面..）进行渲染返回给<strong>DispatcherServlet</strong></li>
-<li><strong>Response</strong> 响应给用户</li>
-</ol>
-<hr>
-<p>上诉为自己总结，可能有些错误，是我初学理解不够深刻。</p>
-<hr>
-<p><strong><em>网图:</em></strong><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw4bmgbq81j30pj09h75h.jpg" alt=""></p>
-
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-        </div>
-        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
-    
-    <a class="pull-left" href="/2018/10/13/【JAVA8新特性】/" style="float: left;">
-        ← 【JAVA8新特性】
-    </a>
-    
-    
-    <a class="pull-right" href="/2018/10/10/【好用的工具合集】/">
-        【好用的工具合集】 →
-    </a>
-    
-</nav>
-
-        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
-  /**
-   * 搜狐畅言
-   */
-
-  /*
-  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
-
-  window.onload = function () {
-    (function () {
-      var appid = 'cytXXXX';
-      var conf = 'prod_xxxxxxxxxxxxxxxxx';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      var loadJs = function (d, a, id) {
-        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
-        var b = document.createElement("script");
-        b.setAttribute("type", "text/javascript");
-        b.setAttribute("charset", "UTF-8");
-        b.setAttribute("src", d);
-        if (id) {
-          b.setAttribute("id", id);
-        }
-        if (typeof a === "function") {
-          if (window.attachEvent) {
-            b.onreadystatechange = function () {
-              var e = b.readyState;
-              if (e === "loaded" || e === "complete") {
-                b.onreadystatechange = null;
-                a()
-              }
-            }
-          } else {
-            b.onload = a
-          }
-        }
-        c.appendChild(b)
-      };
-
-      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
-        window.changyan.api.config({
-          appid: appid,
-          conf: conf
-        })
-      });
-    })();
-  }
-  */
-
-</script>
-</div>
+        <div class="herofade beige-dk"></div>
     </div>
 </section>
 
+<!-- Height spacing helper -->
+<div class="heightblock"></div>
+<!-- // End height spacing helper -->
 
+<!-- ============================ END Hero Image =========================== -->
+
+
+
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2018/10/16/【mybatis】与spring整合/">【mybatis】与spring整合</a></h4>
+                            
+                            <p><time datetime="2018-10-16T15:36:19.445Z"><a href="/2018/10/16/【mybatis】与spring整合/">2018-10-16</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2018/10/16/【mybatis】逆向工程及详解/">【mybatis】逆向工程及详解</a></h4>
+                            
+                            <p><time datetime="2018-10-16T13:35:53.952Z"><a href="/2018/10/16/【mybatis】逆向工程及详解/">2018-10-16</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2018/10/16/【mybatis】学习总结-三/">【mybatis】学习总结(三)</a></h4>
+                            
+                            <p><time datetime="2018-10-16T07:32:59.850Z"><a href="/2018/10/16/【mybatis】学习总结-三/">2018-10-16</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2018/10/16/【mybatis】多对多关系/">【mybatis】多对多关系</a></h4>
+                            
+                            <p><time datetime="2018-10-16T06:50:23.956Z"><a href="/2018/10/16/【mybatis】多对多关系/">2018-10-16</a></time></p>
+                        </div>
+                    
+                        
+                            </div><div class="row boxes">
+                            
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2018/10/15/【mybatis】学习总结(二)/">【mybatis】学习总结(二)</a></h4>
+                            
+                            <p><time datetime="2018-10-15T07:38:30.030Z"><a href="/2018/10/15/【mybatis】学习总结(二)/">2018-10-15</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2018/10/15/【mybatis】大概总结(一)/">【mybatis】大概总结(一)</a></h4>
+                            
+                            <p><time datetime="2018-10-15T05:41:46.178Z"><a href="/2018/10/15/【mybatis】大概总结(一)/">2018-10-15</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <nav class="pagination" role="pagination">
+            
+            
+        </nav>
+    </div>
+</section>
+
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>不能满足  -不敢停站-  然后怎样</p>
+        </div>
+    </div>
+</section>
       
 <!-- ============================ Footer =========================== -->
 <!--
