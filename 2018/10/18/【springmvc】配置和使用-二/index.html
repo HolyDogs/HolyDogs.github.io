@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Category: java8 | XFF&#39;s blog</title>
+  <title>【springmvc】配置和使用(二) | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -99,11 +99,11 @@
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java8/" class="animsition-link">java8<small>(1)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(1)</small></a></li>
 				    
 				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(6)</small></a></li>
 				    
-				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(1)</small></a></li>
+				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(1)</small></a></li>
 				    
@@ -194,73 +194,246 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>Life Is A <span>Struggle</span>,WELCOME。</h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p>开始时捱一些苦  栽种绝处的花</p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/13/【JAVA8新特性】/">【JAVA8新特性】</a></h4>
-                            
-                            <p><time datetime="2018-10-13T06:35:59.026Z"><a href="/2018/10/13/【JAVA8新特性】/">2018-10-13</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2018-10-18T03:38:00.000Z" itemprop="datePublished">
+          2018-10-18
+      </time>
+    
+    
+    | 
+    <a href='/tags/springmvc/'>springmvc</a>,
+    
+    <a href='/tags/springmvc配置/'>springmvc配置</a>
+    
+    
+</span>
+                <h1>【springmvc】配置和使用(二)</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>根据前面描述的工作流程，现在来对springmvc进行配置。</p>
+<ul>
+<li>首先导入springmvc需要的jar包，这里我使用的是maven管理，添加相应依赖就行了。</li>
+</ul>
+<pre><code>&lt;dependency&gt;
+      &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+      &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+      &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+      &lt;version&gt;3.1.0&lt;/version&gt;
+  &lt;/dependency&gt;
+</code></pre><hr>
+<ul>
+<li><p>创建springmvc的配置文件springmvc.xml (<del>可以任意，最好规范</del>)</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+      xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot; xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
+      xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans.xsd 
+         http://www.springframework.org/schema/context 
+         http://www.springframework.org/schema/context/spring-context.xsd 
+         http://www.springframework.org/schema/tx         
+         http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;&gt;
+
+&lt;/beans&gt;
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li><p>在web.xml中配置前端控制器。</p>
+<pre><code>&lt;servlet&gt;
+    &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+        &lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre></li>
+</ul>
+<p>注意param-value中的路径无误，<br>在url-pattern中有两种配置方式：<br>第一种:  *.action  ,访问以.action结尾，由DispatcherServlet进行解析<br><strong>第二种:  \/  ,所有访问的地址由DispatcherServlet进行解析，对静态文件的解析需要配置不让DispatcherServlet进行解析，使用此种方式实现RESTful风格的url</strong></p>
+<p> 错误配置:  \/*  ,这样配置不对，使用这种配置，最终要转发到一个jsp页面时，仍然会由DispatcherServlet解析jsp地址，不能根据jsp页面找到handler，会报错404</p>
+<hr>
+<ul>
+<li><p>配置处理器映射器</p>
+<pre><code>&lt;bean  class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;/&gt;
+</code></pre></li>
+</ul>
+<ul>
+<li><p>配置处理器适配器</p>
+<pre><code>&lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;&gt;
+</code></pre></li>
+<li><p><strong>注解方式配置</strong></p>
+<pre><code>&lt;!-- 注册HandlerMapper、HandlerAdapter两个映射类 --&gt;
+&lt;mvc:annotation-driven /&gt;
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li>配置处理器Handler(controller)</li>
+</ul>
+<pre><code>&lt;bean  name=&quot;/xxx.action&quot;  class=&quot;com.iot.ssm.controller.xxx&quot;/&gt;
+</code></pre><ul>
+<li><p><strong>注解批量扫描法</strong></p>
+<pre><code>&lt;!-- 配置扫描的包 --&gt;
+&lt;context:component-scan base-package=&quot;com.springdemo.*&quot; /&gt;
+</code></pre></li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>配置视图解析器</strong></p>
+<pre><code>&lt;!-- 视图解析器 --&gt;
+&lt;bean
+    class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
+    &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/view/&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre></li>
+</ul>
+<p>property中prefix对应要查找的目录，suffix对应自动添加的后缀</p>
+<hr>
+<hr>
+<p>测试：</p>
+<p>controller:</p>
+<pre><code>package com.springdemo.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.View;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.springdemo.domain.User;
+
+@Controller
+@RequestMapping(&quot;/demo&quot;)
+public class TestController implements org.springframework.web.servlet.mvc.Controller{
+
+    @RequestMapping(&quot;/demo&quot;)
+    public String index() {
+        return &quot;index&quot;;
+    }
+
+    @Override
+    @RequestMapping(&quot;/test&quot;)
+    public ModelAndView handleRequest(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+        Map&lt;String, Object&gt; map=new HashMap&lt;String, Object&gt;(); 
+        User user=new User();
+        user.setName(&quot;梁非凡&quot;);
+        user.setId(&quot;123&quot;);
+        map.put(&quot;user&quot;, user);
+        String str=&quot;刘醒&quot;;
+        map.put(&quot;str&quot;, str);
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.addAllObjects(map);
+        modelAndView.setViewName(&quot;test&quot;);
+        return modelAndView;
+    }
+
+}
+</code></pre><p>test.jsp :</p>
+<pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=utf-8&quot;
+    pageEncoding=&quot;utf-8&quot;%&gt;
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+${user.name}Hbbbbbbbbb
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>配置到tomcat上，启动tomcat，打开浏览器，输入地址<br><a href="http://localhost:8888/SpringMVCTest/demo/test" target="_blank" rel="noopener">http://localhost:8888/SpringMVCTest/demo/test</a></p>
+<p>得到：<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwce2yvwflj311n0a7aan.jpg" alt=""></p>
+<p>成功…</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2018/10/16/【mybatis】与spring整合/">
+        【mybatis】与spring整合 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足  -不敢停站-  然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--
