@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2018-10-18T07:06:10.242Z</updated>
+  <updated>2018-10-18T09:59:43.545Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【springmvc】注解开发的详细使用</title>
+    <link href="http://xfff.xyz/2018/10/18/%E3%80%90springmvc%E3%80%91%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8/"/>
+    <id>http://xfff.xyz/2018/10/18/【springmvc】注解开发的详细使用/</id>
+    <published>2018-10-18T07:17:03.000Z</published>
+    <updated>2018-10-18T09:59:43.545Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>首先，所有注解都要提前在配置文件中开启扫描。</strong><br><strong>&lt; context:component-scan base-package = “” /&gt;</strong><br>\<a href="context:include-filter" target="_blank" rel="noopener">context:include-filter</a> //指定扫描的路径<br>\<a href="context:exclude-filter" target="_blank" rel="noopener">context:exclude-filter</a> //排除扫描的路径</p><p>&lt;context:component-scan base-package=”com.tan” &gt;<br>        &lt;context:include-filter type=”regex” expression=”.controller.<em>“/&gt;<br>        &lt;context:include-filter type=”regex” expression=”.service.</em>“/&gt;<br>        &lt;context:include-filter type=”regex” expression=”.dao.*”/&gt;<br>&lt;/context:component-scan&gt;</p><p>=<br>&lt;context:component-scan base-package=”com.tan” &gt;<br>        &lt;context:exclude-filter type=”regex” expression=”.model.*”/&gt;<br>&lt;/context:component-scan&gt;</p><p>无论哪种情况\<a href="context:include-filter" target="_blank" rel="noopener">context:include-filter</a>和\<a href="context:exclude-filter" target="_blank" rel="noopener">context:exclude-filter</a>都不能同时存在</p><hr><p><strong>@Controller</strong><br>注册一个bean到spring，标记一个类为controller，这样才能被外界访问到</p><p><strong>@RequestMapping(“/xxx”)</strong><br>注册xxx请求绑定注解下面的类或方法.<br>该注解一共有六个属性，分别为value、method、consumes、produces、 params、headers。<br><strong>value</strong>：指定请求的实际地址，指定的地址可以是URI Template 模式，即请求的URI中可以包含变量，如<br>/test/{variable}/log.jsp,当请求/test/haha/log.jsp时，variable1对应为’haha’，配合@PathVariable使用。<br>另外，该注解还支持通配符</p><p><strong>method</strong>：指定请求的method类型， GET、POST、PUT、DELETE等</p><pre><code>@RequestMapping (value= &quot;testMethod&quot; , method={RequestMethod. GET , RequestMethod. DELETE })public String testMethod() {        return &quot;method&quot; ;    }</code></pre><p>在上面的代码中就使用method 参数限制了以GET 或DELETE 方法请求/testMethod 的时候才能访问到该Controller 的testMethod 方法</p><p><strong>consumes</strong>：指定处理请求的提交内容类型（Content-Type），例如application/json, text/html<br><strong>produces</strong>：指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回<br><strong>params</strong>：指定request中必须包含某些参数值时，才让该方法处理</p><pre><code>@RequestMapping (value= &quot;testParams&quot; , params={ &quot;param1=value1&quot; , &quot;param2&quot; , &quot;!param3&quot; })public String testParams() {       System. out .println( &quot;test Params...........&quot; ); return &quot;testParams&quot; ;    }</code></pre><p>上面代码表面当/aa.action?后面有param1=value&amp;param2={something}且无param3时才能成功访问下面的方法</p><p><strong>headers</strong>：指定request中必须包含某些指定的header值，才能让该方法处理请求<br>与params类似</p><pre><code>@RequestMapping (value= &quot;testHeaders&quot; , headers={ &quot;host=localhost&quot; , &quot;Accept&quot; }) public String testHeaders() {         return &quot;headers&quot; ;    }</code></pre><p>在上面的代码中当请求/testHeaders.do 的时候只有当请求头包含Accept 信息，且请求的host 为localhost 的时候才能正确的访问到testHeaders 方法</p><hr><p><strong>@Resource和@Autowired</strong><br>两者都用来注入bean，@Resource其实并不是spring的注解，仔细看import部分可以看到是javax.annotation.*下的包。<br>共同点：可以写在bean的声明或者setter方法上，如果写在字段上，就不用写setter方法。<br>不同点：<br>@Autowired是按照类型装配对象，默认要求依赖对象必须存在，如果允许存在，设置required属性为false。按名称装配时要加@Qualifier(“xxx”)<br>@Resource默认按名称装配，需要配置name属性@Resource(name=”xxx”)，也可以设置type属性来按类型装配。</p><hr><p><strong>attribute类型{</strong><br><strong>@ModelAttribute</strong><br>代表的是：该Controller的所有方法在调用前，先执行此@ModelAttribute方法，可用于注解和方法参数中，可以把这个@ModelAttribute特性，应用在BaseController当中，所有的Controller继承BaseController，即可实现在调用Controller时，先执行@ModelAttribute方法。</p><pre><code>@ModelAttribute ( &quot;hello&quot; ) public String getModel() {      System. out .println( &quot;-------------Hello---------&quot; );      return &quot;world&quot; ;   }</code></pre><p>上面代码会在访问方法执行前执行，打印，并把字符串”world”存入model对象中，对应关键字为”hello”<br>也可以在另外的方法参数前加上@ModelAttribute(“xxx”)即可把model里的xxx值映射到这个参数里</p><p><strong>@SessionAttributes</strong><br>将值放到session作用域中，写在class上面。</p><pre><code>@SessionAttributes(value={&quot;name&quot;,&quot;theid&quot;},type={User.class})public class MyController{    //xxxxxx....}</code></pre><p>上面的代码指定了遇到属性name或者theid或者User类型使用modelattribute注解存放的时候，都会存放到session对象里。当 @ModelAttribute 标记在处理器方法参数上的时候，表示该参数的值将从模型或者 Session 中取对应名称的属性值，该名称可以通过 @ModelAttribute(“attributeName”) 来指定，若未指定，则使用参数类型的类名称（首字母小写）作为属性名称<br><strong>}</strong></p><hr><p><strong>request uri部分</strong>(variable/)<br><strong>@PathVariable</strong><br>用来将URL中的变量映射到方法的参数里</p><pre><code>@RequestMapping(value=&quot;/user/{userId}/roles/{roleId}&quot;,method = RequestMethod.GET) public String getLogin(@PathVariable(&quot;userId&quot;) String userId,      @PathVariable(&quot;roleId&quot;) String roleId){      System.out.println(&quot;User Id : &quot; + userId);      System.out.println(&quot;Role Id : &quot; + roleId); return &quot;hello&quot;;  }</code></pre><hr><p><strong>request body**</strong>部分{<strong></strong>@RequestParam**<br>主要用于在SpringMVC后台控制层获取参数，类似一种是request.getParameter(“name”)，它有三个常用参数：defaultValue = “0”, required = false, value = “isApp”；defaultValue 表示设置默认值，required 通过boolean设置是否是必须要传入的参数，value 值表示接受的传入的参数类型</p><pre><code>public String setupForm(@RequestParam(&quot;petId&quot;) int petId, ModelMap model) {      //xxx  }    </code></pre><p><strong>@ResponseBody</strong><br>作用： 该注解用于将Controller的方法返回的对象，通过适当的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区。</p><pre><code>@RequestMapping(value = &quot;/something&quot;, method = RequestMethod.PUT) public void handle(@RequestBody String body, Writer writer) throws IOException {    writer.write(body);  }</code></pre><p>使用时机：返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用；<br><strong>}</strong></p><hr><p><strong>request header部分{</strong><br><strong>@RequestHeader</strong></p><pre><code>public  void displayHeaderInfo(@RequestHeader(&quot;Accept-Encoding&quot;) String encoding,@RequestHeader(&quot;Keep-Alive&quot;)   long  keepAlive) {}</code></pre><p>这段代码把request header部分的Accept-Encoding和Keep-Alive值映射到对应的参数里。</p><p><strong>@CookieValue</strong></p><pre><code>@RequestMapping(&quot;/displayHeaderInfo.do&quot;) public void displayHeaderInfo(@CookieValue(&quot;JSESSIONID&quot;) String cookie)  {  }</code></pre><p>上面代码把cookie里的JSESSIONID值映射到对应的参数里。</p><p><strong>}</strong></p><hr><p>@Component<br>通用的注解，当不知道一个类归于哪层时，使用。不推荐使用。</p><p>@Repository<br>注解dao层，在daoImpl类上注解</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;首先，所有注解都要提前在配置文件中开启扫描。&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;&amp;lt; context:component-scan base-package = “” /&amp;gt;&lt;/strong&gt;&lt;br&gt;\&lt;a href=&quot;context:incl
+      
+    
+    </summary>
+    
+      <category term="springmvc" scheme="http://xfff.xyz/categories/springmvc/"/>
+    
+    
+      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
+    
+      <category term="注解" scheme="http://xfff.xyz/tags/%E6%B3%A8%E8%A7%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>【springmvc】配置和使用(二)</title>
