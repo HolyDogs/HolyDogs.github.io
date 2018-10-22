@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>图片的上传和下载以及存入数据库 | XFF&#39;s blog</title>
+  <title>Tag: 图片的上传下载 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -196,212 +196,73 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2018-10-22T14:55:10.000Z" itemprop="datePublished">
-          2018-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tags/javaweb/'>javaweb</a>,
-    
-    <a href='/tags/图片的上传下载/'>图片的上传下载</a>,
-    
-    <a href='/tags/数据库/'>数据库</a>
-    
-    
-</span>
-                <h1>图片的上传和下载以及存入数据库</h1>
+      <!-- ============================ Hero Image =========================== -->
+
+<section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                    <div>
+                        
+                        <h2>Life Is A <span>Struggle</span>,WELCOME。</h2>
+                        <p></p>
+                        
+                        <h2></h2>
+                        <p>开始时捱一些苦  栽种绝处的花</p>
+                        
+
+                    </div>
+                </div>
             </div>
+            <!-- // .col-md-12 -->
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<hr>
-<h2 id="首先添加jar包"><a href="#首先添加jar包" class="headerlink" title="首先添加jar包"></a>首先添加jar包</h2><p>这里我直接写maven依赖<br><span id="a"></span></p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
-    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
-    &lt;version&gt;3.1.0&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
-    &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
-    &lt;version&gt;1.3.3&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;commons-io&lt;/groupId&gt;
-    &lt;artifactId&gt;commons-io&lt;/artifactId&gt;
-    &lt;version&gt;2.5&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;commons-logging&lt;/groupId&gt;
-    &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
-    &lt;version&gt;1.2&lt;/version&gt;
-    &lt;type&gt;pom.lastUpdated&lt;/type&gt;
-&lt;/dependency&gt;
-</code></pre><hr>
-<h2 id="表单："><a href="#表单：" class="headerlink" title="表单："></a>表单：</h2><pre><code>&lt;form action=&quot;Aservlet&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
-    &lt;input type=&quot;text&quot; name=&quot;tname&quot; /&gt;
-    &lt;input type=&quot;file&quot; name=&quot;tfile&quot; /&gt;
-    &lt;button type=&quot;submit&quot;&gt;SSSS&lt;/button&gt;
-&lt;/form&gt;
-</code></pre><p>这里注意enctype的值</p>
-<hr>
-<h2 id="创建一个Servlet处理接收数据"><a href="#创建一个Servlet处理接收数据" class="headerlink" title="创建一个Servlet处理接收数据"></a>创建一个Servlet处理接收数据</h2><pre><code>PrintWriter out=response.getWriter();
-response.setContentType(&quot;text/html&quot;);
-
-try {
-    DiskFileItemFactory factory=new DiskFileItemFactory();
-    ServletFileUpload upload=new ServletFileUpload(factory);
-    upload.setHeaderEncoding(&quot;utf-8&quot;);
-    if(!ServletFileUpload.isMultipartContent(request)) {
-        return;
-    }
-    List&lt;FileItem&gt; list=upload.parseRequest(request);
-    for (FileItem fileItem : list) {
-        if(fileItem.isFormField()) {
-            //处理表单内非文件内容
-            String name=fileItem.getFieldName();
-            String value=fileItem.getString(&quot;UTF-8&quot;);
-
-        }else {
-            String filename=fileItem.getName();
-            if(filename.endsWith(&quot;.png&quot;)) {
-                //这里只接收以png结尾的文件
-                filename=filename.substring(filename.lastIndexOf(&quot;\\&quot;)+1);
-                //得到文件输入流
-                InputStream inputStream=fileItem.getInputStream();        
-                //创建一个新数组存放内容
-                byte data[]=new byte[inputStream.available()];
-                //写入数组
-                inputStream.read(data);
-                /*byte buffer[]=new byte[1024];
-                int len=0;
-                while((len=inputStream.read(buffer))&gt;0) {
-                    outputStream.write(buffer, 0, len);
-                }*/
-                inputStream.close();
-                //用base64编码为字符串，接下来就能存入数据库（未写）
-                String str=Base64.getEncoder().encodeToString(data);
-                request.getSession().setAttribute(&quot;img&quot;, str);
-
-                fileItem.delete();
-            }
-            else {
-                continue;
-            }
-        }
-    }
-
-
-}catch (Exception e) {
-    // TODO: handle exception
-}
-request.getRequestDispatcher(&quot;img.jsp&quot;).forward(request, response);
-</code></pre><p>这里是doget()里的内容</p>
-<hr>
-<h2 id="创建输出图片的servlet"><a href="#创建输出图片的servlet" class="headerlink" title="创建输出图片的servlet"></a>创建输出图片的servlet</h2><pre><code>//禁止缓存
-response.setDateHeader(&quot;Expires&quot;, -1);
-response.setHeader(&quot;Cache-Control&quot;, &quot;no-cache&quot;);
-response.setHeader(&quot;Pragma&quot;, &quot;no-cache&quot;);
-// 通知jsp以图片方式打开发送过去的数据
-response.setHeader(&quot;Content-Type&quot;, &quot;image/jpeg&quot;);
-String str=(String) request.getSession().getAttribute(&quot;img&quot;);
-OutputStream outputStream=response.getOutputStream();
-byte data[]=Base64.getDecoder().decode(str);
-outputStream.write(data);
-outputStream.close();
-</code></pre><p>base64解码，用response的输出流输出</p>
-<hr>
-<h2 id="显示图片的jsp"><a href="#显示图片的jsp" class="headerlink" title="显示图片的jsp"></a>显示图片的jsp</h2><pre><code>&lt;label&gt;图片:&lt;/label&gt;
-&lt;img width=&quot;200&quot; height=&quot;200&quot; src=&quot;${pageContext.request.contextPath}/Imgg&quot;/&gt;
-&lt;a href=&quot;${pageContext.request.contextPath}/DownS&quot;&gt;hahah&lt;/a&gt;
-</code></pre><p>可以设置图片的高和宽</p>
-<hr>
-<h2 id="下载图片"><a href="#下载图片" class="headerlink" title="下载图片"></a>下载图片</h2><p>通过上面的超链接请求downs这个servlet下载图片<br>doget()内容</p>
-<pre><code>response.setDateHeader(&quot;Expires&quot;, -1);
-response.setHeader(&quot;Cache-Control&quot;, &quot;no-cache&quot;);
-response.setHeader(&quot;Pragma&quot;, &quot;no-cache&quot;);
-response.setHeader(&quot;content-disposition&quot;, &quot;attachment;&quot;);
-String str=(String) request.getSession().getAttribute(&quot;img&quot;);
-OutputStream outputStream=response.getOutputStream();
-byte data[]=Base64.getDecoder().decode(str);
-outputStream.write(data);
-outputStream.close();
-</code></pre><hr>
-<p>遇到的错误或异常：<br><a href="https://blog.csdn.net/xiaoye142034/article/details/78852661" target="_blank" rel="noopener">使用EL表达式标红</a><br><a href="#a">缺少commons-logging</a></p>
-<hr>
-
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-        </div>
-        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
-    
-    
-    <a class="pull-right" href="/2018/10/19/【ssm】ssm整合配置/">
-        【ssm】ssm整合配置 →
-    </a>
-    
-</nav>
-
-        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
-  /**
-   * 搜狐畅言
-   */
-
-  /*
-  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
-
-  window.onload = function () {
-    (function () {
-      var appid = 'cytXXXX';
-      var conf = 'prod_xxxxxxxxxxxxxxxxx';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      var loadJs = function (d, a, id) {
-        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
-        var b = document.createElement("script");
-        b.setAttribute("type", "text/javascript");
-        b.setAttribute("charset", "UTF-8");
-        b.setAttribute("src", d);
-        if (id) {
-          b.setAttribute("id", id);
-        }
-        if (typeof a === "function") {
-          if (window.attachEvent) {
-            b.onreadystatechange = function () {
-              var e = b.readyState;
-              if (e === "loaded" || e === "complete") {
-                b.onreadystatechange = null;
-                a()
-              }
-            }
-          } else {
-            b.onload = a
-          }
-        }
-        c.appendChild(b)
-      };
-
-      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
-        window.changyan.api.config({
-          appid: appid,
-          conf: conf
-        })
-      });
-    })();
-  }
-  */
-
-</script>
-</div>
+        <div class="herofade beige-dk"></div>
     </div>
 </section>
 
+<!-- Height spacing helper -->
+<div class="heightblock"></div>
+<!-- // End height spacing helper -->
 
+<!-- ============================ END Hero Image =========================== -->
+
+
+
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2018/10/22/图片的上传和下载以及存入数据库/">图片的上传和下载以及存入数据库</a></h4>
+                            
+                            <p><time datetime="2018-10-22T14:55:10.000Z"><a href="/2018/10/22/图片的上传和下载以及存入数据库/">2018-10-22</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <nav class="pagination" role="pagination">
+            
+            
+        </nav>
+    </div>
+</section>
+
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>不能满足  -不敢停站-  然后怎样</p>
+        </div>
+    </div>
+</section>
       
 <!-- ============================ Footer =========================== -->
 <!--
