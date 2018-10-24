@@ -268,16 +268,18 @@ public String getLogin(@PathVariable(&quot;userId&quot;) String userId,
     System.out.println(&quot;Role Id : &quot; + roleId); return &quot;hello&quot;;  
 }
 </code></pre><hr>
-<p><strong>request body**</strong>部分{<strong>
-</strong>@RequestParam**<br>主要用于在SpringMVC后台控制层获取参数，类似一种是request.getParameter(“name”)，它有三个常用参数：defaultValue = “0”, required = false, value = “isApp”；defaultValue 表示设置默认值，required 通过boolean设置是否是必须要传入的参数，value 值表示接受的传入的参数类型</p>
+<p><strong>request body部分</strong>{</p>
+<p><strong>@RequestParam</strong><br>主要用于在SpringMVC后台控制层获取参数，类似一种是request.getParameter(“name”)，它有三个常用参数：defaultValue = “0”, required = false, value = “isApp”；defaultValue 表示设置默认值，required 通过boolean设置是否是必须要传入的参数，value 值表示接受的传入的参数类型</p>
 <pre><code>public String setupForm(@RequestParam(&quot;petId&quot;) int petId, ModelMap model) {  
     //xxx 
  }    
 </code></pre><p><strong>@ResponseBody</strong><br>作用： 该注解用于将Controller的方法返回的对象，通过适当的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区。</p>
-<pre><code>@RequestMapping(value = &quot;/something&quot;, method = RequestMethod.PUT) public void handle(@RequestBody String body, Writer writer) throws IOException {  
+<pre><code>@RequestMapping(value = &quot;/something&quot;, method = RequestMethod.PUT) 
+public void handle(@RequestBody String body, Writer writer) throws IOException {  
   writer.write(body);  
 }
-</code></pre><p>使用时机：返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用；<br><strong>}</strong></p>
+</code></pre><p>使用时机：返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用；</p>
+<p><strong>}</strong></p>
 <hr>
 <p><strong>request header部分{</strong><br><strong>@RequestHeader</strong></p>
 <pre><code>public  void displayHeaderInfo(@RequestHeader(&quot;Accept-Encoding&quot;) String encoding,
