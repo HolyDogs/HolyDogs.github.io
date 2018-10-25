@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【ssm】ssm整合配置 | XFF&#39;s blog</title>
+  <title>Tag: resolver | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -196,499 +196,73 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2018-10-19T09:46:56.000Z" itemprop="datePublished">
-          2018-10-19
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>,
-    
-    <a href='/tags/springmvc/'>springmvc</a>,
-    
-    <a href='/tags/spring/'>spring</a>,
-    
-    <a href='/tags/ssm/'>ssm</a>
-    
-    
-</span>
-                <h1>【ssm】ssm整合配置</h1>
+      <!-- ============================ Hero Image =========================== -->
+
+<section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                    <div>
+                        
+                        <h2>Life Is A <span>Struggle</span>,WELCOME。</h2>
+                        <p></p>
+                        
+                        <h2></h2>
+                        <p>开始时捱一些苦  栽种绝处的花</p>
+                        
+
+                    </div>
+                </div>
             </div>
+            <!-- // .col-md-12 -->
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<ul>
-<li><strong>导入所有需要的包（添加maven依赖）:</strong></li>
-</ul>
-<pre><code>&lt;dependencies&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
-         &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
-         &lt;version&gt;3.4.5&lt;/version&gt;
-     &lt;/dependency&gt;
-           &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
-         &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-aspects&lt;/artifactId&gt;
-         &lt;version&gt;5.1.0.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
-         &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
-         &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
-         &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-expression&lt;/artifactId&gt;
-         &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
-         &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-orm&lt;/artifactId&gt;
-         &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;
-         &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-web&lt;/artifactId&gt;
-         &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-         &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
-         &lt;version&gt;4.3.7.RELEASE&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
-         &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
-         &lt;version&gt;3.1.0&lt;/version&gt;
-     &lt;/dependency&gt;
-     &lt;dependency&gt;
-         &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
-         &lt;artifactId&gt;jstl&lt;/artifactId&gt;
-         &lt;version&gt;1.2&lt;/version&gt;
-     &lt;/dependency&gt;
-           &lt;dependency&gt;
-         &lt;groupId&gt;junit&lt;/groupId&gt;
-         &lt;artifactId&gt;junit&lt;/artifactId&gt;
-         &lt;version&gt;4.12&lt;/version&gt;
-         &lt;type&gt;pom.lastUpdated&lt;/type&gt;
-     &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
-        &lt;artifactId&gt;commons-lang3&lt;/artifactId&gt;
-        &lt;version&gt;3.6&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;commons-logging&lt;/groupId&gt;
-        &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
-        &lt;version&gt;1.2&lt;/version&gt;
-        &lt;type&gt;pom.lastUpdated&lt;/type&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
-        &lt;artifactId&gt;commons-compress&lt;/artifactId&gt;
-        &lt;version&gt;1.11&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;commons-io&lt;/groupId&gt;
-        &lt;artifactId&gt;commons-io&lt;/artifactId&gt;
-        &lt;version&gt;2.5&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-  &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
-  &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
-  &lt;version&gt;3.4.1&lt;/version&gt;
-&lt;/dependency&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;mysql&lt;/groupId&gt;
-          &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-          &lt;version&gt;8.0.11&lt;/version&gt;
-      &lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
-    &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
-    &lt;version&gt;1.3.2&lt;/version&gt;
-&lt;/dependency&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;com.mchange&lt;/groupId&gt;
-          &lt;artifactId&gt;c3p0&lt;/artifactId&gt;
-          &lt;version&gt;0.9.5.2&lt;/version&gt;
-      &lt;/dependency&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;aopalliance&lt;/groupId&gt;
-          &lt;artifactId&gt;aopalliance&lt;/artifactId&gt;
-          &lt;version&gt;1.0&lt;/version&gt;
-          &lt;type&gt;pom.lastUpdated&lt;/type&gt;
-      &lt;/dependency&gt;
-  &lt;/dependencies&gt;
-</code></pre><hr>
-<ul>
-<li><strong>配置spring</strong></li>
-</ul>
-<p>为dao、service、transaction等层分别创建配置文件，方便管理。<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwe0l9i9lnj3080055wei.jpg" alt=""></p>
-<p><strong>applicationContext-dao.xml：</strong></p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
-xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
-xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.3.xsd
-http://www.springframework.org/schema/aop
-http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-http://www.springframework.org/schema/tx
-http://www.springframework.org/schema/tx/spring-tx-4.3.xsd&quot;&gt;
-
-&lt;context:property-placeholder location=&quot;classpath:db.properties&quot;/&gt;
-
-&lt;bean id=&quot;dataSource&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;
-    &lt;property name=&quot;driverClass&quot; value=&quot;${jdbc.driver}&quot;&gt;&lt;/property&gt;
-    &lt;property name=&quot;jdbcUrl&quot; value=&quot;${jdbc.url}&quot;&gt;&lt;/property&gt;
-    &lt;property name=&quot;user&quot; value=&quot;${jdbc.username}&quot;&gt;&lt;/property&gt;
-    &lt;property name=&quot;password&quot; value=&quot;${jdbc.password}&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-
-&lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
-    &lt;property name=&quot;configLocation&quot; value=&quot;classpath:mybatis/SqlMapConfig.xml&quot; /&gt;
-    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
-&lt;/bean&gt;
-
-&lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
-    &lt;property name=&quot;basePackage&quot; value=&quot;com.me.mapper&quot; /&gt;
-    &lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory&quot; /&gt;
-&lt;/bean&gt;
-
-&lt;/beans&gt;
-</code></pre><p><strong>applicationContext-service.xml：</strong></p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
-xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
-xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.3.xsd
-http://www.springframework.org/schema/aop
-http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-http://www.springframework.org/schema/tx
-http://www.springframework.org/schema/tx/spring-tx-4.3.xsd&quot;&gt;
-
-&lt;context:component-scan base-package=&quot;com.me.service&quot; /&gt;
-
-&lt;/beans&gt;
-</code></pre><p><strong>applicationContext-trans.xml</strong>：</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
-xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
-xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.3.xsd
-http://www.springframework.org/schema/aop
-http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-http://www.springframework.org/schema/tx
-http://www.springframework.org/schema/tx/spring-tx-4.3.xsd&quot;&gt;
-
-&lt;!-- 配置事务 --&gt;
-&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
-    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-
-&lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;/&gt;
-    &lt;!-- 切面aop
-&lt;aop:config&gt;
-    &lt;aop:pointcut expression=&quot;execution(* com.me.entity.TestClass.*(..))&quot; id=&quot;pointcut1&quot;/&gt;
-    &lt;aop:aspect ref=&quot;incretestclass&quot;&gt;
-        &lt;aop:before method=&quot;inc&quot; pointcut-ref=&quot;pointcut1&quot;/&gt;
-        &lt;aop:after method=&quot;afterturning&quot; pointcut-ref=&quot;pointcut1&quot;/&gt;
-
-
-    &lt;/aop:aspect&gt;
-&lt;/aop:config&gt; --&gt;
-&lt;/beans&gt;
-</code></pre><hr>
-<ul>
-<li><p><strong>数据库配置文件</strong><br><strong>db.properties</strong></p>
-<pre><code>jdbc.driver=com.mysql.jdbc.Driver
-jdbc.url=jdbc\:mysql\://localhost\:3306/photo?characterEncoding\=utf-8
-jdbc.username=root
-jdbc.password=olonn
-</code></pre></li>
-</ul>
-<hr>
-<p>##mybatis</p>
-<ul>
-<li><strong>SqlMapConfig.xml</strong></li>
-</ul>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;!DOCTYPE configuration
-        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
-        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
-&lt;configuration&gt;
-    &lt;settings&gt;
-        &lt;setting name=&quot;lazyLoadingEnabled&quot; value=&quot;false&quot;/&gt;
-        &lt;setting name=&quot;aggressiveLazyLoading&quot; value=&quot;false&quot;/&gt;
-        &lt;setting name=&quot;cacheEnabled&quot; value=&quot;false&quot;/&gt;
-    &lt;/settings&gt;
-&lt;/configuration&gt;
-</code></pre><hr>
-<h2 id="springmvc"><a href="#springmvc" class="headerlink" title="springmvc"></a>springmvc</h2><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-      xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot; xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
-      xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans 
-         http://www.springframework.org/schema/beans/spring-beans.xsd 
-         http://www.springframework.org/schema/context 
-         http://www.springframework.org/schema/context/spring-context.xsd 
-         http://www.springframework.org/schema/tx         
-         http://www.springframework.org/schema/tx/spring-tx.xsd
-         http://www.springframework.org/schema/mvc
-           http://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;&gt;
-
-       &lt;!-- 配置扫描的包 --&gt;
-       &lt;context:component-scan base-package=&quot;com.me.controller&quot; /&gt;
-
-       &lt;!-- 注册HandlerMapper、HandlerAdapter两个映射类 --&gt;
-       &lt;mvc:annotation-driven /&gt;
-
-        &lt;!--访问静态资源 --&gt;
-       &lt;mvc:default-servlet-handler /&gt;
-
-       &lt;!-- 视图解析器 --&gt;
-       &lt;bean
-           class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
-           &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/view/&quot;&gt;&lt;/property&gt;
-           &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;&gt;&lt;/property&gt;
-       &lt;/bean&gt;
-
-&lt;/beans&gt;
-</code></pre><hr>
-<h2 id="web-xml"><a href="#web-xml" class="headerlink" title="web.xml"></a>web.xml</h2><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
-&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot; xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&quot; version=&quot;3.1&quot;&gt;
-
-  &lt;context-param&gt;
-    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
-    &lt;param-value&gt;classpath:applicationContext-*.xml&lt;/param-value&gt;
-  &lt;/context-param&gt;
-  &lt;listener&gt;
-    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
-  &lt;/listener&gt;
-
-  &lt;filter&gt;
-      &lt;filter-name&gt;encoding&lt;/filter-name&gt;
-      &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
-  &lt;/filter&gt;
-  &lt;filter-mapping&gt;
-      &lt;filter-name&gt;encoding&lt;/filter-name&gt;
-      &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-  &lt;/filter-mapping&gt;
-
-  &lt;servlet&gt;
-      &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
-      &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
-      &lt;init-param&gt;
-          &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
-          &lt;param-value&gt;classpath:springmvc/springmvc.xml&lt;/param-value&gt;
-      &lt;/init-param&gt;
-  &lt;/servlet&gt;
-  &lt;servlet-mapping&gt;
-      &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
-      &lt;url-pattern&gt;/&lt;/url-pattern&gt;
-  &lt;/servlet-mapping&gt;
-
-    &lt;welcome-file-list&gt;
-    &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
-    &lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;
-    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
-    &lt;welcome-file&gt;default.html&lt;/welcome-file&gt;
-    &lt;welcome-file&gt;default.htm&lt;/welcome-file&gt;
-    &lt;welcome-file&gt;default.jsp&lt;/welcome-file&gt;
-  &lt;/welcome-file-list&gt;
-
-&lt;/web-app&gt;
-</code></pre><hr>
-<p>可使用逆向工程生成对应数据库下的pojo类和mapper配置文件及接口，复制到对应的包下。</p>
-<hr>
-<hr>
-<h2 id="测试一下"><a href="#测试一下" class="headerlink" title="测试一下"></a>测试一下</h2><p>创建一个service类</p>
-<pre><code>package com.me.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.me.mapper.UserMapper;
-import com.me.pojo.User;
-
-@Service
-public class UserService {
-
-    @Autowired
-    private UserMapper userMapper;
-
-    public User selectUser(int i) {
-        return userMapper.selectByPrimaryKey(i);
-    }
-}
-</code></pre><p>创建一个controller</p>
-<pre><code>package com.me.controller;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.me.service.UserService;
-
-@Controller
-public class LoginController {
-
-    @Autowired
-    private UserService uService;
-
-    @RequestMapping(value=&quot;/login&quot;)
-    public ModelAndView login() {
-        ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName(&quot;/login&quot;);
-        modelAndView.addObject(&quot;user&quot;, uService.selectUser(101));
-        return modelAndView;
-    }
-}
-</code></pre><p>view目录下创建一个login.jsp</p>
-<pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=utf-8&quot;
-    pageEncoding=&quot;utf-8&quot;%&gt;
-&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
-&lt;title&gt;Insert title here&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    hahaha+${user.name}
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><hr>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwe14h61gsj30m906tdg9.jpg" alt=""></p>
-<hr>
-<ul>
-<li><strong>配置中遇到的异常和错误</strong><blockquote>
-<p><a href="https://blog.csdn.net/u014805893/article/details/52016570" target="_blank" rel="noopener">通配符的匹配很全面, 但无法找到元素 ‘context:property-placeholder’ 的声明</a><br><a href="https://blog.csdn.net/eacter/article/details/44624505" target="_blank" rel="noopener">关于spring”通配符的匹配很全面, 但无法找到元素 ‘context:component-scan’ 的声明“的错误</a></p>
-</blockquote>
-</li>
-</ul>
-<p>其实都是spring配置中的schema配置错误，当缺少哪条时就应该补上对应的xsd文件，具体可以在org.springframework.context.config包下找到，但添加内容并不在这里面，如缺少context的xsd，就加</p>
-<pre><code>http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.3.xsd
-</code></pre><p>配对存在，第二条后面加上具体内容和版本（导入什么包，就加写什么版本）。</p>
-<hr>
-<p>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ…</p>
-
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-        </div>
-        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
-    
-    <a class="pull-left" href="/2018/10/22/图片的上传和下载以及存入数据库/" style="float: left;">
-        ← 图片的上传和下载以及存入数据库
-    </a>
-    
-    
-    <a class="pull-right" href="/2018/10/18/【springmvc】注解开发的详细使用/">
-        【springmvc】注解开发的详细使用 →
-    </a>
-    
-</nav>
-
-        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
-  /**
-   * 搜狐畅言
-   */
-
-  /*
-  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
-
-  window.onload = function () {
-    (function () {
-      var appid = 'cytXXXX';
-      var conf = 'prod_xxxxxxxxxxxxxxxxx';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      var loadJs = function (d, a, id) {
-        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
-        var b = document.createElement("script");
-        b.setAttribute("type", "text/javascript");
-        b.setAttribute("charset", "UTF-8");
-        b.setAttribute("src", d);
-        if (id) {
-          b.setAttribute("id", id);
-        }
-        if (typeof a === "function") {
-          if (window.attachEvent) {
-            b.onreadystatechange = function () {
-              var e = b.readyState;
-              if (e === "loaded" || e === "complete") {
-                b.onreadystatechange = null;
-                a()
-              }
-            }
-          } else {
-            b.onload = a
-          }
-        }
-        c.appendChild(b)
-      };
-
-      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
-        window.changyan.api.config({
-          appid: appid,
-          conf: conf
-        })
-      });
-    })();
-  }
-  */
-
-</script>
-</div>
+        <div class="herofade beige-dk"></div>
     </div>
 </section>
 
+<!-- Height spacing helper -->
+<div class="heightblock"></div>
+<!-- // End height spacing helper -->
 
+<!-- ============================ END Hero Image =========================== -->
+
+
+
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2018/10/25/文件上传解析冲突问题/">文件上传解析冲突问题</a></h4>
+                            
+                            <p><time datetime="2018-10-25T13:27:07.000Z"><a href="/2018/10/25/文件上传解析冲突问题/">2018-10-25</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <nav class="pagination" role="pagination">
+            
+            
+        </nav>
+    </div>
+</section>
+
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>不能满足  -不敢停站-  然后怎样</p>
+        </div>
+    </div>
+</section>
       
 <!-- ============================ Footer =========================== -->
 <!--

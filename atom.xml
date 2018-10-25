@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2018-10-24T08:13:25.860Z</updated>
+  <updated>2018-10-25T13:56:21.182Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>文件上传解析冲突问题</title>
+    <link href="http://xfff.xyz/2018/10/25/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%A7%A3%E6%9E%90%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://xfff.xyz/2018/10/25/文件上传解析冲突问题/</id>
+    <published>2018-10-25T13:27:07.000Z</published>
+    <updated>2018-10-25T13:56:21.182Z</updated>
+    
+    <content type="html"><![CDATA[<p>由于在上一篇写ajax提交表单时，在springmvc.xml里配置了<strong>MultipartResolver</strong>，导致我引入的图片上传插件失效（上传显示成功，但是后台没有接收到），在利用各种搜索引擎查找问题之后，终于找到了原因。</p><hr><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>文件上传有两种方式，spring框架里的<strong>MultipartResolver</strong>解析以及传统的<strong>ServletFileUpload</strong>。<br>由于我引入的图片上传插件是第二种方式，而上篇写到的ajax提交表单需要MultipartResolver解析，<strong>两种方式一起使用会产生冲突</strong>。传统方式上传文件的请求会被multipartResolver拦截，导致没有解析出文件。</p><hr><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol><li>统一使用同一种方式上传请求</li><li>继承MultipartResolver，并重写其中的方法，当遇到某些url请求的时候跳过</li></ol><p>由于我引入的插件代码稍微封装的有点麻烦，改起来肯定不方便，而另一边虽然可以改成传统方式发送表单数据，但是需要更多js代码来解析表单数据发送，所以我选择第二种方法。</p><p>事实证明第二种方法确实也更方便。</p><hr><h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ul><li><p>创建一个类MyMultipartResolver并让它继承MultipartResolver，下面代码贴出：</p><pre><code>package com.me.resolver;import javax.servlet.http.HttpServletRequest;import org.springframework.web.multipart.commons.CommonsMultipartResolver;public class MyMultipartResolver extends CommonsMultipartResolver {    //单url过滤以及多url过滤    private String excludeUrls;    private String[] excludeUrlArray;    public String getExcludeUrls() {        return excludeUrls;    }    //以逗号分隔    public void setExcludeUrls(String excludeUrls) {        this.excludeUrls=excludeUrls;        this.excludeUrlArray=excludeUrls.split(&quot;,&quot;);    }    //重写的方法，判断url是否需要multipartResolver解析    @Override    public boolean isMultipart(HttpServletRequest request) {        for(String url:excludeUrlArray) {            if(request.getRequestURI().contains(url)) {                return false;            }        }        return super.isMultipart(request);    }}</code></pre></li></ul><p>关键在于isMultipart里的判断</p><ul><li><p>接下来在springmvc.xml配置，删除之前MultipartResolver 的配置内容，修改为</p><pre><code>&lt;bean id=&quot;multipartResolver&quot; class=&quot;com.me.resolver.MyMultipartResolver&quot;&gt;     &lt;property name=&quot;excludeUrls&quot; value=&quot;update&quot; /&gt;   &lt;property name=&quot;defaultEncoding&quot; value=&quot;UTF-8&quot;&gt;&lt;/property&gt;   &lt;property name=&quot;maxUploadSize&quot; value=&quot;2097152&quot;&gt;&lt;/property&gt;   &lt;property name=&quot;maxInMemorySize&quot; value=&quot;1024&quot;&gt;&lt;/property&gt;&lt;/bean&gt;</code></pre></li></ul><hr><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;由此，两种方法就能和睦相处啦~</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;由于在上一篇写ajax提交表单时，在springmvc.xml里配置了&lt;strong&gt;MultipartResolver&lt;/strong&gt;，导致我引入的图片上传插件失效（上传显示成功，但是后台没有接收到），在利用各种搜索引擎查找问题之后，终于找到了原因。&lt;/p&gt;
+&lt;hr&gt;
+
+      
+    
+    </summary>
+    
+      <category term="errors" scheme="http://xfff.xyz/categories/errors/"/>
+    
+    
+      <category term="error" scheme="http://xfff.xyz/tags/error/"/>
+    
+      <category term="resolver" scheme="http://xfff.xyz/tags/resolver/"/>
+    
+      <category term="文件上传" scheme="http://xfff.xyz/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【ajax】springmvc下使用</title>
+    <link href="http://xfff.xyz/2018/10/25/%E3%80%90ajax%E3%80%91springmvc%E4%B8%8B%E4%BD%BF%E7%94%A8/"/>
+    <id>http://xfff.xyz/2018/10/25/【ajax】springmvc下使用/</id>
+    <published>2018-10-25T10:02:04.000Z</published>
+    <updated>2018-10-25T10:29:02.855Z</updated>
+    
+    <content type="html"><![CDATA[<p>在做ssm项目的时候用到ajax的记录…</p><hr><p>post方法：<br>动态获取div的value，隐藏对应的div项</p><pre><code>var str=this.value;$.post(&quot;lover/deleteL&quot;,{&quot;id&quot;:str},function(data){    alert(data);    $(&quot;#div&quot;+str).hide();});</code></pre><p>data为后台printwriter.write数据</p><hr><p>当用ajax提交form表单的时候<br>直接：</p><pre><code>$(&quot;#btntj&quot;).click(function(){    var form=new FormData(document.getElementById(&quot;forml&quot;));    $.ajax({        url:&quot;lover/addl&quot;,        type:&quot;post&quot;,         processData:false,        contentType:false,        data:form,        success:function(data){            alert(&quot;添加成功&quot;);            window.location.reload()        },        error:function(){            alert(&quot;添加失败&quot;);        }    }); });</code></pre><p>FormData类能自动把表单内的数据封装好，后台用request.getparemeter(“”)就能获得对应的值，可以说是十分方便了。另外，<strong>表单支持file文件上传类型</strong>。</p><p>后台代码（我这个项目暂时用到的提取方法）：</p><pre><code>@RequestMapping(&quot;/addl&quot;)public void addl(@RequestParam(&quot;lname&quot;) String name,@RequestParam(&quot;month&quot;) String month,@RequestParam(&quot;day&quot;) String day,@RequestParam(&quot;year&quot;)String year,HttpServletRequest request,PrintWriter writer) throws ParseException {    User user=(User) request.getSession().getAttribute(&quot;user&quot;);    Lover lover=new Lover();    lover.setUserid(user.getId());    lover.setName(name);    lover.setBirth(new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).parse(year+&quot;-&quot;+month+&quot;-&quot;+day));    loverServiece.saveLover(lover);    writer.write(name);}</code></pre><hr><p><strong>另外</strong>，由于表单提交的是request payload，要在springmvc配置文件中添加</p><pre><code>&lt;bean id=&quot;multipartResolver&quot; class=&quot;org.springframework.web.multipart.commons.CommonsMultipartResolver&quot;&gt;   &lt;property name=&quot;defaultEncoding&quot; value=&quot;UTF-8&quot;&gt;&lt;/property&gt;   &lt;property name=&quot;maxInMemorySize&quot; value=&quot;10240000&quot;&gt;&lt;/property&gt;&lt;/bean&gt;</code></pre><p>才能生效。</p><p>可以通过maxUploadSize设置上传文件的总大小上限，maxInMemorySize设置上传时允许写到内存中的最大值（默认为10240字节）</p><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在做ssm项目的时候用到ajax的记录…&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;post方法：&lt;br&gt;动态获取div的value，隐藏对应的div项&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var str=this.value;
+$.post(&amp;quot;lover/deleteL&amp;quot;,{
+      
+    
+    </summary>
+    
+      <category term="ajax" scheme="http://xfff.xyz/categories/ajax/"/>
+    
+    
+      <category term="ajax" scheme="http://xfff.xyz/tags/ajax/"/>
+    
+      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
+    
+  </entry>
   
   <entry>
     <title>mybatis操作text等长文本类型</title>
