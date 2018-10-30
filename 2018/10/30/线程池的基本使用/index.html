@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Category: java | XFF&#39;s blog</title>
+  <title>线程池的基本使用 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -198,91 +198,253 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>Life Is A <span>Struggle</span>,WELCOME<br/></h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p>开始时捱一些苦  栽种绝处的花</p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/30/线程池的基本使用/">线程池的基本使用</a></h4>
-                            
-                            <p><time datetime="2018-10-30T06:23:35.000Z"><a href="/2018/10/30/线程池的基本使用/">2018-10-30</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/22/图片的上传和下载以及存入数据库/">图片的上传和下载以及存入数据库</a></h4>
-                            
-                            <p><time datetime="2018-10-22T14:55:10.000Z"><a href="/2018/10/22/图片的上传和下载以及存入数据库/">2018-10-22</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/13/【JAVA8新特性】/">【JAVA8新特性】</a></h4>
-                            
-                            <p><time datetime="2018-10-13T06:35:59.026Z"><a href="/2018/10/13/【JAVA8新特性】/">2018-10-13</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2018-10-30T06:23:35.000Z" itemprop="datePublished">
+          2018-10-30
+      </time>
+    
+    
+    | 
+    <a href='/tags/多线程/'>多线程</a>,
+    
+    <a href='/tags/java/'>java</a>,
+    
+    <a href='/tags/线程池/'>线程池</a>
+    
+    
+</span>
+                <h1>线程池的基本使用</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>要用到线程池，就要先介绍一个类：<strong>ThreadPoolExecutor</strong>.</p>
+<p>通过查看源码发现继承及实现关系为<br><img src="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuGh9A4fDJ0d8pyznhKXDBYt9BrBGjLDmJ2ekAKfCBe691QSMbMKcfreff5QKfEQb57FXK03IYw4dCxSW9pKtDQ-ac0kFSYkOqGv04kWo0000" alt=""></p>
+<hr>
+<p>在ThreadPoolExecutor类中，发现有四种构造方法，需要传入很多参数。</p>
+<pre><code>public ThreadPoolExecutor(int corePoolSize,
+                          int maximumPoolSize,
+                          long keepAliveTime,
+                          TimeUnit unit,
+                          BlockingQueue&lt;Runnable&gt; workQueue,
+                          ThreadFactory threadFactory,
+                          RejectedExecutionHandler handler) {
+    if (corePoolSize &lt; 0 ||
+        maximumPoolSize &lt;= 0 ||
+        maximumPoolSize &lt; corePoolSize ||
+        keepAliveTime &lt; 0)
+        throw new IllegalArgumentException();
+    if (workQueue == null || threadFactory == null || handler == null)
+        throw new NullPointerException();
+    this.acc = System.getSecurityManager() == null ?
+            null :
+            AccessController.getContext();
+    this.corePoolSize = corePoolSize;
+    this.maximumPoolSize = maximumPoolSize;
+    this.workQueue = workQueue;
+    this.keepAliveTime = unit.toNanos(keepAliveTime);
+    this.threadFactory = threadFactory;
+    this.handler = handler;
+}
+</code></pre><h2 id="这里对常见的参数进行解释："><a href="#这里对常见的参数进行解释：" class="headerlink" title="这里对常见的参数进行解释："></a>这里对常见的参数进行解释：</h2><ul>
+<li><strong>corePoolSize</strong>：核心池的大小</li>
+<li><strong>maximumPoolSize</strong>：线程池大小（最大能容纳线程数）</li>
+<li>keepAliveTime：允许线程空闲时间。当线程池中线程数大于核心池大小时，当有线程空闲时间超过keepAliveTime就会终止。如果调用了allowCoreThreadTimeOut(boolean)方法，则核心池中的空闲线程也会被终止。</li>
+<li>unit：keepAliveTime的时间单位，格式TimeUnit.XXXX(XXXX用HOURS、MILLISECONDS等替代)</li>
+<li><strong>workQueue</strong>：阻塞队列，一般可选三种类型<ul>
+<li>ArrayBlockingQueue数组类型，指定大小</li>
+<li>LinkedBlockingQueue链表类型，不用指定大小</li>
+<li>SynchronousQueue：<a href="https://www.cnblogs.com/duanxz/p/3252267.html" target="_blank" rel="noopener">CLICK</a></li>
+<li>PriorityBlockingQueue</li>
+</ul>
+</li>
+<li>threadFactory：线程工厂，主要用来创建线程</li>
+<li>handler：指定拒绝处理任务时的策略</li>
+</ul>
+<hr>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>实例化一个ThreadPoolExecutor类</p>
+<pre><code>ThreadPoolExecutor executor=new ThreadPoolExecutor(5, 10, 200, TimeUnit.MILLISECONDS, new LinkedBlockingQueue&lt;Runnable&gt;,5));
+</code></pre><p>核心池大小为5，线程池大小为10，线程允许空闲200ms，阻塞队列大小5.</p>
+<p>然后，创建20个线程并每次打印线程池中的状态</p>
+<pre><code>for(int a=0;a&lt;20;a++) {
+    executor.execute(new ThreadPoolT(a));
+    System.out.println(&quot;线程池中线程数目&quot;+executor.getPoolSize()+&quot;正在等待执行的任务数目&quot;+executor.getQueue().size()+&quot;已经执行完的任务数目:&quot;+executor.getCompletedTaskCount());
+}
+</code></pre><p>其中线程的run方法为</p>
+<pre><code>    @Override
+public void run() {
+    // TODO Auto-generated method stub
+    System.out.print(&quot;线程&quot;+id+&quot;正在执行...&quot;);
+    try {
+        Thread.sleep(2000);
+    } catch (InterruptedException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    System.out.println(&quot;线程&quot;+id+&quot;结束..&quot;);
+}
+</code></pre><p>关闭线程池</p>
+<pre><code>executor.shutdown();
+</code></pre><p>总代码</p>
+<pre><code>package com.test;
+
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+public class ThreadPoolT implements Runnable{
+
+    private int id;
+
+
+    public ThreadPoolT(int id) {
+        super();
+        this.id = id;
+    }
+
+    public static void main(String[] args) {
+
+        ThreadPoolExecutor executor=new ThreadPoolExecutor(5, 10, 200, TimeUnit.MILLISECONDS, new LinkedBlockingQueue&lt;Runnable&gt;(5));
+        for(int a=0;a&lt;20;a++) {
+            executor.execute(new ThreadPoolT(a));
+            System.out.println(&quot;线程池中线程数目&quot;+executor.getPoolSize()+&quot;正在等待执行的任务数目&quot;+executor.getQueue().size()+&quot;已经执行完的任务数目:&quot;+executor.getCompletedTaskCount());
+        }
+        System.out.println(executor.getLargestPoolSize());
+        System.out.println(executor.getPoolSize());
+        executor.shutdown();
+    }
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        System.out.print(&quot;线程&quot;+id+&quot;正在执行...&quot;);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println(&quot;线程&quot;+id+&quot;结束..&quot;);
+    }
+
+}
+</code></pre><hr>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwqbapglbpj30xw0ezgnm.jpg" alt=""></p>
+<p>可见</p>
+<ol>
+<li>线程池会先创建核心池大小量的线程数，并加入需运行的线程</li>
+<li>然后再往线程池中加线程时，就会往阻塞队列里添加，等待执行</li>
+<li>当阻塞队列满了，再往线程池里添加线程，这个时候线程池就会再创建新线程来弥补不足</li>
+<li>当线程池满了（达到了maximumPoolSize ），再往线程池里添加线程时，线程池就会拒绝任务，而拒绝策略和之前参数的设置有关，这里是抛出RejectedExecutionException异常，并停止添加更多线程执行。</li>
+<li>等待线程运行完</li>
+</ol>
+<hr>
+<p>如果把前面的队列里的参数5去掉，并在线程池结束前加下列代码：</p>
+<pre><code>Thread.sleep(10000);
+System.out.println(executor.getPoolSize()+&quot;AAAAAAAAAAAAAAA&quot;);
+executor.shutdown();
+</code></pre><p>则运行结果为：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwqbr9olgfj30rn0hwgnk.jpg" alt=""></p>
+<p>可见线程全部运行结束后核心池仍有5个线程，这便是线程池使用的优点，不用频繁开线程关线程，而是提供一些线程代理运行需要运行的线程，提高了程序效率。</p>
+<hr>
+<p>另外，其实一般使用线程池不用我们每次指定那么多参数。一般使用Executors类中提供的静态方法来创建线程池：</p>
+<pre><code>//corePoolSize和maximumPoolSize值相等，它使用LinkedBlockingQueue
+public static ExecutorService newFixedThreadPool(int nThreads, ThreadFactory threadFactory) {
+    return new ThreadPoolExecutor(nThreads, nThreads,
+                                  0L, TimeUnit.MILLISECONDS,
+                                  new LinkedBlockingQueue&lt;Runnable&gt;(),
+                                  threadFactory);
+}
+
+
+//corePoolSize和maximumPoolSize都设置为1，使用LinkedBlockingQueue
+public static ExecutorService newSingleThreadExecutor() {
+    return new FinalizableDelegatedExecutorService
+        (new ThreadPoolExecutor(1, 1,
+                                0L, TimeUnit.MILLISECONDS,
+                                new LinkedBlockingQueue&lt;Runnable&gt;()));
+}
+
+
+//corePoolSize设置为0，maximumPoolSize设置为Integer.MAX_VALUE，使用SynchronousQueue，也就是说来了任务就创建线程运行，当线程空闲超过60秒，就销毁线程
+public static ExecutorService newCachedThreadPool() {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                  60L, TimeUnit.SECONDS,
+                                  new SynchronousQueue&lt;Runnable&gt;());
+}
+</code></pre><hr>
+<h2 id="合理设置线程池大小"><a href="#合理设置线程池大小" class="headerlink" title="合理设置线程池大小"></a>合理设置线程池大小</h2><p>（1）高并发、任务执行时间短的业务，线程池线程数可以设置为CPU核数+1，减少线程上下文的切换<br>（2）并发不高、任务执行时间长的业务要区分开看：<br>　　a）假如是业务时间长集中在IO操作上，也就是IO密集型的任务，因为IO操作并不占用CPU，所以不要让所有的CPU闲下来，可以适当加大线程池中的线程数目，让CPU处理更多的业务 （2*cpu核心）<br>　　b）假如是业务时间长集中在计算操作上，也就是计算密集型任务，这个就没办法了，和（1）一样吧，线程池中的线程数设置得少一些，减少线程上下文的切换</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2018/10/25/文件上传解析冲突问题/">
+        文件上传解析冲突问题 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足  -不敢停站-  然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--
