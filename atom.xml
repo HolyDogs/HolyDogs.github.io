@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2018-11-08T10:43:10.354Z</updated>
+  <updated>2018-11-23T09:38:59.692Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>比较器Comparator和Comparable的使用</title>
+    <link href="http://xfff.xyz/2018/11/23/%E6%AF%94%E8%BE%83%E5%99%A8Comparator%E5%92%8CComparable%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://xfff.xyz/2018/11/23/比较器Comparator和Comparable的使用/</id>
+    <published>2018-11-23T08:45:52.000Z</published>
+    <updated>2018-11-23T09:38:59.692Z</updated>
+    
+    <content type="html"><![CDATA[<p>当我们需要对一些数组和集合进行排序的时候，经常会用到Arrays.sort和Collections.sort方法。<br>但当sort里的数组或集合里的对象不适合用默认的比较方法时，我们就需要手动对排序方式重新定义。</p><hr><p>比如，现在定义一个Person对象：</p><pre><code>public class Person {    private int id;    private int age;    public Person(int id,int age) {        this.age=age;        this.id=id;    }    public int getId() {        return id;    }    public void setId(int id) {        this.id = id;    }    public int getAge() {        return age;    }    public void setAge(int age) {        this.age = age;    }        @Override    public String toString()         return &quot;Person&quot;+id+&quot;-&gt;age:&quot;+age;    }}</code></pre><p>现在我们要对一堆person集合进行按年龄从小到大的排序或者年龄和id的和的大小的排序，这个时候默认的方法就无法实现我们的要求。</p><hr><p>一般我们有两种方法来实现：</p><h2 id="1-实现Comparable接口"><a href="#1-实现Comparable接口" class="headerlink" title="1.实现Comparable接口"></a>1.实现Comparable接口</h2><p>让需要进行特殊排序的对象实现Comparable接口，并重写其中的compareTo方法</p><pre><code>public class Person implements Comparable&lt;Person&gt;</code></pre><p>compareTo中，如果想按从小到大的顺序排列，当符合小于规定时就返回-1。否则可以反向排序返回1。</p><pre><code>@Overridepublic int compareTo(Person o) {    if (age&lt;o.age) {        return -1;    }else {        return 1;    }}</code></pre><p>测试：</p><pre><code>public class ComparaTest {    public static void main(String[] args) {        List&lt;Person&gt; aList=new ArrayList&lt;Person&gt;();        aList.add(new Person(1,13));        aList.add(new Person(2, 42));        aList.add(new Person(3, 5));        aList.add(new Person(45, 32));        aList.add(new Person(42, 88));        aList.add(new Person(4, 5));        System.out.println(&quot;排序前:&quot;);        aList.stream().forEach(System.out::println);        Collections.sort(aList);        System.out.println(&quot;排序后:&quot;);        aList.stream().forEach(System.out::println);    }}</code></pre><p>输出</p><pre><code>排序前:Person1-&gt;age:13Person2-&gt;age:42Person3-&gt;age:5Person45-&gt;age:32Person42-&gt;age:88Person4-&gt;age:5排序后:Person3-&gt;age:5Person4-&gt;age:5Person1-&gt;age:13Person45-&gt;age:32Person2-&gt;age:42Person42-&gt;age:88</code></pre><h2 id="2-创建比较类继承Comparator"><a href="#2-创建比较类继承Comparator" class="headerlink" title="2.创建比较类继承Comparator"></a>2.创建比较类继承Comparator</h2><p>Comparator位于包java.util下，而Comparable位于包java.lang下。</p><p>创建一个比较类MyComparator：<br>这里我直接创建一个静态内部类用来比较，并定义为倒序</p><pre><code>static class MyComparator implements Comparator&lt;Person&gt;{    @Override    public int compare(Person o1, Person o2) {        if (o1.getAge()&lt;o2.getAge()) {            return 1;        }else {            return -1;        }    }}</code></pre><p>测试：</p><pre><code>public static void main(String[] args) {    List&lt;Person&gt; aList=new ArrayList&lt;Person&gt;();    aList.add(new Person(1,13));    aList.add(new Person(2, 42));    aList.add(new Person(3, 5));    aList.add(new Person(45, 32));    aList.add(new Person(42, 88));    aList.add(new Person(4, 5));    System.out.println(&quot;排序前:&quot;);    aList.stream().forEach(System.out::println);    Collections.sort(aList,new MyComparator());    System.out.println(&quot;排序后:&quot;);    aList.stream().forEach(System.out::println);}</code></pre><p>输出：</p><pre><code>排序前:Person1-&gt;age:13Person2-&gt;age:42Person3-&gt;age:5Person45-&gt;age:32Person42-&gt;age:88Person4-&gt;age:5排序后:Person42-&gt;age:88Person2-&gt;age:42Person45-&gt;age:32Person1-&gt;age:13Person4-&gt;age:5Person3-&gt;age:5</code></pre><hr><p>另外，在leetcode第23题有配合优先级队列使用。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;当我们需要对一些数组和集合进行排序的时候，经常会用到Arrays.sort和Collections.sort方法。&lt;br&gt;但当sort里的数组或集合里的对象不适合用默认的比较方法时，我们就需要手动对排序方式重新定义。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;比如，现在定义一个Person对
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://xfff.xyz/categories/java/"/>
+    
+    
+      <category term="比较器" scheme="http://xfff.xyz/tags/%E6%AF%94%E8%BE%83%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>【leetcode】笔记2</title>

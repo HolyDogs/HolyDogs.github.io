@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: springmvc配置 | XFF&#39;s blog</title>
+  <title>比较器Comparator和Comparable的使用 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -200,73 +200,215 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>Life Is A <span>Struggle</span></h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p>But Every Day Is <Strong>Beautiful</Strong></p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/18/【springmvc】配置和使用-二/">【springmvc】配置和使用(二)</a></h4>
-                            
-                            <p><time datetime="2018-10-18T03:38:00.000Z"><a href="/2018/10/18/【springmvc】配置和使用-二/">2018-10-18</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2018-11-23T08:45:52.000Z" itemprop="datePublished">
+          2018-11-23
+      </time>
+    
+    
+    | 
+    <a href='/tags/比较器/'>比较器</a>
+    
+    
+</span>
+                <h1>比较器Comparator和Comparable的使用</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>当我们需要对一些数组和集合进行排序的时候，经常会用到Arrays.sort和Collections.sort方法。<br>但当sort里的数组或集合里的对象不适合用默认的比较方法时，我们就需要手动对排序方式重新定义。</p>
+<hr>
+<p>比如，现在定义一个Person对象：</p>
+<pre><code>public class Person {
+
+    private int id;
+    private int age;
+
+    public Person(int id,int age) {
+        this.age=age;
+        this.id=id;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }    
+
+    @Override
+    public String toString() 
+        return &quot;Person&quot;+id+&quot;-&gt;age:&quot;+age;
+    }
+}
+</code></pre><p>现在我们要对一堆person集合进行按年龄从小到大的排序或者年龄和id的和的大小的排序，这个时候默认的方法就无法实现我们的要求。</p>
+<hr>
+<p>一般我们有两种方法来实现：</p>
+<h2 id="1-实现Comparable接口"><a href="#1-实现Comparable接口" class="headerlink" title="1.实现Comparable接口"></a>1.实现Comparable接口</h2><p>让需要进行特殊排序的对象实现Comparable接口，并重写其中的compareTo方法</p>
+<pre><code>public class Person implements Comparable&lt;Person&gt;
+</code></pre><p>compareTo中，如果想按从小到大的顺序排列，当符合小于规定时就返回-1。否则可以反向排序返回1。</p>
+<pre><code>@Override
+public int compareTo(Person o) {
+    if (age&lt;o.age) {
+        return -1;
+    }else {
+        return 1;
+    }
+}
+</code></pre><p>测试：</p>
+<pre><code>public class ComparaTest {
+    public static void main(String[] args) {
+        List&lt;Person&gt; aList=new ArrayList&lt;Person&gt;();
+        aList.add(new Person(1,13));
+        aList.add(new Person(2, 42));
+        aList.add(new Person(3, 5));
+        aList.add(new Person(45, 32));
+        aList.add(new Person(42, 88));
+        aList.add(new Person(4, 5));
+        System.out.println(&quot;排序前:&quot;);
+        aList.stream().forEach(System.out::println);
+        Collections.sort(aList);
+        System.out.println(&quot;排序后:&quot;);
+        aList.stream().forEach(System.out::println);
+    }
+}
+</code></pre><p>输出</p>
+<pre><code>排序前:
+Person1-&gt;age:13
+Person2-&gt;age:42
+Person3-&gt;age:5
+Person45-&gt;age:32
+Person42-&gt;age:88
+Person4-&gt;age:5
+排序后:
+Person3-&gt;age:5
+Person4-&gt;age:5
+Person1-&gt;age:13
+Person45-&gt;age:32
+Person2-&gt;age:42
+Person42-&gt;age:88
+</code></pre><h2 id="2-创建比较类继承Comparator"><a href="#2-创建比较类继承Comparator" class="headerlink" title="2.创建比较类继承Comparator"></a>2.创建比较类继承Comparator</h2><p>Comparator位于包java.util下，而Comparable位于包java.lang下。</p>
+<p>创建一个比较类MyComparator：<br>这里我直接创建一个静态内部类用来比较，并定义为倒序</p>
+<pre><code>static class MyComparator implements Comparator&lt;Person&gt;{
+
+    @Override
+    public int compare(Person o1, Person o2) {
+        if (o1.getAge()&lt;o2.getAge()) {
+            return 1;
+        }else {
+            return -1;
+        }
+    }
+}
+</code></pre><p>测试：</p>
+<pre><code>public static void main(String[] args) {
+    List&lt;Person&gt; aList=new ArrayList&lt;Person&gt;();
+    aList.add(new Person(1,13));
+    aList.add(new Person(2, 42));
+    aList.add(new Person(3, 5));
+    aList.add(new Person(45, 32));
+    aList.add(new Person(42, 88));
+    aList.add(new Person(4, 5));
+    System.out.println(&quot;排序前:&quot;);
+    aList.stream().forEach(System.out::println);
+    Collections.sort(aList,new MyComparator());
+    System.out.println(&quot;排序后:&quot;);
+    aList.stream().forEach(System.out::println);
+}
+</code></pre><p>输出：</p>
+<pre><code>排序前:
+Person1-&gt;age:13
+Person2-&gt;age:42
+Person3-&gt;age:5
+Person45-&gt;age:32
+Person42-&gt;age:88
+Person4-&gt;age:5
+排序后:
+Person42-&gt;age:88
+Person2-&gt;age:42
+Person45-&gt;age:32
+Person1-&gt;age:13
+Person4-&gt;age:5
+Person3-&gt;age:5
+</code></pre><hr>
+<p>另外，在leetcode第23题有配合优先级队列使用。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2018/11/08/【leetcode】笔记2/">
+        【leetcode】笔记2 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足,不敢停站,然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--
