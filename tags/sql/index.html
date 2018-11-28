@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【ajax】请求服务器+参数双向传递 | XFF&#39;s blog</title>
+  <title>Tag: sql | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -202,265 +202,73 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2018-10-13T17:13:37.207Z" itemprop="datePublished">
-          2018-10-14
-      </time>
-    
-    
-    | 
-    <a href='/tags/ajax/'>ajax</a>
-    
-    
-</span>
-                <h1>【ajax】请求服务器+参数双向传递</h1>
+      <!-- ============================ Hero Image =========================== -->
+
+<section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                    <div>
+                        
+                        <h2>Life Is A <span>Struggle</span></h2>
+                        <p></p>
+                        
+                        <h2></h2>
+                        <p>But Every Day Is <Strong>Beautiful</Strong></p>
+                        
+
+                    </div>
+                </div>
             </div>
+            <!-- // .col-md-12 -->
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<hr>
-<p><strong>Ajax可以对服务器发送异步请求，从而在不刷新整个页面的情况下局部刷新页面。</strong></p>
-<hr>
-<p> <strong>1. GET方式</strong></p>
-<pre><code>$(document).ready(function(){
-
-    $(&quot;#btnsub&quot;).click(function(){
-        var xmlhttp,cardId,date;
-        cardId=$(&quot;#cardId&quot;).val();
-        date=$(&quot;#date&quot;).val();
-
-        var str=&quot;cardId=&quot;+cardId+&quot;&amp;date=&quot;+date;
-        if (window.XMLHttpRequest)
-          {// code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp=new XMLHttpRequest();
-          }
-        else
-          {// code for IE6, IE5
-          xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
-          }
-        xmlhttp.onreadystatechange=function()
-          {
-          if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
-            {
-            document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
-            }
-          }
-        xmlhttp.open(&quot;GET&quot;,&quot;ajax!findRecord.action?&quot;+str,true);
-        xmlhttp.send();
-
-    });
-});
-</code></pre><p>通过在请求的URL”？”后加参数而达到传参的目的。<br>对于URL尾部的参数，后台action中只要通过request域对象即可取值。</p>
-<pre><code>HttpServletRequest request=ServletActionContext.getRequest();
-HttpServletResponse response=ServletActionContext.getResponse();
-
-response.setContentType(&quot;text/html&quot;);
-response.setCharacterEncoding(&quot;UTF-8&quot;);
-
-Integer cardId=Integer.parseInt(request.getParameter(&quot;cardId&quot;));
-String date=request.getParameter(&quot;date&quot;);
-</code></pre><p>struts2里配置为:</p>
-<pre><code>&lt;package name=&quot;actionA&quot; extends=&quot;json-default&quot;&gt;
-    &lt;global-allowed-methods&gt;regex:.*&lt;/global-allowed-methods&gt;
-    &lt;action name=&quot;ajax!*&quot; class=&quot;ajaxAction&quot; method=&quot;{1}&quot;&gt;
-        &lt;result type=&quot;json&quot;&gt;&lt;/result&gt;
-    &lt;/action&gt;
-&lt;/package&gt;
-</code></pre><hr>
-<p> <strong>2. —- POST方式</strong><br>    &nbsp;post请求方式相对于get请求方式更加安全（数据信息不会显示在URL中），发送请求能提交的数据也更大。</p>
-<pre><code>$(document).ready(function(){
-
-    $(&quot;#btnsub&quot;).click(function(){
-        var xmlhttp,cardId,date;
-        cardId=$(&quot;#cardId&quot;).val();
-        date=$(&quot;#date&quot;).val();
-
-        var str=&quot;cardId=&quot;+cardId+&quot;&amp;date=&quot;+date;
-        if (window.XMLHttpRequest)
-          {// code for IE7+, Firefox, Chrome, Opera, Safari
-          xmlhttp=new XMLHttpRequest();
-          }
-        else
-          {// code for IE6, IE5
-          xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
-          }
-        xmlhttp.onreadystatechange=function()
-          {
-          if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
-            {
-            document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;
-            }
-          }
-        xmlhttp.open(&quot;POST&quot;,&quot;ajax!findRecord.action&quot;,true);
-        xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded;charset=utf-8&quot;);
-        xmlhttp.send(str);
-    });
-});
-</code></pre><p>后台action内获取ajax发送来的数据参数方式同上。</p>
-<hr>
-<hr>
-<h3 id="Ajax-ajax"><a href="#Ajax-ajax" class="headerlink" title="Ajax-ajax()"></a><strong>Ajax-ajax()</strong></h3><p>它是最底层、功能最强大的请求服务器数据方式，它的调用格式为：</p>
-<pre><code>$.ajax([settings]);
-</code></pre><p>接下来是实际使用:</p>
-<pre><code>$(document).ready(function(){
-    function doappend(list){
-        var tbody=&quot;&quot;;
-        for(i in list){
-            tbody+=&quot;&lt;tr&gt;&lt;td&gt;&quot;+list[i].userId+&quot;&lt;/td&gt;&lt;td&gt;&quot;+list[i].userName+&quot;&lt;/td&gt;&lt;td&gt;&quot;+list[i].email+&quot;&lt;/td&gt;&lt;td&gt;&quot;+list[i].password+&quot;&lt;/td&gt;&lt;td&gt;&quot;+list[i].cards+&quot;&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;#\&quot;&gt;修改&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;a href=\&quot;#\&quot;&gt;删除&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&quot;;
-        }
-         document.getElementById(&quot;divtable&quot;).innerHTML=tbody;
-    };
-
-    $(&quot;#btnSend&quot;).click(function(){
-        $(this).attr(&quot;disabled&quot;,true);
-        var pag=document.getElementById(&quot;thepage&quot;).innerText;
-        $.ajax({
-            type:&quot;POST&quot;,
-            url:&quot;ajax!findall.action&quot;,
-            data:{&quot;page&quot;:pag},
-            dataType:&quot;json&quot;,
-            success:function(data){
-                var a=eval(&apos;(&apos;+data+&apos;)&apos;);
-                var am=a.aMap;
-                var list=am.user;
-                doappend(list);
-
-            }
-        });
-    });
-
-});
-</code></pre><p>data:标签对应为发送给服务器后台的数据，必须要使用json格式｛”name”:name,”id”:id｝。type对应请求方式，url为请求的定位，dataType为服务器返回数据的类型，success为成功获取服务器返回数据后可以执行的操作（这里我正在做分页，把页数发送给服务器，服务器查询数据库后返回相应条数的数据）。<br>function里的data为服务器返回的数据，这里是一个hashmap类型，先对data用eval方法进行json格式解析，aMap为当时hashmap设置的name值，在hashmap格式里，key值为‘user’对应的对象，为一个list<user>类型，具体可以看下面的后台代码，然后执行doappend方法，将数据一条一条加入到表格格式里。</user></p>
-<pre><code>private String page;
-
-HashMap&lt;String, Object&gt; aMap=new HashMap&lt;String,Object&gt;();
-
-public HashMap&lt;String, Object&gt; getaMap() {
-    return aMap;
-}
-
-public String getPage() {
-    return page;
-}
-
-public void setPage(String page) {
-    this.page = page;
-}
-
-public String findall() {
-    int c=userService.count();
-    int d;
-    if(0==c%5) {
-        d=c/5;
-    }else {
-        d=(c/5)+1;
-    }
-    aMap.clear();
-    int p=Integer.parseInt(page);
-    if(p&lt;1||p&gt;d) {
-        return NONE;
-    }else {
-        int begin=(p-1)*5;
-        List&lt;User&gt; pList=userService.findPage(begin, 5);
-        List&lt;UserForAjax&gt; uList=new ArrayList&lt;UserForAjax&gt;();
-        for (User user : pList) {
-            StringBuffer sv=new StringBuffer(&quot;&quot;);
-            for(BankCard bCard:user.getSetBank()) {
-                sv.append(bCard.getCardId()+&quot; &quot;);
-            }
-            String str=sv.toString();
-            UserForAjax userForAjax=new UserForAjax();
-            userForAjax.setUserId(user.getUserId());
-            userForAjax.setEmail(user.getEmail());
-            userForAjax.setPassword(user.getPassword());
-            userForAjax.setUserName(user.getUserName());
-            userForAjax.setCards(str);
-            uList.add(userForAjax);
-        }
-        aMap.put(&quot;user&quot;, uList);
-        aMap.put(&quot;result&quot;, &quot;success&quot;);
-        return SUCCESS;
-    }
-}
-</code></pre><p>后台代码中，通过命名一个叫做page的string对象，并生成set和get方法，接收请求后，就能直接得到请求数据中的page对象的值（会调用set方法给this.page赋值），另外创建一个hashmap对象用来存放返回给前端的数据，并生成<strong>get</strong>方法，这样ajax那边才能得到返回的aMap，在方法中给aMap存入需要传递的值。</p>
-<hr>
-<p>一个简单的分页就做好啦!<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw7552c8jpj30x30at74d.jpg" alt=""></p>
-<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw755vane7j30x80apq30.jpg" alt=""></p>
-
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-        </div>
-        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
-    
-    <a class="pull-left" href="/2018/10/15/【mybatis】大概总结(一)/" style="float: left;">
-        ← 【mybatis】大概总结(一)
-    </a>
-    
-    
-    <a class="pull-right" href="/2018/10/14/【数据结构】基础结构实现集合/">
-        【数据结构】基础结构实现集合 →
-    </a>
-    
-</nav>
-
-        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
-  /**
-   * 搜狐畅言
-   */
-
-  /*
-  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
-
-  window.onload = function () {
-    (function () {
-      var appid = 'cytXXXX';
-      var conf = 'prod_xxxxxxxxxxxxxxxxx';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      var loadJs = function (d, a, id) {
-        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
-        var b = document.createElement("script");
-        b.setAttribute("type", "text/javascript");
-        b.setAttribute("charset", "UTF-8");
-        b.setAttribute("src", d);
-        if (id) {
-          b.setAttribute("id", id);
-        }
-        if (typeof a === "function") {
-          if (window.attachEvent) {
-            b.onreadystatechange = function () {
-              var e = b.readyState;
-              if (e === "loaded" || e === "complete") {
-                b.onreadystatechange = null;
-                a()
-              }
-            }
-          } else {
-            b.onload = a
-          }
-        }
-        c.appendChild(b)
-      };
-
-      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
-        window.changyan.api.config({
-          appid: appid,
-          conf: conf
-        })
-      });
-    })();
-  }
-  */
-
-</script>
-</div>
+        <div class="herofade beige-dk"></div>
     </div>
 </section>
 
+<!-- Height spacing helper -->
+<div class="heightblock"></div>
+<!-- // End height spacing helper -->
 
+<!-- ============================ END Hero Image =========================== -->
+
+
+
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2018/11/29/SQL一些基本语句使用/">SQL一些基本语句使用</a></h4>
+                            
+                            <p><time datetime="2018-11-28T16:18:06.000Z"><a href="/2018/11/29/SQL一些基本语句使用/">2018-11-29</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <nav class="pagination" role="pagination">
+            
+            
+        </nav>
+    </div>
+</section>
+
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>不能满足,不敢停站,然后怎样</p>
+        </div>
+    </div>
+</section>
       
 <!-- ============================ Footer =========================== -->
 <!--

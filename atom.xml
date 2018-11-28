@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2018-11-23T09:38:59.692Z</updated>
+  <updated>2018-11-28T16:26:50.363Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL一些基本语句使用</title>
+    <link href="http://xfff.xyz/2018/11/29/SQL%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E8%AF%AD%E5%8F%A5%E4%BD%BF%E7%94%A8/"/>
+    <id>http://xfff.xyz/2018/11/29/SQL一些基本语句使用/</id>
+    <published>2018-11-28T16:18:06.000Z</published>
+    <updated>2018-11-28T16:26:50.363Z</updated>
+    
+    <content type="html"><![CDATA[<p>选出不重复的列<br>SELECT DISTINCT COLUMN FROM TABLE<br>用某列来进行排序<br>SELECT COLUMN FROM TABLE ORDER BY ONECOLUMN<br>逆序<br>SELECT COLUMN FROM TABLE ORDER BY ONECOLUMN DESC<br>选出开始几行<br>SELECT TOP NUMBER|PERCENT * FROM TABLE<br>MYSQL中用LIMIT关键字</p><hr><p>like关键字<br>Where column like ‘pattern’<br>_表示一位<br>%表示任何多位<br>[]表示方括号里的某一单一字符<br>[^]反向</p><hr><p>范围条件IN<br>Where column in （VALUES…）<br>BETWEEN…AND..<br>a&lt;x&lt;b</p><hr><p>内连接、左外连接、右外连接、全连接<br>Inner JOIN、LEFT JOIN、RIGHT JOIN、FULL JOIN</p><hr><p>创建索引</p><p><strong>CREATE INDEX 语句用于在表中创建索引。</strong></p><p><strong>在不读取整个表的情况下，索引使数据库应用程序可以更快地查找数据。</strong></p><p>更新一个包含索引的表需要比更新一个没有索引的表更多的时间，这是由于索引本身也需要更新。因此，理想的做法是仅仅在常常被搜索的列（以及表）上面创建索引</p><p>CREATE INDEX index_name<br>ON table_name (column_name)</p><p>删除索引–MYSQL<br>ALTER TABLE table_name DROP INDEX index_name</p><p>删除表、数据库<br>DROP TABLE 表名称<br>DROP DATABASE 数据库名称</p><hr><p>创建视图</p><p>在 SQL 中，视图是基于 SQL 语句的结果集的可视化的表。</p><p>视图包含行和列，就像一个真实的表。视图中的字段就是来自一个或多个数据库中的真实的表中的字段。我们可以向视图添加 SQL 函数、WHERE 以及 JOIN 语句，我们也可以提交数据，就像这些来自于某个单一的表。</p><p>注释：数据库的设计和结构不会受到视图中的函数、where 或 join 语句的影响<br><a href="http://www.w3school.com.cn/sql/sql_view.asp" target="_blank" rel="noopener">CLICK</a></p><hr><p>关键字ALTER用于修改表以及行<br>ALTER TABLE table_name<br>ALTER COLUMN column_name datatype</p><hr><p>SQL函数<br>平均AVG()<br>例：希望找到 OrderPrice 值高于 OrderPrice 平均值的客户<br>SELECT Customer FROM Orders<br>WHERE OrderPrice&gt;(SELECT AVG(OrderPrice) FROM Orders)</p><p>计数COUNT()<br>SELECT COUNT(column_name) FROM table_name//括号里可加DISTINCT关键字</p><p>第一、最后一条记录<br>FIRST()、LAST()</p><p>最大值、最小值<br>MAX()、MIN()</p><p>计和<br>SUM()</p><p>按列分项算总和<br>例SELECT Customer,SUM(OrderPrice) FROM Orders<br>GROUP BY Customer</p><p>计和增加条件用关键字HAVING</p><p>转大小写<br>UCASE()、LCASE()</p><p>MID() 函数<br>MID 函数用于从文本字段中提取字符<br>SELECT MID(column_name,start[,length]) FROM table_name<br>例SELECT MID(City,1,3) as SmallCity FROM Persons</p><p>LEN()<br>LEN 函数返回文本字段中值的长度。</p><p>ROUND 函数用于把数值字段舍入为指定的小数位数。<br>SELECT ROUND(column_name,decimals) FROM table_name</p><p>NOW()<br>NOW 函数返回当前的日期和时间</p><p>FORMAT 函数用于对字段的显示进行格式化。<br>SELECT FORMAT(column_name,format) FROM table_name</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;选出不重复的列&lt;br&gt;SELECT DISTINCT COLUMN FROM TABLE&lt;br&gt;用某列来进行排序&lt;br&gt;SELECT COLUMN FROM TABLE ORDER BY ONECOLUMN&lt;br&gt;逆序&lt;br&gt;SELECT COLUMN FROM TABLE
+      
+    
+    </summary>
+    
+      <category term="SQL" scheme="http://xfff.xyz/categories/SQL/"/>
+    
+    
+      <category term="sql" scheme="http://xfff.xyz/tags/sql/"/>
+    
+  </entry>
   
   <entry>
     <title>比较器Comparator和Comparable的使用</title>
