@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2018-11-28T16:26:50.363Z</updated>
+  <updated>2018-12-19T06:54:02.786Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>工作第一天</title>
+    <link href="http://xfff.xyz/2018/12/19/%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
+    <id>http://xfff.xyz/2018/12/19/工作第一天/</id>
+    <published>2018-12-19T06:40:39.000Z</published>
+    <updated>2018-12-19T06:54:02.786Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>经过大半个月的折腾，我找到了自己的第一份IT工作。</p><p>今天是第一天，负责带我的导师，出差了……</p><p>是的，没错，出差了。</p><p>干坐了一天，看看这个看看那个，刷刷这个刷刷那个，无聊呀…</p><p>说到无聊，我就想起了《西游记》里的无花果树。今年下半年…开拍…文体两开花…</p><p>咳咳，由于昨天一天的搬家折腾，晚上也没睡好，感冒（类似）鼻塞了，很难受，而且还很困，希望今晚能好好睡一觉，鼻塞快点好吧，明天也要元气满满。</p><p>这里就随便记一下皮一下—–</p><p>加油吧。</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyc25phdx5j30xc0sqx6p.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;p&gt;经过大半个月的折腾，我找到了自己的第一份IT工作。&lt;/p&gt;
+&lt;p&gt;今天是第一天，负责带我的导师，出差了……&lt;/p&gt;
+&lt;p&gt;是的，没错，出差了。&lt;/p&gt;
+&lt;p&gt;干坐了一天，看看这个看看那个，刷刷这个刷刷那个，无聊呀…&lt;/p&gt;
+&lt;p&gt;说到无聊，我就想起了《西游记》里的
+      
+    
+    </summary>
+    
+      <category term="杂记" scheme="http://xfff.xyz/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="日常生活" scheme="http://xfff.xyz/tags/%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>SQL一些基本语句使用</title>
