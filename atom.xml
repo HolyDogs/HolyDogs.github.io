@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2018-12-19T06:54:02.786Z</updated>
+  <updated>2018-12-23T13:53:44.124Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Oracle学习笔记1</title>
+    <link href="http://xfff.xyz/2018/12/23/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/"/>
+    <id>http://xfff.xyz/2018/12/23/Oracle学习笔记1/</id>
+    <published>2018-12-23T04:34:45.000Z</published>
+    <updated>2018-12-23T13:53:44.124Z</updated>
+    
+    <content type="html"><![CDATA[<p><em>Oracle数据库是一个对象关系数据库管理系统（ORDBMS）。它通常被称为Oracle RDBMS或简称为Oracle，是一个收费的数据库。</em></p><ul><li><a href="#a">01基础</a></li><li><a href="#b">02多表查询、子查询</a></li></ul><hr><p><span id="a"></span></p><h2 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h2><p>Oracle中distinct可以消除重复的行，如果指定多个列名，则要保证多列的数据皆重复才会消除。</p><pre><code>select distinct name,sal from emp</code></pre><hr><p>Oracle中有独特的字符串连接符’<strong>||</strong>‘，相当于java里的’+’,MYSQL里可以用concat连接字符串。</p><pre><code>select &apos;姓名是:&apos; || NAME || &apos;的年龄为&apos; || AGE from emp;select concat(NAME,&apos;是姓名&apos;，AGE，&apos;是年龄&apos;    ) from emp;</code></pre><hr><p>查询列取别名时，若别名中有特殊字符或者关键字需要加上双引号。(其他地方大部分使用单引号）</p><pre><code>select name &quot;my name&quot; from emp;</code></pre><hr><p>LIKE关键字使用时，若匹配的字符里有特殊字符，需要使用escape关键字<br>如，要查询员工姓名里有’%’字符的员工信息。</p><pre><code>select * from emp where name like &apos;%\%%&apos; escape &apos;\&apos;;</code></pre><p>其中第一和最后一个%号都表示任意字符，而escape声明’\‘为转义字符，所以第二个%表示字符’%’。<br>也可以这样写:</p><pre><code>select * from emp where name like &apos;%#%%&apos; escape &apos;#&apos;;</code></pre><p>所以我猜想在oracle里反斜杠并不代表转义字符的意思吧。。</p><hr><p>在排序的时候，如果有空值，需要在末尾加上null的说明</p><pre><code>select * from emp order by number desc nulls last;</code></pre><p>表示null值放在末尾，还有nulls first.</p><hr><p>oracle里有一个伪表用来做返回字符或者数值，叫做<strong>dual</strong>，在MYSQL中不用加from dual；</p><p>同样的，oracle里也有很多一样的函数</p><h2 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h2><ul><li><p>concat():    字符串连接</p><pre><code>select concat(&apos;hello&apos;,&apos;world&apos;) from dual;</code></pre></li><li>substr():字符串的截取substr(str,0,3)表示从索引位置0（<strong>0和1效果相同</strong>）开始截取str，截取3个字符的长度。</li><li>length()：获取字符串长度    </li><li>replace()：replace(str,’a’,’b’)表示把str里所有的a替换成b</li><li>round()：四舍五入round(num,2)，2表示保留2位小数0</li><li>ceil()：进1取整</li><li>trunc()：截断trunc(num,2)去掉小数点后2位的尾数</li><li>MOD()：求余MOD(NUM1,NUM2)</li><li>MONTHS_BETWEEN()：获得两个时间段中的月数，months_between(sysdate,finishdate)——<strong>sysdate</strong>表示系统时间</li><li>ADD_MONTHS()：获取几个月后的日期，add_months(sysdate,3)系统时间3个月后。</li><li>TO_CHAR：字符串转换函数</li><li>TO_NUMBER：数值转换函数</li><li>TO_DATE：日期转换函数<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fygwfj010wj30h407sjt2.jpg" alt=""><br>如：<br>TO_CHAR(date,’yyyy-mm-dd’)<br>TO_CHAR(date,’yyyy’)等<br>把月和日前面的0去掉要在后面的model前加上fm<br>TO_CHAR(date,’fmyyyy-mm-dd’)<br>TO_CHAR(sysdate,’d’)一个d代表一个星期的第几天，两个d代表一个月的第几天，三个d代表一年中的第几天<br>TO_CHAR(sysdate,’day’)星期几–返回monday什么的，如果是dy，则返回简写–mon之类的</li></ul><p>也就是这三种类型的相互转换函数<br>TO_CHAR(sal,’L9,999.99’),可以格式化货币，L表示本地货币</p><ul><li>NVL()：空值处理，如果为空值就取后面的值为默认值，nvl(name,’Peter’)</li><li>NVL2()：nvl2(参数1，参数2，参数3)，如果参数1为空值，就返回参数3，否则返回参数2</li><li>nullif()：nullif(参数1，参数2)如果参数1等于参数2，那么就返回null，否则返回参数1</li><li>coalesce()：这个函数传入很多参数，然后返回第一个不为null的值</li></ul><hr><p>条件表达式：在SQL语句中使用IF-THEN-ELSE</p><p><strong>CASE</strong>表达式：SQL99的语法，类似Basic，比较繁琐</p><pre><code>select    case name        when &apos;Peter&apos; then &apos;P&apos;        when &apos;Bob&apos; then &apos;B&apos;        else             &apos;C&apos;        endfrom emp;</code></pre><p>就是当name等于when里的值就改为then后面的值，这种写法通用于MYSQL和Oracle</p><p><strong>DECODE</strong>函数：Oracle自己的语法，类似java，比较简洁</p><pre><code>select decode(name,&apos;Peter&apos;,&apos;P&apos;,&apos;Bob&apos;,&apos;B&apos;,&apos;C&apos;) from emp;</code></pre><p>效果和上面一样</p><hr><h2 id="多行函数"><a href="#多行函数" class="headerlink" title="多行函数"></a>多行函数</h2><ul><li>max()：某列最大值</li><li>min()：某列最小值</li><li>count()：统计行数</li><li>avg()：平均数，注意空值影响</li><li>sum()：求和<br>多行函数常与分组关键字Group by配合使用，另外having关键字在group by后执行，where后不能接多行函数。<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fygz2iqixhj30kg02yjtb.jpg" alt=""></li></ul><p>就是说只能这样写</p><pre><code>select 列名a，分组函数 from 表 group by 这个列名a having 条件</code></pre><hr><p><span id="b"></span></p><h2 id="多表查询、子查询"><a href="#多表查询、子查询" class="headerlink" title="多表查询、子查询"></a>多表查询、子查询</h2><h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><p>内外连接我在前面sql写过了，就写一些oracle不同的地方</p><p>全外连接为俩表都完全匹配。不加where条件即为外连接</p><p>内连接，加where条件</p><p>左（外）连接<br>显示左边表的全部，匹配右边的表<br>select e.empno,e.ename,m.empno,m.ename from emp e,emp m where e.mgr=m.empno(+)<br>在右边加+号表示用该表匹配左表，故为左连接。</p><p>右连接反之。</p><h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>也就是在一个大的主查询里先做一个小的子查询供主查询使用。</p><p>例</p><pre><code>select name,job,sal from emp where sal=(select min(sal) from emp)</code></pre><p>子查询返回结果类型要和比较类型相同。</p><p>多行子查询<br>若子查询返回多行结果，应与多行比较符匹配：in、&gt;any….</p><p>子查询返回空值可能会报错，这个时候需要使用<strong>exists()</strong>，括号里加入子查询语句，若查询结果为空，返回false</p><pre><code>select * from emp where exists(select * from dept where deptno=1)</code></pre><p><strong>Rownum</strong><br>当要查询第几行到第几行的数据时，我们使用rownum。</p><p>rownum是oracle预处理字段，默认标序是1，只有记录集已经满足条件后才会进行后续编号。这样你查询表时遍历第一条数据时rownum是1，不符合条件，继续遍历到第二条数据rownum仍为1，仍不符合条件，直至遍历完所有数据，都无数据返回。</p><p>查询第二行之后的数据</p><pre><code>select * from(select rownum no ,id,name from student) where no&gt;2;</code></pre><p>rownum不能直接使用判断&gt;的条件。<br>另外，rownum是按照插入顺序排列的，所以要按某列排序需要使用子查询</p><pre><code>select rownum ,id,name from (select * from student order by name)</code></pre><p>查询第n行到m行的数据</p><pre><code>(select empno,ename from emp where rownum&lt;m)minus(select empno,ename from emp where rownum&lt;n)</code></pre><hr><h2 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h2><p>就是俩条语句的结果集的运算<br>有</p><ul><li>UNION并集</li><li>intersect交集</li><li>minus差集</li></ul><p>特征：<br>两边查询的字段数量、字段类型、顺序必须一致。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;em&gt;Oracle数据库是一个对象关系数据库管理系统（ORDBMS）。它通常被称为Oracle RDBMS或简称为Oracle，是一个收费的数据库。&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#a&quot;&gt;01基础&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#b&quot;
+      
+    
+    </summary>
+    
+      <category term="Oracle" scheme="http://xfff.xyz/categories/Oracle/"/>
+    
+    
+      <category term="数据库" scheme="http://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="oracle" scheme="http://xfff.xyz/tags/oracle/"/>
+    
+  </entry>
   
   <entry>
     <title>工作第一天</title>
@@ -268,11 +298,11 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
       <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
     
     
+      <category term="数据库" scheme="http://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
       <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
     
       <category term="图片" scheme="http://xfff.xyz/tags/%E5%9B%BE%E7%89%87/"/>
-    
-      <category term="数据库" scheme="http://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
