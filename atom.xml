@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2018-12-23T13:53:44.124Z</updated>
+  <updated>2018-12-26T02:36:30.927Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Oracle学习笔记2</title>
+    <link href="http://xfff.xyz/2018/12/25/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/"/>
+    <id>http://xfff.xyz/2018/12/25/Oracle学习笔记2/</id>
+    <published>2018-12-25T05:13:32.000Z</published>
+    <updated>2018-12-26T02:36:30.927Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="DDL（database-define-language）数据库定义语言"><a href="#DDL（database-define-language）数据库定义语言" class="headerlink" title="DDL（database define language）数据库定义语言"></a>DDL（database define language）数据库定义语言</h2><p>创建表：create table tablename（….）</p><p>修改表：alter table tablename add（columnname type …）;<br>alter table tablename modify …</p><p>删除表：drop table tablename</p><hr><h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><ul><li>主键Primary key</li><li>非空约束NOT NULL</li><li>唯一约束Unique</li><li>外键约束foreign key</li><li>检查性约束check（加在列后写上对列条件）</li></ul><hr><h2 id="DML（database-manager-language）数据库操作语言"><a href="#DML（database-manager-language）数据库操作语言" class="headerlink" title="DML（database manager language）数据库操作语言"></a>DML（database manager language）数据库操作语言</h2><p>INSERT INTO TABLENAME() VALUES()</p><p>UPDATE TABLENAME SET COLUMN=VALUE… WHERE 条件</p><p>DELETE FROM TABLENAME WHERE 条件</p><hr><h2 id="视图view"><a href="#视图view" class="headerlink" title="视图view"></a>视图view</h2><p>简化复杂的查询，查询部分数据作为一个视图<br>create view view_name as (查询语句)<br>create or replace view view_name as ….</p><hr><h2 id="序列SEQUENCE"><a href="#序列SEQUENCE" class="headerlink" title="序列SEQUENCE"></a>序列SEQUENCE</h2><p>若想和mysql等数据库一样实现某列自动增长的功能，可以利用序列</p><p>其中有两个变量：<br>nextval：取得序列的下一个内容<br>currval：取得序列的当前内容<br>先创建序列：<br>CREATE SEQUENCE SEQUENCENAME<br>                                     INCREMENT BY 10<br>                                    START WITH 120<br>                                    MAXVALUE 9999<br>                                    NOCACHE<br>                                    NOCYCLE;</p><p>自增这样写：insert into tablename values(列名.nextval….)</p><h2 id="索引index"><a href="#索引index" class="headerlink" title="索引index"></a>索引index</h2><p>单列索引：<br>create index indexname on tablename(columnname)</p><p>复合索引<br>create index indexname on tablename(…)</p><p>当数据量较大的时候，索引能加快查询速度。</p><h2 id="同义词SYNONYM"><a href="#同义词SYNONYM" class="headerlink" title="同义词SYNONYM"></a>同义词SYNONYM</h2><p>CREATE PUBLIC SYNONYM synonymname for othertable.emp</p><hr><h1 id="PL-SQL"><a href="#PL-SQL" class="headerlink" title="PL/SQL"></a>PL/SQL</h1><p>declare<br>这里写一些说明（变量定义什么的。。。）<br>begin<br>代码部分，语句序列，DML<br>exception<br>例外语句，类似异常处理<br>End;</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjvio5aq1j30ev09dt9p.jpg" alt=""></p><p><strong>选择</strong><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjvj6bwbgj309u0ant9h.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjvji4pvvj30e4064q3j.jpg" alt=""><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjvjw7525j30hy07tmyb.jpg" alt=""></p><p><strong>循环</strong><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjvk97rujj30bt0frwg5.jpg" alt=""></p><hr><h2 id="游标cursor"><a href="#游标cursor" class="headerlink" title="游标cursor"></a>游标cursor</h2><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjvr2tozmj30gd05edhp.jpg" alt=""><br>使用</p><p>例：</p><pre><code>declare    //声明部分    cursor cl is  //声明游标        select * from emp;  //游标指向    pemp emp%rowtype;    //声明变量，类型为emp表begin      open cl;    //打开游标        loop                fetch cl    //取一行游标的值                into pemp;    //放入pemp变量中            exit when cl%notfound;    //当游标为空的时候跳出循环            dbms_output.put_line(pemp.empno || &apos; &apos; || pemp.ename);    //打印变量所指行的信息        end loop    close cl    //关闭游标end; </code></pre><p>也可以指定游标的类型为特定的某一行<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjw17a91wj30f801imxv.jpg" alt=""></p><hr><h2 id="例外exception"><a href="#例外exception" class="headerlink" title="例外exception"></a>例外exception</h2><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjw41x9ltj30a103s3yz.jpg" alt=""></p><p>类似与java，也可以自己手动抛出异常。</p><p>自定义异常需要在declare中定义，然后使用时可以加入条件控制中，如果不正确可以抛出（raise）一个异常，然后进入exception块中</p><pre><code>exception     when   自定义异常名   then         处理语句</code></pre><hr><h2 id="存储过程procedure"><a href="#存储过程procedure" class="headerlink" title="存储过程procedure"></a>存储过程procedure</h2><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjwafrjz7j30de08gaav.jpg" alt=""><br>在AS或者IS后可以加变量定义。<br>调用<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjwifmffyj309f04hmxo.jpg" alt=""></p><h2 id="存储函数function"><a href="#存储函数function" class="headerlink" title="存储函数function"></a>存储函数function</h2><p>存储函数和存储过程一般来说没有什么区别，返回结果的数量可以通过参数里的<strong>out</strong>指定</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjwpj3k0kj30gp04iwf7.jpg" alt=""></p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjwu2zddoj30b1013aa1.jpg" alt=""></p><pre><code>create or replace function  empincome (eno in emp.empno%type) return number is  //声明存储过程    psal emp.sal%type;  //定义薪水变量    pcomm emp.comm%type;  //定义奖金变量begin    select t.sal,t.pcomm into psal,pcomm from emp t where t.empno=eno;    return psal*12+nvl(pcomm,0);end</code></pre><p>用存储过程实现<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjx0o7by5j30i60bvadt.jpg" alt=""></p><hr><h2 id="java调用存储过程"><a href="#java调用存储过程" class="headerlink" title="java调用存储过程"></a>java调用存储过程</h2><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjx2q44rzj30ga0bk415.jpg" alt=""></p><p>若使用游标<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjx6rz4flj30g305rq4e.jpg" alt=""><br>只需要将游标提取，然后用ResultSet类型转换即可查询游标所指内容</p><p>另外，写在过程中out语句后的用来返回结果集的游标类型应该为sys_refcursor，具体可以查看</p><blockquote><p><a href="https://www.cnblogs.com/liuqiyun/p/6796740.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuqiyun/p/6796740.html</a></p></blockquote><hr><h2 id="触发器TRIGGER"><a href="#触发器TRIGGER" class="headerlink" title="触发器TRIGGER"></a>触发器TRIGGER</h2><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjxr3dooij309p06674r.jpg" alt=""></p><p>触发器自带变量<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjxsqbtsuj30hx047t9o.jpg" alt=""></p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyjxyacxucj30fv0dkju9.jpg" alt=""></p><p>另外一般不允许多个触发器对同一张表进行操作或者在触发器中对同一张表进行操作，容易产生递归循环触发。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;DDL（database-define-language）数据库定义语言&quot;&gt;&lt;a href=&quot;#DDL（database-define-language）数据库定义语言&quot; class=&quot;headerlink&quot; title=&quot;DDL（database define 
+      
+    
+    </summary>
+    
+      <category term="Oracle" scheme="http://xfff.xyz/categories/Oracle/"/>
+    
+    
+      <category term="数据库" scheme="http://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="oracle" scheme="http://xfff.xyz/tags/oracle/"/>
+    
+  </entry>
   
   <entry>
     <title>Oracle学习笔记1</title>
