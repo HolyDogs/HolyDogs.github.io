@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2018-12-26T02:36:30.927Z</updated>
+  <updated>2018-12-27T01:26:26.107Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux&amp;shell学习</title>
+    <link href="http://xfff.xyz/2018/12/27/linux-shell%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://xfff.xyz/2018/12/27/linux-shell学习/</id>
+    <published>2018-12-27T01:18:08.000Z</published>
+    <updated>2018-12-27T01:26:26.107Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyl1m3hagrj321c10w1ca.jpg" alt=""></p><hr><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyl1mmoq4jj32cg168nld.jpg" alt=""></p><hr><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyl1mw2ld7j321c10wwyg.jpg" alt=""></p><p>….</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006azB5Sly1fyl1m3hagrj321c10w1ca.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="http://xfff.xyz/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://xfff.xyz/tags/linux/"/>
+    
+      <category term="shell" scheme="http://xfff.xyz/tags/shell/"/>
+    
+  </entry>
   
   <entry>
     <title>Oracle学习笔记2</title>
