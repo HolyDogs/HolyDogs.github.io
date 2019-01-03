@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-01-02T02:03:13.228Z</updated>
+  <updated>2019-01-03T09:25:03.440Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>fish学习</title>
+    <link href="http://xfff.xyz/2019/01/03/fish%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://xfff.xyz/2019/01/03/fish学习/</id>
+    <published>2019-01-03T09:02:07.000Z</published>
+    <updated>2019-01-03T09:25:03.440Z</updated>
+    
+    <content type="html"><![CDATA[<p>fish，前端框架。<br><img src="http://ww1.sinaimg.cn/large/006azB5Sgy1fyticwu43jj30jc0aot9e.jpg" alt=""></p><hr><p>安装命令<br>$ npm i -g @ngweb/fish-cli –registry <a href="http://registry.npm.ztesoft.com" target="_blank" rel="noopener">http://registry.npm.ztesoft.com</a></p><h3 id="fish-new或n-lt-project-name-gt"><a href="#fish-new或n-lt-project-name-gt" class="headerlink" title="fish new或n &lt;project-name&gt;"></a><code>fish new或n &lt;project-name&gt;</code></h3><p>创建项目</p><h3 id="fish-config或c"><a href="#fish-config或c" class="headerlink" title="fish config或c"></a><a href="http://gitlab.iwhalecloud.com/fish/fish-cli/blob/develop/README.md#fish-config%E6%88%96c" target="_blank" rel="noopener"></a><code>fish config或c</code></h3><p>在当前目录下，创建fish.config.js文件</p><h3 id="fish-serve或s-p-port-port-w-watch"><a href="#fish-serve或s-p-port-port-w-watch" class="headerlink" title="fish serve或s [-p port/--port] [-w / --watch]"></a><a href="http://gitlab.iwhalecloud.com/fish/fish-cli/blob/develop/README.md#fish-serve%E6%88%96s-p-port-port-w-watch" target="_blank" rel="noopener"></a><code>fish serve或s [-p port/--port] [-w / --watch]</code></h3><p>启动服务，-p/–port设置启动端口号，-w/–watch设置是否热部署(实时编译，自动刷新)，一般适用于fish-cli初始化的项目(标准目录)，同时生成sourcemaps。</p><h3 id="fish-generate-module-lt-module-name-gt"><a href="#fish-generate-module-lt-module-name-gt" class="headerlink" title="fish generate module &lt;module-name&gt;"></a><a href="http://gitlab.iwhalecloud.com/fish/fish-cli/blob/develop/README.md#fish-generate-module-module-name" target="_blank" rel="noopener"></a><code>fish generate module &lt;module-name&gt;</code></h3><p>创建模块，支持缩写  <code>fish g module &lt;module-name&gt;</code>，这里的  <code>module-name</code>  可以是相对路径</p><h3 id="fish-generate-view-lt-file-name-gt"><a href="#fish-generate-view-lt-file-name-gt" class="headerlink" title="fish generate view &lt;file-name&gt;"></a><a href="http://gitlab.iwhalecloud.com/fish/fish-cli/blob/develop/README.md#fish-generate-view-file-name" target="_blank" rel="noopener"></a><code>fish generate view &lt;file-name&gt;</code></h3><p>在当前目录下创建文件/文件夹，支持缩写  <code>fish g view &lt;file-name&gt;</code>，这里的  <code>file-name</code>  可以是相对路径</p><h3 id="fish-update-version"><a href="#fish-update-version" class="headerlink" title="fish update [version]"></a><a href="http://gitlab.iwhalecloud.com/fish/fish-cli/blob/develop/README.md#fish-update-version" target="_blank" rel="noopener"></a><code>fish update [version]</code></h3><p>更新目录fish-desktop版本。命令会自动找到目录下第一个fish-desktop所在目录，进行覆盖更新。可指定版本号，不指定则更新至最新版本</p><h3 id="fish-addon-lt-addon-name-gt"><a href="#fish-addon-lt-addon-name-gt" class="headerlink" title="fish addon &lt;addon-name&gt;"></a><a href="http://gitlab.iwhalecloud.com/fish/fish-cli/blob/develop/README.md#fish-addon-addon-name" target="_blank" rel="noopener"></a><code>fish addon &lt;addon-name&gt;</code></h3><p>添加  <code>fish-desktop</code>  提供的第三方组件</p><h2 id="eslint检测"><a href="#eslint检测" class="headerlink" title="eslint检测"></a><a href="http://gitlab.iwhalecloud.com/fish/fish-cli/blob/develop/README.md#eslint%E6%A3%80%E6%B5%8B-1" target="_blank" rel="noopener"></a>eslint检测</h2><p>读取项目根目录下.eslintrc文件，运行eslint，检测js规范</p><h3 id="fish-build"><a href="#fish-build" class="headerlink" title="fish build"></a><a href="http://gitlab.iwhalecloud.com/fish/fish-cli/blob/develop/README.md#fish-build" target="_blank" rel="noopener"></a><code>fish build</code></h3><p>编译、压缩、autoprefix样式文件，输出到styles文件夹里，并将fontAweSome字体拷贝至styles，可在fish.config.js里配置编译文件和编译方式</p><hr><p>fish new myapp<br>新建一个fish项目<br><img src="http://ww1.sinaimg.cn/large/006azB5Sgy1fytiid3xs3j30g6077q3g.jpg" alt=""></p><p>项目结构为<br>fish serve -w<br>编译运行，进入localhost:8088<br>即可见到fish项目原始页面</p><hr><p>index.html为入口</p><pre><code>&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset=&quot;utf-8&quot;&gt;    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;    &lt;meta name=&quot;renderer&quot; content=&quot;webkit&quot;&gt;    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;    &lt;meta name=&quot;description&quot; content=&quot;&quot;&gt;    &lt;meta name=&quot;author&quot; content=&quot;&quot;&gt;    &lt;title&gt;myapp&lt;/title&gt;    &lt;link href=&quot;image/favicon.ico&quot; type=&quot;image/x-icon&quot; rel=&quot;shortcut icon&quot;&gt;    &lt;link rel=&quot;stylesheet&quot; href=&quot;frm/fish-desktop/css/fish-desktop-default.css&quot;&gt;    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/css/myapp-proj-all.css&quot;&gt;    &lt;!--[if lt IE 9]&gt;    &lt;script type=&quot;text/javascript&quot; src=&quot;frm/fish-desktop/libs/bootstrap/respond.js&quot;&gt;&lt;/script&gt;    &lt;![endif]--&gt;&lt;/head&gt;&lt;body&gt;    &lt;script type=&quot;text/javascript&quot; src=&quot;frm/fish-desktop/js/fish-desktop-all.js&quot;&gt;&lt;/script&gt;    &lt;script type=&quot;text/javascript&quot; src=&quot;frm/fish-desktop/js/fish-desktop-require.js&quot; data-main=&quot;main&quot;&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</code></pre><p>加载到data-main时会读取main.js文件，在main.js中</p><pre><code>fish.View.configure({manage: true});require([&apos;modules/main/views/IndexView&apos;], function(IndexView){    new IndexView().render();})</code></pre><p>加载IndexView.js文件</p><p>在modules模块目录下<br>按照路径找到IndexView.js文件</p><pre><code>define([    &apos;hbs!modules/main/templates/IndexView.html&apos;,    &apos;i18n!modules/main/i18n/IndexView.i18n&apos;],function(tpl, i18n) {    var me = null;    return fish.View.extend({        el:&apos;body&apos;,        template: tpl,        i18nData: fish.extend({}, i18n), // i18nData: fish.extend({}, i18n, commonI18n),        //提供模板数据        serialize: function () {            return this.i18nData;        },        //视图事件定义        events:{},        //一些初始化设置 (不能进行dom操作)        initialize: function() {            me = this;        },        //视图渲染完毕处理函数        afterRender: function() {        },        // 视图被删除时候做的事情        cleanup: function () {            me = null;        }            });});</code></pre><p>指向templates/IndexView.html</p><p>找到IndexView.html</p><pre><code>&lt;p&gt;Welcome to fish...&lt;/p&gt;</code></pre><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;fish，前端框架。&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006azB5Sgy1fyticwu43jj30jc0aot9e.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;安装命令&lt;br&gt;$ npm i -g @ngweb/f
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="fish" scheme="http://xfff.xyz/tags/fish/"/>
+    
+  </entry>
   
   <entry>
     <title>The Messenger通关</title>
