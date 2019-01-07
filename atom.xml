@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-01-03T09:25:03.440Z</updated>
+  <updated>2019-01-07T02:32:18.034Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用StackEdit为markdown格式画图</title>
+    <link href="http://xfff.xyz/2019/01/07/%E4%BD%BF%E7%94%A8StackEdit%E4%B8%BAmarkdown%E6%A0%BC%E5%BC%8F%E7%94%BB%E5%9B%BE/"/>
+    <id>http://xfff.xyz/2019/01/07/使用StackEdit为markdown格式画图/</id>
+    <published>2019-01-07T02:21:22.000Z</published>
+    <updated>2019-01-07T02:32:18.034Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SmartyPants"><a href="#SmartyPants" class="headerlink" title="SmartyPants"></a>SmartyPants</h2><p>SmartyPants converts ASCII punctuation characters into “smart” typographic punctuation HTML entities. For example:</p><table><thead><tr><th></th><th>ASCII</th><th>HTML</th></tr></thead><tbody><tr><td>Single backticks</td><td><code>&#39;Isn&#39;t this fun?&#39;</code></td><td>‘Isn’t this fun?’</td></tr><tr><td>Quotes</td><td><code>&quot;Isn&#39;t this fun?&quot;</code></td><td>“Isn’t this fun?”</td></tr><tr><td>Dashes</td><td><code>-- is en-dash, --- is em-dash</code></td><td>– is en-dash, — is em-dash</td></tr></tbody></table><h2 id="KaTeX"><a href="#KaTeX" class="headerlink" title="KaTeX"></a>KaTeX</h2><p>You can render LaTeX mathematical expressions using <a href="https://khan.github.io/KaTeX/" target="_blank" rel="noopener">KaTeX</a>:</p><p>The <em>Gamma function</em> satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral</p><p>$$<br>\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.<br>$$</p><blockquote><p>You can find more information about <strong>LaTeX</strong> mathematical expressions <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="noopener">here</a>.</p></blockquote><h2 id="UML-diagrams"><a href="#UML-diagrams" class="headerlink" title="UML diagrams"></a>UML diagrams</h2><p>You can render UML diagrams using <a href="https://mermaidjs.github.io/" target="_blank" rel="noopener">Mermaid</a>. For example, this will produce a sequence diagram:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">Alice -&gt;&gt; Bob: Hello Bob, how are you?</span><br><span class="line">Bob--&gt;&gt;John: How about you John?</span><br><span class="line">Bob--x Alice: I am good thanks!</span><br><span class="line">Bob-x John: I am good thanks!</span><br><span class="line">Note right of John: Bob thinks a long&lt;br/&gt;long time, so long&lt;br/&gt;that the text does&lt;br/&gt;not fit on a row.</span><br><span class="line"></span><br><span class="line">Bob--&gt;Alice: Checking with John...</span><br><span class="line">Alice-&gt;John: Yes... John, how are you?</span><br></pre></td></tr></table></figure><p>And this will produce a flow chart:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[Square Rect] -- Link text --&gt; B((Circle))</span><br><span class="line">A --&gt; C(Rod Rect)</span><br><span class="line">B --&gt; D&#123;Rhombus&#125;</span><br><span class="line">C --&gt; D</span><br></pre></td></tr></table></figure><hr><hr><pre><code>## SmartyPants  SmartyPants converts ASCII punctuation characters into &quot;smart&quot; typographic punctuation HTML entities. For example:  |  |ASCII |HTML |  |----------------|-------------------------------|-----------------------------|  |Single backticks|`&apos;Isn&apos;t this fun?&apos;`  |&apos;Isn&apos;t this fun?&apos; |  |Quotes |`&quot;Isn&apos;t this fun?&quot;`  |&quot;Isn&apos;t this fun?&quot; |  |Dashes |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|  ## KaTeX  You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):  The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral  $$  \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.  $$  &gt; You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).  ## UML diagrams  You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram  </span><br><span class="line">Alice -&gt;&gt; Bob: Hello Bob, how are you?  </span><br><span class="line">Bob--&gt;&gt;John: How about you John?  </span><br><span class="line">Bob--x Alice: I am good thanks!  </span><br><span class="line">Bob-x John: I am good thanks!  </span><br><span class="line">Note right of John: Bob thinks a long&lt;br/&gt;long time, so long&lt;br/&gt;that the text does&lt;br/&gt;not fit on a row.  </span><br><span class="line">  </span><br><span class="line">Bob--&gt;Alice: Checking with John...  </span><br><span class="line">Alice-&gt;John: Yes... John, how are you?  </span><br><span class="line">```  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">And this will produce a flow chart:  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">```mermaid  </span><br><span class="line">graph LR  </span><br><span class="line">A[Square Rect] -- Link text --&gt; B((Circle))  </span><br><span class="line">A --&gt; C(Rod Rect)  </span><br><span class="line">B --&gt; D&#123;Rhombus&#125;  </span><br><span class="line">C --&gt; D</span><br></pre></td></tr></table></figure></code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;SmartyPants&quot;&gt;&lt;a href=&quot;#SmartyPants&quot; class=&quot;headerlink&quot; title=&quot;SmartyPants&quot;&gt;&lt;/a&gt;SmartyPants&lt;/h2&gt;&lt;p&gt;SmartyPants converts ASCII punctua
+      
+    
+    </summary>
+    
+      <category term="tools" scheme="http://xfff.xyz/categories/tools/"/>
+    
+    
+      <category term="Markdown" scheme="http://xfff.xyz/tags/Markdown/"/>
+    
+      <category term="StackEdit" scheme="http://xfff.xyz/tags/StackEdit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mybatis传参方法</title>
+    <link href="http://xfff.xyz/2019/01/07/Mybatis%E4%BC%A0%E5%8F%82%E6%96%B9%E6%B3%95/"/>
+    <id>http://xfff.xyz/2019/01/07/Mybatis传参方法/</id>
+    <published>2019-01-07T02:15:05.000Z</published>
+    <updated>2019-01-07T02:58:29.615Z</updated>
+    
+    <content type="html"><![CDATA[<p><em>Mybatis在xml文件中使用接口类传来的参数一般设置parameterType类型，然后在对应的接口方法中传入相应类型的参数，即可在xml语句中使用上面的参数</em></p><p>然而我今天在使用中遇到了不使用parameterType的方式，记录一下</p><h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>一般来说，我们传多个参数可以使用parameterType，自定义一个pojo类，然后把想传入的多个参数放入该类中，parameterType指定该类，即可通过该类调用其中包含的多个参数。</p><h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>若是不想多定义pojo类</p><p>那么可以定义参赛为一个Map类型，如何取其中的参数呢？</p><p>在xml文件中可以不用写parameterType类型，然后想使用时使用#{key}，key填入你map里的键值，即可取到对应的值</p><blockquote><p>参考 <a href="https://blog.csdn.net/u014268482/article/details/80622216" target="_blank" rel="noopener">https://blog.csdn.net/u014268482/article/details/80622216</a></p></blockquote><h2 id="方法3"><a href="#方法3" class="headerlink" title="方法3"></a>方法3</h2><p>不用传Map，直接传入多个参数，在调用时直接#{0},#{1}….</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fyxtywczrkj30hm0620tf.jpg" alt=""></p><h2 id="方法4"><a href="#方法4" class="headerlink" title="方法4"></a>方法4</h2><p>基于注解</p><p>在接口方法中传入Map类型参数，并在参数前加上@<strong>param</strong>(“<strong>myparam</strong>“)注解，然后在xml中调用参数时</p><ul><li>${myparam.key}，参数默认为字符串</li><li>#{myparam.key}，参数可以为多种类型</li></ul><blockquote><p>参考 <a href="https://blog.csdn.net/earthhour/article/details/79635633" target="_blank" rel="noopener">https://blog.csdn.net/earthhour/article/details/79635633</a></p></blockquote><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;em&gt;Mybatis在xml文件中使用接口类传来的参数一般设置parameterType类型，然后在对应的接口方法中传入相应类型的参数，即可在xml语句中使用上面的参数&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;然而我今天在使用中遇到了不使用parameterType的方式，记录一下&lt;/p
+      
+    
+    </summary>
+    
+      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+    
+    
+      <category term="传参" scheme="http://xfff.xyz/tags/%E4%BC%A0%E5%8F%82/"/>
+    
+  </entry>
   
   <entry>
     <title>fish学习</title>
@@ -811,29 +864,25 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
   </entry>
   
   <entry>
-    <title>【好用的工具合集】</title>
+    <title></title>
     <link href="http://xfff.xyz/2018/10/10/%E3%80%90%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E5%90%88%E9%9B%86%E3%80%91/"/>
     <id>http://xfff.xyz/2018/10/10/【好用的工具合集】/</id>
     <published>2018-10-10T15:15:28.314Z</published>
-    <updated>2018-10-24T17:34:37.082Z</updated>
+    <updated>2019-01-07T02:34:09.981Z</updated>
     
-    <content type="html"><![CDATA[<hr><h2 id="项目开发类："><a href="#项目开发类：" class="headerlink" title="项目开发类："></a>项目开发类：</h2><ul><li><a href="https://www.cnblogs.com/xdp-gacl/p/4233289.html" target="_blank" rel="noopener">maven &gt;&gt;struts项目示例及插件</a></li><li><a href="#">git</a></li><li><a href="http://www.w3school.com.cn/tiy/t.asp?f=ajax_xml" target="_blank" rel="noopener">ajax普通请求示例</a></li><li><a href="https://blog.csdn.net/thinkscape/article/details/7467153" target="_blank" rel="noopener">ajax规范请求示例</a></li><li><a href="https://www.cnblogs.com/fjsnail/p/3491033.html" target="_blank" rel="noopener">springmvc上传文件</a>+<a href="https://www.cnblogs.com/hahaxiaoyu/p/5102900.html" target="_blank" rel="noopener">读取</a></li><li><a href="https://www.cnblogs.com/sunniest/p/4555801.html" target="_blank" rel="noopener">springmvc操作集合</a></li></ul><hr><h2 id="图形设计类"><a href="#图形设计类" class="headerlink" title="图形设计类:"></a>图形设计类:</h2><ul><li><a href="https://www.runoob.com/try/bootstrap/layoutit/#" target="_blank" rel="noopener">bootstrapHtml简易设计工具</a></li><li><a href="http://color.oulu.me/" target="_blank" rel="noopener">颜色渐变</a></li><li><a href="https://pan.baidu.com/s/1eQiXZKu" target="_blank" rel="noopener">截图工具FastStone Capture</a></li><li><a href="http://www.jq22.com/webide/" target="_blank" rel="noopener">jquery在线编辑器</a></li></ul><hr><h2 id="github："><a href="#github：" class="headerlink" title="github："></a>github：</h2><ul><li><a href="http://blog.sunnyxx.com/2014/02/27/hexo_startup/" target="_blank" rel="noopener">hexo</a>+<a href="https://blog.csdn.net/Hoshea_chx/article/details/78826689" target="_blank" rel="noopener">hexo</a></li><li><a href="https://www.cnblogs.com/YingYue/p/5894680.html" target="_blank" rel="noopener">git命令集合</a></li></ul><hr><h2 id="Markdown设计："><a href="#Markdown设计：" class="headerlink" title="Markdown设计："></a>Markdown设计：</h2><ul><li><a href="https://stackedit.io/app#" target="_blank" rel="noopener">Stackedit编辑器</a></li><li><a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf" target="_blank" rel="noopener">图床-用来插入图片</a></li></ul><hr><h2 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具:"></a>其他工具:</h2><ul><li><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener">油猴 Tampermonkey</a>+<a href="https://greasyfork.org/zh-CN/scripts" target="_blank" rel="noopener">脚本资源</a></li><li><a href="https://chrome.google.com/webstore/detail/isearch/jmalocgcmlilelcdekhigpadlhfbjpnp" target="_blank" rel="noopener">搜索引擎相关</a></li><li><a href="https://blog.csdn.net/wanwuguicang/article/details/80716178" target="_blank" rel="noopener">chrome插件伴侣</a></li><li><a href="https://pan.baidu.com/s/1XII8zxn5HAAcW2-4dLWGAg" target="_blank" rel="noopener">google学术搜索</a><br><del>这些链接咋不发光啊？？</del></li></ul><hr><p>持续更新……..<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw3kxn6swfj31hc0u0wgk.jpg" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<hr><p>title: 【好用的工具合集】<br>categories: tools</p><h2 id="tags-tools"><a href="#tags-tools" class="headerlink" title="tags: tools"></a>tags: tools</h2><hr><h2 id="项目开发类："><a href="#项目开发类：" class="headerlink" title="项目开发类："></a>项目开发类：</h2><ul><li><a href="https://www.cnblogs.com/xdp-gacl/p/4233289.html" target="_blank" rel="noopener">maven &gt;&gt;struts项目示例及插件</a></li><li><a href="#">git</a></li><li><a href="http://www.w3school.com.cn/tiy/t.asp?f=ajax_xml" target="_blank" rel="noopener">ajax普通请求示例</a></li><li><a href="https://blog.csdn.net/thinkscape/article/details/7467153" target="_blank" rel="noopener">ajax规范请求示例</a></li><li><a href="https://www.cnblogs.com/fjsnail/p/3491033.html" target="_blank" rel="noopener">springmvc上传文件</a>+<a href="https://www.cnblogs.com/hahaxiaoyu/p/5102900.html" target="_blank" rel="noopener">读取</a></li><li><a href="https://www.cnblogs.com/sunniest/p/4555801.html" target="_blank" rel="noopener">springmvc操作集合</a></li></ul><hr><h2 id="图形设计类"><a href="#图形设计类" class="headerlink" title="图形设计类:"></a>图形设计类:</h2><ul><li><a href="https://www.runoob.com/try/bootstrap/layoutit/#" target="_blank" rel="noopener">bootstrapHtml简易设计工具</a></li><li><a href="http://color.oulu.me/" target="_blank" rel="noopener">颜色渐变</a></li><li><a href="https://pan.baidu.com/s/1eQiXZKu" target="_blank" rel="noopener">截图工具FastStone Capture</a></li><li><a href="http://www.jq22.com/webide/" target="_blank" rel="noopener">jquery在线编辑器</a></li><li><a href="http://www.dmanywhere.cn/" target="_blank" rel="noopener">sql数据模型pdm文件在线解析</a></li></ul><hr><h2 id="github："><a href="#github：" class="headerlink" title="github："></a>github：</h2><ul><li><a href="http://blog.sunnyxx.com/2014/02/27/hexo_startup/" target="_blank" rel="noopener">hexo</a>+<a href="https://blog.csdn.net/Hoshea_chx/article/details/78826689" target="_blank" rel="noopener">hexo</a></li><li><a href="https://www.cnblogs.com/YingYue/p/5894680.html" target="_blank" rel="noopener">git命令集合</a></li></ul><hr><h2 id="Markdown设计："><a href="#Markdown设计：" class="headerlink" title="Markdown设计："></a>Markdown设计：</h2><ul><li><a href="https://stackedit.io/app#" target="_blank" rel="noopener">Stackedit编辑器</a></li><li><a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf" target="_blank" rel="noopener">图床-用来插入图片</a></li></ul><hr><h2 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具:"></a>其他工具:</h2><ul><li><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener">油猴 Tampermonkey</a>+<a href="https://greasyfork.org/zh-CN/scripts" target="_blank" rel="noopener">脚本资源</a></li><li><a href="https://chrome.google.com/webstore/detail/isearch/jmalocgcmlilelcdekhigpadlhfbjpnp" target="_blank" rel="noopener">搜索引擎相关</a></li><li><a href="https://blog.csdn.net/wanwuguicang/article/details/80716178" target="_blank" rel="noopener">chrome插件伴侣</a></li><li><a href="https://pan.baidu.com/s/1XII8zxn5HAAcW2-4dLWGAg" target="_blank" rel="noopener">google学术搜索</a><br><del>这些链接咋不发光啊？？</del></li></ul><hr><p>持续更新……..<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw3kxn6swfj31hc0u0wgk.jpg" alt=""></p>]]></content>
     
     <summary type="html">
     
       
       
         &lt;hr&gt;
-&lt;h2 id=&quot;项目开发类：&quot;&gt;&lt;a href=&quot;#项目开发类：&quot; class=&quot;headerlink&quot; title=&quot;项目开发类：&quot;&gt;&lt;/a&gt;项目开发类：&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.cnblogs.com/xdp-gacl/p
+&lt;p&gt;title: 【好用的工具合集】&lt;br&gt;categories: tools&lt;/p&gt;
+&lt;h2 id=&quot;tags-tools&quot;&gt;&lt;a href=&quot;#tags-tools&quot; class=&quot;headerlink&quot; title=&quot;tags: tools&quot;&gt;&lt;/a&gt;tags:
       
     
     </summary>
     
-      <category term="tools" scheme="http://xfff.xyz/categories/tools/"/>
-    
-    
-      <category term="tools" scheme="http://xfff.xyz/tags/tools/"/>
     
   </entry>
   
