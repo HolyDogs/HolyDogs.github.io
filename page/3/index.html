@@ -109,7 +109,7 @@
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(9)</small></a></li>
+				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(10)</small></a></li>
 				    
 				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(3)</small></a></li>
 				    
@@ -244,6 +244,51 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2018/10/25/【ajax】springmvc下使用/">【ajax】springmvc下使用</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-10-25T10:02:04.000Z" itemprop="datePublished">
+          2018-10-25
+      </time>
+    
+    
+    | 
+    <a href='/tags/ajax/'>ajax</a>,
+    
+    <a href='/tags/springmvc/'>springmvc</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        在做ssm项目的时候用到ajax的记录…
+
+post方法：动态获取div的value，隐藏对应的div项
+var str=this.value;
+$.post(&quot;lover/deleteL&quot;,{&quot;id&quot;:str},function(data){
+    alert(data);
+    $(&quot;#div&quot;+str).hide();
+});
+data为后台printwriter.w
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/10/25/【ajax】springmvc下使用/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -545,47 +590,6 @@
                     
                     <p class="pull-right readMore">
                         <a href="/2018/10/16/【mybatis】逆向工程及详解/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/16/【mybatis】学习总结-三/">【mybatis】学习总结(三)</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-16T07:32:59.850Z" itemprop="datePublished">
-          2018-10-16
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        
-延迟加载为了使数据库压力更小，一般对实时性不高的数据采用延迟加载方式。什么叫延迟加载，比如：我们通过mapper接口调用查询的语句，然后在之后才对这个数据进行使用（比如输出），那么在输出的时候，数据库才会真正去运行这条语句返回查询的对象。
-开启延迟加载的方式：
-
-使用association实现延迟加载
-
-在association标签里加入select和column属性，select指向查询关联数据的方法，column指向在主表中关联的
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/16/【mybatis】学习总结-三/">Read More...</a>
                     </p>
                     
                 </div>

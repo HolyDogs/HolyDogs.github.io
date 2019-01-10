@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-01-10T03:39:31.329Z</updated>
+  <updated>2019-01-10T08:52:43.462Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mybatis plus自动生成代码</title>
+    <link href="http://xfff.xyz/2019/01/10/mybatiss-plus%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/"/>
+    <id>http://xfff.xyz/2019/01/10/mybatiss-plus自动生成代码/</id>
+    <published>2019-01-10T08:16:13.000Z</published>
+    <updated>2019-01-10T08:52:43.462Z</updated>
+    
+    <content type="html"><![CDATA[<p>mybatis plus的核心功能之一就是能自动生成代码。</p><p>类似mybatis的逆向工程，但是mybatis plus能生成mapper、service、controller、serviceImpl等，而且封装好了基本的CRUD功能，在xml中找不到对应的sql语句。</p><hr><p>创建一个test类<br>如下</p><pre><code>package com.atguigu.mp.test;  import javax.swing.text.DefaultStyledDocument.AttributeUndoableEdit;  import org.junit.Test;  import org.springframework.context.ApplicationContext;  import org.springframework.context.support.ClassPathXmlApplicationContext;  import com.baomidou.mybatisplus.enums.IdType;  import com.baomidou.mybatisplus.generator.AutoGenerator;  import com.baomidou.mybatisplus.generator.config.DataSourceConfig;  import com.baomidou.mybatisplus.generator.config.GlobalConfig;  import com.baomidou.mybatisplus.generator.config.PackageConfig;  import com.baomidou.mybatisplus.generator.config.StrategyConfig;  import com.baomidou.mybatisplus.generator.config.rules.DbType;  import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;  public class TestMP {     /**   * 代码生成    示例代码 */  @Test    public void testGenerator() {        //1. 全局配置    GlobalConfig config = new GlobalConfig();    config.setActiveRecord(true) // 是否支持AR模式    .setAuthor(&quot;weiyunhui&quot;) // 作者  /*         .setOutputDir(&quot;D:\\workspace_mp\\mp03\\src\\main\\java&quot;) // 生成路径*/    .setOutputDir(&quot;E:\\study\\代码\\jjjj\\代码\\mp03\\src\\main\\java&quot;)             .setFileOverride(true)  // 文件覆盖    .setIdType(IdType.AUTO) // 主键策略    .setServiceName(&quot;%sService&quot;)  // 设置生成的service接口的名字的首字母是否为I   // IEmployeeService  .setBaseResultMap(true)             .setBaseColumnList(true);    //2. 数据源配置    DataSourceConfig  dsConfig  = new DataSourceConfig();    dsConfig.setDbType(DbType.MYSQL)  // 设置数据库类型    .setDriverName(&quot;com.mysql.cj.jdbc.Driver&quot;)              .setUrl(&quot;jdbc:mysql://localhost:3306/mpdemo?useSSL=false&amp;&amp;serverTimezone=GMT&quot;)              .setUsername(&quot;root&quot;)              .setPassword(&quot;olonn&quot;);    //3. 策略配置    StrategyConfig stConfig = new StrategyConfig();    stConfig.setCapitalMode(true) //全局大写命名    .setDbColumnUnderline(true)  // 指定表名 字段名是否使用下划线    .setNaming(NamingStrategy.underline_to_camel) // 数据库表映射到实体的命名策略    .setInclude(&quot;user&quot;)       ;    /*.setTablePrefix(&quot;tbl_&quot;)   .setInclude(&quot;tbl_employee&quot;);  // 生成的表*/       //4. 包名策略配置    PackageConfig pkConfig = new PackageConfig();    pkConfig.setParent(&quot;com.atguigu.mp&quot;)              .setMapper(&quot;mapper&quot;)              .setService(&quot;service&quot;)              .setController(&quot;controller&quot;)              .setEntity(&quot;beans&quot;)              .setXml(&quot;mapper&quot;);    //5. 整合配置    AutoGenerator  ag = new AutoGenerator();    ag.setGlobalConfig(config)          .setDataSource(dsConfig)          .setStrategy(stConfig)          .setPackageInfo(pkConfig);    //6. 执行    ag.execute();    }  }</code></pre><p>添加相关的依赖</p><p>这里我的数据库使用的mysql8.0，用的mysql-connector-java5.1.37报错，我改成了mysql-connector-java8.0.11，结果还是出错，提示SSL什么的，于是在url后加上了useSSL=false，然后又提示时区的错误，又在后面加上了serverTimezone=GMT，终于能运行成功了。</p><p>解决方法参考:</p><blockquote><p><a href="https://blog.csdn.net/qq_37630354/article/details/82814330" target="_blank" rel="noopener">https://blog.csdn.net/qq_37630354/article/details/82814330</a><br><a href="https://blog.csdn.net/u010429286/article/details/7775017" target="_blank" rel="noopener">https://blog.csdn.net/u010429286/article/details/7775017</a></p></blockquote><hr><p>运行成功会将对应库里的表生成各类文件，对应结构是这样的</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fz1l344lyfj30920dmaab.jpg" alt=""></p><hr><p>生成的mapper和service都包含基本的CRUD功能，另外，生成的service接口使用时，由于在impl实现类上使用了注解，所以实际@Autowired注解的service是一个实现类。</p><hr><p>大部分细节都写在代码里的注释中——</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;mybatis plus的核心功能之一就是能自动生成代码。&lt;/p&gt;
+&lt;p&gt;类似mybatis的逆向工程，但是mybatis plus能生成mapper、service、controller、serviceImpl等，而且封装好了基本的CRUD功能，在xml中找不到对应的sq
+      
+    
+    </summary>
+    
+      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+    
+    
+      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
+    
+  </entry>
   
   <entry>
     <title>mybatis plus简单使用</title>
