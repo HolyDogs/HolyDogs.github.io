@@ -109,7 +109,7 @@
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(8)</small></a></li>
+				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(9)</small></a></li>
 				    
 				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(3)</small></a></li>
 				    
@@ -244,6 +244,49 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2018/10/24/mybatis操作text等长文本类型/">mybatis操作text等长文本类型</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-10-24T06:41:17.000Z" itemprop="datePublished">
+          2018-10-24
+      </time>
+    
+    
+    | 
+    <a href='/tags/数据库/'>数据库</a>,
+    
+    <a href='/tags/mybatis/'>mybatis</a>,
+    
+    <a href='/tags/图片/'>图片</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+在实现将图片以base64编码为字符串存入数据库时，我遇到了这个问题。由于字符串过长，创建表时我用text类型来存放图片对应的base64编码字符串。
+
+最初，我以为是事务配置有问题，导致对表数据修改没有提交，在我试了各种配置方法。
+&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceT
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/10/24/mybatis操作text等长文本类型/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -543,52 +586,6 @@
                     
                     <p class="pull-right readMore">
                         <a href="/2018/10/16/【mybatis】学习总结-三/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/16/【mybatis】多对多关系/">【mybatis】多对多关系</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-16T06:50:23.956Z" itemprop="datePublished">
-          2018-10-16
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        关于多对多关系，我看了很多网上的案例和讲解，觉得都说的不太清楚，决定自己结合之前学的hibernate多对多关系，自己写一篇有关的mybatis多对多关系总结。
-
-
-首先，创建表，建立连接关系。
-
-
-然后，插入示例数据。
-
-
-打印一下，记录
-分别为三张表，一张银行用户表，简单起见，只有id和name两列，一张银行卡表，有id和money两列，最后是一张关系维护表，有三列，id、对应用户的buserid、对应卡的bcardid。
-我设定的
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/16/【mybatis】多对多关系/">Read More...</a>
                     </p>
                     
                 </div>
