@@ -109,7 +109,7 @@
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(10)</small></a></li>
+				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(11)</small></a></li>
 				    
 				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(3)</small></a></li>
 				    
@@ -244,6 +244,47 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2018/10/25/文件上传解析冲突问题/">文件上传解析冲突问题</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-10-25T13:27:07.000Z" itemprop="datePublished">
+          2018-10-25
+      </time>
+    
+    
+    | 
+    <a href='/tags/error/'>error</a>,
+    
+    <a href='/tags/resolver/'>resolver</a>,
+    
+    <a href='/tags/文件上传/'>文件上传</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        由于在上一篇写ajax提交表单时，在springmvc.xml里配置了MultipartResolver，导致我引入的图片上传插件失效（上传显示成功，但是后台没有接收到），在利用各种搜索引擎查找问题之后，终于找到了原因。
+
+原因文件上传有两种方式，spring框架里的MultipartResolver解析以及传统的ServletFileUpload。由于我引入的图片上传插件是第二种方式，而上篇写到的ajax提交表单需要Multipart
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/10/25/文件上传解析冲突问题/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -541,55 +582,6 @@ data为后台printwriter.w
                     
                     <p class="pull-right readMore">
                         <a href="/2018/10/16/【mybatis】与spring整合/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/16/【mybatis】逆向工程及详解/">【mybatis】逆向工程及详解</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-16T13:35:53.952Z" itemprop="datePublished">
-          2018-10-16
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>,
-    
-    <a href='/tags/逆向工程/'>逆向工程</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        逆向工程（又称逆向技术），是一种产品设计技术再现过程，即对一项目标产品进行逆向分析及研究，从而演绎并得出该产品的处理流程、组织结构、功能特性及技术规格等设计要素，以制作出功能相近，但又不完全一样的产品。逆向工程源于商业及军事领域中的硬件分析。其主要目的是在不能轻易获得必要的生产信息的情况下，直接从成品分析，推导出产品的设计原理^1。
-
-
-最好先创建一个新的空项目
-
-引入Maven依赖
-
-
-
-
-创建逆向工程配置文件
-文件配置内容
-&lt;
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/16/【mybatis】逆向工程及详解/">Read More...</a>
                     </p>
                     
                 </div>
