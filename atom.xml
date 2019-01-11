@@ -945,29 +945,6 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://xfff.xyz/2018/10/10/%E3%80%90%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E5%90%88%E9%9B%86%E3%80%91/"/>
-    <id>http://xfff.xyz/2018/10/10/【好用的工具合集】/</id>
-    <published>2018-10-10T15:15:28.314Z</published>
-    <updated>2019-01-07T02:34:09.981Z</updated>
-    
-    <content type="html"><![CDATA[<hr><p>title: 【好用的工具合集】<br>categories: tools</p><h2 id="tags-tools"><a href="#tags-tools" class="headerlink" title="tags: tools"></a>tags: tools</h2><hr><h2 id="项目开发类："><a href="#项目开发类：" class="headerlink" title="项目开发类："></a>项目开发类：</h2><ul><li><a href="https://www.cnblogs.com/xdp-gacl/p/4233289.html" target="_blank" rel="noopener">maven &gt;&gt;struts项目示例及插件</a></li><li><a href="#">git</a></li><li><a href="http://www.w3school.com.cn/tiy/t.asp?f=ajax_xml" target="_blank" rel="noopener">ajax普通请求示例</a></li><li><a href="https://blog.csdn.net/thinkscape/article/details/7467153" target="_blank" rel="noopener">ajax规范请求示例</a></li><li><a href="https://www.cnblogs.com/fjsnail/p/3491033.html" target="_blank" rel="noopener">springmvc上传文件</a>+<a href="https://www.cnblogs.com/hahaxiaoyu/p/5102900.html" target="_blank" rel="noopener">读取</a></li><li><a href="https://www.cnblogs.com/sunniest/p/4555801.html" target="_blank" rel="noopener">springmvc操作集合</a></li></ul><hr><h2 id="图形设计类"><a href="#图形设计类" class="headerlink" title="图形设计类:"></a>图形设计类:</h2><ul><li><a href="https://www.runoob.com/try/bootstrap/layoutit/#" target="_blank" rel="noopener">bootstrapHtml简易设计工具</a></li><li><a href="http://color.oulu.me/" target="_blank" rel="noopener">颜色渐变</a></li><li><a href="https://pan.baidu.com/s/1eQiXZKu" target="_blank" rel="noopener">截图工具FastStone Capture</a></li><li><a href="http://www.jq22.com/webide/" target="_blank" rel="noopener">jquery在线编辑器</a></li><li><a href="http://www.dmanywhere.cn/" target="_blank" rel="noopener">sql数据模型pdm文件在线解析</a></li></ul><hr><h2 id="github："><a href="#github：" class="headerlink" title="github："></a>github：</h2><ul><li><a href="http://blog.sunnyxx.com/2014/02/27/hexo_startup/" target="_blank" rel="noopener">hexo</a>+<a href="https://blog.csdn.net/Hoshea_chx/article/details/78826689" target="_blank" rel="noopener">hexo</a></li><li><a href="https://www.cnblogs.com/YingYue/p/5894680.html" target="_blank" rel="noopener">git命令集合</a></li></ul><hr><h2 id="Markdown设计："><a href="#Markdown设计：" class="headerlink" title="Markdown设计："></a>Markdown设计：</h2><ul><li><a href="https://stackedit.io/app#" target="_blank" rel="noopener">Stackedit编辑器</a></li><li><a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf" target="_blank" rel="noopener">图床-用来插入图片</a></li></ul><hr><h2 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具:"></a>其他工具:</h2><ul><li><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener">油猴 Tampermonkey</a>+<a href="https://greasyfork.org/zh-CN/scripts" target="_blank" rel="noopener">脚本资源</a></li><li><a href="https://chrome.google.com/webstore/detail/isearch/jmalocgcmlilelcdekhigpadlhfbjpnp" target="_blank" rel="noopener">搜索引擎相关</a></li><li><a href="https://blog.csdn.net/wanwuguicang/article/details/80716178" target="_blank" rel="noopener">chrome插件伴侣</a></li><li><a href="https://pan.baidu.com/s/1XII8zxn5HAAcW2-4dLWGAg" target="_blank" rel="noopener">google学术搜索</a><br><del>这些链接咋不发光啊？？</del></li></ul><hr><p>持续更新……..<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw3kxn6swfj31hc0u0wgk.jpg" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;hr&gt;
-&lt;p&gt;title: 【好用的工具合集】&lt;br&gt;categories: tools&lt;/p&gt;
-&lt;h2 id=&quot;tags-tools&quot;&gt;&lt;a href=&quot;#tags-tools&quot; class=&quot;headerlink&quot; title=&quot;tags: tools&quot;&gt;&lt;/a&gt;tags:
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>【Error集合】</title>
     <link href="http://xfff.xyz/2018/10/10/%E3%80%90Error%E9%9B%86%E5%90%88%E3%80%91/"/>
     <id>http://xfff.xyz/2018/10/10/【Error集合】/</id>
@@ -990,6 +967,33 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     
       <category term="errors" scheme="http://xfff.xyz/tags/errors/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【好用的工具合集】</title>
+    <link href="http://xfff.xyz/2018/10/10/%E3%80%90%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E5%90%88%E9%9B%86%E3%80%91/"/>
+    <id>http://xfff.xyz/2018/10/10/【好用的工具合集】/</id>
+    <published>2018-10-10T10:02:04.000Z</published>
+    <updated>2019-01-11T09:28:18.645Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h2 id="项目开发类："><a href="#项目开发类：" class="headerlink" title="项目开发类："></a>项目开发类：</h2><ul><li><a href="https://www.cnblogs.com/xdp-gacl/p/4233289.html" target="_blank" rel="noopener">maven &gt;&gt;struts项目示例及插件</a></li><li><a href="#">git</a></li><li><a href="http://www.w3school.com.cn/tiy/t.asp?f=ajax_xml" target="_blank" rel="noopener">ajax普通请求示例</a></li><li><a href="https://blog.csdn.net/thinkscape/article/details/7467153" target="_blank" rel="noopener">ajax规范请求示例</a></li><li><a href="https://www.cnblogs.com/fjsnail/p/3491033.html" target="_blank" rel="noopener">springmvc上传文件</a>+<a href="https://www.cnblogs.com/hahaxiaoyu/p/5102900.html" target="_blank" rel="noopener">读取</a></li><li><a href="https://www.cnblogs.com/sunniest/p/4555801.html" target="_blank" rel="noopener">springmvc操作集合</a></li></ul><hr><h2 id="图形设计类"><a href="#图形设计类" class="headerlink" title="图形设计类:"></a>图形设计类:</h2><ul><li><a href="https://www.runoob.com/try/bootstrap/layoutit/#" target="_blank" rel="noopener">bootstrapHtml简易设计工具</a></li><li><a href="http://color.oulu.me/" target="_blank" rel="noopener">颜色渐变</a></li><li><a href="https://pan.baidu.com/s/1eQiXZKu" target="_blank" rel="noopener">截图工具FastStone Capture</a></li><li><a href="http://www.jq22.com/webide/" target="_blank" rel="noopener">jquery在线编辑器</a></li><li><a href="http://www.dmanywhere.cn/" target="_blank" rel="noopener">sql数据模型pdm文件在线解析</a></li></ul><hr><h2 id="github："><a href="#github：" class="headerlink" title="github："></a>github：</h2><ul><li><a href="http://blog.sunnyxx.com/2014/02/27/hexo_startup/" target="_blank" rel="noopener">hexo</a>+<a href="https://blog.csdn.net/Hoshea_chx/article/details/78826689" target="_blank" rel="noopener">hexo</a></li><li><a href="https://www.cnblogs.com/YingYue/p/5894680.html" target="_blank" rel="noopener">git命令集合</a></li></ul><hr><h2 id="Markdown设计："><a href="#Markdown设计：" class="headerlink" title="Markdown设计："></a>Markdown设计：</h2><ul><li><a href="https://stackedit.io/app#" target="_blank" rel="noopener">Stackedit编辑器</a></li><li><a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf" target="_blank" rel="noopener">图床-用来插入图片</a></li></ul><hr><h2 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具:"></a>其他工具:</h2><ul><li><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener">油猴 Tampermonkey</a>+<a href="https://greasyfork.org/zh-CN/scripts" target="_blank" rel="noopener">脚本资源</a></li><li><a href="https://chrome.google.com/webstore/detail/isearch/jmalocgcmlilelcdekhigpadlhfbjpnp" target="_blank" rel="noopener">搜索引擎相关</a></li><li><a href="https://blog.csdn.net/wanwuguicang/article/details/80716178" target="_blank" rel="noopener">chrome插件伴侣</a></li><li><a href="https://pan.baidu.com/s/1XII8zxn5HAAcW2-4dLWGAg" target="_blank" rel="noopener">google学术搜索</a><br><del>这些链接咋不发光啊？？</del></li></ul><hr><p>持续更新……..<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw3kxn6swfj31hc0u0wgk.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;h2 id=&quot;项目开发类：&quot;&gt;&lt;a href=&quot;#项目开发类：&quot; class=&quot;headerlink&quot; title=&quot;项目开发类：&quot;&gt;&lt;/a&gt;项目开发类：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.cnblogs.com/xdp-gacl/p
+      
+    
+    </summary>
+    
+      <category term="tools" scheme="http://xfff.xyz/categories/tools/"/>
+    
+    
+      <category term="tools" scheme="http://xfff.xyz/tags/tools/"/>
     
   </entry>
   
