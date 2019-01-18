@@ -121,6 +121,8 @@
 				    
 				    <li><a href="/categories/vue/" class="animsition-link">vue<small>(1)</small></a></li>
 				    
+				    <li><a href="/categories/分布式/" class="animsition-link">分布式<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/前端/" class="animsition-link">前端<small>(1)</small></a></li>
 				    
 				    <li><a href="/categories/数据结构/" class="animsition-link">数据结构<small>(1)</small></a></li>
@@ -248,6 +250,101 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2018/10/22/图片的上传和下载以及存入数据库/">图片的上传和下载以及存入数据库</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-10-22T14:55:10.000Z" itemprop="datePublished">
+          2018-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tags/数据库/'>数据库</a>,
+    
+    <a href='/tags/javaweb/'>javaweb</a>,
+    
+    <a href='/tags/图片的上传下载/'>图片的上传下载</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+首先添加jar包这里我直接写maven依赖
+&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;3.1.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;depen
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/10/22/图片的上传和下载以及存入数据库/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2018/10/19/【ssm】ssm整合配置/">【ssm】ssm整合配置</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-10-19T09:46:56.000Z" itemprop="datePublished">
+          2018-10-19
+      </time>
+    
+    
+    | 
+    <a href='/tags/mybatis/'>mybatis</a>,
+    
+    <a href='/tags/springmvc/'>springmvc</a>,
+    
+    <a href='/tags/spring/'>spring</a>,
+    
+    <a href='/tags/ssm/'>ssm</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+导入所有需要的包（添加maven依赖）:
+
+&lt;dependencies&gt;
+     &lt;dependency&gt;
+         &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+         &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+         &lt;version&gt;3.4.5&lt;/version&gt;
+
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/10/19/【ssm】ssm整合配置/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -498,96 +595,6 @@
                     
                     <p class="pull-right readMore">
                         <a href="/2018/10/16/【mybatis】多对多关系/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/15/【mybatis】学习总结(二)/">【mybatis】学习总结(二)</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-15T07:38:30.030Z" itemprop="datePublished">
-          2018-10-15
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        
-动态Sqlmybatis真正强大的地方，是可以灵活的运用sql语句进行查询。
-
-if语句
-
-在mapper映射文件中可以使用\标签来对语句接收的参数进行判断，从而动态改变sql语句。
-为了避免多次遇到同一段判断代码时的累赘，可以使用SQL片段来重复利用代码。如下：
-&lt;sql id=&quot;thereissqlblock&quot;&gt;
-        &lt;if test=&quot;goods!=null and u
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/15/【mybatis】学习总结(二)/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/15/【mybatis】大概总结(一)/">【mybatis】大概总结(一)</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-15T05:41:46.178Z" itemprop="datePublished">
-          2018-10-15
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        原生访问数据库方法总配置文件mapper配置mapper接口使用示例
-
-
-原生访问数据库方法:jdbcjdbc编程步骤:
-
-加载数据库驱动
-创建并获取数据库链接
-创建jdbc statement对象
-设置sql语句
-设置sql语句中的参数(使用preparedStatement)
-通过statement执行sql并获取结果
-对sql执行结果进行解析处理
-释放资源(resultSet、preparedstatement、connectio
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/15/【mybatis】大概总结(一)/">Read More...</a>
                     </p>
                     
                 </div>
