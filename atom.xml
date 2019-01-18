@@ -104,6 +104,29 @@
   </entry>
   
   <entry>
+    <title></title>
+    <link href="http://xfff.xyz/2019/01/16/%E5%88%9D%E8%AF%86vue-js/"/>
+    <id>http://xfff.xyz/2019/01/16/初识vue-js/</id>
+    <published>2019-01-16T13:31:08.419Z</published>
+    <updated>2019-01-18T06:47:51.087Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: 初识vue-js<br>date: 2019-01-16 21:31:08<br>categories: [vue]</p><h2 id="tags-前端-js"><a href="#tags-前端-js" class="headerlink" title="tags: [前端,js]"></a>tags: [前端,js]</h2><hr><p><em>入职前以为，我们写后端的，也许整天面对的就是后台的service、controller等层去开发，入职后上级和我们说后台大部分代码都可以自动生成，前端的js需要好好学习一下…</em>  </p><p><em>我晕了，前端根本没怎么重视，JavaScript也没有系统地学习，现在想了想，要不好好学一个前端的框架吧。从各个网站上了解到一些信息和趋势，决定学习时下比较热门的前端框架vue.js</em>  </p><h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>安装…<br>先安装个nodejs，官网下载即可（因为之前用hexo搭建博客的时候安装过了，这里就不写步骤了）  </p><p>为了减少对C盘的使用，把nodejs安装在其他盘之后，还需要更改设置，不然还是会把一些文件和缓存放在C盘<br> npm config set prefix “xxx”<br>    npm config set cache “xxx”  </p><p>新建两个文件夹,路径填入xxx即可  </p><p>安装vue-cli<br> npm install -g vue-cli</p><p>如果无法识别vue，可能是npm版本太低，运行<br> npm install -g npm </p><p>完事运行<br> vue -V   </p><p>出现版本号表示成功。  </p><hr><h2 id="生成项目"><a href="#生成项目" class="headerlink" title="生成项目"></a>生成项目</h2><p>命令行找个目录运行<br> vue init webpack yourproject</p><p>yourproject是项目名，webpack是vue模版，除了webpack还有其他几个模版  </p><p>这个时候会从github上下载对应的模版文件（这里也可以输入自己的自定义模版导入），途中会有很多选项，网上都建议有个ESLint选no，因为不会用…<br>其他一路回车和输入Y，最后结束命令行会显示如何开始自己的项目，以前的版本还需要install一下依赖，现在好像不需要  </p><p>反正新版本只需要cd 进入项目目录，然后<br> npm run dev </p><p>即可，在对应的页面能看到项目初始默认的页面。端口号打包目录什么的可以在config目录里修改。  </p><p>打包命令<br> npm run build </p><p>运行会生成一个dist文件夹，实际使用时只需要把该文件夹放到服务器即可。  </p><hr><p>目录结构大概是这样<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fz9byntaasj304e0cnt8l.jpg" alt=""><br>开发目录为src<br>assets放静态文件<br>components放模版<br>router是vue路由<br>main.js是程序入口<br>….  </p><hr><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;p&gt;title: 初识vue-js&lt;br&gt;date: 2019-01-16 21:31:08&lt;br&gt;categories: [vue]&lt;/p&gt;
+&lt;h2 id=&quot;tags-前端-js&quot;&gt;&lt;a href=&quot;#tags-前端-js&quot; class=&quot;headerlink&quot; t
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>SpringBoot学习使用(与mybatis plus整合)</title>
     <link href="http://xfff.xyz/2019/01/14/SpringBoot%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/"/>
     <id>http://xfff.xyz/2019/01/14/SpringBoot学习使用/</id>
@@ -126,9 +149,9 @@
       <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
-    
       <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
     
       <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
     
