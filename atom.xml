@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-01-18T02:59:55.014Z</updated>
+  <updated>2019-01-21T01:48:05.159Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dubboDemo搭建例子</title>
+    <link href="http://xfff.xyz/2019/01/21/dubboDemo%E6%90%AD%E5%BB%BA%E4%BE%8B%E5%AD%90/"/>
+    <id>http://xfff.xyz/2019/01/21/dubboDemo搭建例子/</id>
+    <published>2019-01-21T01:08:11.000Z</published>
+    <updated>2019-01-21T01:48:05.159Z</updated>
+    
+    <content type="html"><![CDATA[<p>创建一个工作空间DubboDemo<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdxu1zgm4j309b05qjre.jpg" alt=""></p><p>在项目下新建module</p><h2 id="服务提供者"><a href="#服务提供者" class="headerlink" title="服务提供者"></a>服务提供者</h2><p>新建service接口并编写实现类<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdxw3w8j3j30j7078wes.jpg" alt=""></p><p>将service提取到另一module中</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdxxcld7jj30bi09bmxg.jpg" alt=""></p><p>新建服务消费者module</p><p>和提供者类似将service接口提取到主module中</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdxzsttuaj30v80by405.jpg" alt=""></p><hr><p>可以看到消费者里需要用到提供者的Service</p><p>其他的domain和service需要引入主module 的依赖</p><pre><code>&lt;dependency&gt;   &lt;groupId&gt;xff&lt;/groupId&gt;   &lt;artifactId&gt;themainservice&lt;/artifactId&gt;   &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;  &lt;/dependency&gt;</code></pre><p>这个时候在服务提供者里添加依赖和配置文件</p><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  &lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;   &lt;groupId&gt;xff&lt;/groupId&gt;   &lt;artifactId&gt;user-service-provider&lt;/artifactId&gt;   &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;   &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;   &lt;artifactId&gt;lombok&lt;/artifactId&gt;   &lt;version&gt;1.16.18&lt;/version&gt;   &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;xff&lt;/groupId&gt;   &lt;artifactId&gt;themainservice&lt;/artifactId&gt;   &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;   &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;com.alibaba&lt;/groupId&gt;   &lt;artifactId&gt;dubbo&lt;/artifactId&gt;   &lt;version&gt;2.6.5&lt;/version&gt;   &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.apache.curator&lt;/groupId&gt;   &lt;artifactId&gt;curator-framework&lt;/artifactId&gt;   &lt;version&gt;2.12.0&lt;/version&gt;   &lt;/dependency&gt; &lt;/dependencies&gt;  &lt;/project&gt;</code></pre><p>provider.xml</p><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd&quot;&gt;   &lt;dubbo:application name=&quot;userserviceprovider&quot;&gt;&lt;/dubbo:application&gt;   &lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;127.0.0.1:2181&quot;&gt;&lt;/dubbo:registry&gt;   &lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot;&gt;&lt;/dubbo:protocol&gt;   &lt;dubbo:service interface=&quot;service.UserService&quot; ref=&quot;userServiceImpl&quot;&gt;&lt;/dubbo:service&gt;   &lt;bean id=&quot;userServiceImpl&quot; class=&quot;service.impl.UserServiceImpl&quot;&gt;&lt;/bean&gt;  &lt;/beans&gt;</code></pre><p>这样就能将服务暴露给其他服务使用</p><p>再写一个类运行</p><pre><code>public static void main(String[] args) throws IOException {      ClassPathXmlApplicationContext ioc = new ClassPathXmlApplicationContext(&quot;provider.xml&quot;);    ioc.start();    System.in.read();  }</code></pre><hr><p>类似的，在服务消费者里</p><p>依赖一样</p><p>consumer.xml</p><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;   &lt;context:component-scan base-package=&quot;service.impl&quot;&gt;&lt;/context:component-scan&gt;   &lt;dubbo:application name=&quot;orderserviceconsumer&quot;&gt;&lt;/dubbo:application&gt;   &lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;127.0.0.1:2181&quot;&gt;&lt;/dubbo:registry&gt;   &lt;dubbo:reference interface=&quot;service.UserService&quot; id=&quot;userService&quot;&gt;&lt;/dubbo:reference&gt;  &lt;/beans&gt;</code></pre><p>写一个类测试</p><pre><code>public static void main(String[] args) throws IOException {      ApplicationContext ioc= new ClassPathXmlApplicationContext(&quot;consumer.xml&quot;);    OrderService one= ioc.getBean(OrderService.class);    Order order=new Order();    order.setPrice(123);    System.out.println(one.findPrice(order));    System.in.read();  }</code></pre><hr><p>运行</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdyp5y2xzj30i505bmxq.jpg" alt=""></p><p>这个时候打开上篇的OPS控制台可以看到服务提供者，打开在下面可以看到服务消费者正在使用</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdyq0wp4zj30t50czdg9.jpg" alt=""></p><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;创建一个工作空间DubboDemo&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006azB5Sly1fzdxu1zgm4j309b05qjre.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在项目下新建module&lt;/p&gt;
+&lt;h2 id=&quot;
+      
+    
+    </summary>
+    
+      <category term="分布式" scheme="http://xfff.xyz/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+      <category term="dubbo" scheme="http://xfff.xyz/tags/dubbo/"/>
+    
+      <category term="demo" scheme="http://xfff.xyz/tags/demo/"/>
+    
+  </entry>
   
   <entry>
     <title>dubboOPS控制台安装使用</title>
@@ -752,9 +781,9 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
       <category term="ssm" scheme="http://xfff.xyz/categories/ssm/"/>
     
     
-      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
-    
       <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
     
       <category term="spring" scheme="http://xfff.xyz/tags/spring/"/>
     
