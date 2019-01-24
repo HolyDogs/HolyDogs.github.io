@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-01-21T01:48:05.159Z</updated>
+  <updated>2019-01-24T07:00:02.593Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【redis】windows环境和linux环境下的安装使用</title>
+    <link href="http://xfff.xyz/2019/01/24/%E3%80%90redis%E3%80%91windows%E7%8E%AF%E5%A2%83%E5%92%8Clinux%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
+    <id>http://xfff.xyz/2019/01/24/【redis】windows环境和linux环境下的安装使用/</id>
+    <published>2019-01-24T02:46:37.000Z</published>
+    <updated>2019-01-24T07:00:02.593Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>首先，贴上官方网站地址，可以在这查询官方文档、命令等等。</p><blockquote><p><a href="https://redis.io/" target="_blank" rel="noopener">https://redis.io/</a><br>中文版<br><a href="http://redis.cn/" target="_blank" rel="noopener">http://redis.cn/</a></p></blockquote><p>redis是非关系型数据库，运行于内存中，当项目需要请求数据库时会先查询redis数据库，以减轻主库的访问压力。</p><p>属于非关系型数据库NOSQL的redis没有固定的列与值的表形式。<br>NOSQL=NOT ONLY SQL</p><hr><h2 id="windows下安装redis"><a href="#windows下安装redis" class="headerlink" title="windows下安装redis"></a>windows下安装redis</h2><p>redis的作者并没有写适合在windows下运行的redis数据库，微软为了让更多的用户使用windows系统，自己对redis进行了修改，建造了适合在windows下运行的redis。而平时使用在服务器端的都是在linux下运行的redis，所以windows下的redis仅适合用来开发学习。</p><p>下载网站：</p><blockquote><p><a href="https://github.com/MicrosoftArchive/redis/releases" target="_blank" rel="noopener">https://github.com/MicrosoftArchive/redis/releases</a></p></blockquote><p>下载后解压到自选目录，运行<br>redis-server.exe文件见下图即表示运行成功<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhhrts2c9j30qu0b90t2.jpg" alt=""></p><hr><p>双击redis-cli.exe运行客户端工具</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhhtpdn8uj30hr0670ss.jpg" alt=""></p><hr><h2 id="Linux下安装redis"><a href="#Linux下安装redis" class="headerlink" title="Linux下安装redis"></a>Linux下安装redis</h2><p>打开官网下载压缩包</p><p>安装gcc编译器，可以用来编译运行c语言文件</p><pre><code>yum -y install gcc</code></pre><p>？好像不是这样装的，我以前装过所以不用再装</p><p>把下好的压缩包解压</p><pre><code>tar -zxvf 压缩包</code></pre><p>进入解压后的目录<br>运行make命令<br>这个时候会把目录下的C程序全部编译运行，等待运行结束出现下图<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhoh6e39xj31ue0lc1kx.jpg" alt=""></p><p>这个时候就能进入src目录，里面有和上面windows名字差不多的可执行命令文件</p><p>如redis-server和redis-cli等</p><hr><p>若想在任意目录运行这些命令<br>要么运行时前面加上路径<br>要么<br>进入src目录<br>运行</p><pre><code>sudo make install</code></pre><p>命令</p><p>相当于把redis的命令配置在环境变量中，在任何目录都可使用</p><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h1&gt;&lt;p&gt;首先，贴上官方网站地址，可以在这查询官方文档、命令等等。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="http://xfff.xyz/categories/redis/"/>
+    
+    
+      <category term="数据库" scheme="http://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>dubboDemo搭建例子</title>
@@ -183,9 +210,9 @@
       <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
-    
       <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
     
       <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
     

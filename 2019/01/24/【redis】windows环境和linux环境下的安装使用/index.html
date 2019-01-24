@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>dubboDemo搭建例子 | XFF&#39;s blog</title>
+  <title>【redis】windows环境和linux环境下的安装使用 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -224,123 +224,51 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2019-01-21T01:08:11.000Z" itemprop="datePublished">
-          2019-01-21
+      <time datetime="2019-01-24T02:46:37.000Z" itemprop="datePublished">
+          2019-01-24
       </time>
     
     
     | 
-    <a href='/tags/dubbo/'>dubbo</a>,
-    
-    <a href='/tags/demo/'>demo</a>
+    <a href='/tags/数据库/'>数据库</a>
     
     
 </span>
-                <h1>dubboDemo搭建例子</h1>
+                <h1>【redis】windows环境和linux环境下的安装使用</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>创建一个工作空间DubboDemo<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdxu1zgm4j309b05qjre.jpg" alt=""></p>
-<p>在项目下新建module</p>
-<h2 id="服务提供者"><a href="#服务提供者" class="headerlink" title="服务提供者"></a>服务提供者</h2><p>新建service接口并编写实现类<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdxw3w8j3j30j7078wes.jpg" alt=""></p>
-<p>将service提取到另一module中</p>
-<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdxxcld7jj30bi09bmxg.jpg" alt=""></p>
-<p>新建服务消费者module</p>
-<p>和提供者类似将service接口提取到主module中</p>
-<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdxzsttuaj30v80by405.jpg" alt=""></p>
+      		<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>首先，贴上官方网站地址，可以在这查询官方文档、命令等等。</p>
+<blockquote>
+<p><a href="https://redis.io/" target="_blank" rel="noopener">https://redis.io/</a><br>中文版<br><a href="http://redis.cn/" target="_blank" rel="noopener">http://redis.cn/</a></p>
+</blockquote>
+<p>redis是非关系型数据库，运行于内存中，当项目需要请求数据库时会先查询redis数据库，以减轻主库的访问压力。</p>
+<p>属于非关系型数据库NOSQL的redis没有固定的列与值的表形式。<br>NOSQL=NOT ONLY SQL</p>
 <hr>
-<p>可以看到消费者里需要用到提供者的Service</p>
-<p>其他的domain和service需要引入主module 的依赖</p>
-<pre><code>&lt;dependency&gt;  
- &lt;groupId&gt;xff&lt;/groupId&gt;  
- &lt;artifactId&gt;themainservice&lt;/artifactId&gt;  
- &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;  
-&lt;/dependency&gt;
-</code></pre><p>这个时候在服务提供者里添加依赖和配置文件</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
-&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;  
-  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;  
-  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;  
- &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;  
-
- &lt;groupId&gt;xff&lt;/groupId&gt;  
- &lt;artifactId&gt;user-service-provider&lt;/artifactId&gt;  
- &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;  
- &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;  
- &lt;artifactId&gt;lombok&lt;/artifactId&gt;  
- &lt;version&gt;1.16.18&lt;/version&gt;  
- &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;xff&lt;/groupId&gt;  
- &lt;artifactId&gt;themainservice&lt;/artifactId&gt;  
- &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;  
- &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;com.alibaba&lt;/groupId&gt;  
- &lt;artifactId&gt;dubbo&lt;/artifactId&gt;  
- &lt;version&gt;2.6.5&lt;/version&gt;  
- &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.apache.curator&lt;/groupId&gt;  
- &lt;artifactId&gt;curator-framework&lt;/artifactId&gt;  
- &lt;version&gt;2.12.0&lt;/version&gt;  
- &lt;/dependency&gt; &lt;/dependencies&gt;  
-
-&lt;/project&gt;
-</code></pre><p>provider.xml</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;  
-  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;  
-  xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd&quot;&gt;  
-
- &lt;dubbo:application name=&quot;userserviceprovider&quot;&gt;&lt;/dubbo:application&gt;  
-
- &lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;127.0.0.1:2181&quot;&gt;&lt;/dubbo:registry&gt;  
-
- &lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot;&gt;&lt;/dubbo:protocol&gt;  
-
- &lt;dubbo:service interface=&quot;service.UserService&quot; ref=&quot;userServiceImpl&quot;&gt;&lt;/dubbo:service&gt;  
-
- &lt;bean id=&quot;userServiceImpl&quot; class=&quot;service.impl.UserServiceImpl&quot;&gt;&lt;/bean&gt;  
-&lt;/beans&gt;
-</code></pre><p>这样就能将服务暴露给其他服务使用</p>
-<p>再写一个类运行</p>
-<pre><code>public static void main(String[] args) throws IOException {  
-    ClassPathXmlApplicationContext ioc = new ClassPathXmlApplicationContext(&quot;provider.xml&quot;);  
-  ioc.start();  
-
-  System.in.read();  
-}
-</code></pre><hr>
-<p>类似的，在服务消费者里</p>
-<p>依赖一样</p>
-<p>consumer.xml</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;  
-  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;  
-  xmlns:context=&quot;http://www.springframework.org/schema/context&quot;  
-  xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;  
-
- &lt;context:component-scan base-package=&quot;service.impl&quot;&gt;&lt;/context:component-scan&gt;  
-
- &lt;dubbo:application name=&quot;orderserviceconsumer&quot;&gt;&lt;/dubbo:application&gt;  
-
- &lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;127.0.0.1:2181&quot;&gt;&lt;/dubbo:registry&gt;  
-
- &lt;dubbo:reference interface=&quot;service.UserService&quot; id=&quot;userService&quot;&gt;&lt;/dubbo:reference&gt;  
-
-
-
-&lt;/beans&gt;
-</code></pre><p>写一个类测试</p>
-<pre><code>public static void main(String[] args) throws IOException {  
-    ApplicationContext ioc= new ClassPathXmlApplicationContext(&quot;consumer.xml&quot;);  
-
-  OrderService one= ioc.getBean(OrderService.class);  
-  Order order=new Order();  
-  order.setPrice(123);  
-  System.out.println(one.findPrice(order));  
-  System.in.read();  
-}
-</code></pre><hr>
-<p>运行</p>
-<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdyp5y2xzj30i505bmxq.jpg" alt=""></p>
-<p>这个时候打开上篇的OPS控制台可以看到服务提供者，打开在下面可以看到服务消费者正在使用</p>
-<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzdyq0wp4zj30t50czdg9.jpg" alt=""></p>
+<h2 id="windows下安装redis"><a href="#windows下安装redis" class="headerlink" title="windows下安装redis"></a>windows下安装redis</h2><p>redis的作者并没有写适合在windows下运行的redis数据库，微软为了让更多的用户使用windows系统，自己对redis进行了修改，建造了适合在windows下运行的redis。而平时使用在服务器端的都是在linux下运行的redis，所以windows下的redis仅适合用来开发学习。</p>
+<p>下载网站：</p>
+<blockquote>
+<p><a href="https://github.com/MicrosoftArchive/redis/releases" target="_blank" rel="noopener">https://github.com/MicrosoftArchive/redis/releases</a></p>
+</blockquote>
+<p>下载后解压到自选目录，运行<br>redis-server.exe文件见下图即表示运行成功<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhhrts2c9j30qu0b90t2.jpg" alt=""></p>
+<hr>
+<p>双击redis-cli.exe运行客户端工具</p>
+<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhhtpdn8uj30hr0670ss.jpg" alt=""></p>
+<hr>
+<h2 id="Linux下安装redis"><a href="#Linux下安装redis" class="headerlink" title="Linux下安装redis"></a>Linux下安装redis</h2><p>打开官网下载压缩包</p>
+<p>安装gcc编译器，可以用来编译运行c语言文件</p>
+<pre><code>yum -y install gcc
+</code></pre><p>？好像不是这样装的，我以前装过所以不用再装</p>
+<p>把下好的压缩包解压</p>
+<pre><code>tar -zxvf 压缩包
+</code></pre><p>进入解压后的目录<br>运行make命令<br>这个时候会把目录下的C程序全部编译运行，等待运行结束出现下图<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhoh6e39xj31ue0lc1kx.jpg" alt=""></p>
+<p>这个时候就能进入src目录，里面有和上面windows名字差不多的可执行命令文件</p>
+<p>如redis-server和redis-cli等</p>
+<hr>
+<p>若想在任意目录运行这些命令<br>要么运行时前面加上路径<br>要么<br>进入src目录<br>运行</p>
+<pre><code>sudo make install
+</code></pre><p>命令</p>
+<p>相当于把redis的命令配置在环境变量中，在任何目录都可使用</p>
 <hr>
 
             <div class="clearfix"></div>
@@ -348,13 +276,9 @@
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2019/01/24/【redis】windows环境和linux环境下的安装使用/" style="float: left;">
-        ← 【redis】windows环境和linux环境下的安装使用
-    </a>
     
-    
-    <a class="pull-right" href="/2019/01/18/dubboOPS控制台安装使用/">
-        dubboOPS控制台安装使用 →
+    <a class="pull-right" href="/2019/01/21/dubboDemo搭建例子/">
+        dubboDemo搭建例子 →
     </a>
     
 </nav>
