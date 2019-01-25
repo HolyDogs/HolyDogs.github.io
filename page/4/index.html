@@ -113,7 +113,7 @@
 				    
 				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(11)</small></a></li>
 				    
-				    <li><a href="/categories/redis/" class="animsition-link">redis<small>(2)</small></a></li>
+				    <li><a href="/categories/redis/" class="animsition-link">redis<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(3)</small></a></li>
 				    
@@ -252,6 +252,51 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2018/10/30/线程池的基本使用/">线程池的基本使用</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-10-30T06:23:35.000Z" itemprop="datePublished">
+          2018-10-30
+      </time>
+    
+    
+    | 
+    <a href='/tags/多线程/'>多线程</a>,
+    
+    <a href='/tags/java/'>java</a>,
+    
+    <a href='/tags/线程池/'>线程池</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        要用到线程池，就要先介绍一个类：ThreadPoolExecutor.
+通过查看源码发现继承及实现关系为
+
+在ThreadPoolExecutor类中，发现有四种构造方法，需要传入很多参数。
+public ThreadPoolExecutor(int corePoolSize,
+                          int maximumPoolSize,
+                          long ke
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/10/30/线程池的基本使用/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -551,45 +596,6 @@ data为后台printwriter.w
                     
                     <p class="pull-right readMore">
                         <a href="/2018/10/18/【springmvc】配置和使用-二/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/16/【mybatis】与spring整合/">【mybatis】与spring整合</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-16T15:36:19.445Z" itemprop="datePublished">
-          2018-10-16
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        只使用mybatis时，我们发现每次使用mapper接口操作数据都很麻烦，并且程序耦合度高，为了解决这个问题，可以使用spring框架与mybatis框架进行整合。将一些需要的对象交给spring容器来配置和创建。
-
-导入相应的整合包后，首先将数据库的配置交给spring配置：
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-       x
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/16/【mybatis】与spring整合/">Read More...</a>
                     </p>
                     
                 </div>

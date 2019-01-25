@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: 多线程 | XFF&#39;s blog</title>
+  <title>【redis】高级话题 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -218,73 +218,186 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>Life Is A <span>Struggle</span></h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p>But Every Day Is <Strong>Beautiful</Strong></p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/30/线程池的基本使用/">线程池的基本使用</a></h4>
-                            
-                            <p><time datetime="2018-10-30T06:23:35.000Z"><a href="/2018/10/30/线程池的基本使用/">2018-10-30</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-01-25T06:52:28.000Z" itemprop="datePublished">
+          2019-01-25
+      </time>
+    
+    
+    | 
+    <a href='/tags/数据库/'>数据库</a>
+    
+    
+</span>
+                <h1>【redis】高级话题</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>multi<br>标记一个事务的开始，多条命令会按照先后顺序放进一个队列中，总返回OK</p>
+<p>exec<br>执行所有事务块的命令<br>事务内的所有执行语句内容，事务被打断返回nil</p>
+<p>discard<br>（当事务队列内的语句写到一半不想写了）取消事务，放弃事务内的所有命令，总返回OK</p>
+<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzimisoa19j309b09t74c.jpg" alt=""></p>
+<p>当遇到语法错误时，事务就会被放弃</p>
+<p>当语法没错，但执行会出错时，redis不会回滚，前面正确的命令会正常执行</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzimsqu0h8j30fi094t8v.jpg" alt=""></h2><p>watch key…<br>监视一个或多个key，如果在事务执行前这些key被其他命令所改动，那么事务将会被打断。总是返回OK</p>
+<p>unwatch<br>取消watch命令对所有key的监视</p>
+<p>比如这里我对k5这个key添加监视，然后在可视化工具里修改k5的值<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzin0nu83hj30es043jr8.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzimzllvzxj309305mjra.jpg" alt=""></p>
+<p>可以看到事务执行失败。</p>
+<hr>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><p>单保存在内存中，若突然系统问题出现关机，会导致数据丢失，所以保存在硬盘中能保证数据安全。</p>
+<h2 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h2><p>Redis Database（RDB），数据快照写入磁盘。<br>保存数据是在单独的进程中写文件，不会影响Redis的正常使用。RDB恢复数据比其他AOF（将命令写入日志）速度快</p>
+<p>在配置文件redis.conf中搜索SNAPSHOTTING可以看到关于RDB的配置说明。配置Redis生成快照文件的时间策略，格式如下</p>
+<pre><code>save &lt;seconds&gt; &lt;changes&gt;
+</code></pre><p>表示在seconds秒内至少发生了changes个key的改动这一条件被满足时，就会启动生成保存</p>
+<p>在配置文件中有如下三列默认配置</p>
+<pre><code>save 900 1
+save 300 10
+save 60 10000
+</code></pre><p>另外，<br>dbfilename属性对应RDB的文件名，默认为dump.rdb<br>dir指定RDB文件的存储位置，默认为./，当前目录<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzinigak8wj30f609pwfi.jpg" alt=""></p>
+<p>缺点：会丢失未满足条件而发生保存的数据。<br>优点：性能高。</p>
+<h2 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h2><p>如果不想有丢失数据的风险，采用AOF方式<br>每次接收到一条改变数据的命令时，就会把该命令写到一个AOF文件中，当redis重启时，可以通过执行AOF中的所有命令恢复数据</p>
+<p>AOF功能默认为关闭状态，需要在redis.conf文件中配置</p>
+<ul>
+<li>appendonly：默认是no，改成yes即为开启</li>
+<li>appendfilename：指定AOF文件名，默认为appendonly.aof</li>
+<li>dir：指定RDB和AOF文件存放的目录</li>
+<li>appendfsync：配置向aof文件写命令数据的策略<ul>
+<li>no：不主动进行同步，而是完全交由操作系统来做（30秒一次），比较快但是不安全</li>
+<li>always：每次执行写入都会执行同步，慢一点，安全</li>
+<li>everysec：每秒执行一次，比较平衡，默认为这个</li>
+</ul>
+</li>
+<li>auto-aof-rewrite-min-size：允许重写的最小AOF文件大小，默认为64M，当超过此大小时整理aof文件，去掉无用的命令（比如说重复赋值）</li>
+<li></li>
+</ul>
+<p>若因某条命令让redis关闭，重启前可以对aof文件修改，删除这条命令，重启redis会自动执行该文件中的命令恢复数据</p>
+<hr>
+<h1 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h1><p>为了避免单点故障，需要将数据复制多份到多台不同的服务器上，当有一台服务器上的数据更新后，自动将更新的数据同步到其他的服务器上。</p>
+<h2 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h2><p>将redis服务器集群分为一个主服务器和一些从服务器，主服务器复制进行写操作并把写入的数据实时同步到从服务器，从服务器负责用于读操作。</p>
+<p>实现</p>
+<p>复制三份配置文件，修改不同的端口号，运行redis-server时带上配置文件的参数，即可模拟多台redis服务器的环境。</p>
+<p>配置主redis服务器（Master）<br>在空文件中加入下面内容</p>
+<ul>
+<li>include 原来的配置文件路径   //表示引入之前的配置</li>
+<li>daemonize yes //让redis后台启动</li>
+<li>port XXXx //指定端口号</li>
+<li>pidfile /var/run/redis_xxxx.pid //linux下给进程分配id</li>
+<li>logfile xxxx.log //日志文件</li>
+<li>dbfilename xxxxxx.rdb //rdb文件</li>
+</ul>
+<p>配置从redis服务器（Slave）<br>加入如下内容</p>
+<ul>
+<li>include 原来的配置文件路径 //表示引入之前的配置</li>
+<li>daemonize yes //让redis后台启动</li>
+<li>port XXXx //指定端口号</li>
+<li>pidfile /var/run/redis_xxxx.pid //linux下给进程分配id</li>
+<li>logfile xxxx.log //日志文件</li>
+<li>dbfilename xxxxxx.rdb //rdb文件</li>
+<li><strong>slaveof ipaddress port  //ipaddress指向主服务器的IP地址，port指定端口号</strong></li>
+</ul>
+<p><strong>info replication命令可以查看当前的服务器的状态信息</strong></p>
+<p>不能在从服务器Slave上进行写操作，会提示操作失败。</p>
+<h2 id="容灾处理"><a href="#容灾处理" class="headerlink" title="容灾处理"></a>容灾处理</h2><p>当Master服务出现故障，需手动将slave中的一个提升为master，剩下的slave挂至新的master上</p>
+<p>步骤</p>
+<ol>
+<li>停掉故障的master服务</li>
+<li>选一台slave升级到master，运行命令    </li>
+</ol>
+<pre><code>slaveof no one
+</code></pre><ol start="3">
+<li>切换到其他slave服务器的客户端，运行命令</li>
+</ol>
+<pre><code>    slaveof ipaddress port
+
+指定新的master服务地址
+</code></pre><hr>
+<p>redis官方提供了解决问题的高可用方案</p>
+<h2 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a><strong>Sentinel</strong></h2><p>哨兵（多个单独运行）<br>它有三个主要任务</p>
+<ul>
+<li>监控：心跳检测主服务器是否正常工作</li>
+<li>提醒：提醒管理员</li>
+<li>自动故障转移 ：转换master</li>
+<li>当检测到主redis服务器master出现故障，会在哨兵中（总共奇数个）产生一次投票，半数以上检测到故障时就会运行后面两个任务。</li>
+</ul>
+<p>配置：<br>同样是改配置文件，ip地址什么的，大同小异</p>
+<hr>
+<h1 id="安全设置"><a href="#安全设置" class="headerlink" title="安全设置"></a>安全设置</h1><p><strong>访问Redis默认没有密码，这样不安全，可以通过修改redis.conf配置文件设置密码</strong><br><strong>requirepass</strong>对应的就是密码<br>设置密码后用客户端工具cli登陆</p>
+<p>需要在后面添加<br>-a password<br>参数登陆<br>或者使用auth password</p>
+<p><strong>绑定ip</strong><br>同样是配置文件<br>bind这项对应的就是允许访问你redis的ip地址，默认bind 127.0.0.1，只允许本机访问。若想允许多个ip地址可以用空格分隔。</p>
+<p><strong>修改端口</strong><br>使用默认的端口比较危险，在配置文件中把<br>port xxxx<br>这行端口修改为自己可以指定的端口，范围是1024-65535</p>
+<p>使用<br>./redis-cli -p xxxx<br>指定端口号启动</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/">
+        【redis】可视化工具以及一些基本命令对5种类型操作 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足,不敢停站,然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--
