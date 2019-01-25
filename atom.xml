@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-01-24T07:00:02.593Z</updated>
+  <updated>2019-01-25T02:12:41.351Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【redis】可视化工具以及一些基本命令对5种类型操作</title>
+    <link href="http://xfff.xyz/2019/01/25/%E3%80%90redis%E3%80%91%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E5%AF%B95%E7%A7%8D%E7%B1%BB%E5%9E%8B%E6%93%8D%E4%BD%9C/"/>
+    <id>http://xfff.xyz/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/</id>
+    <published>2019-01-25T02:11:20.000Z</published>
+    <updated>2019-01-25T02:12:41.351Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><a href="#id1">redis可视化工具安装</a></li><li><a href="#id2">redis-cli命令</a></li><li><a href="#id3">Key的五种数据类型</a></li><li><p>基本命令</p><ul><li><p><a href="#id4">字符串类型</a></p></li><li><p><a href="#id5">哈希类型hash</a></p></li><li><p><a href="#id6">列表list</a></p></li><li><p><a href="#id7">集合类型set</a></p></li><li><p><a href="#id8">有序集合zset</a></p></li></ul></li></ol><hr><p>redis关闭<br>./redis-cli shutdown<br>kill 进程</p><p>连接指定地址的redis<br>./redis-cli -h 127.0.0.1 -p 6379</p><p><span id="id1"></span></p><h2 id="redis-desktop-manager"><a href="#redis-desktop-manager" class="headerlink" title="redis desktop manager"></a>redis desktop manager</h2><p>redis的可视化管理工具<br>download</p><blockquote><p><a href="https://pan.baidu.com/s/1kU8sY3P" target="_blank" rel="noopener">https://pan.baidu.com/s/1kU8sY3P</a><br>官网<br><a href="https://redisdesktop.com/downloa" target="_blank" rel="noopener">https://redisdesktop.com/downloa</a><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhprjmfjgj30ue0hyjsn.jpg" alt=""></p></blockquote><hr><p>需要连接网络上的redis时，需要修改服务器上的redis.conf配置文件，首先注释<br>bind 127.0.0.1<br>这行<br>然后将下面的protocol保护yes改为no<br>启动时命令后面加上conf属性作为参数</p><hr><hr><p><span id="id2"></span></p><h2 id="redis-cli命令"><a href="#redis-cli命令" class="headerlink" title="redis-cli命令"></a>redis-cli命令</h2><p><strong>ping</strong>查看redis服务是否正常运行，返回PONG代表正常</p><p><strong>DBSIZE</strong>查看当前数据库的key数量</p><p>redis默认使用16个库，可以通过修改配置文件修改数量</p><p>通过<strong>select</strong> db切换库</p><p><strong>flushdb</strong>清空库里的内容</p><p>退出client工具：<strong>exit</strong></p><p><strong>keys</strong> pattern查找符合pattern匹配的key（尽量不使用key *，redis单线程接收请求，若key过多，会给redis造成很大压力）</p><p>exists key [keys…]<br>判断该key是否存在</p><p>expire key seconds<br>设置key的存活时间，超过时间就删除<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhr6o7r3hj30bg048t8l.jpg" alt=""></p><p>ttl key<br>查看该key存活剩余时间（”验证码超时作废”）</p><p>type key<br>返回key类型</p><p>del key [keys]<br>删除对应的key，并返回删除成功的个数</p><hr><p><span id="id3"></span></p><h2 id="Key的五种数据类型"><a href="#Key的五种数据类型" class="headerlink" title="Key的五种数据类型"></a>Key的五种数据类型</h2><ol><li><p>字符串类型<br>k1 value</p></li><li><p>hash类型map<br> HashMap&lt;String,String&gt; data=new HashMap&lt;&gt;();<br> k1 data</p><p> 其中k1称为key，data里的key称为field</p></li></ol><ol start="3"><li>列表类型list<br> k1 [value1，value2，value3]<br> 下标012     </li></ol><ol start="4"><li><p>集合类型set<br> 无序，元素不重复</p></li><li><p>有序集合类型zset<br> 有序set集合</p></li></ol><hr><h1 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h1><p><span id="id4"></span></p><h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><p>set key value<br>相当于sql里的saveorupdate</p><p>get key<br>获取key对应的value</p><p>incr key<br>对key的value值加1，只能对数字类型，如果key不存在，则创建该key初始化key值为0再加1</p><p>decr key<br>减一，其他同上</p><p>append key value<br>如果key存在，则将value追加到原值末尾<br>否则新建该key</p><p>strlen key<br>求key对应的字符串长度</p><p>getrange key start end<br>取字符串子串，下标从0开始，从右往左的话最右边是-1<br>取的时候小的下标在左</p><p>setrange key start value<br>从start开始用value去替换key的value值，替换长度为value 的长度</p><p>mset k1 v1 k2 v2 k3 v3…<br>复数个keyvalue的定义</p><p>mget k1 k2 k3…<br>复数个key 的获取</p><hr><hr><p><span id="id5"></span></p><h2 id="哈希类型hash"><a href="#哈希类型hash" class="headerlink" title="哈希类型hash"></a>哈希类型hash</h2><p>hset key field value<br>存入值<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzht5aei1kj30ak02xt8k.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzht5t6jr9j30dg02pwea.jpg" alt=""></p><p>hget key field<br>获取该key下的field对应的值</p><p>hmset<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzht77o10aj30dc00qwe9.jpg" alt=""></p><p>hmget key field1 field2….<br>获取多个field值</p><p>hgetall<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzht8tmz26j307c02fa9u.jpg" alt=""></p><p>hkeys key<br>获取该key下的所有field</p><p>hvals key<br>获取该key下的所有value</p><p>hexists key field<br>查询key下是否存在该field</p><hr><p><span id="id6"></span></p><h2 id="列表list"><a href="#列表list" class="headerlink" title="列表list"></a>列表list</h2><p>lpush key value1 value2 …<br>将value一个一个插入到key表头的头部</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhtcfpyvcj309v0180si.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhtcwb9okj30bu03pt8i.jpg" alt=""></p><p>rpush key value…<br>从尾部插入</p><p>lrange key start end<br>查询下标从start到end结束的元素</p><p>lindex key index<br>查询下标为index 的元素</p><p>llen key<br>查询key对应的list 的长度</p><p>lrem key count value<br>若count&gt;0则从表左到右进行删除，删除count个与value相同的值。count若为负则相反。count=0则删除全部value值。</p><p>lset key index value<br>将index下标的值替换为value，下标超出范围就报错</p><p>linsert key BEFORE|AFTER pivot value<br>在pivot参考值前或者后面插入value值</p><hr><p><span id="id7"></span></p><h2 id="集合类型set"><a href="#集合类型set" class="headerlink" title="集合类型set"></a>集合类型set</h2><p>sadd key member…<br>将一个或多个元素添加到set集合中</p><p>smembers key<br>获取key里的所有成员元素</p><p>sismember key member<br>检查key对应集合里有无member元素</p><p>scard key<br>查询该set集合里有多少元素</p><p>srem key members…<br>删除该set集合里的member</p><p>srandmember key count<br>随机显示count个元素，不指定count默认1</p><p>spop key count<br>随机删除count个元素，不指定默认1</p><hr><p><span id="id8"></span></p><h2 id="有序集合zset"><a href="#有序集合zset" class="headerlink" title="有序集合zset"></a>有序集合zset</h2><p>zadd key score member…<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzhu85lwg5j30i500l3ya.jpg" alt=""><br>score表示分数，member表示value，分数是用来排序的<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzikrg9cnkj30gs06faa3.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzikrwmxu4j30dt04rt8k.jpg" alt=""></p><p>zrange key start end [withscores]<br>显示下标从start到end的值，从小到大显示，若加上withscores会连分数一起显示<br>（同样可以从后往前用负值查询）</p><p>zrevrange key start end [withscores]<br>同上，但是是按分数从大到小显示<br>0下标对应最大的分数</p><p>zrem key member …<br>删除key里对应的member</p><p>zcard key<br>获取key元素个数</p><p>zrangebyscore key min max [withscores] [LIMIT offset count]<br>通过分数范围获取key里的值，offset表示从第几个结果开始，count表示输出几项数据</p><p>zrevrangebyscore<br>和上面相反顺序</p><p>zcount key min max<br>返回分数在min和max之间的结果有几个</p><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#id1&quot;&gt;redis可视化工具安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#id2&quot;&gt;redis-cli命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#id3&quot;&gt;Key的五种数据类型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;基本命令&lt;/p&gt;
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="http://xfff.xyz/categories/redis/"/>
+    
+    
+      <category term="命令" scheme="http://xfff.xyz/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>【redis】windows环境和linux环境下的安装使用</title>
