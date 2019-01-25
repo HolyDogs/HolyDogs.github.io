@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-01-25T06:54:49.908Z</updated>
+  <updated>2019-01-25T08:02:26.688Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【redis】jedis使用</title>
+    <link href="http://xfff.xyz/2019/01/25/%E3%80%90redis%E3%80%91jedis%E4%BD%BF%E7%94%A8/"/>
+    <id>http://xfff.xyz/2019/01/25/【redis】jedis使用/</id>
+    <published>2019-01-25T07:57:30.000Z</published>
+    <updated>2019-01-25T08:02:26.688Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用jedis访问redis数据库"><a href="#使用jedis访问redis数据库" class="headerlink" title="使用jedis访问redis数据库"></a>使用jedis访问redis数据库</h2><p>创建个maven项目JedisDemo</p><p>引入依赖</p><pre><code>&lt;dependencies&gt;       &lt;dependency&gt;         &lt;groupId&gt;redis.clients&lt;/groupId&gt;           &lt;artifactId&gt;jedis&lt;/artifactId&gt;           &lt;version&gt;2.9.0&lt;/version&gt;       &lt;/dependency&gt;&lt;/dependencies&gt;</code></pre><p>创建个类连接</p><pre><code>import redis.clients.jedis.Jedis;  import java.util.HashMap;  import java.util.List;  import java.util.Set;  public class DemoTest {      public static void main(String[] args) {          String host=&quot;127.0.0.1&quot;;       int port=6379;    Jedis jedis=new Jedis(host,port);    //jedis.auth(&quot;password&quot;);   //字符串类型  System.out.println(&quot;字符串&quot;);    System.out.println(jedis.get(&quot;haha&quot;));    //hash类型    System.out.println(&quot;hashmap&quot;);    HashMap&lt;String,String&gt; map= (HashMap&lt;String, String&gt;) jedis.hgetAll(&quot;mymap&quot;);    System.out.println(map.get(&quot;name&quot;)+&quot; &quot;+map.get(&quot;age&quot;));    //list类型    System.out.println(&quot;List类型&quot;);    List alist=jedis.lrange(&quot;mylist&quot;,0,-1);    alist.stream().forEach(System.out::println);    //set类型    System.out.println(&quot;set类型&quot;);    Set myset=jedis.smembers(&quot;myset&quot;);    myset.stream().forEach(System.out::println);    //zset类型    System.out.println(&quot;zset类型&quot;);    Set myzset=jedis.zrangeByScore(&quot;myzset&quot;,&quot;30&quot;,&quot;50&quot;);    myzset.stream().forEach(System.out::println);    }  }</code></pre><p>输出</p><pre><code>字符串llxizayyyyhashmaplili 5List类型aakjihgfzzzedcbaset类型jlgnadhzset类型tomxiaominghuhu</code></pre><p>访问redis成功，可以看到方法名和我们在redis控制台使用的命令一致。</p><hr><hr><h2 id="使用RedisPool"><a href="#使用RedisPool" class="headerlink" title="使用RedisPool"></a>使用RedisPool</h2><pre><code>import redis.clients.jedis.JedisPool;  import redis.clients.jedis.JedisPoolConfig;  public class JedisUtils {      private static JedisPool jedisPool;   public static JedisPool open(String ip,int port){          JedisPoolConfig config=new JedisPoolConfig();    //设置最大线程数    config.setMaxTotal(20);    //设置最大空闲数    config.setMaxIdle(2);    //设置检查项为true    config.setTestOnBorrow(true);    //    jedisPool=new JedisPool(config,ip,port,5000,&quot;password&quot;);   return jedisPool;    }      public static void close(){          if(jedisPool!=null){              jedisPool.close();    }      }  }</code></pre><p>使用</p><pre><code>JedisPool pool = null;  Jedis myjedis=null;  try{      pool=JedisUtils.open(host,port);    myjedis=pool.getResource();    //使用jedis操作  }finally {      if(jedis!=null){          jedis.close();    }  }</code></pre><hr><h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>只需要声明一个<br>Transaction类<br>Transaction trans=jedis.multi();<br>xxxx<br>xxx<br>xx<br>xxxx<br>xx<br>然后trans.exec()返回一个list集合，里面是事务语句的结果</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;使用jedis访问redis数据库&quot;&gt;&lt;a href=&quot;#使用jedis访问redis数据库&quot; class=&quot;headerlink&quot; title=&quot;使用jedis访问redis数据库&quot;&gt;&lt;/a&gt;使用jedis访问redis数据库&lt;/h2&gt;&lt;p&gt;创建个maven项目
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="http://xfff.xyz/categories/redis/"/>
+    
+    
+      <category term="数据库" scheme="http://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="jedis" scheme="http://xfff.xyz/tags/jedis/"/>
+    
+  </entry>
   
   <entry>
     <title>【redis】高级话题</title>
@@ -863,9 +890,9 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
       <category term="ssm" scheme="http://xfff.xyz/categories/ssm/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
-    
       <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
+    
+      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
     
       <category term="spring" scheme="http://xfff.xyz/tags/spring/"/>
     

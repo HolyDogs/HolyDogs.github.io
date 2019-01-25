@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives: 2019/1 | XFF&#39;s blog</title>
+  <title>【redis】jedis使用 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -218,112 +218,223 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>Life Is A <span>Struggle</span></h2>
-                        <p></p>
-                        
-                        <h2></h2>
-                        <p>But Every Day Is <Strong>Beautiful</Strong></p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/09/mybatis-plus简单使用/">mybatis plus简单使用</a></h4>
-                            
-                            <p><time datetime="2019-01-09T07:44:16.000Z"><a href="/2019/01/09/mybatis-plus简单使用/">2019-01-09</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/07/使用StackEdit为markdown格式画图/">使用StackEdit为markdown格式画图</a></h4>
-                            
-                            <p><time datetime="2019-01-07T02:21:22.000Z"><a href="/2019/01/07/使用StackEdit为markdown格式画图/">2019-01-07</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/07/Mybatis传参方法/">Mybatis传参方法</a></h4>
-                            
-                            <p><time datetime="2019-01-07T02:15:05.000Z"><a href="/2019/01/07/Mybatis传参方法/">2019-01-07</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/03/fish学习/">fish学习</a></h4>
-                            
-                            <p><time datetime="2019-01-03T09:02:07.000Z"><a href="/2019/01/03/fish学习/">2019-01-03</a></time></p>
-                        </div>
-                    
-                        
-                            </div><div class="row boxes">
-                            
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/02/The-Messenger通关/">The Messenger通关</a></h4>
-                            
-                            <p><time datetime="2019-01-02T01:02:26.000Z"><a href="/2019/01/02/The-Messenger通关/">2019-01-02</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-01-25T07:57:30.000Z" itemprop="datePublished">
+          2019-01-25
+      </time>
+    
+    
+    | 
+    <a href='/tags/数据库/'>数据库</a>,
+    
+    <a href='/tags/jedis/'>jedis</a>
+    
+    
+</span>
+                <h1>【redis】jedis使用</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            <a class="pull-left" href="/archives/2019/01/">← Prev Page</a>
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="使用jedis访问redis数据库"><a href="#使用jedis访问redis数据库" class="headerlink" title="使用jedis访问redis数据库"></a>使用jedis访问redis数据库</h2><p>创建个maven项目JedisDemo</p>
+<p>引入依赖</p>
+<pre><code>&lt;dependencies&gt;  
+     &lt;dependency&gt; 
+        &lt;groupId&gt;redis.clients&lt;/groupId&gt;  
+         &lt;artifactId&gt;jedis&lt;/artifactId&gt;  
+         &lt;version&gt;2.9.0&lt;/version&gt;  
+     &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre><p>创建个类连接</p>
+<pre><code>import redis.clients.jedis.Jedis;  
+
+import java.util.HashMap;  
+import java.util.List;  
+import java.util.Set;  
+
+public class DemoTest {  
+
+    public static void main(String[] args) {  
+        String host=&quot;127.0.0.1&quot;;  
+     int port=6379;  
+  Jedis jedis=new Jedis(host,port);  
+  //jedis.auth(&quot;password&quot;);  
+
+ //字符串类型  System.out.println(&quot;字符串&quot;);  
+  System.out.println(jedis.get(&quot;haha&quot;));  
+
+  //hash类型  
+  System.out.println(&quot;hashmap&quot;);  
+  HashMap&lt;String,String&gt; map= (HashMap&lt;String, String&gt;) jedis.hgetAll(&quot;mymap&quot;);  
+  System.out.println(map.get(&quot;name&quot;)+&quot; &quot;+map.get(&quot;age&quot;));  
+
+  //list类型  
+  System.out.println(&quot;List类型&quot;);  
+  List alist=jedis.lrange(&quot;mylist&quot;,0,-1);  
+  alist.stream().forEach(System.out::println);  
+
+  //set类型  
+  System.out.println(&quot;set类型&quot;);  
+  Set myset=jedis.smembers(&quot;myset&quot;);  
+  myset.stream().forEach(System.out::println);  
+
+  //zset类型  
+  System.out.println(&quot;zset类型&quot;);  
+  Set myzset=jedis.zrangeByScore(&quot;myzset&quot;,&quot;30&quot;,&quot;50&quot;);  
+  myzset.stream().forEach(System.out::println);  
+  }  
+}
+</code></pre><p>输出</p>
+<pre><code>字符串
+llxizayyyy
+hashmap
+lili 5
+List类型
+a
+a
+k
+j
+i
+h
+g
+f
+zzz
+e
+d
+c
+b
+a
+set类型
+j
+l
+g
+n
+a
+d
+h
+zset类型
+tom
+xiaoming
+huhu
+</code></pre><p>访问redis成功，可以看到方法名和我们在redis控制台使用的命令一致。</p>
+<hr>
+<hr>
+<h2 id="使用RedisPool"><a href="#使用RedisPool" class="headerlink" title="使用RedisPool"></a>使用RedisPool</h2><pre><code>import redis.clients.jedis.JedisPool;  
+import redis.clients.jedis.JedisPoolConfig;  
+
+public class JedisUtils {  
+
+    private static JedisPool jedisPool;  
+
+ public static JedisPool open(String ip,int port){  
+        JedisPoolConfig config=new JedisPoolConfig();  
+
+  //设置最大线程数  
+  config.setMaxTotal(20);  
+
+  //设置最大空闲数  
+  config.setMaxIdle(2);  
+
+  //设置检查项为true  
+  config.setTestOnBorrow(true);  
+
+  //  
+  jedisPool=new JedisPool(config,ip,port,5000,&quot;password&quot;);  
+
+ return jedisPool;  
+  }  
+
+    public static void close(){  
+        if(jedisPool!=null){  
+            jedisPool.close();  
+  }  
+    }  
+}
+</code></pre><p>使用</p>
+<pre><code>JedisPool pool = null;  
+Jedis myjedis=null;  
+try{  
+    pool=JedisUtils.open(host,port);  
+  myjedis=pool.getResource();  
+  //使用jedis操作  
+}finally {  
+    if(jedis!=null){  
+        jedis.close();  
+  }  
+}
+</code></pre><hr>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>只需要声明一个<br>Transaction类<br>Transaction trans=jedis.multi();<br>xxxx<br>xxx<br>xx<br>xxxx<br>xx<br>然后trans.exec()返回一个list集合，里面是事务语句的结果</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2019/01/25/【redis】高级话题/">
+        【redis】高级话题 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足,不敢停站,然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--
