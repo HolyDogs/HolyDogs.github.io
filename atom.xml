@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-01-25T08:02:26.688Z</updated>
+  <updated>2019-01-29T09:36:11.678Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vuejs发送异步请求</title>
+    <link href="http://xfff.xyz/2019/01/29/vuejs%E5%8F%91%E9%80%81%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/"/>
+    <id>http://xfff.xyz/2019/01/29/vuejs发送异步请求/</id>
+    <published>2019-01-29T08:56:23.000Z</published>
+    <updated>2019-01-29T09:36:11.678Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>使用vue时如何发送请求？</p><hr><p>答：ajax，不过vue不使用jquery，那么需要引入一些HTTP库工具，使用其中封装好的请求方法即可</p><p>superagent或者Axios（主流）<br>使用文档</p><blockquote><p><a href="https://www.kancloud.cn/yunye/axios/234845" target="_blank" rel="noopener">https://www.kancloud.cn/yunye/axios/234845</a><br><a href="https://www.jianshu.com/p/1432e0f29abd" target="_blank" rel="noopener">https://www.jianshu.com/p/1432e0f29abd</a></p></blockquote><p>首先要安装相应的工具<br>运行命令</p><pre><code>npm install xxx -D</code></pre><p>xxx替换为对应的组件名</p><p>然后在src下的config目录新建js文件<br>假如现在使用的是superagent<br><strong>api.js</strong></p><pre><code>// 配置API接口地址var root = &apos;https://cnodejs.org/api/v1&apos;;// 引用superagentvar request = require(&apos;superagent&apos;);// 自定义判断元素类型JSfunction toType(obj) {  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()}// 参数过滤函数function filter_null(o) {  for (var key in o) {    if (o[key] == null) {      delete o[key]    }    if (toType(o[key]) == &apos;string&apos;) {      o[key] = o[key].trim()      if (o[key].length == 0) {        delete o[key]      }    }  }  return o}/*  接口处理函数  这个函数每个项目都是不一样的，我现在调整的是适用于  https://cnodejs.org/api/v1 的接口，如果是其他接口  需要根据接口的参数进行调整。参考说明文档地址：  https://cnodejs.org/topic/5378720ed6e2d16149fa16bd*/function _api_base(method, url, params, success, failure) {  var r = request(method, url).type(&apos;text/plain&apos;)  if (params) {    params = filter_null(params);    if (method === &apos;POST&apos; || method === &apos;PUT&apos;) {      if (toType(params) == &apos;object&apos;) {        params = JSON.stringify(params);      }      r = r.send(params)    } else if (method == &apos;GET&apos; || method === &apos;DELETE&apos;) {      r = r.query(params)    }  }  r.end(function(err, res) {    if (err) {      alert(&apos;api error, HTTP CODE: &apos; + res.status);      return;    };    if (res.body.success == true) {      if (success) {        success(res.body);      }    } else {      if (failure) {        failure(res.body);      } else {        alert(&apos;error: &apos; + JSON.stringify(res.body));      }    }  });};// 返回在vue模板中的调用接口export default {  get: function(url, params, success, failure) {    return _api_base(&apos;GET&apos;, root + &apos;/&apos; + url, params, success, failure)  },  post: function(url, params, success, failure) {    return _api_base(&apos;POST&apos;, root + &apos;/&apos; + url, params, success, failure)  },  put: function(url, params, success, failure) {    return _api_base(&apos;PUT&apos;, root + &apos;/&apos; + url, params, success, failure)  },  delete: function(url, params, success, failure) {    return _api_base(&apos;DELETE&apos;, root + &apos;/&apos; + url, params, success, failure)  },}</code></pre><p>这是原博作者封装好的请求方法，开头的api地址是我们项目的基础请求地址头<br>这里填的是cnodejs.org提供的api接口</p><p>使用时只需要</p><p>先在启动入口里全局配置好</p><pre><code>import api from &apos;./config/api&apos;Vue.prototype.$api=api</code></pre><p>这两行的意思大概就是把api.js文件注册到全局，然后可以通过 $api.方法名 调用该文件里的方法。</p><hr><p>如</p><pre><code>&lt;script type=&quot;text/javascript&quot;&gt;    import Header from &apos;../components/header&apos;    import Footer from &apos;../components/footer&apos;    export default{        components:{Header,Footer},        data(){            return{                lists:[]            }        },        created(){            this.get_data()        },        methods:{            get_data:function(params){                var v=this                if(!params) params={}                    v.$api.get(&apos;topics&apos;,params,function(r){                        v.lists=r.data;                    })            },        },    }&lt;/script&gt;</code></pre><p>created是该页面创建时执行的方法，params是传入的参数，’topics’是请求的地址，r是成功执行时返回的数据</p><hr><p>然后该页面的template块为</p><pre><code>&lt;template&gt;  &lt;div&gt;    &lt;Header&gt;&lt;/Header&gt;    &lt;ul class=&quot;list&quot;&gt;      &lt;li v-for=&quot;item in lists&quot;&gt;          &lt;time v-text=&quot;$fortime.goodTime(item.create_at)&quot;&gt;&lt;/time&gt;          &lt;router-link :to=&quot;&apos;/content/&apos; + item.id&quot;&gt;{{item.title}}&lt;/router-link&gt;      &lt;/li&gt;    &lt;/ul&gt;    &lt;Footer&gt;&lt;/Footer&gt;  &lt;/div&gt;&lt;/template&gt;</code></pre><p>fortime是我注册的工具类，用来格式化时间<br>router-link相当于a标签，请求的地址是/content/加上item的id</p><hr><p>接下来写content里的内容，这次使用axios工具<br>一样，先install，创建一个index.js写入</p><pre><code>// 配置API接口地址var root = &apos;/api/v1&apos;// 引用axiosvar axios = require(&apos;axios&apos;)// 自定义判断元素类型JSfunction toType (obj) {  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()}// 参数过滤函数function filterNull (o) {  for (var key in o) {    if (o[key] === null) {      delete o[key]    }    if (toType(o[key]) === &apos;string&apos;) {      o[key] = o[key].trim()    } else if (toType(o[key]) === &apos;object&apos;) {      o[key] = filterNull(o[key])    } else if (toType(o[key]) === &apos;array&apos;) {      o[key] = filterNull(o[key])    }  }  return o}/*  接口处理函数  这个函数每个项目都是不一样的，我现在调整的是适用于  https://cnodejs.org/api/v1 的接口，如果是其他接口  需要根据接口的参数进行调整。参考说明文档地址：  https://cnodejs.org/topic/5378720ed6e2d16149fa16bd  主要是，不同的接口的成功标识和失败提示是不一致的。  另外，不同的项目的处理方法也是不一致的，这里出错就是简单的alert*/function apiAxios (method, url, params, success, failure) {  if (params) {    params = filterNull(params)  }  axios({    method: method,    url: url,    data: method === &apos;POST&apos; || method === &apos;PUT&apos; ? params : null,    params: method === &apos;GET&apos; || method === &apos;DELETE&apos; ? params : null,    baseURL: root,    withCredentials: false  })  .then(function (res) {    if (res.data.success === true) {      if (success) {        success(res.data)      }    } else {      if (failure) {        failure(res.data)      } else {        window.alert(&apos;error: &apos; + JSON.stringify(res.data))      }    }  })  .catch(function (err) {    let res = err.response    if (err) {      window.alert(&apos;api error, HTTP CODE: &apos; + res.status)    }  })}// 返回在vue模板中的调用接口export default {  get: function (url, params, success, failure) {    return apiAxios(&apos;GET&apos;, url, params, success, failure)  },  post: function (url, params, success, failure) {    return apiAxios(&apos;POST&apos;, url, params, success, failure)  },  put: function (url, params, success, failure) {    return apiAxios(&apos;PUT&apos;, url, params, success, failure)  },  delete: function (url, params, success, failure) {    return apiAxios(&apos;DELETE&apos;, url, params, success, failure)  }}</code></pre><p><strong>！这里</strong>不直接用原api地址是因为cnode.js的接口处理的很好，解决了跨域的问题。实际项目中，很多接口不允许跨域请求。为了解决这个问题，采用webpack的代理的方式<br>在<strong>根目录的config文件夹</strong>下打开index.js，找到proxyTable这一行，里面就是我们要填的代理地址<br>这里我们写的是</p><pre><code>proxyTable: {    &apos;/api/v1/**&apos;:{        target: &apos;https://cnodejs.org&apos;,        secure: false,        changeOrigin: false,    }},</code></pre><p>然后在main.js里注册</p><pre><code>import aapi from &apos;./config/index&apos;Vue.prototype.$axapi=aapi</code></pre><p>然后使用</p><pre><code>&lt;template&gt;  &lt;div&gt;    &lt;myHeader&gt;&lt;/myHeader&gt;    &lt;h2 v-text=&quot;dat.title&quot;&gt;&lt;/h2&gt;    &lt;p v-if=dat.author&gt;作者：{{dat.author.loginname}}　　发表于：{{$fortime.goodTime(dat.create_at)}}&lt;/p&gt;    &lt;hr&gt;    &lt;article v-html=&quot;dat.content&quot;&gt;&lt;/article&gt;    &lt;h3&gt;网友回复：&lt;/h3&gt;    &lt;ul&gt;      &lt;li v-for=&quot;i in dat.replies&quot;&gt;        &lt;p&gt;评论者：{{i.author.loginname}}　　评论于：{{$fortime.goodTime(i.create_at)}}&lt;/p&gt;        &lt;article v-html=&quot;i.content&quot;&gt;&lt;/article&gt;      &lt;/li&gt;    &lt;/ul&gt;    &lt;myFooter&gt;&lt;/myFooter&gt;  &lt;/div&gt;&lt;/template&gt;&lt;script&gt;import myHeader from &apos;../components/header.vue&apos;import myFooter from &apos;../components/footer.vue&apos;export default {  components: { myHeader, myFooter },  data () {    return {      id: this.$route.params.id,      dat: {}    }  },  created () {    this.getData()  },  methods: {    getData () {      this.$axapi.get(&apos;topic/&apos; + this.id, null, r =&gt; {        this.dat = r.data      })    }  }}&lt;/script&gt;</code></pre><p>这里出过一个错就是，老提示loginname not defined，后来发现是author还没加载就加载了loginname，在p标签里加上v-if后解决问题</p><hr><p>运行结果<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fznl8issgwj30y30g0771.jpg" alt=""></p><hr><p>说明请求成功，具体项目代码在</p><blockquote><p><a href="https://github.com/HolyDogs/VueStructDemo" target="_blank" rel="noopener">https://github.com/HolyDogs/VueStructDemo</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h1&gt;&lt;p&gt;使用vue时如何发送请求？&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;答：ajax，不过vue不使用jquery，那么需要引入一些HTTP库工具，使用其中封装
+      
+    
+    </summary>
+    
+      <category term="vue" scheme="http://xfff.xyz/categories/vue/"/>
+    
+    
+      <category term="js" scheme="http://xfff.xyz/tags/js/"/>
+    
+      <category term="ajax" scheme="http://xfff.xyz/tags/ajax/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vuejs总体结构学习</title>
+    <link href="http://xfff.xyz/2019/01/29/vuejs%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://xfff.xyz/2019/01/29/vuejs总体结构学习/</id>
+    <published>2019-01-29T07:50:24.000Z</published>
+    <updated>2019-01-29T08:55:23.133Z</updated>
+    
+    <content type="html"><![CDATA[<p>偶然翻到一篇讲解一个vue项目的搭建的博客。全部撸完后觉得写的很好，决定在这里总结一下，原博地址</p><blockquote><p><a href="https://blog.csdn.net/fungleo/article/details/77606321" target="_blank" rel="noopener">https://blog.csdn.net/fungleo/article/details/77606321</a></p></blockquote><hr><p>首先，看一下大体的项目结构</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzniy1h619j30fo0ix42b.jpg" alt=""></p><p>贴代码<br>main.js</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fznj3i8xvgj30o70eu0uh.jpg" alt=""></p><p>红框框起来的是必要代码，引入Vue和App模版、vue路由。然后引入全局的路由配置文件routes.js<br>使用路由需要Vue.use(VueRouter)</p><hr><p>看一下App.vue<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fznj87c7lmj30hq08a0t3.jpg" alt=""><br>很简单，在模版里加入了路由的标签router-view</p><hr><p>接下来是路由配置文件routes.js<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fznj9o2ircj30gw0fet9w.jpg" alt=""></p><p>也就是把要配置的路径对应的vue文件导入，一一配置。<br>path为’/‘时为默认路径，即当页面路径/后有问题的时候默认也导入到该页面</p><p>配置第二个content路径的时候，<strong>：id</strong>表示动态映射路径，当/content匹配成功的时候就会进入content.vue文件对应的页面，该页面中可以通过<span>this.$routes.params.id</span>获取该id值</p><p>第三个是将/user/xxx匹配成功时将子页面渲染到Frame里的router-view标签里<br>subroute的代码为<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fznjqeoykyj30ei04bmx6.jpg" alt=""><br>比如这个时候我请求/user/love时就会映射到userLove对应的页面上，如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fznjs4mre3j30q706f0t4.jpg" alt=""></p><hr><p>组件定义<br>当一个页面的某部分在页面变化保持不变的时候，我们就可以把该部分写在component文件夹下，定义组件，并在其他页面使用</p><p>比如，我们定义一个页面的头部和尾部<br>header.vue<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fznjx4yo7kj30f704gjrm.jpg" alt=""></p><p>尾部<br>footer.vue<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fznjy0p9u1j30dg03lgll.jpg" alt=""></p><p>然后在使用时导入</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fznjzqucmgj30ql0cjmz1.jpg" alt=""></p><p>这样就可以把组件渲染到页面上</p><hr><p>引用静态文件时,src定义为static/xxx即可</p><hr><p>具体项目代码我传到了github上，地址</p><blockquote><p><a href="https://github.com/HolyDogs/VueStructDemo" target="_blank" rel="noopener">https://github.com/HolyDogs/VueStructDemo</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;偶然翻到一篇讲解一个vue项目的搭建的博客。全部撸完后觉得写的很好，决定在这里总结一下，原博地址&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/fungleo/article/details/77606321&quot; tar
+      
+    
+    </summary>
+    
+      <category term="vue" scheme="http://xfff.xyz/categories/vue/"/>
+    
+    
+      <category term="前端" scheme="http://xfff.xyz/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="js" scheme="http://xfff.xyz/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>【redis】jedis使用</title>
