@@ -890,9 +890,9 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
       <category term="ssm" scheme="http://xfff.xyz/categories/ssm/"/>
     
     
-      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
-    
       <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
     
       <category term="spring" scheme="http://xfff.xyz/tags/spring/"/>
     
