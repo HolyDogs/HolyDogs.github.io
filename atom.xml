@@ -275,7 +275,7 @@
     <link href="http://xfff.xyz/2019/01/17/vue%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/"/>
     <id>http://xfff.xyz/2019/01/17/vue从入门到放弃/</id>
     <published>2019-01-17T03:26:06.000Z</published>
-    <updated>2019-01-31T09:25:56.841Z</updated>
+    <updated>2019-01-31T09:36:26.910Z</updated>
     
     <content type="html"><![CDATA[<h2 id="v-html"><a href="#v-html" class="headerlink" title="v-html"></a>v-html</h2><p>将对应的html标签转为html页面形式而不是字符串</p><h2 id="v-cloak"><a href="#v-cloak" class="headerlink" title="v-cloak"></a>v-cloak</h2><p>加载完script里的脚本才会加载被该属性标记的元素</p><h2 id="v-text"><a href="#v-text" class="headerlink" title="v-text"></a>v-text</h2><p>等同于</p><pre><code>{{}}</code></pre><p>卧槽，这里生成的时候一直报错，原来不能直接用两个花括号写在博客里，害我找了好久的错误    </p><h2 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h2><p>告诉属性名指定的是一个变量   v-bind:text=”变量名”，可以简写为：，里面可以写表达式</p><h2 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h2><p>事件绑定  v-on：事件名，简写为@</p><h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><p>数据的双向绑定，v-bind是单向绑定。</p><h2 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h2><p>循环</p><h2 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h2><p>通过一个flag变量控制是否移除创建元素，切换消耗较高</p><h2 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h2><p>和v-if类似，但是v-show只是设置对应控件不可见，较高的初始渲染消耗</p><hr><h2 id="绑定class样式设置"><a href="#绑定class样式设置" class="headerlink" title="绑定class样式设置"></a>绑定class样式设置</h2><p>如下<br>使用：class=”[flag?’onestyle’:’’]”或者{‘onstyle’:flag}<br>可以定义一个flag标志，当为true时为标签添加class为onestyle的class属性。</p><p>也可以在对象上添加：style=’{color：’red’ , …}’或者写入data，引用变量</p><h2 id="setInterval（）"><a href="#setInterval（）" class="headerlink" title="setInterval（）"></a>setInterval（）</h2><p>定时器</p><hr><p>使用</p><p>Vue.directive()</p><p>自定义指令</p><p>配合钩子函数使用</p><hr><p>好好看了下官方文档，写的很详细，但是点实在太多了，我肯定记不住，只能使用时再查了。。。</p><p>官网</p><blockquote><p><a href="https://cn.vuejs.org/v2/guide/index.html" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/index.html</a></p></blockquote><p>顺便贴个js学习文档</p><blockquote><p><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434501245426ad4b91f2b880464ba876a8e3043fc8ef000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434501245426ad4b91f2b880464ba876a8e3043fc8ef000</a></p></blockquote><p>最后贴个路由使用学习</p><blockquote><p><a href="https://www.cnblogs.com/SamWeb/p/6610733.html" target="_blank" rel="noopener">https://www.cnblogs.com/SamWeb/p/6610733.html</a></p></blockquote><hr><p>枯了~</p>]]></content>
     
@@ -289,7 +289,7 @@
     
     </summary>
     
-      <category term="前端]" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
       <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
@@ -375,11 +375,11 @@
       <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
-    
       <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
     
       <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
     
   </entry>
   
