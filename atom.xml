@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-01-29T09:36:11.678Z</updated>
+  <updated>2019-01-31T07:31:53.976Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【vue】整合surveyjs工具生成在线问卷或考试</title>
+    <link href="http://xfff.xyz/2019/01/31/%E3%80%90vue%E3%80%91%E6%95%B4%E5%90%88surveyjs%E5%B7%A5%E5%85%B7%E7%94%9F%E6%88%90%E5%9C%A8%E7%BA%BF%E9%97%AE%E5%8D%B7%E6%88%96%E8%80%83%E8%AF%95/"/>
+    <id>http://xfff.xyz/2019/01/31/【vue】整合surveyjs工具生成在线问卷或考试/</id>
+    <published>2019-01-31T06:23:29.000Z</published>
+    <updated>2019-01-31T07:31:53.976Z</updated>
+    
+    <content type="html"><![CDATA[<p>本想做个问卷系统，在github上找到一个叫做surveyjs的项目，正好是我需要的东西。</p><hr><p>官网</p><blockquote><p><a href="https://surveyjs.io/" target="_blank" rel="noopener">https://surveyjs.io/</a></p></blockquote><p>vue项目,surveyjseditor例子</p><blockquote><p><a href="https://github.com/surveyjs/surveyjs_vue_quickstart" target="_blank" rel="noopener">surveyjs_vue_quickstart</a></p></blockquote><hr><p>可以只用单个survey页面或者把编辑器导入也行。</p><p>这里我的是问卷生成，所以俩部分都需要使用</p><hr><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>本地找个空文件夹<br>打开gitbash命令行窗口<br>git clone <a href="https://github.com/surveyjs/surveyjs_vue_quickstart.git" target="_blank" rel="noopener">https://github.com/surveyjs/surveyjs_vue_quickstart.git</a><br>项目克隆下来后<br>直接运行肯定不行<br>显然根目录下少了nodejs的node_modules<br>在该目录下打开命令行窗口<br>运行</p><pre><code>npm install</code></pre><p>（可能需要翻墙）</p><p>装好对应的依赖和库<br>就可以</p><pre><code>npm run dev</code></pre><p>运行了</p><hr><p>打开项目目录<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzprfbs08cj309k0f10t3.jpg" alt=""></p><p>直接打开上面的components组件目录，里面SurveyEditor.vue是我们引用需要写的组件代码。</p><pre><code>&lt;template&gt;  &lt;div&gt;&lt;div id=&quot;surveyEditorContainer&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/template&gt;&lt;script&gt;import * as SurveyEditor from &apos;surveyjs-editor&apos;import &apos;surveyjs-editor/surveyeditor.css&apos;;import * as SurveyKo from &quot;survey-knockout&quot;;import * as widgets from &quot;surveyjs-widgets&quot;;import &quot;inputmask/dist/inputmask/phone-codes/phone.js&quot;;widgets.icheck(SurveyKo);widgets.select2(SurveyKo);widgets.inputmask(SurveyKo);widgets.jquerybarrating(SurveyKo);widgets.jqueryuidatepicker(SurveyKo);widgets.nouislider(SurveyKo);widgets.select2tagbox(SurveyKo);widgets.signaturepad(SurveyKo);widgets.sortablejs(SurveyKo);widgets.ckeditor(SurveyKo);widgets.autocomplete(SurveyKo);widgets.bootstrapslider(SurveyKo);export default {  name: &apos;survey-editor&apos;,  data () {    return {    }  },  mounted () {    let editorOptions = { showEmbededSurveyTab: true };    this.editor = new SurveyEditor.SurveyEditor(&apos;surveyEditorContainer&apos;, editorOptions);    this.editor.saveSurveyFunc = function() {      console.log(JSON.stringify(this.text));    };  }}&lt;/script&gt;&lt;!-- Add &quot;scoped&quot; attribute to limit CSS to this component only --&gt;&lt;style scoped&gt;&lt;/style&gt;</code></pre><p>大部分代码都很容易理解，showEmbededSurveyTab是用来选择是否显示应用在不同项目中需要写的代码的子页面，我改为false</p><hr><p>如何把该组件引入自己的项目中–</p><p>新建项目</p><p>按上次<a href="http://xfff.xyz/2019/01/29/vuejs%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/">vue总体结构学习</a>这节配置好vue项目结构之后。<br>把该加入的SurveyEditor.vue放入component目录</p><p>把该vue里用到的比如surveyjs-editor、survey-konckout、surveyjs-widgets、phone一一用</p><pre><code>npm install xxxx -D</code></pre><p>安装好</p><p>然后在页面里需要使用到该组件时只需要</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzpscuh94ij30hu08yaaj.jpg" alt=""></p><p>如上导入即可</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fzpsdp938rj311y0kiq5g.jpg" alt=""></p><hr><p>另外，生成的页面导入，该页面创建完问卷后点击save survey会产生一个关于该问卷的格式信息，在saveSurveyFunc方法里我们可以对该数据进行处理提交给数据库。</p><p>当获取到该数据后要对新的问卷页面进行渲染，则可以这样：</p><p>新建页面</p><pre><code>&lt;template&gt;    &lt;div id=&quot;surveyContainer&quot;&gt;&lt;!-- &lt;link href=&quot;https://surveyjs.azureedge.net/1.0.66/survey.css&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot; /&gt; --&gt;        &lt;survey :survey=&quot;survey&quot;&gt;&lt;/survey&gt;    &lt;/div&gt;&lt;/template&gt;&lt;script type=&quot;text/javascript&quot;&gt;import * as Survey from &apos;survey-vue&apos;import &apos;bootstrap/dist/css/bootstrap.css&apos;;Survey.Survey.cssType = &quot;bootstrap&quot;;var surveyJSON = {&quot;pages&quot;:[{&quot;name&quot;:&quot;page1&quot;,&quot;elements&quot;:[{&quot;type&quot;:&quot;comment&quot;,&quot;name&quot;:&quot;question1&quot;,&quot;title&quot;:&quot;aaa&quot;},{&quot;type&quot;:&quot;dropdown&quot;,&quot;name&quot;:&quot;question2&quot;,&quot;choices&quot;:[&quot;item1&quot;,&quot;item2&quot;,&quot;item3&quot;]}]},{&quot;name&quot;:&quot;page2&quot;,&quot;elements&quot;:[{&quot;type&quot;:&quot;radiogroup&quot;,&quot;name&quot;:&quot;question3&quot;,&quot;choices&quot;:[&quot;item1&quot;,&quot;item2&quot;,&quot;item3&quot;]}]},{&quot;name&quot;:&quot;page3&quot;,&quot;elements&quot;:[{&quot;type&quot;:&quot;matrix&quot;,&quot;name&quot;:&quot;question4&quot;,&quot;columns&quot;:[&quot;Column 1&quot;,&quot;Column 2&quot;,&quot;Column 3&quot;],&quot;rows&quot;:[&quot;Row 1&quot;,&quot;Row 2&quot;]}]}],&quot;maxTimeToFinishPage&quot;:10,&quot;showTimerPanel&quot;:&quot;top&quot;}var mysurvey = new Survey.Model(surveyJSON);export default{    data(){        return{            survey:mysurvey        }    },    methods:{          sendDataToServer:function(survey){            alert(&quot;The results are:&quot; + JSON.stringify(survey.data));        }    },    created(){        mysurvey.onComplete.add(this.sendDataToServer);    }}&lt;/script&gt;</code></pre><p>（这里要用安装bootstrap和survey-vue）<br>这样就能渲染出对应的问卷或考试页面（考试可以设置提交限定时间），上面的surveyJSON是我现导入的数据，一般使用要从服务器获取。</p><hr><p><strong>关于created和mounted的区别</strong><br>created是在页面创建的时候，mounted是页面渲染结束后，上面的created应做修改<br>参考</p><blockquote><p><a href="https://www.jianshu.com/p/f99d3e3d2256" target="_blank" rel="noopener">https://www.jianshu.com/p/f99d3e3d2256</a></p></blockquote><hr>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;本想做个问卷系统，在github上找到一个叫做surveyjs的项目，正好是我需要的东西。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;官网&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://surveyjs.io/&quot; target=&quot;_blank&quot; rel=&quot;noop
+      
+    
+    </summary>
+    
+      <category term="vue" scheme="http://xfff.xyz/categories/vue/"/>
+    
+    
+      <category term="js" scheme="http://xfff.xyz/tags/js/"/>
+    
+      <category term="surveyjs" scheme="http://xfff.xyz/tags/surveyjs/"/>
+    
+  </entry>
   
   <entry>
     <title>vuejs发送异步请求</title>
@@ -350,9 +381,9 @@
       <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
-    
       <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
     
       <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
     
