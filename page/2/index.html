@@ -252,18 +252,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/21/dubboDemo搭建例子/">dubboDemo搭建例子</a></h3>
+                    <h3><a href="/2019/02/18/win10使用hexo搭建blog/">win10使用hexo搭建blog</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-21T01:08:11.000Z" itemprop="datePublished">
-          2019-01-21
+      <time datetime="2019-02-18T15:21:14.785Z" itemprop="datePublished">
+          2019-02-18
       </time>
     
     
     | 
-    <a href='/tags/dubbo/'>dubbo</a>,
-    
-    <a href='/tags/demo/'>demo</a>
+    <a href='/tags/hexo/'>hexo</a>
     
     
 </span>
@@ -272,24 +270,30 @@
                 <div class="col-md-8">
                     <p>
                       
-                        创建一个工作空间DubboDemo
-在项目下新建module
-服务提供者新建service接口并编写实现类
-将service提取到另一module中
+                        练习搭建ing…..从下列各个站点边看边搭…
 
-新建服务消费者module
-和提供者类似将service接口提取到主module中
+[用Hexo + github搭建自己的博客 — 再也不用羡慕别人了！]
+[hexo边搭边记]
+最後根目録下面的_config.yml文件里的deploy的type一定要設置為git~~~這個問題是真磨人。。。
 
 
-可以看到消费者里需要用到提供者的Service
-其他的domain和service需要引入主module 的依赖
-&lt;dependency&gt;  
- &lt;groupId&gt;xff&lt
+
+ 模版TKL来源…
+
+[TKL]
+
+[hexo搜索工具]
+
+
+
+模版很好看，感谢作者~
+其实这篇文章只是为了试试能不能同步到github主页hhh
+
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/21/dubboDemo搭建例子/">Read More...</a>
+                        <a href="/2019/02/18/win10使用hexo搭建blog/">Read More...</a>
                     </p>
                     
                 </div>
@@ -301,16 +305,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/18/dubboOPS控制台安装使用/">dubboOPS控制台安装使用</a></h3>
+                    <h3><a href="/2019/02/18/【Error集合】/">【Error集合】</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-18T02:16:50.000Z" itemprop="datePublished">
-          2019-01-18
+      <time datetime="2019-02-18T15:21:14.785Z" itemprop="datePublished">
+          2019-02-18
       </time>
     
     
     | 
-    <a href='/tags/dubbo/'>dubbo</a>
+    <a href='/tags/errors/'>errors</a>
     
     
 </span>
@@ -319,21 +323,20 @@
                 <div class="col-md-8">
                     <p>
                       
-                        zooKeeper注册中心先从该网站下载
+                        Struts2
+Struts2配置问题java.lang.ClassNotFoundException:org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+动态通配符配置Action出错  
+动态调用action  
+关于struts2配置struts.devMode问题解释  
 
-https://www.apache.org/dyn/closer.cgi/zookeeper/（这里我下的3.4.12稳定版本）
 
-解压到自选目录下
-打开bin目录
-
-zkServer是我们要运行的zookeeper服务，在地址栏输入cmd可以快速进入当前目录的命令行，但是这个时候运行会报错，我们需要改一下配置文件
-打开conf目录
-将zoo_sample.cfg复制粘贴一份重命名为zoo.
+Spring
+org.springframework.web.co
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/18/dubboOPS控制台安装使用/">Read More...</a>
+                        <a href="/2019/02/18/【Error集合】/">Read More...</a>
                     </p>
                     
                 </div>
@@ -345,58 +348,16 @@ zkServer是我们要运行的zookeeper服务，在地址栏输入cmd可以快速
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/17/vue从入门到放弃/">vue从入门到放弃</a></h3>
+                    <h3><a href="/2019/02/18/【ajax】请求服务器-参数双向传递/">【ajax】请求服务器+参数双向传递</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-17T03:26:06.000Z" itemprop="datePublished">
-          2019-01-17
+      <time datetime="2019-02-18T15:21:14.785Z" itemprop="datePublished">
+          2019-02-18
       </time>
     
     
     | 
-    <a href='/tags/vue/'>vue</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        v-html将对应的html标签转为html页面形式而不是字符串
-v-cloak加载完script里的脚本才会加载被该属性标记的元素
-v-text等同于
-{{}}
-卧槽，这里生成的时候一直报错，原来不能直接用两个花括号写在博客里，害我找了好久的错误    
-v-bind告诉属性名指定的是一个变量   v-bind:text=”变量名”，可以简写为：，里面可以写表达式
-v-on事件绑定  v-on：事件名，简写为@
-v-model数据的双
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/17/vue从入门到放弃/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/01/17/vue学习01/">vue学习01</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-01-17T01:40:33.000Z" itemprop="datePublished">
-          2019-01-17
-      </time>
-    
-    
-    | 
-    <a href='/tags/vue/'>vue</a>
+    <a href='/tags/ajax/'>ajax</a>
     
     
 </span>
@@ -406,18 +367,20 @@ v-model数据的双
                     <p>
                       
                         
-这个时候我还没学路由…
-直接上使用的代码部分
-main.js
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from &apos;vue&apos;
-import App from 
+Ajax可以对服务器发送异步请求，从而在不刷新整个页面的情况下局部刷新页面。
+
+ 1. GET方式
+$(document).ready(function(){
+
+    $(&quot;#btnsub&quot;).click(function(){
+        var xmlhttp,cardId,date;
+        cardId=$(&quot;#cardId&quot;).val();
+        date=$(
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/17/vue学习01/">Read More...</a>
+                        <a href="/2019/02/18/【ajax】请求服务器-参数双向传递/">Read More...</a>
                     </p>
                     
                 </div>
@@ -429,16 +392,16 @@ import App from
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/15/vue入门安装/">vue入门安装</a></h3>
+                    <h3><a href="/2019/02/18/【JAVA8新特性】/">【JAVA8新特性】</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-15T07:02:32.000Z" itemprop="datePublished">
-          2019-01-15
+      <time datetime="2019-02-18T15:21:14.785Z" itemprop="datePublished">
+          2019-02-18
       </time>
     
     
     | 
-    <a href='/tags/vue/'>vue</a>
+    <a href='/tags/java8/'>java8</a>
     
     
 </span>
@@ -447,14 +410,23 @@ import App from
                 <div class="col-md-8">
                     <p>
                       
-                        入职前以为，我们写后端的，也许整天面对的就是后台的service、controller等层去开发，入职后上级和我们说后台大部分代码都可以自动生成，前端的js需要好好学习一下…  
-我晕了，前端根本没怎么重视，JavaScript也没有系统地学习，现在想了想，要不好好学一个前端的框架吧。从各个网站上了解到一些信息和趋势，决定学习时下比较热门的前端框架vue.js  
-开始安装…先安装个nodejs，官网下载即可（因为之前用hexo搭建博客
+                        (一)Lambda表达式java8新特性支持lambda表达式，能让代码看起来更简洁。
+interface Aaa{
+public void printz(String z);
+}
+
+//老版本
+    String t=&quot;gggg&quot;;
+    Aaa olda=new Aaa() {
+
+        @Override
+        public void printz(String z) {
+        
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/15/vue入门安装/">Read More...</a>
+                        <a href="/2019/02/18/【JAVA8新特性】/">Read More...</a>
                     </p>
                     
                 </div>
@@ -466,21 +438,12 @@ import App from
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/14/SpringBoot学习使用/">SpringBoot学习使用(与mybatis plus整合)</a></h3>
+                    <h3><a href="/2019/02/18/hello-world/">Hello World</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-14T02:28:28.000Z" itemprop="datePublished">
-          2019-01-14
+      <time datetime="2019-02-18T15:21:14.738Z" itemprop="datePublished">
+          2019-02-18
       </time>
-    
-    
-    | 
-    <a href='/tags/mybatis-plus/'>mybatis_plus</a>,
-    
-    <a href='/tags/mybatis/'>mybatis</a>,
-    
-    <a href='/tags/springboot/'>springboot</a>
-    
     
 </span>
                     </span>
@@ -488,18 +451,13 @@ import App from
                 <div class="col-md-8">
                     <p>
                       
-                        以一个简单的Demo为例搭建一个简单的SpringBoot项目
-File–&gt;new–&gt;project
-
-如上选择若没有Spring Assistant选项要在plugins里安装该插件
-
-选择各种需要的选项后，next，选web项目，取名等等这里就不写了。。。
-项目建好了结构大概是这样的。（这里我懒得创新的了，还有自己写的一些文件就忽略吧）反正没有example里的那4个文件夹，还有resources里的mapper和sta
+                        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new p
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/14/SpringBoot学习使用/">Read More...</a>
+                        <a href="/2019/02/18/hello-world/">Read More...</a>
                     </p>
                     
                 </div>
@@ -511,16 +469,18 @@ File–&gt;new–&gt;project
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/11/mybatis-plus插件使用/">mybatis plus插件使用</a></h3>
+                    <h3><a href="/2019/02/16/【vue】与springboot后台项目数据交互/">【vue】与springboot后台项目数据交互</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-11T06:16:16.000Z" itemprop="datePublished">
-          2019-01-11
+      <time datetime="2019-02-16T15:12:00.000Z" itemprop="datePublished">
+          2019-02-16
       </time>
     
     
     | 
-    <a href='/tags/mybatis-plus/'>mybatis_plus</a>
+    <a href='/tags/springboot/'>springboot</a>,
+    
+    <a href='/tags/axios/'>axios</a>
     
     
 </span>
@@ -529,16 +489,19 @@ File–&gt;new–&gt;project
                 <div class="col-md-8">
                     <p>
                       
-                        分页插件使用mybatis plus时分页
-可以直接使用生成的mapper或者service封装好的分页方法
-userService.selectPage(new Page&lt;&gt;(6,5),null).getRecords().stream().forEach(System.out::println);
-但是这种方法只是物理上的分页，实际查询时会把所有记录全部查询出来，然后在内存中分页，效率不高。
-一般我们使用mybatis 
+                        最近在使用vue和springboot前后端分离的方式开发项目遇到了很多问题
+身份认证这里本可以用vuex，但是由于偏轻量级，用vuex会比较复杂，于是我在main.js里定义了一个全局变量，以达到控制身份的效果
+var state={
+    islogin:false,
+    manager:false,
+    identify:{
+        name:&apos;null&apos;,
+        email:&ap
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/11/mybatis-plus插件使用/">Read More...</a>
+                        <a href="/2019/02/16/【vue】与springboot后台项目数据交互/">Read More...</a>
                     </p>
                     
                 </div>
@@ -550,16 +513,18 @@ userService.selectPage(new Page&lt;&gt;(6,5),null).getRecords().stream().forEach
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/10/mybatis-plus自动生成代码/">mybatis plus自动生成代码</a></h3>
+                    <h3><a href="/2019/01/31/【vue】整合surveyjs工具生成在线问卷或考试/">【vue】整合surveyjs工具生成在线问卷或考试</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-10T08:16:13.000Z" itemprop="datePublished">
-          2019-01-10
+      <time datetime="2019-01-31T06:23:29.000Z" itemprop="datePublished">
+          2019-01-31
       </time>
     
     
     | 
-    <a href='/tags/mybatis-plus/'>mybatis_plus</a>
+    <a href='/tags/vue/'>vue</a>,
+    
+    <a href='/tags/surveyjs/'>surveyjs</a>
     
     
 </span>
@@ -568,18 +533,72 @@ userService.selectPage(new Page&lt;&gt;(6,5),null).getRecords().stream().forEach
                 <div class="col-md-8">
                     <p>
                       
-                        mybatis plus的核心功能之一就是能自动生成代码。
-类似mybatis的逆向工程，但是mybatis plus能生成mapper、service、controller、serviceImpl等，而且封装好了基本的CRUD功能，在xml中找不到对应的sql语句。
+                        本想做个问卷系统，在github上找到一个叫做surveyjs的项目，正好是我需要的东西。
 
-创建一个test类如下
-package com.atguigu.mp.test;  
+官网
 
-import javax.swing.text.DefaultStyledDoc
+https://surveyjs.io/
+
+vue项目,surveyjseditor例子
+
+surveyjs_vue_quickstart
+
+
+可以只用单个survey页面或者把编辑器导入也行。
+这里我的是问卷生成，所以俩部分都需要使用
+
+开始本地找个空文件夹打开gitbash命令行窗口git clone https://github.
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/10/mybatis-plus自动生成代码/">Read More...</a>
+                        <a href="/2019/01/31/【vue】整合surveyjs工具生成在线问卷或考试/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/01/29/vuejs发送异步请求/">vuejs发送异步请求</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-01-29T08:56:23.000Z" itemprop="datePublished">
+          2019-01-29
+      </time>
+    
+    
+    | 
+    <a href='/tags/vue/'>vue</a>,
+    
+    <a href='/tags/ajax/'>ajax</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        问题使用vue时如何发送请求？
+
+答：ajax，不过vue不使用jquery，那么需要引入一些HTTP库工具，使用其中封装好的请求方法即可
+superagent或者Axios（主流）使用文档
+
+https://www.kancloud.cn/yunye/axios/234845https://www.jianshu.com/p/1432e0f29abd
+
+首先要安装相应的工具运行命令
+npm install xxx -D
+xxx替换为对
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/01/29/vuejs发送异步请求/">Read More...</a>
                     </p>
                     
                 </div>

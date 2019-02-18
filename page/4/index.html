@@ -252,16 +252,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/12/19/工作第一天/">工作第一天</a></h3>
+                    <h3><a href="/2019/01/17/vue学习01/">vue学习01</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-12-19T06:40:39.000Z" itemprop="datePublished">
-          2018-12-19
+      <time datetime="2019-01-17T01:40:33.000Z" itemprop="datePublished">
+          2019-01-17
       </time>
     
     
     | 
-    <a href='/tags/日常生活/'>日常生活</a>
+    <a href='/tags/vue/'>vue</a>
     
     
 </span>
@@ -271,21 +271,18 @@
                     <p>
                       
                         
-经过大半个月的折腾，我找到了自己的第一份IT工作。
-今天是第一天，负责带我的导师，出差了……
-是的，没错，出差了。
-干坐了一天，看看这个看看那个，刷刷这个刷刷那个，无聊呀…
-说到无聊，我就想起了《西游记》里的无花果树。今年下半年…开拍…文体两开花…
-咳咳，由于昨天一天的搬家折腾，晚上也没睡好，感冒（类似）鼻塞了，很难受，而且还很困，希望今晚能好好睡一觉，鼻塞快点好吧，明天也要元气满满。
-这里就随便记一下皮一下—–
-加油吧。
-
-
+这个时候我还没学路由…
+直接上使用的代码部分
+main.js
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from &apos;vue&apos;
+import App from 
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/12/19/工作第一天/">Read More...</a>
+                        <a href="/2019/01/17/vue学习01/">Read More...</a>
                     </p>
                     
                 </div>
@@ -297,16 +294,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/11/29/SQL一些基本语句使用/">SQL一些基本语句使用</a></h3>
+                    <h3><a href="/2019/01/15/vue入门安装/">vue入门安装</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-11-28T16:18:06.000Z" itemprop="datePublished">
-          2018-11-29
+      <time datetime="2019-01-15T07:02:32.000Z" itemprop="datePublished">
+          2019-01-15
       </time>
     
     
     | 
-    <a href='/tags/sql/'>sql</a>
+    <a href='/tags/vue/'>vue</a>
     
     
 </span>
@@ -315,14 +312,14 @@
                 <div class="col-md-8">
                     <p>
                       
-                        选出不重复的列SELECT DISTINCT COLUMN FROM TABLE用某列来进行排序SELECT COLUMN FROM TABLE ORDER BY ONECOLUMN逆序SELECT COLUMN FROM TABLE ORDER BY ONECOLUMN DESC选出开始几行SELECT TOP NUMBER|PERCENT * FROM TABLEMYSQL中用LIMIT关键字
-
-like关键字Where colum
+                        入职前以为，我们写后端的，也许整天面对的就是后台的service、controller等层去开发，入职后上级和我们说后台大部分代码都可以自动生成，前端的js需要好好学习一下…  
+我晕了，前端根本没怎么重视，JavaScript也没有系统地学习，现在想了想，要不好好学一个前端的框架吧。从各个网站上了解到一些信息和趋势，决定学习时下比较热门的前端框架vue.js  
+开始安装…先安装个nodejs，官网下载即可（因为之前用hexo搭建博客
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/11/29/SQL一些基本语句使用/">Read More...</a>
+                        <a href="/2019/01/15/vue入门安装/">Read More...</a>
                     </p>
                     
                 </div>
@@ -334,16 +331,20 @@ like关键字Where colum
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/11/23/比较器Comparator和Comparable的使用/">比较器Comparator和Comparable的使用</a></h3>
+                    <h3><a href="/2019/01/14/SpringBoot学习使用/">SpringBoot学习使用(与mybatis plus整合)</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-11-23T08:45:52.000Z" itemprop="datePublished">
-          2018-11-23
+      <time datetime="2019-01-14T02:28:28.000Z" itemprop="datePublished">
+          2019-01-14
       </time>
     
     
     | 
-    <a href='/tags/比较器/'>比较器</a>
+    <a href='/tags/mybatis-plus/'>mybatis_plus</a>,
+    
+    <a href='/tags/mybatis/'>mybatis</a>,
+    
+    <a href='/tags/springboot/'>springboot</a>
     
     
 </span>
@@ -352,20 +353,18 @@ like关键字Where colum
                 <div class="col-md-8">
                     <p>
                       
-                        当我们需要对一些数组和集合进行排序的时候，经常会用到Arrays.sort和Collections.sort方法。但当sort里的数组或集合里的对象不适合用默认的比较方法时，我们就需要手动对排序方式重新定义。
+                        以一个简单的Demo为例搭建一个简单的SpringBoot项目
+File–&gt;new–&gt;project
 
-比如，现在定义一个Person对象：
-public class Person {
+如上选择若没有Spring Assistant选项要在plugins里安装该插件
 
-    private int id;
-    private int age;
-
-    public Person(int id,int a
+选择各种需要的选项后，next，选web项目，取名等等这里就不写了。。。
+项目建好了结构大概是这样的。（这里我懒得创新的了，还有自己写的一些文件就忽略吧）反正没有example里的那4个文件夹，还有resources里的mapper和sta
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/11/23/比较器Comparator和Comparable的使用/">Read More...</a>
+                        <a href="/2019/01/14/SpringBoot学习使用/">Read More...</a>
                     </p>
                     
                 </div>
@@ -377,18 +376,16 @@ public class Person {
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/11/08/【leetcode】笔记2/">【leetcode】笔记2</a></h3>
+                    <h3><a href="/2019/01/11/mybatis-plus插件使用/">mybatis plus插件使用</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-11-08T08:57:46.000Z" itemprop="datePublished">
-          2018-11-08
+      <time datetime="2019-01-11T06:16:16.000Z" itemprop="datePublished">
+          2019-01-11
       </time>
     
     
     | 
-    <a href='/tags/LeetCode/'>LeetCode</a>,
-    
-    <a href='/tags/算法/'>算法</a>
+    <a href='/tags/mybatis-plus/'>mybatis_plus</a>
     
     
 </span>
@@ -397,12 +394,16 @@ public class Person {
                 <div class="col-md-8">
                     <p>
                       
-                        11. Container With Most WaterGiven  _n_  non-negative integers  _a1_,  _a2_, …,  _an_ , where each represents a point at coordinate (_i_,  _ai_).  _n_  vertical lines are drawn such that the two endpoints of line  _i_  i
+                        分页插件使用mybatis plus时分页
+可以直接使用生成的mapper或者service封装好的分页方法
+userService.selectPage(new Page&lt;&gt;(6,5),null).getRecords().stream().forEach(System.out::println);
+但是这种方法只是物理上的分页，实际查询时会把所有记录全部查询出来，然后在内存中分页，效率不高。
+一般我们使用mybatis 
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/11/08/【leetcode】笔记2/">Read More...</a>
+                        <a href="/2019/01/11/mybatis-plus插件使用/">Read More...</a>
                     </p>
                     
                 </div>
@@ -414,18 +415,16 @@ public class Person {
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/11/06/【leetcode】笔记1/">【LeetCode】笔记1</a></h3>
+                    <h3><a href="/2019/01/10/mybatis-plus自动生成代码/">mybatis plus自动生成代码</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-11-06T06:40:33.000Z" itemprop="datePublished">
-          2018-11-06
+      <time datetime="2019-01-10T08:16:13.000Z" itemprop="datePublished">
+          2019-01-10
       </time>
     
     
     | 
-    <a href='/tags/LeetCode/'>LeetCode</a>,
-    
-    <a href='/tags/算法/'>算法</a>
+    <a href='/tags/mybatis-plus/'>mybatis_plus</a>
     
     
 </span>
@@ -434,57 +433,18 @@ public class Person {
                 <div class="col-md-8">
                     <p>
                       
-                        1. Two SumGiven an array of integers, return  indices  of the two numbers such that they add up to a specific target.You may assume that each input would have  exactly  one solution, and you may not use the  same  elemen
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/11/06/【leetcode】笔记1/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/30/线程池的基本使用/">线程池的基本使用</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-30T06:23:35.000Z" itemprop="datePublished">
-          2018-10-30
-      </time>
-    
-    
-    | 
-    <a href='/tags/java/'>java</a>,
-    
-    <a href='/tags/多线程/'>多线程</a>,
-    
-    <a href='/tags/线程池/'>线程池</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        要用到线程池，就要先介绍一个类：ThreadPoolExecutor.
-通过查看源码发现继承及实现关系为
+                        mybatis plus的核心功能之一就是能自动生成代码。
+类似mybatis的逆向工程，但是mybatis plus能生成mapper、service、controller、serviceImpl等，而且封装好了基本的CRUD功能，在xml中找不到对应的sql语句。
 
-在ThreadPoolExecutor类中，发现有四种构造方法，需要传入很多参数。
-public ThreadPoolExecutor(int corePoolSize,
-                          int maximumPoolSize,
-                          long ke
+创建一个test类如下
+package com.atguigu.mp.test;  
+
+import javax.swing.text.DefaultStyledDoc
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/10/30/线程池的基本使用/">Read More...</a>
+                        <a href="/2019/01/10/mybatis-plus自动生成代码/">Read More...</a>
                     </p>
                     
                 </div>
@@ -496,20 +456,16 @@ public ThreadPoolExecutor(int corePoolSize,
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/10/25/文件上传解析冲突问题/">文件上传解析冲突问题</a></h3>
+                    <h3><a href="/2019/01/09/mybatis-plus简单使用/">mybatis plus简单使用</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-10-25T13:27:07.000Z" itemprop="datePublished">
-          2018-10-25
+      <time datetime="2019-01-09T07:44:16.000Z" itemprop="datePublished">
+          2019-01-09
       </time>
     
     
     | 
-    <a href='/tags/error/'>error</a>,
-    
-    <a href='/tags/resolver/'>resolver</a>,
-    
-    <a href='/tags/文件上传/'>文件上传</a>
+    <a href='/tags/mybatis-plus/'>mybatis_plus</a>
     
     
 </span>
@@ -518,14 +474,20 @@ public ThreadPoolExecutor(int corePoolSize,
                 <div class="col-md-8">
                     <p>
                       
-                        由于在上一篇写ajax提交表单时，在springmvc.xml里配置了MultipartResolver，导致我引入的图片上传插件失效（上传显示成功，但是后台没有接收到），在利用各种搜索引擎查找问题之后，终于找到了原因。
+                        首先，贴上官网
 
-原因文件上传有两种方式，spring框架里的MultipartResolver解析以及传统的ServletFileUpload。由于我引入的图片上传插件是第二种方式，而上篇写到的ajax提交表单需要Multipart
+https://mp.baomidou.com/
+
+MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
+
+引入依赖&lt;dependency&gt;  
+ &lt;groupId&gt;com.baomidou&lt;/groupId&gt;  
+ &lt;artifactId&gt;mybatis-plus&lt;/ar
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/10/25/文件上传解析冲突问题/">Read More...</a>
+                        <a href="/2019/01/09/mybatis-plus简单使用/">Read More...</a>
                     </p>
                     
                 </div>
@@ -537,18 +499,18 @@ public ThreadPoolExecutor(int corePoolSize,
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/10/25/【ajax】springmvc下使用/">【ajax】springmvc下使用</a></h3>
+                    <h3><a href="/2019/01/07/使用StackEdit为markdown格式画图/">使用StackEdit为markdown格式画图</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-10-25T10:02:04.000Z" itemprop="datePublished">
-          2018-10-25
+      <time datetime="2019-01-07T02:21:22.000Z" itemprop="datePublished">
+          2019-01-07
       </time>
     
     
     | 
-    <a href='/tags/ajax/'>ajax</a>,
+    <a href='/tags/Markdown/'>Markdown</a>,
     
-    <a href='/tags/springmvc/'>springmvc</a>
+    <a href='/tags/StackEdit/'>StackEdit</a>
     
     
 </span>
@@ -557,20 +519,67 @@ public ThreadPoolExecutor(int corePoolSize,
                 <div class="col-md-8">
                     <p>
                       
-                        在做ssm项目的时候用到ajax的记录…
+                        SmartyPantsSmartyPants converts ASCII punctuation characters into “smart” typographic punctuation HTML entities. For example:
 
-post方法：动态获取div的value，隐藏对应的div项
-var str=this.value;
-$.post(&quot;lover/deleteL&quot;,{&quot;id&quot;:str},function(data){
-    alert(data);
-    $(&quot;#div&quot;+str).hide();
-});
-data为后台printwriter.w
+
+
+
+ASCII
+HTML
+
+
+
+
+Single backticks
+&#39;Isn&#39;t this fun?&#39;
+‘Isn’t this fun?’
+
+
+Quotes
+&
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/10/25/【ajax】springmvc下使用/">Read More...</a>
+                        <a href="/2019/01/07/使用StackEdit为markdown格式画图/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/01/07/Mybatis传参方法/">Mybatis传参方法</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-01-07T02:15:05.000Z" itemprop="datePublished">
+          2019-01-07
+      </time>
+    
+    
+    | 
+    <a href='/tags/传参/'>传参</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        Mybatis在xml文件中使用接口类传来的参数一般设置parameterType类型，然后在对应的接口方法中传入相应类型的参数，即可在xml语句中使用上面的参数
+然而我今天在使用中遇到了不使用parameterType的方式，记录一下
+方法1一般来说，我们传多个参数可以使用parameterType，自定义一个pojo类，然后把想传入的多个参数放入该类中，parameterType指定该类，即可通过该类调用其中包含的多个参数。
+方法2
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/01/07/Mybatis传参方法/">Read More...</a>
                     </p>
                     
                 </div>

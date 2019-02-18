@@ -252,16 +252,18 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/10/16/【mybatis】多对多关系/">【mybatis】多对多关系</a></h3>
+                    <h3><a href="/2018/11/08/【leetcode】笔记2/">【leetcode】笔记2</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-10-16T06:50:23.956Z" itemprop="datePublished">
-          2018-10-16
+      <time datetime="2018-11-08T08:57:46.000Z" itemprop="datePublished">
+          2018-11-08
       </time>
     
     
     | 
-    <a href='/tags/mybatis/'>mybatis</a>
+    <a href='/tags/LeetCode/'>LeetCode</a>,
+    
+    <a href='/tags/算法/'>算法</a>
     
     
 </span>
@@ -270,23 +272,12 @@
                 <div class="col-md-8">
                     <p>
                       
-                        关于多对多关系，我看了很多网上的案例和讲解，觉得都说的不太清楚，决定自己结合之前学的hibernate多对多关系，自己写一篇有关的mybatis多对多关系总结。
-
-
-首先，创建表，建立连接关系。
-
-
-然后，插入示例数据。
-
-
-打印一下，记录
-分别为三张表，一张银行用户表，简单起见，只有id和name两列，一张银行卡表，有id和money两列，最后是一张关系维护表，有三列，id、对应用户的buserid、对应卡的bcardid。
-我设定的
+                        11. Container With Most WaterGiven  _n_  non-negative integers  _a1_,  _a2_, …,  _an_ , where each represents a point at coordinate (_i_,  _ai_).  _n_  vertical lines are drawn such that the two endpoints of line  _i_  i
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/10/16/【mybatis】多对多关系/">Read More...</a>
+                        <a href="/2018/11/08/【leetcode】笔记2/">Read More...</a>
                     </p>
                     
                 </div>
@@ -298,16 +289,18 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/10/15/【mybatis】学习总结(二)/">【mybatis】学习总结(二)</a></h3>
+                    <h3><a href="/2018/11/06/【leetcode】笔记1/">【LeetCode】笔记1</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-10-15T07:38:30.030Z" itemprop="datePublished">
-          2018-10-15
+      <time datetime="2018-11-06T06:40:33.000Z" itemprop="datePublished">
+          2018-11-06
       </time>
     
     
     | 
-    <a href='/tags/mybatis/'>mybatis</a>
+    <a href='/tags/LeetCode/'>LeetCode</a>,
+    
+    <a href='/tags/算法/'>算法</a>
     
     
 </span>
@@ -316,20 +309,12 @@
                 <div class="col-md-8">
                     <p>
                       
-                        
-动态Sqlmybatis真正强大的地方，是可以灵活的运用sql语句进行查询。
-
-if语句
-
-在mapper映射文件中可以使用\标签来对语句接收的参数进行判断，从而动态改变sql语句。
-为了避免多次遇到同一段判断代码时的累赘，可以使用SQL片段来重复利用代码。如下：
-&lt;sql id=&quot;thereissqlblock&quot;&gt;
-        &lt;if test=&quot;goods!=null and u
+                        1. Two SumGiven an array of integers, return  indices  of the two numbers such that they add up to a specific target.You may assume that each input would have  exactly  one solution, and you may not use the  same  elemen
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/10/15/【mybatis】学习总结(二)/">Read More...</a>
+                        <a href="/2018/11/06/【leetcode】笔记1/">Read More...</a>
                     </p>
                     
                 </div>
@@ -341,16 +326,20 @@ if语句
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/10/15/【mybatis】大概总结(一)/">【mybatis】大概总结(一)</a></h3>
+                    <h3><a href="/2018/10/30/线程池的基本使用/">线程池的基本使用</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-10-15T05:41:46.178Z" itemprop="datePublished">
-          2018-10-15
+      <time datetime="2018-10-30T06:23:35.000Z" itemprop="datePublished">
+          2018-10-30
       </time>
     
     
     | 
-    <a href='/tags/mybatis/'>mybatis</a>
+    <a href='/tags/java/'>java</a>,
+    
+    <a href='/tags/多线程/'>多线程</a>,
+    
+    <a href='/tags/线程池/'>线程池</a>
     
     
 </span>
@@ -359,24 +348,18 @@ if语句
                 <div class="col-md-8">
                     <p>
                       
-                        原生访问数据库方法总配置文件mapper配置mapper接口使用示例
+                        要用到线程池，就要先介绍一个类：ThreadPoolExecutor.
+通过查看源码发现继承及实现关系为
 
-
-原生访问数据库方法:jdbcjdbc编程步骤:
-
-加载数据库驱动
-创建并获取数据库链接
-创建jdbc statement对象
-设置sql语句
-设置sql语句中的参数(使用preparedStatement)
-通过statement执行sql并获取结果
-对sql执行结果进行解析处理
-释放资源(resultSet、preparedstatement、connectio
+在ThreadPoolExecutor类中，发现有四种构造方法，需要传入很多参数。
+public ThreadPoolExecutor(int corePoolSize,
+                          int maximumPoolSize,
+                          long ke
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/10/15/【mybatis】大概总结(一)/">Read More...</a>
+                        <a href="/2018/10/30/线程池的基本使用/">Read More...</a>
                     </p>
                     
                 </div>
@@ -388,16 +371,20 @@ if语句
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/10/14/【ajax】请求服务器-参数双向传递/">【ajax】请求服务器+参数双向传递</a></h3>
+                    <h3><a href="/2018/10/25/文件上传解析冲突问题/">文件上传解析冲突问题</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-10-13T17:13:37.207Z" itemprop="datePublished">
-          2018-10-14
+      <time datetime="2018-10-25T13:27:07.000Z" itemprop="datePublished">
+          2018-10-25
       </time>
     
     
     | 
-    <a href='/tags/ajax/'>ajax</a>
+    <a href='/tags/error/'>error</a>,
+    
+    <a href='/tags/resolver/'>resolver</a>,
+    
+    <a href='/tags/文件上传/'>文件上传</a>
     
     
 </span>
@@ -406,21 +393,14 @@ if语句
                 <div class="col-md-8">
                     <p>
                       
-                        
-Ajax可以对服务器发送异步请求，从而在不刷新整个页面的情况下局部刷新页面。
+                        由于在上一篇写ajax提交表单时，在springmvc.xml里配置了MultipartResolver，导致我引入的图片上传插件失效（上传显示成功，但是后台没有接收到），在利用各种搜索引擎查找问题之后，终于找到了原因。
 
- 1. GET方式
-$(document).ready(function(){
-
-    $(&quot;#btnsub&quot;).click(function(){
-        var xmlhttp,cardId,date;
-        cardId=$(&quot;#cardId&quot;).val();
-        date=$(
+原因文件上传有两种方式，spring框架里的MultipartResolver解析以及传统的ServletFileUpload。由于我引入的图片上传插件是第二种方式，而上篇写到的ajax提交表单需要Multipart
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/10/14/【ajax】请求服务器-参数双向传递/">Read More...</a>
+                        <a href="/2018/10/25/文件上传解析冲突问题/">Read More...</a>
                     </p>
                     
                 </div>
@@ -432,109 +412,17 @@ $(document).ready(function(){
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/10/14/【数据结构】基础结构实现集合/">【数据结构】基础结构实现集合</a></h3>
+                    <h3><a href="/2018/10/25/【ajax】springmvc下使用/">【ajax】springmvc下使用</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-10-13T16:24:24.135Z" itemprop="datePublished">
-          2018-10-14
+      <time datetime="2018-10-25T10:02:04.000Z" itemprop="datePublished">
+          2018-10-25
       </time>
     
     
     | 
-    <a href='/tags/数据结构/'>数据结构</a>
+    <a href='/tags/ajax/'>ajax</a>,
     
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        一些我早期学数据结构的时候用C++实现的代码。指针在实现上比较方便
-
-(1)栈#include&lt;iostream&gt;
-
-using namespace std;
-
-#define OK 1
-#define ERROR 0
-
-typedef int SElemType;
-typedef struct StackNode{
-    SElemType data;
-    struct StackNode *next;
-}Stack
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/14/【数据结构】基础结构实现集合/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/13/【JAVA8新特性】/">【JAVA8新特性】</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-13T06:35:59.026Z" itemprop="datePublished">
-          2018-10-13
-      </time>
-    
-    
-    | 
-    <a href='/tags/java8/'>java8</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        (一)Lambda表达式java8新特性支持lambda表达式，能让代码看起来更简洁。
-interface Aaa{
-public void printz(String z);
-}
-
-//老版本
-    String t=&quot;gggg&quot;;
-    Aaa olda=new Aaa() {
-
-        @Override
-        public void printz(String z) {
-        
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/13/【JAVA8新特性】/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/11/【springmvc】工作流程理解（一）/">【springmvc】工作流程理解（一）</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-11T06:52:21.451Z" itemprop="datePublished">
-          2018-10-11
-      </time>
-    
-    
-    | 
     <a href='/tags/springmvc/'>springmvc</a>
     
     
@@ -544,16 +432,20 @@ public void printz(String z);
                 <div class="col-md-8">
                     <p>
                       
-                        
-用户通过URL发送请求，到达DispatcherServlet-前端(核心)控制器(通过在web.xml中配置)
-DispatcherServlet把请求转发给HandlerMapper-处理器映射器（在springmvc配置文件中注册）
-HandlerMapper根据请求返回映射的controller控制器对象链给DispatcherServlet
-DispatcherServlet把controller对象处理链转发给Handle
+                        在做ssm项目的时候用到ajax的记录…
+
+post方法：动态获取div的value，隐藏对应的div项
+var str=this.value;
+$.post(&quot;lover/deleteL&quot;,{&quot;id&quot;:str},function(data){
+    alert(data);
+    $(&quot;#div&quot;+str).hide();
+});
+data为后台printwriter.w
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/10/11/【springmvc】工作流程理解（一）/">Read More...</a>
+                        <a href="/2018/10/25/【ajax】springmvc下使用/">Read More...</a>
                     </p>
                     
                 </div>
@@ -565,16 +457,20 @@ DispatcherServlet把controller对象处理链转发给Handle
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/10/10/【Error集合】/">【Error集合】</a></h3>
+                    <h3><a href="/2018/10/24/mybatis操作text等长文本类型/">mybatis操作text等长文本类型</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-10-10T14:50:11.441Z" itemprop="datePublished">
-          2018-10-10
+      <time datetime="2018-10-24T06:41:17.000Z" itemprop="datePublished">
+          2018-10-24
       </time>
     
     
     | 
-    <a href='/tags/errors/'>errors</a>
+    <a href='/tags/mybatis/'>mybatis</a>,
+    
+    <a href='/tags/图片/'>图片</a>,
+    
+    <a href='/tags/数据库/'>数据库</a>
     
     
 </span>
@@ -583,20 +479,111 @@ DispatcherServlet把controller对象处理链转发给Handle
                 <div class="col-md-8">
                     <p>
                       
-                        Struts2
-Struts2配置问题java.lang.ClassNotFoundException:org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
-动态通配符配置Action出错  
-动态调用action  
-关于struts2配置struts.devMode问题解释  
+                        
+在实现将图片以base64编码为字符串存入数据库时，我遇到了这个问题。由于字符串过长，创建表时我用text类型来存放图片对应的base64编码字符串。
 
-
-Spring
-org.springframework.web.co
+最初，我以为是事务配置有问题，导致对表数据修改没有提交，在我试了各种配置方法。
+&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceT
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/10/10/【Error集合】/">Read More...</a>
+                        <a href="/2018/10/24/mybatis操作text等长文本类型/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2018/10/22/图片的上传和下载以及存入数据库/">图片的上传和下载以及存入数据库</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-10-22T14:55:10.000Z" itemprop="datePublished">
+          2018-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tags/数据库/'>数据库</a>,
+    
+    <a href='/tags/javaweb/'>javaweb</a>,
+    
+    <a href='/tags/图片的上传下载/'>图片的上传下载</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+首先添加jar包这里我直接写maven依赖
+&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;3.1.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;depen
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/10/22/图片的上传和下载以及存入数据库/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2018/10/19/【ssm】ssm整合配置/">【ssm】ssm整合配置</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-10-19T09:46:56.000Z" itemprop="datePublished">
+          2018-10-19
+      </time>
+    
+    
+    | 
+    <a href='/tags/mybatis/'>mybatis</a>,
+    
+    <a href='/tags/springmvc/'>springmvc</a>,
+    
+    <a href='/tags/spring/'>spring</a>,
+    
+    <a href='/tags/ssm/'>ssm</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+导入所有需要的包（添加maven依赖）:
+
+&lt;dependencies&gt;
+     &lt;dependency&gt;
+         &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+         &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+         &lt;version&gt;3.4.5&lt;/version&gt;
+
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/10/19/【ssm】ssm整合配置/">Read More...</a>
                     </p>
                     
                 </div>

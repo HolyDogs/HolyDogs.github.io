@@ -252,16 +252,18 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/09/mybatis-plus简单使用/">mybatis plus简单使用</a></h3>
+                    <h3><a href="/2019/01/29/vuejs总体结构学习/">vuejs总体结构学习</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-09T07:44:16.000Z" itemprop="datePublished">
-          2019-01-09
+      <time datetime="2019-01-29T07:50:24.000Z" itemprop="datePublished">
+          2019-01-29
       </time>
     
     
     | 
-    <a href='/tags/mybatis-plus/'>mybatis_plus</a>
+    <a href='/tags/vue/'>vue</a>,
+    
+    <a href='/tags/js/'>js</a>
     
     
 </span>
@@ -270,20 +272,23 @@
                 <div class="col-md-8">
                     <p>
                       
-                        首先，贴上官网
+                        偶然翻到一篇讲解一个vue项目的搭建的博客。全部撸完后觉得写的很好，决定在这里总结一下，原博地址
 
-https://mp.baomidou.com/
+https://blog.csdn.net/fungleo/article/details/77606321
 
-MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
 
-引入依赖&lt;dependency&gt;  
- &lt;groupId&gt;com.baomidou&lt;/groupId&gt;  
- &lt;artifactId&gt;mybatis-plus&lt;/ar
+首先，看一下大体的项目结构
+
+贴代码main.js
+
+红框框起来的是必要代码，引入Vue和App模版、vue路由。然后引入全局的路由配置文件routes.js使用路由需要Vue.use(VueRouter)
+
+看一下App.v
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/09/mybatis-plus简单使用/">Read More...</a>
+                        <a href="/2019/01/29/vuejs总体结构学习/">Read More...</a>
                     </p>
                     
                 </div>
@@ -295,18 +300,18 @@ MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的�
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/07/使用StackEdit为markdown格式画图/">使用StackEdit为markdown格式画图</a></h3>
+                    <h3><a href="/2019/01/25/【redis】jedis使用/">【redis】jedis使用</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-07T02:21:22.000Z" itemprop="datePublished">
-          2019-01-07
+      <time datetime="2019-01-25T07:57:30.000Z" itemprop="datePublished">
+          2019-01-25
       </time>
     
     
     | 
-    <a href='/tags/Markdown/'>Markdown</a>,
+    <a href='/tags/jedis/'>jedis</a>,
     
-    <a href='/tags/StackEdit/'>StackEdit</a>
+    <a href='/tags/java/'>java</a>
     
     
 </span>
@@ -315,29 +320,18 @@ MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的�
                 <div class="col-md-8">
                     <p>
                       
-                        SmartyPantsSmartyPants converts ASCII punctuation characters into “smart” typographic punctuation HTML entities. For example:
-
-
-
-
-ASCII
-HTML
-
-
-
-
-Single backticks
-&#39;Isn&#39;t this fun?&#39;
-‘Isn’t this fun?’
-
-
-Quotes
-&
+                        使用jedis访问redis数据库创建个maven项目JedisDemo
+引入依赖
+&lt;dependencies&gt;  
+     &lt;dependency&gt; 
+        &lt;groupId&gt;redis.clients&lt;/groupId&gt;  
+         &lt;artifactId&gt;jedis&lt;/artifactId&gt;  
+         &lt;version&
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/07/使用StackEdit为markdown格式画图/">Read More...</a>
+                        <a href="/2019/01/25/【redis】jedis使用/">Read More...</a>
                     </p>
                     
                 </div>
@@ -349,16 +343,16 @@ Quotes
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/07/Mybatis传参方法/">Mybatis传参方法</a></h3>
+                    <h3><a href="/2019/01/25/【redis】高级话题/">【redis】高级话题</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-07T02:15:05.000Z" itemprop="datePublished">
-          2019-01-07
+      <time datetime="2019-01-25T06:52:28.000Z" itemprop="datePublished">
+          2019-01-25
       </time>
     
     
     | 
-    <a href='/tags/传参/'>传参</a>
+    <a href='/tags/redis/'>redis</a>
     
     
 </span>
@@ -367,55 +361,18 @@ Quotes
                 <div class="col-md-8">
                     <p>
                       
-                        Mybatis在xml文件中使用接口类传来的参数一般设置parameterType类型，然后在对应的接口方法中传入相应类型的参数，即可在xml语句中使用上面的参数
-然而我今天在使用中遇到了不使用parameterType的方式，记录一下
-方法1一般来说，我们传多个参数可以使用parameterType，自定义一个pojo类，然后把想传入的多个参数放入该类中，parameterType指定该类，即可通过该类调用其中包含的多个参数。
-方法2
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/07/Mybatis传参方法/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/01/03/fish学习/">fish学习</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-01-03T09:02:07.000Z" itemprop="datePublished">
-          2019-01-03
-      </time>
-    
-    
-    | 
-    <a href='/tags/fish/'>fish</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        fish，前端框架。
+                        事务multi标记一个事务的开始，多条命令会按照先后顺序放进一个队列中，总返回OK
+exec执行所有事务块的命令事务内的所有执行语句内容，事务被打断返回nil
+discard（当事务队列内的语句写到一半不想写了）取消事务，放弃事务内的所有命令，总返回OK
 
-安装命令$ npm i -g @ngweb/fish-cli –registry http://registry.npm.ztesoft.com
-fish new或n &lt;project-name&gt;创建项目
-fish config或c在当前目录下，创建fish.config.js文件
-fish serve或s [-p port/--port] [-w / --watch]启动服务，-p/–port设置启
+当遇到语法错误时，事务就会被放弃
+当语法没错，但执行会出错时，redis不会回滚，前面正确的命令会正常执行
+watch key…监视一个或多个key，如果在事务执行前这些key被其他
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/03/fish学习/">Read More...</a>
+                        <a href="/2019/01/25/【redis】高级话题/">Read More...</a>
                     </p>
                     
                 </div>
@@ -427,59 +384,16 @@ fish serve或s [-p port/--port] [-w / --watch]启动服务，-p/–port设置启
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/02/The-Messenger通关/">The Messenger通关</a></h3>
+                    <h3><a href="/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/">【redis】可视化工具以及一些基本命令对5种类型操作</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-02T01:02:26.000Z" itemprop="datePublished">
-          2019-01-02
+      <time datetime="2019-01-25T02:11:20.000Z" itemprop="datePublished">
+          2019-01-25
       </time>
     
     
     | 
-    <a href='/tags/杂记，游戏/'>杂记，游戏</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        元旦通关了一款2018年出的解密复古风小游戏，感觉还蛮有意思的。《The Messenger》中译叫信使。
-游戏中会记录死亡数。
-有只恶魔在旁边负责复活你，复活之后会把你吃的碎片（类似金币）给吞掉。并且，每死一次都要嘲讽你，特别烦人啊hhh
-然后，后期来了一个叫堕落的未来的地方，遇到一直巨大的怪，bgm全变了，感觉有点恐怖。这个时候你死了，恶魔也不说话了，直接默默把你复活，感觉设计的还是很有意思。
-就是下面这个东西。
-
-就在我截图出来后
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/02/The-Messenger通关/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/12/27/linux-shell学习/">linux&shell学习</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-12-27T01:18:08.000Z" itemprop="datePublished">
-          2018-12-27
-      </time>
-    
-    
-    | 
-    <a href='/tags/linux/'>linux</a>,
-    
-    <a href='/tags/shell/'>shell</a>
+    <a href='/tags/redis/'>redis</a>
     
     
 </span>
@@ -489,17 +403,36 @@ fish serve或s [-p port/--port] [-w / --watch]启动服务，-p/–port设置启
                     <p>
                       
                         
+redis可视化工具安装
+redis-cli命令
+Key的五种数据类型
+基本命令
+
+字符串类型
+
+哈希类型hash
+
+列表list
+
+集合类型set
+
+有序集合zset
 
 
 
 
-….
 
+redis关闭./redis-cli shutdownkill 进程
+连接指定地址的redis./redis-cli -h 127.0.0.1 -p 6379
+
+redis desktop managerredis的可视化管理工具download
+
+http
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/12/27/linux-shell学习/">Read More...</a>
+                        <a href="/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/">Read More...</a>
                     </p>
                     
                 </div>
@@ -511,16 +444,16 @@ fish serve或s [-p port/--port] [-w / --watch]启动服务，-p/–port设置启
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/12/25/Oracle学习笔记2/">Oracle学习笔记2</a></h3>
+                    <h3><a href="/2019/01/24/【redis】windows环境和linux环境下的安装使用/">【redis】windows环境和linux环境下的安装使用</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-12-25T05:13:32.000Z" itemprop="datePublished">
-          2018-12-25
+      <time datetime="2019-01-24T02:46:37.000Z" itemprop="datePublished">
+          2019-01-24
       </time>
     
     
     | 
-    <a href='/tags/oracle/'>oracle</a>
+    <a href='/tags/redis/'>redis</a>
     
     
 </span>
@@ -529,20 +462,19 @@ fish serve或s [-p port/--port] [-w / --watch]启动服务，-p/–port设置启
                 <div class="col-md-8">
                     <p>
                       
-                        DDL（database define language）数据库定义语言创建表：create table tablename（….）
-修改表：alter table tablename add（columnname type …）;alter table tablename modify …
-删除表：drop table tablename
+                        写在前面首先，贴上官方网站地址，可以在这查询官方文档、命令等等。
 
-约束
-主键Primary key
-非空约束NOT NULL
-唯一约束Unique
-外键约束fo
+https://redis.io/中文版http://redis.cn/
+
+redis是非关系型数据库，运行于内存中，当项目需要请求数据库时会先查询redis数据库，以减轻主库的访问压力。
+属于非关系型数据库NOSQL的redis没有固定的列与值的表形式。NOSQL=NOT ONLY SQL
+
+windows下安装redisredis的作者并没有写适合在windows下
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/12/25/Oracle学习笔记2/">Read More...</a>
+                        <a href="/2019/01/24/【redis】windows环境和linux环境下的安装使用/">Read More...</a>
                     </p>
                     
                 </div>
@@ -554,16 +486,18 @@ fish serve或s [-p port/--port] [-w / --watch]启动服务，-p/–port设置启
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2018/12/23/Oracle学习笔记1/">Oracle学习笔记1</a></h3>
+                    <h3><a href="/2019/01/21/dubboDemo搭建例子/">dubboDemo搭建例子</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2018-12-23T04:34:45.000Z" itemprop="datePublished">
-          2018-12-23
+      <time datetime="2019-01-21T01:08:11.000Z" itemprop="datePublished">
+          2019-01-21
       </time>
     
     
     | 
-    <a href='/tags/oracle/'>oracle</a>
+    <a href='/tags/dubbo/'>dubbo</a>,
+    
+    <a href='/tags/demo/'>demo</a>
     
     
 </span>
@@ -572,22 +506,110 @@ fish serve或s [-p port/--port] [-w / --watch]启动服务，-p/–port设置启
                 <div class="col-md-8">
                     <p>
                       
-                        Oracle数据库是一个对象关系数据库管理系统（ORDBMS）。它通常被称为Oracle RDBMS或简称为Oracle，是一个收费的数据库。
+                        创建一个工作空间DubboDemo
+在项目下新建module
+服务提供者新建service接口并编写实现类
+将service提取到另一module中
 
-01基础
-02多表查询、子查询
+新建服务消费者module
+和提供者类似将service接口提取到主module中
 
 
-
-基础部分Oracle中distinct可以消除重复的行，如果指定多个列名，则要保证多列的数据皆重复才会消除。
-select distinct name,sal from emp
-
-Oracle中有独特的字符串连接符’||‘，相当于java里的’+’,MYS
+可以看到消费者里需要用到提供者的Service
+其他的domain和service需要引入主module 的依赖
+&lt;dependency&gt;  
+ &lt;groupId&gt;xff&lt
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2018/12/23/Oracle学习笔记1/">Read More...</a>
+                        <a href="/2019/01/21/dubboDemo搭建例子/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/01/18/dubboOPS控制台安装使用/">dubboOPS控制台安装使用</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-01-18T02:16:50.000Z" itemprop="datePublished">
+          2019-01-18
+      </time>
+    
+    
+    | 
+    <a href='/tags/dubbo/'>dubbo</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        zooKeeper注册中心先从该网站下载
+
+https://www.apache.org/dyn/closer.cgi/zookeeper/（这里我下的3.4.12稳定版本）
+
+解压到自选目录下
+打开bin目录
+
+zkServer是我们要运行的zookeeper服务，在地址栏输入cmd可以快速进入当前目录的命令行，但是这个时候运行会报错，我们需要改一下配置文件
+打开conf目录
+将zoo_sample.cfg复制粘贴一份重命名为zoo.
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/01/18/dubboOPS控制台安装使用/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/01/17/vue从入门到放弃/">vue从入门到放弃</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-01-17T03:26:06.000Z" itemprop="datePublished">
+          2019-01-17
+      </time>
+    
+    
+    | 
+    <a href='/tags/vue/'>vue</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        v-html将对应的html标签转为html页面形式而不是字符串
+v-cloak加载完script里的脚本才会加载被该属性标记的元素
+v-text等同于
+{{}}
+卧槽，这里生成的时候一直报错，原来不能直接用两个花括号写在博客里，害我找了好久的错误    
+v-bind告诉属性名指定的是一个变量   v-bind:text=”变量名”，可以简写为：，里面可以写表达式
+v-on事件绑定  v-on：事件名，简写为@
+v-model数据的双
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/01/17/vue从入门到放弃/">Read More...</a>
                     </p>
                     
                 </div>
