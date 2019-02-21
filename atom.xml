@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-02-19T06:11:52.830Z</updated>
+  <updated>2019-02-21T07:12:46.933Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -17,28 +17,29 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>【Error集合】</title>
-    <link href="http://xfff.xyz/2019/10/03/%E3%80%90Error%E9%9B%86%E5%90%88%E3%80%91/"/>
-    <id>http://xfff.xyz/2019/10/03/【Error集合】/</id>
-    <published>2019-10-03T09:02:07.000Z</published>
-    <updated>2019-02-19T06:11:52.830Z</updated>
+    <title>Tomcat控制台窗口中文乱码</title>
+    <link href="http://xfff.xyz/2019/02/21/Tomcat%E6%8E%A7%E5%88%B6%E5%8F%B0%E7%AA%97%E5%8F%A3%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
+    <id>http://xfff.xyz/2019/02/21/Tomcat控制台窗口中文乱码/</id>
+    <published>2019-02-21T07:02:35.000Z</published>
+    <updated>2019-02-21T07:12:46.933Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Struts2"><a href="#Struts2" class="headerlink" title="Struts2"></a>Struts2</h2><ul><li><a href="https://www.cnblogs.com/zhaideyou/p/5964509.html" target="_blank" rel="noopener">Struts2配置问题java.lang.ClassNotFoundException:org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</a></li><li><a href="https://blog.csdn.net/li7134600/article/details/78071785" target="_blank" rel="noopener">动态通配符配置Action出错</a>  </li><li><a href="https://blog.csdn.net/T_just_for_tomorrow/article/details/79504049" target="_blank" rel="noopener">动态调用action</a>  </li><li><a href="https://blog.csdn.net/cgy_workman/article/details/40862993" target="_blank" rel="noopener">关于struts2配置struts.devMode问题解释</a>  </li></ul><hr><h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul><li><a href="https://blog.csdn.net/H_anxx/article/details/78983591" target="_blank" rel="noopener">org.springframework.web.context.ContextLoaderListener解决方法</a></li></ul><hr><h2 id="Hibernate"><a href="#Hibernate" class="headerlink" title="Hibernate"></a>Hibernate</h2><ul><li><a href="https://blog.csdn.net/u010504064/article/details/47832721" target="_blank" rel="noopener">关于Hibernate一对多关系加载方式fetch配置</a></li></ul><hr><h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul><li><a href="https://zhidao.baidu.com/question/1894863609449400500.html" target="_blank" rel="noopener">JS中字符串与数字进行算术运算eval使用注意</a></li></ul><hr><h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><ul><li><a href="https://www.cnblogs.com/bsn-huang/p/3933442.html" target="_blank" rel="noopener">githubSSHkey添加</a></li><li><a href="https://www.cnblogs.com/sheldonxu/archive/2012/09/17/2688281.html" target="_blank" rel="noopener">伴随问题</a></li></ul><hr><p>持续更新…….<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw3j95uqblj31hc0u0b29.jpg" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<p>绕了很大一个圈子<br>今天终于解决了这个问题<br>特地用一篇博客记录</p><p>按网上说的改注册表、改编码格式、加参数运行都试过，全都没有用，我又是个强迫症，看不得乱码</p><p>今天对conf目录下的logging.properties文件查看后，觉得是里面的格式UTF-8和系统的936GB2312冲突问题，于是<strong>ctrl+h把所有的UTF-8全部替换为GBK</strong></p><p>完美解决</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g0e2ckpgkhj30zg0dj0uw.jpg" alt=""></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;Struts2&quot;&gt;&lt;a href=&quot;#Struts2&quot; class=&quot;headerlink&quot; title=&quot;Struts2&quot;&gt;&lt;/a&gt;Struts2&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.cnblogs.com/zhaideyou/p
+        &lt;p&gt;绕了很大一个圈子&lt;br&gt;今天终于解决了这个问题&lt;br&gt;特地用一篇博客记录&lt;/p&gt;
+&lt;p&gt;按网上说的改注册表、改编码格式、加参数运行都试过，全都没有用，我又是个强迫症，看不得乱码&lt;/p&gt;
+&lt;p&gt;今天对conf目录下的logging.properties文件查看后，觉得是里面的
       
     
     </summary>
     
-      <category term="errors" scheme="http://xfff.xyz/categories/errors/"/>
+      <category term="tomcat" scheme="http://xfff.xyz/categories/tomcat/"/>
     
     
-      <category term="errors" scheme="http://xfff.xyz/tags/errors/"/>
+      <category term="乱码" scheme="http://xfff.xyz/tags/%E4%B9%B1%E7%A0%81/"/>
     
   </entry>
   
@@ -429,9 +430,9 @@
       <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
-    
       <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
     
       <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
     
@@ -1358,6 +1359,32 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     
       <category term="tools" scheme="http://xfff.xyz/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Error集合】</title>
+    <link href="http://xfff.xyz/2018/10/03/%E3%80%90Error%E9%9B%86%E5%90%88%E3%80%91/"/>
+    <id>http://xfff.xyz/2018/10/03/【Error集合】/</id>
+    <published>2018-10-03T09:02:07.000Z</published>
+    <updated>2019-02-19T06:53:00.444Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Struts2"><a href="#Struts2" class="headerlink" title="Struts2"></a>Struts2</h2><ul><li><a href="https://www.cnblogs.com/zhaideyou/p/5964509.html" target="_blank" rel="noopener">Struts2配置问题java.lang.ClassNotFoundException:org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</a></li><li><a href="https://blog.csdn.net/li7134600/article/details/78071785" target="_blank" rel="noopener">动态通配符配置Action出错</a>  </li><li><a href="https://blog.csdn.net/T_just_for_tomorrow/article/details/79504049" target="_blank" rel="noopener">动态调用action</a>  </li><li><a href="https://blog.csdn.net/cgy_workman/article/details/40862993" target="_blank" rel="noopener">关于struts2配置struts.devMode问题解释</a>  </li></ul><hr><h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul><li><a href="https://blog.csdn.net/H_anxx/article/details/78983591" target="_blank" rel="noopener">org.springframework.web.context.ContextLoaderListener解决方法</a></li></ul><hr><h2 id="Hibernate"><a href="#Hibernate" class="headerlink" title="Hibernate"></a>Hibernate</h2><ul><li><a href="https://blog.csdn.net/u010504064/article/details/47832721" target="_blank" rel="noopener">关于Hibernate一对多关系加载方式fetch配置</a></li></ul><hr><h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ul><li><a href="https://zhidao.baidu.com/question/1894863609449400500.html" target="_blank" rel="noopener">JS中字符串与数字进行算术运算eval使用注意</a></li></ul><hr><h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><ul><li><a href="https://www.cnblogs.com/bsn-huang/p/3933442.html" target="_blank" rel="noopener">githubSSHkey添加</a></li><li><a href="https://www.cnblogs.com/sheldonxu/archive/2012/09/17/2688281.html" target="_blank" rel="noopener">伴随问题</a></li></ul><hr><p>持续更新…….<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw3j95uqblj31hc0u0b29.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Struts2&quot;&gt;&lt;a href=&quot;#Struts2&quot; class=&quot;headerlink&quot; title=&quot;Struts2&quot;&gt;&lt;/a&gt;Struts2&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.cnblogs.com/zhaideyou/p
+      
+    
+    </summary>
+    
+      <category term="errors" scheme="http://xfff.xyz/categories/errors/"/>
+    
+    
+      <category term="errors" scheme="http://xfff.xyz/tags/errors/"/>
     
   </entry>
   
