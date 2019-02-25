@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-02-21T07:12:46.933Z</updated>
+  <updated>2019-02-25T08:31:37.967Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【java】关于replace字符串时特殊字符的坑</title>
+    <link href="http://xfff.xyz/2019/02/25/%E3%80%90java%E3%80%91%E5%85%B3%E4%BA%8Ereplace%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%97%B6%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E7%9A%84%E5%9D%91/"/>
+    <id>http://xfff.xyz/2019/02/25/【java】关于replace字符串时特殊字符的坑/</id>
+    <published>2019-02-25T08:30:50.000Z</published>
+    <updated>2019-02-25T08:31:37.967Z</updated>
+    
+    <content type="html"><![CDATA[<p>刚遇到个字符串替换的坑，记录一下</p><p>实际使用时是这样的，有一个字符串里面包含\n \“等字符</p><p>现在我要把他们替换为空格和”</p><p>第一时间我想到的是</p><pre><code>str.replaceAll(&quot;\\n&quot;,&quot;&quot;);str.replaceAll(&quot;\\\&quot;&quot;,&quot;&quot;&quot;);</code></pre><p>实际上完全替换不了，还有错误</p><p>实际\n和\“在java中是这样存储的</p><pre><code>\\n 和 \\&quot;</code></pre><p>正确的替换方式:</p><pre><code>replaceAll(&quot;\\\\n&quot;,&quot;&quot;)replaceAll(&quot;\\\\\&quot;&quot;,&quot;\&quot;&quot;)</code></pre><p>居然需要4个反斜线…</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;刚遇到个字符串替换的坑，记录一下&lt;/p&gt;
+&lt;p&gt;实际使用时是这样的，有一个字符串里面包含\n \“等字符&lt;/p&gt;
+&lt;p&gt;现在我要把他们替换为空格和”&lt;/p&gt;
+&lt;p&gt;第一时间我想到的是&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str.replaceAll(&amp;quot;\\n&amp;quot;
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://xfff.xyz/categories/java/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Tomcat控制台窗口中文乱码</title>
@@ -430,9 +457,9 @@
       <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
-    
       <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
+    
+      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
     
       <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
     

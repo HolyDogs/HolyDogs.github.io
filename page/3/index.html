@@ -105,7 +105,7 @@
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(4)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(5)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -250,6 +250,45 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/01/11/mybatis-plus插件使用/">mybatis plus插件使用</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-01-11T06:16:16.000Z" itemprop="datePublished">
+          2019-01-11
+      </time>
+    
+    
+    | 
+    <a href='/tags/mybatis-plus/'>mybatis_plus</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        分页插件使用mybatis plus时分页
+可以直接使用生成的mapper或者service封装好的分页方法
+userService.selectPage(new Page&lt;&gt;(6,5),null).getRecords().stream().forEach(System.out::println);
+但是这种方法只是物理上的分页，实际查询时会把所有记录全部查询出来，然后在内存中分页，效率不高。
+一般我们使用mybatis 
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/01/11/mybatis-plus插件使用/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -543,49 +582,6 @@ fish serve或s [-p port/--port] [-w / --watch]启动服务，-p/–port设置启
                     
                     <p class="pull-right readMore">
                         <a href="/2018/12/27/linux-shell学习/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/12/25/Oracle学习笔记2/">Oracle学习笔记2</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-12-25T05:13:32.000Z" itemprop="datePublished">
-          2018-12-25
-      </time>
-    
-    
-    | 
-    <a href='/tags/oracle/'>oracle</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        DDL（database define language）数据库定义语言创建表：create table tablename（….）
-修改表：alter table tablename add（columnname type …）;alter table tablename modify …
-删除表：drop table tablename
-
-约束
-主键Primary key
-非空约束NOT NULL
-唯一约束Unique
-外键约束fo
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/12/25/Oracle学习笔记2/">Read More...</a>
                     </p>
                     
                 </div>
