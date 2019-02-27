@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【springmvc】工作流程理解（一） | XFF&#39;s blog</title>
+  <title>【mybatis】利用动态语句动态创建表和列 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -222,49 +222,117 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2018-12-10T09:02:07.000Z" itemprop="datePublished">
-          2018-12-10
+      <time datetime="2019-02-27T09:48:25.000Z" itemprop="datePublished">
+          2019-02-27
       </time>
     
     
     | 
-    <a href='/tags/springmvc/'>springmvc</a>
+    <a href='/tags/动态sql/'>动态sql</a>
     
     
 </span>
-                <h1>【springmvc】工作流程理解（一）</h1>
+                <h1>【mybatis】利用动态语句动态创建表和列</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<ol>
-<li>用户通过URL发送请求，到达<strong>DispatcherServlet-前端(核心)控制器</strong>(通过在web.xml中配置)</li>
-<li><strong>DispatcherServlet</strong>把请求转发给<strong>HandlerMapper-处理器映射器</strong>（在springmvc配置文件中注册）</li>
-<li><strong>HandlerMapper</strong>根据请求返回映射的<strong>controller控制器对象链</strong>给<strong>DispatcherServlet</strong></li>
-<li><strong>DispatcherServlet</strong>把<strong>controller</strong>对象处理链转发给<strong>HandlerAdapter处理器适配器（在springmvc配置文件中注册）</strong></li>
-<li><strong>HandlerAdapter</strong>根据请求通知<strong>controller处理器</strong>应该实现的方法（配置扫描、注解）</li>
-<li><strong>controller</strong>调用对应的方法，返回<strong>ModelAndView</strong>对象（配置注解）</li>
-<li>经<strong>HandlerAdapter</strong>又发送回<strong>DispatcherServlet</strong></li>
-<li><strong>DispatcherServlet</strong>将<strong>ModelAndView</strong>对象发送给<strong>ViewResolver</strong>视图解析器（在springmvc配置文件中配置）</li>
-<li><strong>ViewResolver</strong>对传来的<strong>Model</strong>（数据..）和<strong>View</strong>（对应的页面..）进行渲染返回给<strong>DispatcherServlet</strong></li>
-<li><strong>Response</strong> 响应给用户</li>
-</ol>
+      		<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>为了动态从数据库中生成表以及定义属性</p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="创建新的xml文件以及mapper接口类"><a href="#创建新的xml文件以及mapper接口类" class="headerlink" title="创建新的xml文件以及mapper接口类"></a>创建新的xml文件以及mapper接口类</h2><p>TabelControllerMapper.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
+&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;  
+&lt;mapper namespace=&quot;com.me.mapper.TableControllerMapper&quot;&gt;  
+
+
+ &lt;update id=&quot;createNewTable&quot;&gt;  
+  CREATE TABLE ${myMap.theTableName}(  
+          id int(10) PRIMARY KEY AUTO_INCREMENT NOT NULL  
+          &lt;foreach collection=&quot;myMap&quot; index=&quot;key&quot; item=&quot;value&quot;&gt;  
+ &lt;if test=&quot;key.toString() != &apos;theTableName&apos;.toString()&quot;&gt;  
+  ,${key} ${value}  
+ &lt;/if&gt;  
+ &lt;/foreach&gt;  );  
+    &lt;/update&gt;  
+&lt;/mapper&gt;
+</code></pre><p>注意第一句定义id后面不加逗号，在foreach循环里前面加上逗号是为了语句最后一次执行后面没有逗号，否则会报错</p>
 <hr>
-<p>上诉为自己总结，可能有些错误，是我初学理解不够深刻。</p>
+<p>TableControllerMapper接口</p>
+<pre><code>package com.me.mapper;  
+
+import org.apache.ibatis.annotations.Mapper;  
+import org.apache.ibatis.annotations.Param;  
+
+import java.util.HashMap;  
+
+/**  
+ * @author fenghere  
+ */@Mapper  
+public interface TableControllerMapper {  
+    /**  
+     * fetch data by rule id * * @param map mymap  
+     * @return Result&lt;XxxxDO&gt;  
+     */  
+
+  void createNewTable(@Param(value = &quot;myMap&quot;) HashMap map);  
+}
+</code></pre><p>输入的参数为hashmap类型，关于这种引入参数的方法另一篇博客有写</p>
+<blockquote>
+<p><a href="http://xfff.xyz/2019/01/07/Mybatis%E4%BC%A0%E5%8F%82%E6%96%B9%E6%B3%95/">http://xfff.xyz/2019/01/07/Mybatis%E4%BC%A0%E5%8F%82%E6%96%B9%E6%B3%95/</a></p>
+</blockquote>
 <hr>
-<p><strong><em>网图:</em></strong><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fw4bmgbq81j30pj09h75h.jpg" alt=""></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>写一个测试类</p>
+<pre><code>package com.me.demo;  
+
+import com.me.beans.User;  
+import com.me.mapper.TableControllerMapper;  
+import com.me.mapper.UserMapper;  
+import com.me.security.Md5Utils;  
+import com.me.service.UserService;  
+import org.junit.Test;  
+import org.springframework.beans.factory.annotation.Autowired;  
+
+import java.io.UnsupportedEncodingException;  
+import java.security.NoSuchAlgorithmException;  
+import java.util.HashMap;  
+
+/**  
+ * @ClassName MyTest  
+ * @Description TODO  
+ * @Author xufeng  
+ * @Data 2019/2/22 13:46  
+ * @Version 1.0  
+ **/
+ public class MyTest extends DemoApplicationTests{  
+
+
+  @Autowired  
+  TableControllerMapper tableControllerMapper;  
+
+  @Test  
+  public void myTest(){  
+          HashMap&lt;String,String&gt; mymap = new HashMap&lt;&gt;();  
+          mymap.put(&quot;theTableName&quot;,&quot;dsafakshfdksahlfhdashdfh&quot;);  
+          mymap.put(&quot;text&quot;,&quot;text&quot;);  
+          mymap.put(&quot;username&quot;,&quot;varchar(10)&quot;);  
+          mymap.put(&quot;ididiid&quot;,&quot;int&quot;);  
+          tableControllerMapper.createNewTable(mymap);  
+
+  }  
+}
+</code></pre><p>MyTest类继承DemoApplicationTests是为了引入springboot项目的数据库和mapper配置</p>
+<p>执行完成，进入数据库查看</p>
+<p>如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g0l4xp6jr3j30vm03mq32.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g0l4yi56qfj30od05naab.jpg" alt=""></p>
+<hr>
+<p>另外，删除表等操作应为类似的操作.</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2018/12/19/工作第一天/" style="float: left;">
-        ← 工作第一天
-    </a>
     
-    
-    <a class="pull-right" href="/2018/11/29/SQL一些基本语句使用/">
-        SQL一些基本语句使用 →
+    <a class="pull-right" href="/2019/02/25/【java】关于replace字符串时特殊字符的坑/">
+        【java】关于replace字符串时特殊字符的坑 →
     </a>
     
 </nav>
