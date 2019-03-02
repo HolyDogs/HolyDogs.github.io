@@ -101,7 +101,7 @@
 				    
 				    <li><a href="/categories/ajax/" class="animsition-link">ajax<small>(2)</small></a></li>
 				    
-				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(2)</small></a></li>
+				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
@@ -324,11 +324,25 @@ import java.util.HashMap;
 <p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g0l4yi56qfj30od05naab.jpg" alt=""></p>
 <hr>
 <p>另外，删除表等操作应为类似的操作.</p>
+<pre><code>&lt;select id=&quot;existTable&quot; parameterType=&quot;java.lang.String&quot; resultType=&quot;java.lang.Integer&quot;&gt;
+    select count(*)
+    from information_schema.TABLES
+    where LCASE(table_name) = #{tableName}
+&lt;/select&gt;
 
+
+&lt;update id=&quot;dropTable&quot;&gt;
+    DROP TABLE ${tablename}
+&lt;/update&gt;
+</code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2019/03/02/关于热部署和切面方法的问题解决/" style="float: left;">
+        ← 关于热部署和切面方法的问题解决
+    </a>
     
     
     <a class="pull-right" href="/2019/02/25/【java】关于replace字符串时特殊字符的坑/">
