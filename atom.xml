@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-03-02T05:33:28.063Z</updated>
+  <updated>2019-03-09T09:45:05.183Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【vue】关于push、replace、和go的使用问题</title>
+    <link href="http://xfff.xyz/2019/03/09/%E3%80%90vue%E3%80%91%E5%85%B3%E4%BA%8Epush%E3%80%81replace%E3%80%81%E5%92%8Cgo%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/"/>
+    <id>http://xfff.xyz/2019/03/09/【vue】关于push、replace、和go的使用问题/</id>
+    <published>2019-03-09T09:21:32.000Z</published>
+    <updated>2019-03-09T09:45:05.183Z</updated>
+    
+    <content type="html"><![CDATA[<p>在vue方法中跳转到另一个页面有以下三种方式</p><pre><code>this.$router.push({path:&apos;/&apos;,query.....})this.$router.replace({path:&apos;/&apos;,query.....})this.$router.go(n)</code></pre><p>其中push和replace类似，可以指定在路由里指定的路径path跳转到指定页面，可以附带query和一些参数，实际跳转后query里的参数是附带在url后面以<br>？参数名=参数值<br>的形式传递。</p><p>而go则是携带一个n值，相对于当前页面往前或者往后跳转多少个页面</p><hr><p>在push和replace的使用中，我发现push跳转会带着当前页面的缓存跳转，网上是这样解释的</p><p><strong>描述：跳转到不同的url，但这个方法会向history栈添加一个记录，点击后退会返回到上一个页面</strong></p><p><strong>当我实际使用时，发现跳转后有些控件的css样式异常，后来发现，原来是上一页面的css样式应用到了当前页面，当我改成replace之后就能显示正常。</strong></p><p>而replace网上是这么解释的</p><p><strong>同样是跳转到指定的url，但是这个方法不会向history里面添加新的记录，点击返回，会跳转到上上一个页面。上一个记录是不存在的。</strong></p><hr><p>另外顺便记录一下如何用CSS画简单的箭头，再也不用图片当箭头按钮啦</p><pre><code>width: 70px;height: 70px;border-top: 20px solid #041011;border-left: 20px solid #041011;transform: rotate(-45deg);</code></pre><p>transform里的是旋转角度，可以自定义方向</p><p>显示如下</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g0woo0oouej305z03j3yn.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在vue方法中跳转到另一个页面有以下三种方式&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;this.$router.push({path:&amp;apos;/&amp;apos;,query.....})
+
+this.$router.replace({path:&amp;apos;/&amp;apos;,query.
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
+    
+      <category term="error" scheme="http://xfff.xyz/tags/error/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法</title>
+    <link href="http://xfff.xyz/2019/03/05/%E3%80%90SpringBoot%E3%80%91%E4%BD%BF%E7%94%A8mybatis%E6%9F%A5%E8%AF%A2%E8%BF%94%E5%9B%9Emap%E6%97%B6%E7%A9%BA%E5%80%BC%E4%B8%8D%E4%BF%9D%E5%AD%98key%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>http://xfff.xyz/2019/03/05/【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法/</id>
+    <published>2019-03-05T03:53:03.000Z</published>
+    <updated>2019-03-05T06:47:21.418Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>在使用mybatis对数据库进行查询然后返回一个map类型的时候，如果某一列的值为空</strong></p><p><strong>那么返回的map里是会没有这个值对应的列的key，也就是map的容量会比预期小，很容易出一些问题</strong></p><p><strong>我在前端对传来的map遍历存入table时，由于缺少一些key，导致后面的列往前面推，使表格混乱</strong></p><p>为了解决这个问题，我先是找到了这篇博客,分析了一下mybatis给map类型赋值的过程</p><blockquote><p><a href="https://blog.csdn.net/zdazx/article/details/79289074" target="_blank" rel="noopener">https://blog.csdn.net/zdazx/article/details/79289074</a></p></blockquote><hr><p>但是它使用的是ssm框架，为了在springboot框架里配置mybatis配置，我新建了一个mybatis-config.xml配置文件，然后再springboot配置文件application.properties里引入</p><p>mybatis-config.xml</p><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  &lt;!DOCTYPE configuration PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;  &lt;configuration&gt;   &lt;settings&gt; &lt;setting name=&quot;callSettersOnNulls&quot; value=&quot;true&quot;/&gt;   &lt;setting name=&quot;returnInstanceForEmptyRow&quot; value=&quot;true&quot; /&gt;   &lt;/settings&gt;&lt;/configuration&gt;</code></pre><p>接着配置</p><pre><code>mybatis-plus.mapper-locations=classpath*:/mapper/*.xml  mybatis-plus.config-location=classpath:/mybatis-setting.xml</code></pre><p>这里由于我使用的是mybatis-plus，前面需要更改为mybatis-plus</p><p>另外，直接配置mybatis.configuration.returnInstanceForEmptyRow.value=true这种是不行的，没有效果</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;在使用mybatis对数据库进行查询然后返回一个map类型的时候，如果某一列的值为空&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;那么返回的map里是会没有这个值对应的列的key，也就是map的容量会比预期小，很容易出一些问题&lt;/strong&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
+    
+    
+      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="error" scheme="http://xfff.xyz/tags/error/"/>
+    
+  </entry>
   
   <entry>
     <title>关于热部署和切面方法的问题解决</title>
@@ -127,7 +186,7 @@
     <link href="http://xfff.xyz/2019/02/16/%E3%80%90vue%E3%80%91%E4%B8%8Espringboot%E5%90%8E%E5%8F%B0%E9%A1%B9%E7%9B%AE%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/"/>
     <id>http://xfff.xyz/2019/02/16/【vue】与springboot后台项目数据交互/</id>
     <published>2019-02-16T15:12:00.000Z</published>
-    <updated>2019-02-16T15:54:46.000Z</updated>
+    <updated>2019-03-09T09:24:11.472Z</updated>
     
     <content type="html"><![CDATA[<p>最近在使用vue和springboot前后端分离的方式开发项目<br>遇到了很多问题</p><h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><p>这里本可以用vuex，但是由于偏轻量级，用vuex会比较复杂，于是我在main.js里定义了一个全局变量，以达到控制身份的效果</p><pre><code>var state={    islogin:false,    manager:false,    identify:{        name:&apos;null&apos;,        email:&apos;null&apos;,    },    login(name,manager,email){        this.islogin=true;        this.identify.name=name;        this.manager=manager;        this.identify.email=email;    },    logout(){        this.islogin=false;        this.identify.name=&apos;null&apos;;        this.manager=false;        this.identify.email=&apos;null&apos;;    }}Vue.prototype.state=state</code></pre><p>在用户请求路径的时候，在create函数里判断身份信息，然后选择是否成功访问</p><hr><h2 id="表单绑定"><a href="#表单绑定" class="headerlink" title="表单绑定"></a>表单绑定</h2><p>为了将表单数据提交，可以把表单数据通过v-model绑定到一个数组里</p><pre><code>&lt;template&gt;  &lt;div&gt;    &lt;div class=&quot;login&quot;&gt;    &lt;myHeader/&gt;      &lt;form class=&quot;theform&quot; id=&quot;demo_11&quot; autocomplete=&quot;off&quot;&gt;        &lt;div class=&quot;form-group&quot;&gt;            &lt;input class=&quot;form-control&quot; v-model=&quot;theform.email&quot; placeholder=&quot;email&quot; type=&quot;email&quot;&gt;        &lt;/div&gt;        &lt;div class=&quot;form-group&quot;&gt;            &lt;input @change=&quot;changePw&quot; v-model=&quot;theform.password&quot; class=&quot;form-control&quot; placeholder=&quot;密码&quot; type=&quot;password&quot; maxlength=&quot;8&quot;&gt;        &lt;/div&gt;        &lt;p style=&quot;color:red&quot; v-show=&quot;pflag&quot;&gt;{{message}}&lt;/p&gt;        &lt;button class=&quot;btn btn-success&quot; @click.prevent=&quot;login&quot; type=&quot;submit&quot;&gt;{{loginmessage}}&lt;/button&gt;        &amp;nbsp;&amp;nbsp;        &lt;button type=&quot;reset&quot; class=&quot;btn btn-danger&quot;&gt;{{reset}}&lt;/button&gt;        &amp;nbsp;&amp;nbsp;        &lt;button type=&quot;button&quot; @click=&quot;toRegister&quot; class=&quot;btn btn-primary&quot;&gt;{{register}}&lt;/button&gt;    &lt;/form&gt;    &lt;/div&gt;    &lt;myFooter/&gt;  &lt;/div&gt;&lt;/template&gt;&lt;script&gt;import myHeader from &apos;../components/header.vue&apos;import myFooter from &apos;../components/footer.vue&apos;import qs from &apos;qs&apos;export default {  components: { myHeader, myFooter },  data() {    return {       loginmessage:&quot;登陆&quot;,       reset:&quot;重置&quot;,       register:&quot;注册&quot;,       message:&quot;密码为3-8位字母或数字&quot;,       theform:{          email:&quot;&quot;,          password:&quot;&quot;,       },       pflag:false    }  },  created() {  },  methods: {      changePw:function(){        var reg=/[a-zA-Z0-9]{3,8}$/;        if(!reg.test(this.theform.password)){          this.pflag=true;          return;        }        this.pflag=false;      },      toRegister:function(){        this.$router.push({path:&apos;/register&apos;});      },      login:function(){          let me=this;          let params=qs.stringify(this.theform);          this.$axios.post(&apos;login&apos;,params,function(r){            if(!r.islogin){              alert(&quot;邮箱或密码错误&quot;);              me.$router.push({path:&apos;/&apos;});            }else{              me.state.login(r.name,r.manager,r.email);              if(r.manager){                me.$router.push({path:&apos;&apos;});              }else{                me.$router.push({path:&apos;&apos;});              }            }          });      }   }}&lt;/script&gt;&lt;style type=&quot;text/css&quot; src=&quot;@/style/login.css&quot;&gt;&lt;/style&gt;</code></pre><h2 id="axios请求"><a href="#axios请求" class="headerlink" title="axios请求"></a>axios请求</h2><p>在使用axios发送请求时，我使用的在另一篇博客里用到的axios接口函数，在处理字符串时会报错，怎么也无法解决，最终我只能把下面这行注释</p><pre><code>/*      o[key] = o[key].trim()*/</code></pre><p>通过看接口代码，发现我们在后台需要返回数据里有success属性，否则会弹框打印信息。</p><pre><code>package com.me.controller;  import com.me.beans.ReturnMessage;  import org.springframework.web.bind.annotation.RequestMapping;  import org.springframework.web.bind.annotation.RequestParam;  import org.springframework.web.bind.annotation.ResponseBody;  import org.springframework.web.bind.annotation.RestController;  import java.util.HashMap;  @RestController  public class LoginController {      @RequestMapping(&quot;/login&quot;)      @ResponseBody    public HashMap login(@RequestParam(&quot;email&quot;)String email, @RequestParam(&quot;password&quot;)String password){          System.out.println(&quot;I AM COMING!============&quot;);    System.out.println(email);    System.out.println(password);    HashMap&lt;String,Object&gt; hashMap=new HashMap&lt;&gt;();    hashMap.put(&quot;success&quot;,true);    hashMap.put(&quot;islogin&quot;,false);    hashMap.put(&quot;ismanager&quot;,true);    hashMap.put(&quot;email&quot;,&quot;&quot;);    hashMap.put(&quot;name&quot;,&quot;&quot;);   return hashMap;    /*writer.write(&quot;success!!&quot;);*/    }      @RequestMapping(&quot;/sendcode&quot;)      @ResponseBody    public ReturnMessage sendcode(@RequestParam(&quot;email&quot;)String email){          System.out.println(email);   return new ReturnMessage(true);    }  }</code></pre><p>后台需要返回json格式的数据，使用@ResponseBody会帮我们自动把返回的数据转换为json格式。使用时还遇到了这个错误</p><blockquote><p><a href="https://www.cnblogs.com/gyjx2016/p/5896138.html" target="_blank" rel="noopener">https://www.cnblogs.com/gyjx2016/p/5896138.html</a><br>只需要把@Controller改为@RestController注解即可（由于前后端分离，@controller注解并没有什么用）</p></blockquote><p>前台在提取的时候只需要把success函数里的r提出来用r.属性名就可以了</p><p>另外，get请求会把参数放在url后面<br>所以请求时参数应写为{xxx:”xxx”}的格式<br>而post请求类型时，不能直接按上面的格式，或者用JSON.stringify()的格式，实际使用时，需要导入axios里的qs工具</p><pre><code>import qs from &apos;qs&apos;</code></pre><p>然后对参数进行qs.stringify的操作<br>比如上面的表单里的数据，就用了</p><pre><code>qs.stringify(this.theform)</code></pre><hr><p>实际使用时，要注意this的含义，可以在刚开始用一个变量来存储this，防止后面使用的时候丢失。</p><hr><h2 id="获取验证码"><a href="#获取验证码" class="headerlink" title="获取验证码"></a>获取验证码</h2><p>实现验证码60秒内禁止重新发送</p><pre><code>  var num=60;  var me=this;me.$axios.get(&apos;sendcode&apos;,{email:me.rform.email});  this.sflag=true;  var timer=setInterval(function(){      num--;      me.send=num+&apos;秒后刷新&apos;;    if(num == 0){       me.sflag=false;       me.send=&apos;发送验证码&apos;;       clearInterval(timer);       timer=null;    }  },1000);</code></pre><p>控制按钮能否点击上用了属性</p><pre><code>:disabled=&quot;sflag&quot;</code></pre><p>通过变量sflag控制</p><hr><p>大概功能都差不多</p>]]></content>
     
@@ -141,7 +200,7 @@
     
     </summary>
     
-      <category term="vue" scheme="http://xfff.xyz/categories/vue/"/>
+      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
       <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
@@ -1536,6 +1595,31 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
       
     
     </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>女朋友女朋友女朋友女朋友</title>
+    <link href="http://xfff.xyz/1998/02/19/%E5%A5%B3%E6%9C%8B%E5%8F%8B%E5%A5%B3%E6%9C%8B%E5%8F%8B%E5%A5%B3%E6%9C%8B%E5%8F%8B%E5%A5%B3%E6%9C%8B%E5%8F%8B/"/>
+    <id>http://xfff.xyz/1998/02/19/女朋友女朋友女朋友女朋友/</id>
+    <published>1998-02-19T09:46:01.000Z</published>
+    <updated>2019-03-09T09:53:05.619Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="balabala"><a href="#balabala" class="headerlink" title="balabala"></a>balabala</h1><p>大家好，今天是一个特别的日子</p><p>就在今天，我的女朋友出生了</p><p>哈哈哈哈哈哈哈哈</p><p>下面就是她</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g0wovwv98nj30u014015h.jpg" alt=""></p><p>溜了溜了，应该没人没事翻我博客叭哈哈哈哈哈</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;balabala&quot;&gt;&lt;a href=&quot;#balabala&quot; class=&quot;headerlink&quot; title=&quot;balabala&quot;&gt;&lt;/a&gt;balabala&lt;/h1&gt;&lt;p&gt;大家好，今天是一个特别的日子&lt;/p&gt;
+&lt;p&gt;就在今天，我的女朋友出生了&lt;/p&gt;
+&lt;p&gt;哈哈哈
+      
+    
+    </summary>
+    
+      <category term="杂记" scheme="http://xfff.xyz/categories/%E6%9D%82%E8%AE%B0/"/>
     
     
   </entry>
