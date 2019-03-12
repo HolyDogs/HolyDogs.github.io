@@ -568,9 +568,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
-    
       <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
     
       <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
     
