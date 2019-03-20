@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: vue | XFF&#39;s blog</title>
+  <title>【shiro】shiro整合redis保存session以及RememberMe探索 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -218,127 +218,162 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>My Dear,<span>DQH</span></h2>
-                        <p></p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/03/09/【vue】关于push、replace、和go的使用问题/">【vue】关于push、replace、和go的使用问题</a></h4>
-                            
-                            <p><time datetime="2019-03-09T09:21:32.000Z"><a href="/2019/03/09/【vue】关于push、replace、和go的使用问题/">2019-03-09</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/31/【vue】整合surveyjs工具生成在线问卷或考试/">【vue】整合surveyjs工具生成在线问卷或考试</a></h4>
-                            
-                            <p><time datetime="2019-01-31T06:23:29.000Z"><a href="/2019/01/31/【vue】整合surveyjs工具生成在线问卷或考试/">2019-01-31</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/29/vuejs发送异步请求/">vuejs发送异步请求</a></h4>
-                            
-                            <p><time datetime="2019-01-29T08:56:23.000Z"><a href="/2019/01/29/vuejs发送异步请求/">2019-01-29</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/29/vuejs总体结构学习/">vuejs总体结构学习</a></h4>
-                            
-                            <p><time datetime="2019-01-29T07:50:24.000Z"><a href="/2019/01/29/vuejs总体结构学习/">2019-01-29</a></time></p>
-                        </div>
-                    
-                        
-                            </div><div class="row boxes">
-                            
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/17/vue从入门到放弃/">vue从入门到放弃</a></h4>
-                            
-                            <p><time datetime="2019-01-17T03:26:06.000Z"><a href="/2019/01/17/vue从入门到放弃/">2019-01-17</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/17/vue学习01/">vue学习01</a></h4>
-                            
-                            <p><time datetime="2019-01-17T01:40:33.000Z"><a href="/2019/01/17/vue学习01/">2019-01-17</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/15/vue入门安装/">vue入门安装</a></h4>
-                            
-                            <p><time datetime="2019-01-15T07:02:32.000Z"><a href="/2019/01/15/vue入门安装/">2019-01-15</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-03-20T02:10:36.000Z" itemprop="datePublished">
+          2019-03-20
+      </time>
+    
+    
+    | 
+    <a href='/tags/redis/'>redis</a>
+    
+    
+</span>
+                <h1>【shiro】shiro整合redis保存session以及RememberMe探索</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>在上一节的项目中<br>增加改进</p>
+<h2 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h2><pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.crazycake&lt;/groupId&gt;
+    &lt;artifactId&gt;shiro-redis&lt;/artifactId&gt;
+    &lt;version&gt;2.4.2.1-RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+    &lt;artifactId&gt;fastjson&lt;/artifactId&gt;
+    &lt;version&gt;1.2.46&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><hr>
+<h2 id="增加如下配置"><a href="#增加如下配置" class="headerlink" title="增加如下配置"></a>增加如下配置</h2><p>shiroConfig中</p>
+<pre><code>public RedisManager redisManager(){
+    RedisManager redisManager = new RedisManager();
+    redisManager.setHost(&quot;localhost&quot;);
+    redisManager.setPort(6379);
+    //缓存过期时间
+    redisManager.setExpire(1800);
+    redisManager.setTimeout(0);
+    //redisManager.setPassword();
+    return redisManager;
+}
+
+@Bean
+public RedisCacheManager cacheManager(){
+    //使用的是org.crazycake包下的rediscachemanager
+    RedisCacheManager redisCacheManager = new RedisCacheManager();
+    redisCacheManager.setRedisManager(redisManager());
+    return redisCacheManager;
+}
+
+@Bean
+public RedisSessionDAO redisSessionDAO(){
+    RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
+    redisSessionDAO.setRedisManager(redisManager());
+    return redisSessionDAO;
+}
+
+@Bean
+public DefaultWebSessionManager sessionManager(){
+    DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+    sessionManager.setSessionDAO(redisSessionDAO());
+    return sessionManager;
+}
+</code></pre><h2 id="注入SecurityManager"><a href="#注入SecurityManager" class="headerlink" title="注入SecurityManager"></a>注入SecurityManager</h2><pre><code>@Bean(name = &quot;securityManager&quot;)
+public SecurityManager securityManager(){
+    DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+    securityManager.setRealm(getRealm());
+    securityManager.setCacheManager(cacheManager());
+    securityManager.setSessionManager(sessionManager());
+
+    return securityManager;
+}
+</code></pre><hr>
+<p>启动redis服务测试</p>
+<p>登陆后能在redis库中看到新增的shirosession字段</p>
+<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1921b2jsej30ag01emwz.jpg" alt=""></p>
+<hr>
+<h2 id="Remember-Me功能探索"><a href="#Remember-Me功能探索" class="headerlink" title="Remember Me功能探索"></a>Remember Me功能探索</h2><p>默认情况下登陆时附带的Remember me值为false</p>
+<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1923btxxyj30kq06it96.jpg" alt=""></p>
+<p>手动设置为true后，打开浏览器登陆后</p>
+<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1924eviirj30cv01w745.jpg" alt=""></p>
+<p>能在cookie中看到多出了一个rememberMe字段</p>
+<p>实际上并没有发挥效果，需要更改其他的配置</p>
+<p>具体下面这篇博客讲的很清楚</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/nsrainbow/article/details/36945267/" target="_blank" rel="noopener">https://blog.csdn.net/nsrainbow/article/details/36945267/</a></p>
+</blockquote>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2019/03/19/【shiro】SpringBoot整合shiro实例/">
+        【shiro】SpringBoot整合shiro实例 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足,不敢停站,然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--

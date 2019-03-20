@@ -113,7 +113,7 @@
 				    
 				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(12)</small></a></li>
 				    
-				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(2)</small></a></li>
+				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(3)</small></a></li>
 				    
@@ -249,6 +249,46 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/02/21/Tomcat控制台窗口中文乱码/">Tomcat控制台窗口中文乱码</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-02-21T07:02:35.000Z" itemprop="datePublished">
+          2019-02-21
+      </time>
+    
+    
+    | 
+    <a href='/tags/乱码/'>乱码</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        绕了很大一个圈子今天终于解决了这个问题特地用一篇博客记录
+按网上说的改注册表、改编码格式、加参数运行都试过，全都没有用，我又是个强迫症，看不得乱码
+今天对conf目录下的logging.properties文件查看后，觉得是里面的格式UTF-8和系统的936GB2312冲突问题，于是ctrl+h把所有的UTF-8全部替换为GBK
+完美解决
+
+
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/02/21/Tomcat控制台窗口中文乱码/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -575,48 +615,6 @@ http
                     
                     <p class="pull-right readMore">
                         <a href="/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/01/24/【redis】windows环境和linux环境下的安装使用/">【redis】windows环境和linux环境下的安装使用</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-01-24T02:46:37.000Z" itemprop="datePublished">
-          2019-01-24
-      </time>
-    
-    
-    | 
-    <a href='/tags/redis/'>redis</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        写在前面首先，贴上官方网站地址，可以在这查询官方文档、命令等等。
-
-https://redis.io/中文版http://redis.cn/
-
-redis是非关系型数据库，运行于内存中，当项目需要请求数据库时会先查询redis数据库，以减轻主库的访问压力。
-属于非关系型数据库NOSQL的redis没有固定的列与值的表形式。NOSQL=NOT ONLY SQL
-
-windows下安装redisredis的作者并没有写适合在windows下
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/24/【redis】windows环境和linux环境下的安装使用/">Read More...</a>
                     </p>
                     
                 </div>

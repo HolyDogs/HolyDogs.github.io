@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-03-19T09:41:08.792Z</updated>
+  <updated>2019-03-20T02:39:00.728Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【shiro】shiro整合redis保存session以及RememberMe探索</title>
+    <link href="http://xfff.xyz/2019/03/20/%E3%80%90shiro%E3%80%91shiro%E6%95%B4%E5%90%88redis%E4%BF%9D%E5%AD%98session%E4%BB%A5%E5%8F%8ARememberMe%E6%8E%A2%E7%B4%A2/"/>
+    <id>http://xfff.xyz/2019/03/20/【shiro】shiro整合redis保存session以及RememberMe探索/</id>
+    <published>2019-03-20T02:10:36.000Z</published>
+    <updated>2019-03-20T02:39:00.728Z</updated>
+    
+    <content type="html"><![CDATA[<p>在上一节的项目中<br>增加改进</p><h2 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h2><pre><code>&lt;dependency&gt;    &lt;groupId&gt;org.crazycake&lt;/groupId&gt;    &lt;artifactId&gt;shiro-redis&lt;/artifactId&gt;    &lt;version&gt;2.4.2.1-RELEASE&lt;/version&gt;&lt;/dependency&gt;&lt;dependency&gt;    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;    &lt;artifactId&gt;fastjson&lt;/artifactId&gt;    &lt;version&gt;1.2.46&lt;/version&gt;&lt;/dependency&gt;</code></pre><hr><h2 id="增加如下配置"><a href="#增加如下配置" class="headerlink" title="增加如下配置"></a>增加如下配置</h2><p>shiroConfig中</p><pre><code>public RedisManager redisManager(){    RedisManager redisManager = new RedisManager();    redisManager.setHost(&quot;localhost&quot;);    redisManager.setPort(6379);    //缓存过期时间    redisManager.setExpire(1800);    redisManager.setTimeout(0);    //redisManager.setPassword();    return redisManager;}@Beanpublic RedisCacheManager cacheManager(){    //使用的是org.crazycake包下的rediscachemanager    RedisCacheManager redisCacheManager = new RedisCacheManager();    redisCacheManager.setRedisManager(redisManager());    return redisCacheManager;}@Beanpublic RedisSessionDAO redisSessionDAO(){    RedisSessionDAO redisSessionDAO = new RedisSessionDAO();    redisSessionDAO.setRedisManager(redisManager());    return redisSessionDAO;}@Beanpublic DefaultWebSessionManager sessionManager(){    DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();    sessionManager.setSessionDAO(redisSessionDAO());    return sessionManager;}</code></pre><h2 id="注入SecurityManager"><a href="#注入SecurityManager" class="headerlink" title="注入SecurityManager"></a>注入SecurityManager</h2><pre><code>@Bean(name = &quot;securityManager&quot;)public SecurityManager securityManager(){    DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();    securityManager.setRealm(getRealm());    securityManager.setCacheManager(cacheManager());    securityManager.setSessionManager(sessionManager());    return securityManager;}</code></pre><hr><p>启动redis服务测试</p><p>登陆后能在redis库中看到新增的shirosession字段</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1921b2jsej30ag01emwz.jpg" alt=""></p><hr><h2 id="Remember-Me功能探索"><a href="#Remember-Me功能探索" class="headerlink" title="Remember Me功能探索"></a>Remember Me功能探索</h2><p>默认情况下登陆时附带的Remember me值为false</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1923btxxyj30kq06it96.jpg" alt=""></p><p>手动设置为true后，打开浏览器登陆后</p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1924eviirj30cv01w745.jpg" alt=""></p><p>能在cookie中看到多出了一个rememberMe字段</p><p>实际上并没有发挥效果，需要更改其他的配置</p><p>具体下面这篇博客讲的很清楚</p><blockquote><p><a href="https://blog.csdn.net/nsrainbow/article/details/36945267/" target="_blank" rel="noopener">https://blog.csdn.net/nsrainbow/article/details/36945267/</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在上一节的项目中&lt;br&gt;增加改进&lt;/p&gt;
+&lt;h2 id=&quot;添加依赖&quot;&gt;&lt;a href=&quot;#添加依赖&quot; class=&quot;headerlink&quot; title=&quot;添加依赖&quot;&gt;&lt;/a&gt;添加依赖&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;gro
+      
+    
+    </summary>
+    
+      <category term="shiro" scheme="http://xfff.xyz/categories/shiro/"/>
+    
+    
+      <category term="redis" scheme="http://xfff.xyz/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>【shiro】SpringBoot整合shiro实例</title>
