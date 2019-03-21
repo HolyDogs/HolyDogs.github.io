@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-03-20T09:13:12.733Z</updated>
+  <updated>2019-03-21T08:04:49.617Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【vue】引入ECharts图表和组件</title>
+    <link href="http://xfff.xyz/2019/03/21/%E3%80%90vue%E3%80%91%E5%BC%95%E5%85%A5ECharts%E5%9B%BE%E8%A1%A8%E5%92%8C%E7%BB%84%E4%BB%B6/"/>
+    <id>http://xfff.xyz/2019/03/21/【vue】引入ECharts图表和组件/</id>
+    <published>2019-03-21T07:20:37.000Z</published>
+    <updated>2019-03-21T08:04:49.617Z</updated>
+    
+    <content type="html"><![CDATA[<p><em>如何在Vue项目中画出优雅的图表？</em></p><p><strong>ECharts</strong><br>文档如下</p><blockquote><p><a href="https://www.echartsjs.com/tutorial.html#%E5%9C%A8%20webpack%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20ECharts" target="_blank" rel="noopener">https://www.echartsjs.com/tutorial.html#%E5%9C%A8%20webpack%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20ECharts</a></p></blockquote><h2 id="引入步骤"><a href="#引入步骤" class="headerlink" title="引入步骤"></a>引入步骤</h2><ul><li><p>安装ECharts</p><pre><code>npm install echarts --save</code></pre></li><li><p>定义html容器用来渲染echarts图表</p><pre><code>&lt;div class=&quot;chart&quot; id=&quot;myChart&quot; :style=&quot;{width: &apos;500px&apos;, height: &apos;500px&apos;}&quot;&gt;&lt;/div&gt;</code></pre></li></ul><pre><code>:style里可以设置图表大小</code></pre><ul><li><p>引入echarts组件</p><pre><code>// 引入基本模板let echarts = require(&apos;echarts/lib/echarts&apos;)// 引入柱状图组件require(&apos;echarts/lib/chart/pie&apos;)require(&apos;echarts/lib/chart/bar&apos;)require(&apos;echarts-gl&apos;)// 组件require(&apos;echarts/lib/component/tooltip&apos;)require(&apos;echarts/lib/component/title&apos;)require(&quot;echarts/lib/component/dataset&quot;)</code></pre></li><li><p>初始化页面容器</p><p> 先设置一个页面变量mychart，在mounted函数或者created函数里</p><pre><code>this.myChart = echarts.init(document.getElementById(&apos;myChart&apos;));</code></pre></li><li><p>配置图表option(关键)</p><p> 在画图的方法里（可以直接在mounted里或者点击事件之类的里面），定义一个option</p><pre><code>let option = {    title:{         text: me.title,        left:&apos;center&apos;,        top:&apos;5px&apos;,        textStyle:{            color:&apos;#ccc&apos;,            fontStyle:&apos;normal&apos;,            fontWeight:&apos;bold&apos;,            fontFamily:&apos;sans-serif&apos;,    　　　　 fontSize:30        }    },    tooltip:{},    backgroundColor: &apos;#2c343c&apos;,    visualMap: {        show: false,        inRange: {            colorLightness: [0.5, 1],        }    },    series : [        {            name: &apos;人数&apos;,            type: me.type,            radius: &apos;55%&apos;,            data: me.items,            roseType: &apos;angle&apos;,            label: {                normal: {                    textStyle: {                        color: &apos;rgba(255, 255, 255, 0.3)&apos;                    }                }            },            labelLine: {                normal: {                    lineStyle: {                        color: &apos;rgba(255, 255, 255, 0.3)&apos;                    }                }            },            itemStyle: {                normal: {                    shadowBlur: 200,                    shadowColor: &apos;rgba(0, 200, 150, 0.5)&apos;                }            }        }    ]};</code></pre></li><li><p>title是指图表名，可以设置样式</p></li><li><p>tooltip类似于小提示，鼠标放在目标上会有提示框</p></li><li><p>visualMap可以设置图表的变化范围，可以事让结果更加明显</p></li><li><p>series里主要设置数据，不同类型的图表有不同的配置，上面代码是南丁格尔饼图的示例，一般设置type，有下面这些类型</p><ul><li>bar 直方图</li><li>pie 饼图</li><li>bar3D 3D图（需要安装echarts-gl）</li><li>scatter 散点图</li><li>等等…可以去官网查看更多类型</li><li>引入dataset可以更方便管理数据，数据通过异步请求获取，传入前台的变量注入series里</li></ul></li></ul><ol start="6"><li><p>注入页面容器</p><pre><code>me.myChart.setOption(option);</code></pre></li></ol><p>需要绘制3D图需要安装echats-gl，步骤和上面一致</p><hr><p>结果如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1agz50czvj30h60e7q5u.jpg" alt=""></p><p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1agzt0iyuj30ox0gowkp.jpg" alt=""></p><p>左下的那个条就是visualMap的效果</p><hr><p>实际使用时并不需要引入echarts的所有组件，可以按需引入对应的模块列表</p><blockquote><p><a href="https://github.com/apache/incubator-echarts/blob/master/index.js" target="_blank" rel="noopener">https://github.com/apache/incubator-echarts/blob/master/index.js</a></p></blockquote><p>具体每种图表的配置都不太一样，讲起来太繁杂，需要时可以自行查阅</p><blockquote><p><a href="https://www.echartsjs.com/examples/" target="_blank" rel="noopener">https://www.echartsjs.com/examples/</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;em&gt;如何在Vue项目中画出优雅的图表？&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ECharts&lt;/strong&gt;&lt;br&gt;文档如下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.echartsjs.com/tutorial.html#%
+      
+    
+    </summary>
+    
+      <category term="vue" scheme="http://xfff.xyz/categories/vue/"/>
+    
+    
+      <category term="echarts" scheme="http://xfff.xyz/tags/echarts/"/>
+    
+  </entry>
   
   <entry>
     <title>【java】日志打印</title>

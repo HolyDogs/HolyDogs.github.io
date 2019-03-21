@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: 日常生活 | XFF&#39;s blog</title>
+  <title>【vue】引入ECharts图表和组件 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -220,70 +220,215 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>Just Go Away</h2>
-                        <p></p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/12/19/工作第一天/">工作第一天</a></h4>
-                            
-                            <p><time datetime="2018-12-19T06:40:39.000Z"><a href="/2018/12/19/工作第一天/">2018-12-19</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-03-21T07:20:37.000Z" itemprop="datePublished">
+          2019-03-21
+      </time>
+    
+    
+    | 
+    <a href='/tags/echarts/'>echarts</a>
+    
+    
+</span>
+                <h1>【vue】引入ECharts图表和组件</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<p><em>如何在Vue项目中画出优雅的图表？</em></p>
+<p><strong>ECharts</strong><br>文档如下</p>
+<blockquote>
+<p><a href="https://www.echartsjs.com/tutorial.html#%E5%9C%A8%20webpack%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20ECharts" target="_blank" rel="noopener">https://www.echartsjs.com/tutorial.html#%E5%9C%A8%20webpack%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20ECharts</a></p>
+</blockquote>
+<h2 id="引入步骤"><a href="#引入步骤" class="headerlink" title="引入步骤"></a>引入步骤</h2><ul>
+<li><p>安装ECharts</p>
+<pre><code>npm install echarts --save
+</code></pre></li>
+<li><p>定义html容器用来渲染echarts图表</p>
+<pre><code>&lt;div class=&quot;chart&quot; id=&quot;myChart&quot; :style=&quot;{width: &apos;500px&apos;, height: &apos;500px&apos;}&quot;&gt;&lt;/div&gt;
+</code></pre></li>
+</ul>
+<pre><code>:style里可以设置图表大小
+</code></pre><ul>
+<li><p>引入echarts组件</p>
+<pre><code>// 引入基本模板
+let echarts = require(&apos;echarts/lib/echarts&apos;)
+// 引入柱状图组件
+require(&apos;echarts/lib/chart/pie&apos;)
+require(&apos;echarts/lib/chart/bar&apos;)
+require(&apos;echarts-gl&apos;)
+
+// 组件
+require(&apos;echarts/lib/component/tooltip&apos;)
+require(&apos;echarts/lib/component/title&apos;)
+require(&quot;echarts/lib/component/dataset&quot;)
+</code></pre></li>
+<li><p>初始化页面容器</p>
+<p> 先设置一个页面变量mychart，在mounted函数或者created函数里</p>
+<pre><code>this.myChart = echarts.init(document.getElementById(&apos;myChart&apos;));
+</code></pre></li>
+<li><p>配置图表option(关键)</p>
+<p> 在画图的方法里（可以直接在mounted里或者点击事件之类的里面），定义一个option</p>
+<pre><code>let option = {
+    title:{ 
+        text: me.title,
+        left:&apos;center&apos;,
+        top:&apos;5px&apos;,
+        textStyle:{
+            color:&apos;#ccc&apos;,
+            fontStyle:&apos;normal&apos;,
+            fontWeight:&apos;bold&apos;,
+            fontFamily:&apos;sans-serif&apos;,
+    　　　　 fontSize:30
+        }
+    },
+    tooltip:{},
+    backgroundColor: &apos;#2c343c&apos;,
+    visualMap: {
+        show: false,
+        inRange: {
+            colorLightness: [0.5, 1],
+        }
+    },
+    series : [
+        {
+            name: &apos;人数&apos;,
+            type: me.type,
+            radius: &apos;55%&apos;,
+            data: me.items,
+            roseType: &apos;angle&apos;,
+            label: {
+                normal: {
+                    textStyle: {
+                        color: &apos;rgba(255, 255, 255, 0.3)&apos;
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    lineStyle: {
+                        color: &apos;rgba(255, 255, 255, 0.3)&apos;
+                    }
+                }
+            },
+            itemStyle: {
+                normal: {
+                    shadowBlur: 200,
+                    shadowColor: &apos;rgba(0, 200, 150, 0.5)&apos;
+                }
+            }
+        }
+    ]
+};
+</code></pre></li>
+<li><p>title是指图表名，可以设置样式</p>
+</li>
+<li><p>tooltip类似于小提示，鼠标放在目标上会有提示框</p>
+</li>
+<li><p>visualMap可以设置图表的变化范围，可以事让结果更加明显</p>
+</li>
+<li><p>series里主要设置数据，不同类型的图表有不同的配置，上面代码是南丁格尔饼图的示例，一般设置type，有下面这些类型</p>
+<ul>
+<li>bar 直方图</li>
+<li>pie 饼图</li>
+<li>bar3D 3D图（需要安装echarts-gl）</li>
+<li>scatter 散点图</li>
+<li>等等…可以去官网查看更多类型</li>
+<li>引入dataset可以更方便管理数据，数据通过异步请求获取，传入前台的变量注入series里</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li><p>注入页面容器</p>
+<pre><code>me.myChart.setOption(option);
+</code></pre></li>
+</ol>
+<p>需要绘制3D图需要安装echats-gl，步骤和上面一致</p>
+<hr>
+<p>结果如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1agz50czvj30h60e7q5u.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1agzt0iyuj30ox0gowkp.jpg" alt=""></p>
+<p>左下的那个条就是visualMap的效果</p>
+<hr>
+<p>实际使用时并不需要引入echarts的所有组件，可以按需引入对应的模块列表</p>
+<blockquote>
+<p><a href="https://github.com/apache/incubator-echarts/blob/master/index.js" target="_blank" rel="noopener">https://github.com/apache/incubator-echarts/blob/master/index.js</a></p>
+</blockquote>
+<p>具体每种图表的配置都不太一样，讲起来太繁杂，需要时可以自行查阅</p>
+<blockquote>
+<p><a href="https://www.echartsjs.com/examples/" target="_blank" rel="noopener">https://www.echartsjs.com/examples/</a></p>
+</blockquote>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2019/03/20/【java】日志打印/">
+        【java】日志打印 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足,不敢停站,然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--
