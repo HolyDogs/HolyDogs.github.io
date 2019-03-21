@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>vue学习01 | XFF&#39;s blog</title>
+  <title>【java】日志打印 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -224,269 +224,62 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2019-01-17T01:40:33.000Z" itemprop="datePublished">
-          2019-01-17
+      <time datetime="2019-03-20T08:49:25.000Z" itemprop="datePublished">
+          2019-03-20
       </time>
     
-    
-    | 
-    <a href='/tags/vue/'>vue</a>
-    
-    
 </span>
-                <h1>vue学习01</h1>
+                <h1>【java】日志打印</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<hr>
-<p><del>这个时候我还没学路由…</del></p>
-<p>直接上使用的代码部分</p>
-<p>main.js</p>
-<pre><code>// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from &apos;vue&apos;
-import App from &apos;./App&apos;
-/*import router from &apos;./router&apos;*/
+      		<p>日常开发中，想打印某些值的信息时</p>
+<p>总是Syso=&gt;System.out.pringln(xxx)</p>
+<p>然后在代码规范里看到了，禁止使用这种方式打印信息，可以选择日志工具打印查看</p>
+<p>日常使用的工具有log4j、logback、slf4j</p>
+<p>log4j必须配置配置文件log4j.properties，类似下面这样，可以指定打印级别</p>
+<pre><code># Configure logging for testing: optionally with log file
+log4j.rootLogger=INFO, stdout 
+# log4j.rootLogger=WARN, stdout, logfile
 
-Vue.config.productionTip = false
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d %p [%c] - %m%n
 
-Vue.filter(&apos;myreverse&apos;,function(value){
-    return value.split(&apos;&apos;).reverse().join(&apos;&apos;);
-})
-/* eslint-disable no-new */
-new Vue({
-  el: &apos;#app&apos;,
-/*  router,*/
-  components: { App },
-  template: &apos;&lt;App/&gt;&apos;
-})
-</code></pre><p>由于没使用router被我注释了，<br>filter是过滤器，这里是全局定义方法，后面会介绍，其他都是模版的代码。</p>
-<hr>
-<p>App.vue</p>
-<pre><code>&lt;template&gt;
-  &lt;div id=&quot;app&quot;&gt;
-    &lt;img src=&quot;./assets/logo.png&quot;&gt;
-    &lt;br/&gt;
-    &lt;hi&gt;&lt;/hi&gt;
-    &lt;mytest&gt;&lt;/mytest&gt;
-    &lt;pop&gt;&lt;/pop&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-import hi from &apos;./components/hi&apos;
-import mytest from &apos;./components/mytest&apos;
-import pop from &apos;./components/pop&apos;
-
-export default {
-  name: &apos;App&apos;,
-  components:{hi,mytest,pop}
-}
-&lt;/script&gt;
-
-&lt;style&gt;
-#app {
-  font-family: &apos;Avenir&apos;, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-&lt;/style&gt;
-</code></pre><p>在template模版里根节点只运行存在一个div，那三个奇怪名字的是我自定义的三个页面（块）</p>
-<hr>
-<h2 id="hi-vue"><a href="#hi-vue" class="headerlink" title="hi.vue"></a>hi.vue</h2><pre><code>&lt;template&gt;
-  &lt;div&gt;
-    &lt;input v-model=&quot;message&quot; placeholder=&quot;input message&quot; /&gt;
-    &lt;input v-model=&quot;checked&quot; type=&quot;checkbox&quot; id=&quot;checkbox1&quot; value=&quot;checkbox11&quot;&gt;11&lt;/input&gt;
-    &lt;input v-model=&quot;checked&quot; type=&quot;checkbox&quot; id=&quot;checkbox2&quot; value=&quot;checkbox22&quot;&gt;22&lt;/input&gt;
-    &lt;br/&gt;
-    &lt;select v-model=&quot;selected&quot;&gt;
-      &lt;option disable value=&quot;&quot;&gt;请选择&lt;/option&gt;
-      &lt;option&gt;AA&lt;/option&gt;
-      &lt;option&gt;BB&lt;/option&gt;
-      &lt;option&gt;CC&lt;/option&gt;
-    &lt;/select&gt;
-    &lt;br/&gt;
-    &lt;select v-model=&quot;selected1&quot; style=&quot;width: 50px;&quot;&gt;
-      &lt;option v-for=&quot;option in options&quot; :value=&quot;option.value&quot;&gt;
-      {{option.text}}
-      &lt;/option&gt;
-    &lt;/select&gt;
-    &lt;br/&gt;
-    &lt;input type=&quot;radio&quot; name=&quot;name&quot; v-model=&quot;pick&quot; value=&quot;a&quot; /&gt;&lt;label&gt;a&lt;/label&gt;
-    &lt;br/&gt;
-    &lt;input type=&quot;radio&quot; name=&quot;name&quot; v-model=&quot;pick&quot; value=&quot;b&quot; /&gt;&lt;label&gt;b&lt;/label&gt;
-    &lt;br/&gt;
-    &lt;input type=&quot;radio&quot; name=&quot;name&quot; v-model=&quot;pick&quot; value=&quot;c&quot; /&gt;&lt;label&gt;c&lt;/label&gt;
-    &lt;br/&gt;
-    &lt;br/&gt;
-    &lt;br/&gt;
-    &lt;br/&gt;
-    &lt;span&gt;Message is:{{message}}&lt;/span&gt;
-    &lt;br/&gt;
-    &lt;span&gt;Message is:{{checked}}&lt;/span&gt;
-    &lt;br/&gt;
-    &lt;span&gt;select is : {{selected}}&lt;/span&gt;
-    &lt;br/&gt;
-    &lt;span&gt;select is : {{selected1}}&lt;/span&gt;
-    &lt;br/&gt;
-    &lt;span&gt;radio is : {{pick}}&lt;/span&gt;
-    &lt;br/&gt;
-    &lt;span&gt;reverse is :{{message|myreverse}}&lt;/span&gt;
-        &lt;br/&gt;
-    &lt;span&gt;up is :{{message|capitalize}}&lt;/span&gt;
-        &lt;br/&gt;
-    &lt;span&gt;myfilter3 is :{{message|myfilter('haha')}}&lt;/span&gt;
-
-
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default {
-  name: &apos;hi&apos;,
-  data () {
-    return {
-      message: &apos;&apos;,
-      checked: [],
-      selected:&apos;&apos;,
-      options:[
-      {text:&quot;AA&quot;,value:&apos;A&apos;},
-      {text:&quot;BB&quot;,value:&apos;B&apos;},
-      {text:&quot;CC&quot;,value:&apos;C&apos;}
-      ],
-      selected1:&apos;&apos;,
-      pick:&apos;&apos;
-    }
-  },
-  filters:{
-  myfilter:function(value,value1){
-    return value.charAt(0).toLocaleUpperCase()+value.slice(1)+value1;
-  }
-  }
-}
-&lt;/script&gt;
-</code></pre><p>实际效果<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fz9bzb5mq9j30iu09zt8n.jpg" alt=""><br>这里注意在使用键值对时，value值才是选中的值，text值是选择框里的值。v-for可以对这种数组进行遍历…还有一些对字符串操作的方法等等…</p>
-<hr>
-<h2 id="mytest-vue"><a href="#mytest-vue" class="headerlink" title="mytest.vue"></a>mytest.vue</h2><pre><code>&lt;template&gt;
-&lt;div&gt;
-  &lt;div&gt;
-    &lt;h1&gt;There is mytest part----&lt;/h1&gt;
-    &lt;button v-on:click=&quot;count=count+1&quot;&gt;addit&lt;/button&gt;
-    &lt;span&gt;{{count}}&lt;/span&gt;
-    &lt;button v-on:click=&quot;sayhaha&quot;&gt;SAYhaha&lt;/button&gt;
-    &lt;button v-on:click=&quot;sayxixi&quot;&gt;SAYxixi&lt;/button&gt;
-  &lt;/div&gt;
-  &lt;br/&gt;
-
-    &lt;div id=&quot;demo&quot; @click=&quot;commonAlert&quot;&gt;
-        &lt;button @click.stop=&quot;alertA&quot;&gt;内部标签&lt;/button&gt;
-    &lt;br&gt;
-    &lt;span&gt;哈哈哈&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;br/&gt;
-    &lt;a href=&quot;https://www.baidu.com&quot; @click.prevent=&quot;preventWebJump&quot;&gt;百度一下&lt;/a&gt;
-    &lt;br/&gt;
-    &lt;div @click.capture=&quot;aa&quot;&gt;
-      &lt;div @click.capture=&quot;bb&quot;&gt;
-        &lt;Button @click.capture=&quot;cc&quot;&gt;冒泡&lt;/Button&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default {
-  name: &apos;mytest&apos;,
-  data () {
-    return {
-      count:1
-    }
-  },
-  methods:{
-    sayhaha:function(){
-      alert(&quot;hahaha&quot;)
-    },
-    sayxixi:function(){
-      alert(&quot;xixixi&quot;)
-    },
-    commonAlert:function(){
-      alert(&quot;outclick!&quot;)
-    },
-    alertA:function(){
-      alert(&quot;innerClick!&quot;)
-    },
-    preventWebJump:function(){
-      alert(&quot;禁止跳转&quot;)
-    },
-    cc:function(){
-      alert(&quot;cc&quot;)
-    },
-    bb:function(){
-      alert(&quot;bb&quot;)
-    },
-    aa:function(){
-      alert(&quot;aa&quot;)
-    }
-  }
-}
-&lt;/script&gt;
-&lt;!--.once.passive.self--&gt;
-</code></pre><p>实际效果</p>
-<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fz9c09m6gej30gy06ajrb.jpg" alt=""><br>这里主要对事件处理方法进行了一些测试，还包括一些事件修饰符，实际效果用图片表现不出事件特性。<br>这里还有.once（指定事件只触发一次）.passive（和prevent相反，允许标签自带的事件）.self（冒泡事件时，不直接与该控件交互的事件会被跳过，不同于.stop是冒泡到该事件时停止）</p>
-<hr>
-<h2 id="pop-vue"><a href="#pop-vue" class="headerlink" title="pop.vue"></a>pop.vue</h2><pre><code>&lt;template&gt;
-  &lt;div id=&quot;demo&quot;&gt;
-  &lt;button v-on:click=&quot;greet =!greet&quot;&gt;点击&lt;/button&gt;
-  &lt;transition name=&quot;fade&quot;&gt;
-    &lt;p v-show=&quot;greet&quot;&gt;hello world jack!&lt;/p&gt;
-  &lt;/transition&gt;
-  &lt;/div&gt;  
-&lt;/template&gt;
-&lt;script&gt;
-  export default{
-    name:&apos;pop&apos;,
-    data(){
-      return{
-        greet:true
-      }
-    }
-  }
-&lt;/script&gt;
-
-&lt;style&gt;
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-&lt;/style&gt;
-</code></pre><p>vue定义过渡，transition标签（name=fade）内的控件在消隐时可以通过css定义过渡动画，配合三方css文件，可以达到很有意思的效果。<br>参考</p>
+log4j.appender.logfile=org.apache.log4j.FileAppender
+log4j.appender.logfile.File=target/spring.log
+log4j.appender.logfile.layout=org.apache.log4j.PatternLayout
+log4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - %m%n
+</code></pre><p>一般log4j会和commons-logging搭配使用</p>
+<p>commons-logging提供一个统一的日志接口，简单了操作，同时避免项目与某个日志实现系统紧密a耦合很贴心的帮我们自动选择适当的日志实现系统（这一点非常好！）它甚至不需要配置</p>
+<p>在使用时，会从classpath查找commons-logging.properties文件</p>
+<p>若找不到，则在查找是否已定义系统环境变量org.apache.commons.logging.Log，找到则使用其定义的Log实现类<br>这样使用</p>
+<pre><code>private static Log log = LogFactory.getLog(YouClassName. class );
+</code></pre><hr>
+<h2 id="Slf4j"><a href="#Slf4j" class="headerlink" title="Slf4j"></a>Slf4j</h2><p>主要还是用这个打印日志吧<br>不需要配置文件，只需要依赖slf4j-api即可</p>
+<p>然后使用时直接</p>
+<pre><code>private static final Logger LOGGER = LoggerFactory.getLogger(CheckCodeUtills.class);
+</code></pre><p>然后使用</p>
+<pre><code>LOGGER.info、warn、error(xxxx)
+</code></pre><p>之类的</p>
+<h2 id="注解方式"><a href="#注解方式" class="headerlink" title="注解方式"></a>注解方式</h2><p>只需要在需要使用的类上加上</p>
+<pre><code>@Slf4j
+</code></pre><p>然后在使用时</p>
+<pre><code>log.info、warn....(xxxx)
+</code></pre><p>即可</p>
+<p>另外下面这篇博客说明了slf4j和log4j的好坏</p>
 <blockquote>
-<p><a href="https://blog.csdn.net/hanhailong18/article/details/82222316" target="_blank" rel="noopener">https://blog.csdn.net/hanhailong18/article/details/82222316</a></p>
+<p><a href="https://www.oschina.net/translate/why-use-sl4j-over-log4j-for-logging" target="_blank" rel="noopener">https://www.oschina.net/translate/why-use-sl4j-over-log4j-for-logging</a></p>
 </blockquote>
-<hr>
-<p>还有键盘输入事件绑定…<br>参考</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/hanhailong18/article/details/82584647" target="_blank" rel="noopener">https://blog.csdn.net/hanhailong18/article/details/82584647</a></p>
-</blockquote>
-<p>很多点没提到，在之后的学习中再补上吧~</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2019/01/17/vue从入门到放弃/" style="float: left;">
-        ← vue从入门到放弃
-    </a>
     
-    
-    <a class="pull-right" href="/2019/01/15/vue入门安装/">
-        vue入门安装 →
+    <a class="pull-right" href="/2019/03/20/【shiro】shiro整合redis保存session以及RememberMe探索/">
+        【shiro】shiro整合redis保存session以及RememberMe探索 →
     </a>
     
 </nav>
