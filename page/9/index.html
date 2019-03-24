@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>mybatis操作text等长文本类型 | XFF&#39;s blog</title>
+  <title>XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -220,141 +220,88 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2018-10-24T06:41:17.000Z" itemprop="datePublished">
-          2018-10-24
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>,
-    
-    <a href='/tags/图片/'>图片</a>,
-    
-    <a href='/tags/数据库/'>数据库</a>
-    
-    
-</span>
-                <h1>mybatis操作text等长文本类型</h1>
+      <!-- ============================ Hero Image =========================== -->
+
+<section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                    <div>
+                        
+                        <h2>Just Go Away</h2>
+                        <p></p>
+                        
+
+                    </div>
+                </div>
             </div>
+            <!-- // .col-md-12 -->
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<hr>
-<p>在实现将图片以base64编码为字符串存入数据库时，我遇到了这个问题。<br>由于字符串过长，创建表时我用text类型来存放图片对应的base64编码字符串。</p>
-<hr>
-<p><strong>最初，我以为是事务配置有问题，导致对表数据修改没有提交，在我试了各种配置方法。</strong></p>
-<pre><code>&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
-    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-
-&lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;
-        &lt;tx:attributes&gt;
-            &lt;tx:method name=&quot;save*&quot; propagation=&quot;REQUIRED&quot;/&gt;
-            &lt;tx:method name=&quot;delete*&quot; propagation=&quot;REQUIRED&quot;/&gt;
-            &lt;tx:method name=&quot;insert*&quot; propagation=&quot;REQUIRED&quot;/&gt;
-            &lt;tx:method name=&quot;update*&quot; propagation=&quot;REQUIRED&quot;/&gt;
-            &lt;tx:method name=&quot;find*&quot; propagation=&quot;SUPPORTS&quot; read-only=&quot;true&quot;/&gt;
-            &lt;tx:method name=&quot;get*&quot; propagation=&quot;SUPPORTS&quot; read-only=&quot;true&quot;/&gt;
-            &lt;tx:method name=&quot;select*&quot; propagation=&quot;SUPPORTS&quot; read-only=&quot;true&quot;/&gt;
-        &lt;/tx:attributes&gt;
-&lt;/tx:advice&gt;
-
-&lt;aop:config&gt;
-    &lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut=&quot;execution(* com.me.service.*.*(..))&quot;/&gt;
-&lt;/aop:config&gt;
-</code></pre><p>注解扫描配置：</p>
-<pre><code>&lt;bean id=&quot;transactionManager&quot;  
-class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;  
-&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot; /&gt;  
-&lt;/bean&gt;  
-&lt;!--使用注释事务 --&gt;  
-&lt;tx:annotation-driven  transaction-manager=&quot;transactionManager&quot; /&gt;
-</code></pre><hr>
-<p>检验无误后我又认为是字符串不够长，把数据库的text类型改为mediumtext类型</p>
-<pre><code>ALTER TABLE tableName modify column columnName 类型
-</code></pre><p>发现还是没用，问题依然不出在这。</p>
-<p>网上说现在不推荐使用text类型，建议改为varchar(MAX)类型，于是我又尝试，发现mysql里没有该类型。</p>
-<hr>
-<h2 id="最终"><a href="#最终" class="headerlink" title="最终"></a>最终</h2><p>最后终于发现，mybatis对于text这些大文本类型，有特殊的操作方法接口。在逆向工程生成的方法里，有一些方法后面带有WithBloBs字样，这些就是针对这些类型的方法。</p>
-<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwjdmuerbcj309x00ma9u.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwjdnupkygj30bw00rjr6.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwjdon8yb8j30jk00sdfo.jpg" alt=""></p>
-<p>使用这些方法后，终于成功。</p>
-<p>其中xml中的实现如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwjdpyqowxj30gf033t8s.jpg" alt=""></p>
-<hr>
-
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-        </div>
-        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
-    
-    <a class="pull-left" href="/2018/10/24/【ajax】请求服务器-参数双向传递/" style="float: left;">
-        ← 【ajax】请求服务器+参数双向传递
-    </a>
-    
-    
-    <a class="pull-right" href="/2018/10/22/图片的上传和下载以及存入数据库/">
-        图片的上传和下载以及存入数据库 →
-    </a>
-    
-</nav>
-
-        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
-  /**
-   * 搜狐畅言
-   */
-
-  /*
-  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
-
-  window.onload = function () {
-    (function () {
-      var appid = 'cytXXXX';
-      var conf = 'prod_xxxxxxxxxxxxxxxxx';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      var loadJs = function (d, a, id) {
-        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
-        var b = document.createElement("script");
-        b.setAttribute("type", "text/javascript");
-        b.setAttribute("charset", "UTF-8");
-        b.setAttribute("src", d);
-        if (id) {
-          b.setAttribute("id", id);
-        }
-        if (typeof a === "function") {
-          if (window.attachEvent) {
-            b.onreadystatechange = function () {
-              var e = b.readyState;
-              if (e === "loaded" || e === "complete") {
-                b.onreadystatechange = null;
-                a()
-              }
-            }
-          } else {
-            b.onload = a
-          }
-        }
-        c.appendChild(b)
-      };
-
-      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
-        window.changyan.api.config({
-          appid: appid,
-          conf: conf
-        })
-      });
-    })();
-  }
-  */
-
-</script>
-</div>
+        <div class="herofade beige-dk"></div>
     </div>
 </section>
 
+<!-- Height spacing helper -->
+<div class="heightblock"></div>
+<!-- // End height spacing helper -->
+
+<!-- ============================ END Hero Image =========================== -->
+<!-- ============================ Content =========================== -->
+
+<section id="intro">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/1998/02/19/女朋友女朋友女朋友女朋友/">dearDQH</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="1998-02-19T09:46:01.000Z" itemprop="datePublished">
+          1998-02-19
+      </time>
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        balabala大家好，今天是一个特别的日子
+就在今天，我的女朋友出生了
+哈哈哈哈哈哈哈哈
+下面就是她
+
+溜了溜了，应该没人没事翻我博客叭哈哈哈哈哈
+
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/1998/02/19/女朋友女朋友女朋友女朋友/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <nav class="pagination" role="pagination">
+          <a class="pull-left" href="/page/8/">← Newer Posts</a>
+          
+        </nav>
+    </div>
+</section>
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>不能满足,不敢停站,然后怎样</p>
+        </div>
+    </div>
+</section>
+<!-- ============================ END Content =========================== -->
 
       
 <!-- ============================ Footer =========================== -->

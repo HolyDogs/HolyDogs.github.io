@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>mybatis操作text等长文本类型 | XFF&#39;s blog</title>
+  <title>欠条 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -226,78 +226,26 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2018-10-24T06:41:17.000Z" itemprop="datePublished">
-          2018-10-24
+      <time datetime="2019-03-24T13:34:57.000Z" itemprop="datePublished">
+          2019-03-24
       </time>
     
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>,
-    
-    <a href='/tags/图片/'>图片</a>,
-    
-    <a href='/tags/数据库/'>数据库</a>
-    
-    
 </span>
-                <h1>mybatis操作text等长文本类型</h1>
+                <h1>欠条</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<hr>
-<p>在实现将图片以base64编码为字符串存入数据库时，我遇到了这个问题。<br>由于字符串过长，创建表时我用text类型来存放图片对应的base64编码字符串。</p>
-<hr>
-<p><strong>最初，我以为是事务配置有问题，导致对表数据修改没有提交，在我试了各种配置方法。</strong></p>
-<pre><code>&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
-    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-
-&lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;
-        &lt;tx:attributes&gt;
-            &lt;tx:method name=&quot;save*&quot; propagation=&quot;REQUIRED&quot;/&gt;
-            &lt;tx:method name=&quot;delete*&quot; propagation=&quot;REQUIRED&quot;/&gt;
-            &lt;tx:method name=&quot;insert*&quot; propagation=&quot;REQUIRED&quot;/&gt;
-            &lt;tx:method name=&quot;update*&quot; propagation=&quot;REQUIRED&quot;/&gt;
-            &lt;tx:method name=&quot;find*&quot; propagation=&quot;SUPPORTS&quot; read-only=&quot;true&quot;/&gt;
-            &lt;tx:method name=&quot;get*&quot; propagation=&quot;SUPPORTS&quot; read-only=&quot;true&quot;/&gt;
-            &lt;tx:method name=&quot;select*&quot; propagation=&quot;SUPPORTS&quot; read-only=&quot;true&quot;/&gt;
-        &lt;/tx:attributes&gt;
-&lt;/tx:advice&gt;
-
-&lt;aop:config&gt;
-    &lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut=&quot;execution(* com.me.service.*.*(..))&quot;/&gt;
-&lt;/aop:config&gt;
-</code></pre><p>注解扫描配置：</p>
-<pre><code>&lt;bean id=&quot;transactionManager&quot;  
-class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;  
-&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot; /&gt;  
-&lt;/bean&gt;  
-&lt;!--使用注释事务 --&gt;  
-&lt;tx:annotation-driven  transaction-manager=&quot;transactionManager&quot; /&gt;
-</code></pre><hr>
-<p>检验无误后我又认为是字符串不够长，把数据库的text类型改为mediumtext类型</p>
-<pre><code>ALTER TABLE tableName modify column columnName 类型
-</code></pre><p>发现还是没用，问题依然不出在这。</p>
-<p>网上说现在不推荐使用text类型，建议改为varchar(MAX)类型，于是我又尝试，发现mysql里没有该类型。</p>
-<hr>
-<h2 id="最终"><a href="#最终" class="headerlink" title="最终"></a>最终</h2><p>最后终于发现，mybatis对于text这些大文本类型，有特殊的操作方法接口。在逆向工程生成的方法里，有一些方法后面带有WithBloBs字样，这些就是针对这些类型的方法。</p>
-<p><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwjdmuerbcj309x00ma9u.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwjdnupkygj30bw00rjr6.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwjdon8yb8j30jk00sdfo.jpg" alt=""></p>
-<p>使用这些方法后，终于成功。</p>
-<p>其中xml中的实现如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fwjdpyqowxj30gf033t8s.jpg" alt=""></p>
-<hr>
+      		<h1 id="狗男人欠小宝贝的流水账"><a href="#狗男人欠小宝贝的流水账" class="headerlink" title="狗男人欠小宝贝的流水账"></a>狗男人欠小宝贝的流水账</h1><h2 id="2019-3-24"><a href="#2019-3-24" class="headerlink" title="2019-3-24"></a>2019-3-24</h2><p>电影一场</p>
+<h2 id="2019-3-25"><a href="#2019-3-25" class="headerlink" title="2019-3-25"></a>2019-3-25</h2><p>生日一次</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2018/10/24/【ajax】请求服务器-参数双向传递/" style="float: left;">
-        ← 【ajax】请求服务器+参数双向传递
-    </a>
     
-    
-    <a class="pull-right" href="/2018/10/22/图片的上传和下载以及存入数据库/">
-        图片的上传和下载以及存入数据库 →
+    <a class="pull-right" href="/2019/03/21/【vue】引入ECharts图表和组件/">
+        【vue】引入ECharts图表和组件 →
     </a>
     
 </nav>
