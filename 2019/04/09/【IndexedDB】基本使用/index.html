@@ -240,7 +240,8 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>IndexedDB 是一种可以让你在用户的浏览器内持久化存储数据的方法。IndexedDB 为生成 Web Application 提供了丰富的查询能力，使我们的应用在在线和离线时都可以正常工作。</p>
+      		<p>本文来源：本人在使用网页的StackEdit时，发现这东西不用网络，不用登陆，也能保存所有写过的文章，那么这些文章存在哪了呢？Cookie？LocalStorage？好像都不适合存太长的数据，然后发现了IndexedDB这个东西，随后对其进行了探索。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>IndexedDB 是一种可以让你在用户的浏览器内持久化存储数据的方法。IndexedDB 为生成 Web Application 提供了丰富的查询能力，使我们的应用在在线和离线时都可以正常工作。</p>
 <h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="创建数据库表以及索引"><a href="#创建数据库表以及索引" class="headerlink" title="创建数据库表以及索引"></a>创建数据库表以及索引</h2><p>不同于关系型数据库，IndexedDB使用键值对的方式存储数据，且支持灵活的数据类型。结构如下图。<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1wgpqw5doj30v60h5426.jpg" alt=""></p>
 <p>上图为我用来写MarkDown的StackEdit在本地存储的数据库表，可以看到其是采用键值对的方式存储数据的，Key列是Value列里抽取的某一属性的值，#可以用来生成自动增长的主键。</p>
 <p>创建一个简单的数据库表代码内容如下。（可以通过<a href="http://www.runoob.com/try/try.php?filename=tryjs_regexp_exec" target="_blank" rel="noopener">菜鸟在线工具练习使用</a>）</p>
