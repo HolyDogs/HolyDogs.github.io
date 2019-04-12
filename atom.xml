@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-04-12T03:46:45.871Z</updated>
+  <updated>2019-04-12T06:42:50.858Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://xfff.xyz/2019/04/12/%E3%80%90SpringBoot%E3%80%91%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%8ECron%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     <id>http://xfff.xyz/2019/04/12/【SpringBoot】定时任务与Cron表达式/</id>
     <published>2019-04-12T03:45:07.000Z</published>
-    <updated>2019-04-12T03:46:45.871Z</updated>
+    <updated>2019-04-12T06:42:50.858Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="SpringBoot定时器"><a href="#SpringBoot定时器" class="headerlink" title="SpringBoot定时器"></a>SpringBoot定时器</h1><p>SpringBoot自带定时器功能，若不考虑重复启动定时任务以及并发带来的问题，可以选择这种方式来简单快速地定义定时器。</p><p>使用时只需要在声明定时任务的类或者启动类上添加注解@EnableScheduling配合使用在方法上的@Scheduled注解就能简单定义一个定时任务</p><p>在启动类上加@EnableScheduling可以方便对所有任务进行开启和关闭</p><p>在声明定时任务的类上需要加@Component将该类实例化到Spring容器中，才能被扫描到类里的定时任务。</p><p>在方法上添加@Scheduled注解添加参数设置定时策略，有两种设置方式</p><h2 id="1-fixedRate"><a href="#1-fixedRate" class="headerlink" title="1.fixedRate"></a>1.fixedRate</h2><p>这种方式适合不指定特定时间，间歇一段时间就执行一次的情况，功能较弱。</p><h2 id="2-cron表达式"><a href="#2-cron表达式" class="headerlink" title="2.cron表达式"></a>2.cron表达式</h2><p>可以指定什么时候触发、多久触发一次等，功能较强大，需要使用特定的表达式。</p><hr><p><strong>两种方式使用如下：</strong></p><pre><code>@Component@Slf4jpublic class MyScheduledTask {    @Scheduled(fixedRate = 1000 * 5)    public void bootSchedule(){        log.info(&quot;SpringBoot自带定时器fixedRate5s启动：{}&quot;,LocalDateTime.now());    }    @Scheduled(cron = &quot;10/10 * * * * ?&quot;)    public void bootScheduleCron(){        log.info(&quot;SpringBoot自带Cron定时器fixedRate10s启动：{}&quot;, LocalDateTime.now().toString());    }}</code></pre><ul><li>上面的方法表示每5秒该任务会执行一次</li><li>下面的方法则表示任务会从每分钟的第10秒开始，每10秒执行一次</li></ul><p>运行效果如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zoaoxn1uj30rv07p40a.jpg" alt=""></p><p><strong>为什么上面的5条中，5秒运行一次的任务连续执行了4次而10秒的任务没有运行呢？</strong><br>原因是，当50秒时，运行10秒后进入到下一分钟的范围，而该任务指定从每分钟的第10秒开始运行，所以这次不会调用该任务。</p><h2 id="Cron表达式介绍"><a href="#Cron表达式介绍" class="headerlink" title="Cron表达式介绍"></a>Cron表达式介绍</h2><p>cron表达式有6或7个域，中间以逗号分隔，理解也比较简单，每个域顺序表示的意义如下<br>|1|2|3|4|5|6|7（可省略）|<br>|——–|———–|——|——————|——————-|——–|———|<br>|秒|分钟|时|一个月的第几天|一年的第几个月|周几| 年份(可选)|<br>|,-<em>/|,-</em>/|,-<em>/|,-</em>?/LWC|,-<em>/|,-</em>?/LC#|,-*/|</p><ul><li><p><strong>每个符号的含义</strong></p><p>  |符号|含义|<br> |—————–|——————–|<br>  |,|枚举|<br>  |-|表示范围|<br>  |<em>|任何，每|<br>  |/|a/b表示从a开始每隔b时间触发一次|<br>  |?|因为第几天可能会和周几冲突，因此他们在表示时需要有一方使用？表示</em>的意义|<br>  |L|表示最后一个，如每月最后一天每月最后一个周几|<br>  |W|表示有效工作日（周一到周五），如果该日是双休，会选择最近的工作日，且该选择不会跨月份|<br>  |#|a#b表示在每月的第b个 星期（a-1）|</p></li></ul><p><strong>注意：每周的第一天是周日</strong></p><hr><p>情景测试，我想让一个任务在2019到2020年每月的第3个周三的晚上6点的第20分开始，每5分钟的第30秒执行一次</p><pre><code>30 20/5 18 ? * 4#3 2019-2020</code></pre>]]></content>
+    <content type="html"><![CDATA[<h1 id="SpringBoot定时器"><a href="#SpringBoot定时器" class="headerlink" title="SpringBoot定时器"></a>SpringBoot定时器</h1><p>SpringBoot自带定时器功能，若不考虑重复启动定时任务以及并发带来的问题，可以选择这种方式来简单快速地定义定时器。</p><p>使用时只需要在声明定时任务的类或者启动类上添加注解@EnableScheduling配合使用在方法上的@Scheduled注解就能简单定义一个定时任务</p><p>在启动类上加@EnableScheduling可以方便对所有任务进行开启和关闭</p><p>在声明定时任务的类上需要加@Component将该类实例化到Spring容器中，才能被扫描到类里的定时任务。</p><p>在方法上添加@Scheduled注解添加参数设置定时策略，有两种设置方式</p><h2 id="1-fixedRate"><a href="#1-fixedRate" class="headerlink" title="1.fixedRate"></a>1.fixedRate</h2><p>这种方式适合不指定特定时间，间歇一段时间就执行一次的情况，功能较弱。</p><h2 id="2-cron表达式"><a href="#2-cron表达式" class="headerlink" title="2.cron表达式"></a>2.cron表达式</h2><p>可以指定什么时候触发、多久触发一次等，功能较强大，需要使用特定的表达式。</p><hr><p><strong>两种方式使用如下：</strong></p><pre><code>@Component@Slf4jpublic class MyScheduledTask {    @Scheduled(fixedRate = 1000 * 5)    public void bootSchedule(){        log.info(&quot;SpringBoot自带定时器fixedRate5s启动：{}&quot;,LocalDateTime.now());    }    @Scheduled(cron = &quot;10/10 * * * * ?&quot;)    public void bootScheduleCron(){        log.info(&quot;SpringBoot自带Cron定时器fixedRate10s启动：{}&quot;, LocalDateTime.now().toString());    }}</code></pre><ul><li>上面的方法表示每5秒该任务会执行一次</li><li>下面的方法则表示任务会从每分钟的第10秒开始，每10秒执行一次</li></ul><p>运行效果如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zoaoxn1uj30rv07p40a.jpg" alt=""></p><p><strong>为什么上面的5条中，5秒运行一次的任务连续执行了4次而10秒的任务没有运行呢？</strong><br>原因是，当50秒时，运行10秒后进入到下一分钟的范围，而该任务指定从每分钟的第10秒开始运行，所以这次不会调用该任务。</p><h2 id="Cron表达式介绍"><a href="#Cron表达式介绍" class="headerlink" title="Cron表达式介绍"></a>Cron表达式介绍</h2><p>cron表达式有6或7个域，中间以逗号分隔，理解也比较简单，每个域顺序表示的意义如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zugibc32j30l504kaa7.jpg" alt=""></p><ul><li><p><strong>每个符号的含义</strong></p><p> <img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zuh44kq2j30oi0ev3zj.jpg" alt=""></p></li></ul><p><strong>注意：每周的第一天是周日</strong></p><hr><p>情景测试，我想让一个任务在2019到2020年每月的第3个周三的晚上6点的第20分开始，每5分钟的第30秒执行一次</p><pre><code>30 20/5 18 ? * 4#3 2019-2020</code></pre>]]></content>
     
     <summary type="html">
     
@@ -478,9 +478,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="js" scheme="http://xfff.xyz/tags/js/"/>
-    
       <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
+    
+      <category term="js" scheme="http://xfff.xyz/tags/js/"/>
     
   </entry>
   

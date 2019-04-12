@@ -269,10 +269,10 @@ public class MyScheduledTask {
 </ul>
 <p>运行效果如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zoaoxn1uj30rv07p40a.jpg" alt=""></p>
 <p><strong>为什么上面的5条中，5秒运行一次的任务连续执行了4次而10秒的任务没有运行呢？</strong><br>原因是，当50秒时，运行10秒后进入到下一分钟的范围，而该任务指定从每分钟的第10秒开始运行，所以这次不会调用该任务。</p>
-<h2 id="Cron表达式介绍"><a href="#Cron表达式介绍" class="headerlink" title="Cron表达式介绍"></a>Cron表达式介绍</h2><p>cron表达式有6或7个域，中间以逗号分隔，理解也比较简单，每个域顺序表示的意义如下<br>|1|2|3|4|5|6|7（可省略）|<br>|——–|———–|——|——————|——————-|——–|———|<br>|秒|分钟|时|一个月的第几天|一年的第几个月|周几| 年份(可选)|<br>|,-<em>/|,-</em>/|,-<em>/|,-</em>?/LWC|,-<em>/|,-</em>?/LC#|,-*/|</p>
+<h2 id="Cron表达式介绍"><a href="#Cron表达式介绍" class="headerlink" title="Cron表达式介绍"></a>Cron表达式介绍</h2><p>cron表达式有6或7个域，中间以逗号分隔，理解也比较简单，每个域顺序表示的意义如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zugibc32j30l504kaa7.jpg" alt=""></p>
 <ul>
 <li><p><strong>每个符号的含义</strong></p>
-<p>  |符号|含义|<br> |—————–|——————–|<br>  |,|枚举|<br>  |-|表示范围|<br>  |<em>|任何，每|<br>  |/|a/b表示从a开始每隔b时间触发一次|<br>  |?|因为第几天可能会和周几冲突，因此他们在表示时需要有一方使用？表示</em>的意义|<br>  |L|表示最后一个，如每月最后一天每月最后一个周几|<br>  |W|表示有效工作日（周一到周五），如果该日是双休，会选择最近的工作日，且该选择不会跨月份|<br>  |#|a#b表示在每月的第b个 星期（a-1）|</p>
+<p> <img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zuh44kq2j30oi0ev3zj.jpg" alt=""></p>
 </li>
 </ul>
 <p><strong>注意：每周的第一天是周日</strong></p>
