@@ -99,7 +99,7 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
-				    <li><a href="/categories/SpringBoot/" class="animsition-link">SpringBoot<small>(2)</small></a></li>
+				    <li><a href="/categories/SpringBoot/" class="animsition-link">SpringBoot<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/ajax/" class="animsition-link">ajax<small>(2)</small></a></li>
 				    
@@ -249,6 +249,46 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/04/12/【SpringBoot】定时任务与Cron表达式/">【SpringBoot】定时任务与Cron表达式</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-04-12T03:45:07.000Z" itemprop="datePublished">
+          2019-04-12
+      </time>
+    
+    
+    | 
+    <a href='/tags/cron/'>cron</a>,
+    
+    <a href='/tags/定时任务/'>定时任务</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        SpringBoot定时器SpringBoot自带定时器功能，若不考虑重复启动定时任务以及并发带来的问题，可以选择这种方式来简单快速地定义定时器。
+使用时只需要在声明定时任务的类或者启动类上添加注解@EnableScheduling配合使用在方法上的@Scheduled注解就能简单定义一个定时任务
+在启动类上加@EnableScheduling可以方便对所有任务进行开启和关闭
+在声明定时任务的类上需要加@Component将该类实例化到
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/04/12/【SpringBoot】定时任务与Cron表达式/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -522,48 +562,6 @@ this.$router.go(n)
                     
                     <p class="pull-right readMore">
                         <a href="/2019/03/09/【vue】关于push、replace、和go的使用问题/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/03/05/【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法/">【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-03-05T03:53:03.000Z" itemprop="datePublished">
-          2019-03-05
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>,
-    
-    <a href='/tags/error/'>error</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        在使用mybatis对数据库进行查询然后返回一个map类型的时候，如果某一列的值为空
-那么返回的map里是会没有这个值对应的列的key，也就是map的容量会比预期小，很容易出一些问题
-我在前端对传来的map遍历存入table时，由于缺少一些key，导致后面的列往前面推，使表格混乱
-为了解决这个问题，我先是找到了这篇博客,分析了一下mybatis给map类型赋值的过程
-
-https://blog.csdn.net/zdazx/articl
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/03/05/【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法/">Read More...</a>
                     </p>
                     
                 </div>

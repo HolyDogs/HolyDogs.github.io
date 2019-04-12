@@ -99,7 +99,7 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
-				    <li><a href="/categories/SpringBoot/" class="animsition-link">SpringBoot<small>(2)</small></a></li>
+				    <li><a href="/categories/SpringBoot/" class="animsition-link">SpringBoot<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/ajax/" class="animsition-link">ajax<small>(2)</small></a></li>
 				    
@@ -262,7 +262,7 @@ log4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - %m%n
 </code></pre><p>然后使用</p>
 <pre><code>LOGGER.info、warn、error(xxxx)
 </code></pre><p>之类的</p>
-<h2 id="注解方式"><a href="#注解方式" class="headerlink" title="注解方式"></a>注解方式</h2><p>只需要在需要使用的类上加上</p>
+<h2 id="注解方式"><a href="#注解方式" class="headerlink" title="注解方式"></a>注解方式</h2><p>只需要在需要使用的类上加上（需要提前引入lombok依赖）</p>
 <pre><code>@Slf4j
 </code></pre><p>然后在使用时</p>
 <pre><code>log.info、warn....(xxxx)

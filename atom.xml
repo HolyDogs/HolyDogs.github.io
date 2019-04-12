@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-04-09T08:58:55.690Z</updated>
+  <updated>2019-04-12T03:46:45.871Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【SpringBoot】定时任务与Cron表达式</title>
+    <link href="http://xfff.xyz/2019/04/12/%E3%80%90SpringBoot%E3%80%91%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%8ECron%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://xfff.xyz/2019/04/12/【SpringBoot】定时任务与Cron表达式/</id>
+    <published>2019-04-12T03:45:07.000Z</published>
+    <updated>2019-04-12T03:46:45.871Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="SpringBoot定时器"><a href="#SpringBoot定时器" class="headerlink" title="SpringBoot定时器"></a>SpringBoot定时器</h1><p>SpringBoot自带定时器功能，若不考虑重复启动定时任务以及并发带来的问题，可以选择这种方式来简单快速地定义定时器。</p><p>使用时只需要在声明定时任务的类或者启动类上添加注解@EnableScheduling配合使用在方法上的@Scheduled注解就能简单定义一个定时任务</p><p>在启动类上加@EnableScheduling可以方便对所有任务进行开启和关闭</p><p>在声明定时任务的类上需要加@Component将该类实例化到Spring容器中，才能被扫描到类里的定时任务。</p><p>在方法上添加@Scheduled注解添加参数设置定时策略，有两种设置方式</p><h2 id="1-fixedRate"><a href="#1-fixedRate" class="headerlink" title="1.fixedRate"></a>1.fixedRate</h2><p>这种方式适合不指定特定时间，间歇一段时间就执行一次的情况，功能较弱。</p><h2 id="2-cron表达式"><a href="#2-cron表达式" class="headerlink" title="2.cron表达式"></a>2.cron表达式</h2><p>可以指定什么时候触发、多久触发一次等，功能较强大，需要使用特定的表达式。</p><hr><p><strong>两种方式使用如下：</strong></p><pre><code>@Component@Slf4jpublic class MyScheduledTask {    @Scheduled(fixedRate = 1000 * 5)    public void bootSchedule(){        log.info(&quot;SpringBoot自带定时器fixedRate5s启动：{}&quot;,LocalDateTime.now());    }    @Scheduled(cron = &quot;10/10 * * * * ?&quot;)    public void bootScheduleCron(){        log.info(&quot;SpringBoot自带Cron定时器fixedRate10s启动：{}&quot;, LocalDateTime.now().toString());    }}</code></pre><ul><li>上面的方法表示每5秒该任务会执行一次</li><li>下面的方法则表示任务会从每分钟的第10秒开始，每10秒执行一次</li></ul><p>运行效果如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zoaoxn1uj30rv07p40a.jpg" alt=""></p><p><strong>为什么上面的5条中，5秒运行一次的任务连续执行了4次而10秒的任务没有运行呢？</strong><br>原因是，当50秒时，运行10秒后进入到下一分钟的范围，而该任务指定从每分钟的第10秒开始运行，所以这次不会调用该任务。</p><h2 id="Cron表达式介绍"><a href="#Cron表达式介绍" class="headerlink" title="Cron表达式介绍"></a>Cron表达式介绍</h2><p>cron表达式有6或7个域，中间以逗号分隔，理解也比较简单，每个域顺序表示的意义如下<br>|1|2|3|4|5|6|7（可省略）|<br>|——–|———–|——|——————|——————-|——–|———|<br>|秒|分钟|时|一个月的第几天|一年的第几个月|周几| 年份(可选)|<br>|,-<em>/|,-</em>/|,-<em>/|,-</em>?/LWC|,-<em>/|,-</em>?/LC#|,-*/|</p><ul><li><p><strong>每个符号的含义</strong></p><p>  |符号|含义|<br> |—————–|——————–|<br>  |,|枚举|<br>  |-|表示范围|<br>  |<em>|任何，每|<br>  |/|a/b表示从a开始每隔b时间触发一次|<br>  |?|因为第几天可能会和周几冲突，因此他们在表示时需要有一方使用？表示</em>的意义|<br>  |L|表示最后一个，如每月最后一天每月最后一个周几|<br>  |W|表示有效工作日（周一到周五），如果该日是双休，会选择最近的工作日，且该选择不会跨月份|<br>  |#|a#b表示在每月的第b个 星期（a-1）|</p></li></ul><p><strong>注意：每周的第一天是周日</strong></p><hr><p>情景测试，我想让一个任务在2019到2020年每月的第3个周三的晚上6点的第20分开始，每5分钟的第30秒执行一次</p><pre><code>30 20/5 18 ? * 4#3 2019-2020</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;SpringBoot定时器&quot;&gt;&lt;a href=&quot;#SpringBoot定时器&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot定时器&quot;&gt;&lt;/a&gt;SpringBoot定时器&lt;/h1&gt;&lt;p&gt;SpringBoot自带定时器功能，若不考虑重复启动
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
+    
+    
+      <category term="cron" scheme="http://xfff.xyz/tags/cron/"/>
+    
+      <category term="定时任务" scheme="http://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>【IndexedDB】基本使用</title>
@@ -77,9 +104,9 @@
     <link href="http://xfff.xyz/2019/03/20/%E3%80%90java%E3%80%91%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0/"/>
     <id>http://xfff.xyz/2019/03/20/【java】日志打印/</id>
     <published>2019-03-20T08:49:25.000Z</published>
-    <updated>2019-03-20T09:13:12.733Z</updated>
+    <updated>2019-04-11T09:21:38.244Z</updated>
     
-    <content type="html"><![CDATA[<p>日常开发中，想打印某些值的信息时</p><p>总是Syso=&gt;System.out.pringln(xxx)</p><p>然后在代码规范里看到了，禁止使用这种方式打印信息，可以选择日志工具打印查看</p><p>日常使用的工具有log4j、logback、slf4j</p><p>log4j必须配置配置文件log4j.properties，类似下面这样，可以指定打印级别</p><pre><code># Configure logging for testing: optionally with log filelog4j.rootLogger=INFO, stdout # log4j.rootLogger=WARN, stdout, logfilelog4j.appender.stdout=org.apache.log4j.ConsoleAppenderlog4j.appender.stdout.layout=org.apache.log4j.PatternLayoutlog4j.appender.stdout.layout.ConversionPattern=%d %p [%c] - %m%nlog4j.appender.logfile=org.apache.log4j.FileAppenderlog4j.appender.logfile.File=target/spring.loglog4j.appender.logfile.layout=org.apache.log4j.PatternLayoutlog4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - %m%n</code></pre><p>一般log4j会和commons-logging搭配使用</p><p>commons-logging提供一个统一的日志接口，简单了操作，同时避免项目与某个日志实现系统紧密a耦合很贴心的帮我们自动选择适当的日志实现系统（这一点非常好！）它甚至不需要配置</p><p>在使用时，会从classpath查找commons-logging.properties文件</p><p>若找不到，则在查找是否已定义系统环境变量org.apache.commons.logging.Log，找到则使用其定义的Log实现类<br>这样使用</p><pre><code>private static Log log = LogFactory.getLog(YouClassName. class );</code></pre><hr><h2 id="Slf4j"><a href="#Slf4j" class="headerlink" title="Slf4j"></a>Slf4j</h2><p>主要还是用这个打印日志吧<br>不需要配置文件，只需要依赖slf4j-api即可</p><p>然后使用时直接</p><pre><code>private static final Logger LOGGER = LoggerFactory.getLogger(CheckCodeUtills.class);</code></pre><p>然后使用</p><pre><code>LOGGER.info、warn、error(xxxx)</code></pre><p>之类的</p><h2 id="注解方式"><a href="#注解方式" class="headerlink" title="注解方式"></a>注解方式</h2><p>只需要在需要使用的类上加上</p><pre><code>@Slf4j</code></pre><p>然后在使用时</p><pre><code>log.info、warn....(xxxx)</code></pre><p>即可</p><p>另外下面这篇博客说明了slf4j和log4j的好坏</p><blockquote><p><a href="https://www.oschina.net/translate/why-use-sl4j-over-log4j-for-logging" target="_blank" rel="noopener">https://www.oschina.net/translate/why-use-sl4j-over-log4j-for-logging</a></p></blockquote>]]></content>
+    <content type="html"><![CDATA[<p>日常开发中，想打印某些值的信息时</p><p>总是Syso=&gt;System.out.pringln(xxx)</p><p>然后在代码规范里看到了，禁止使用这种方式打印信息，可以选择日志工具打印查看</p><p>日常使用的工具有log4j、logback、slf4j</p><p>log4j必须配置配置文件log4j.properties，类似下面这样，可以指定打印级别</p><pre><code># Configure logging for testing: optionally with log filelog4j.rootLogger=INFO, stdout # log4j.rootLogger=WARN, stdout, logfilelog4j.appender.stdout=org.apache.log4j.ConsoleAppenderlog4j.appender.stdout.layout=org.apache.log4j.PatternLayoutlog4j.appender.stdout.layout.ConversionPattern=%d %p [%c] - %m%nlog4j.appender.logfile=org.apache.log4j.FileAppenderlog4j.appender.logfile.File=target/spring.loglog4j.appender.logfile.layout=org.apache.log4j.PatternLayoutlog4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - %m%n</code></pre><p>一般log4j会和commons-logging搭配使用</p><p>commons-logging提供一个统一的日志接口，简单了操作，同时避免项目与某个日志实现系统紧密a耦合很贴心的帮我们自动选择适当的日志实现系统（这一点非常好！）它甚至不需要配置</p><p>在使用时，会从classpath查找commons-logging.properties文件</p><p>若找不到，则在查找是否已定义系统环境变量org.apache.commons.logging.Log，找到则使用其定义的Log实现类<br>这样使用</p><pre><code>private static Log log = LogFactory.getLog(YouClassName. class );</code></pre><hr><h2 id="Slf4j"><a href="#Slf4j" class="headerlink" title="Slf4j"></a>Slf4j</h2><p>主要还是用这个打印日志吧<br>不需要配置文件，只需要依赖slf4j-api即可</p><p>然后使用时直接</p><pre><code>private static final Logger LOGGER = LoggerFactory.getLogger(CheckCodeUtills.class);</code></pre><p>然后使用</p><pre><code>LOGGER.info、warn、error(xxxx)</code></pre><p>之类的</p><h2 id="注解方式"><a href="#注解方式" class="headerlink" title="注解方式"></a>注解方式</h2><p>只需要在需要使用的类上加上（需要提前引入lombok依赖）</p><pre><code>@Slf4j</code></pre><p>然后在使用时</p><pre><code>log.info、warn....(xxxx)</code></pre><p>即可</p><p>另外下面这篇博客说明了slf4j和log4j的好坏</p><blockquote><p><a href="https://www.oschina.net/translate/why-use-sl4j-over-log4j-for-logging" target="_blank" rel="noopener">https://www.oschina.net/translate/why-use-sl4j-over-log4j-for-logging</a></p></blockquote>]]></content>
     
     <summary type="html">
     
@@ -451,9 +478,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
-    
       <category term="js" scheme="http://xfff.xyz/tags/js/"/>
+    
+      <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
     
   </entry>
   
