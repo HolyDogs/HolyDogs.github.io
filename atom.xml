@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xfff.xyz/"/>
-  <updated>2019-10-30T15:23:12.547Z</updated>
+  <updated>2020-01-06T10:02:27.755Z</updated>
   <id>http://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Docker】docker基本使用</title>
+    <link href="http://xfff.xyz/2020/01/06/%E3%80%90Docker%E3%80%91docker%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>http://xfff.xyz/2020/01/06/【Docker】docker基本使用/</id>
+    <published>2020-01-06T10:00:16.000Z</published>
+    <updated>2020-01-06T10:02:27.755Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="三层概念"><a href="#三层概念" class="headerlink" title="三层概念"></a>三层概念</h2><ul><li><strong>仓库</strong>：类似于Github或者Gitlab，不是保存代码，而是用来保存镜像。（Docker Hub）</li><li><strong>镜像IMAGE</strong>：Docker镜像，相当于一个系统，容器基于镜像的环境运行，例如Ubuntu:14.04（冒号后面表示版本，可以自定义版本号名，如dev、test、prod）</li><li><strong>容器CONTAINER</strong>：容器是镜像运行的实体，可以被创建、启动、停止、删除、暂停等。</li></ul><hr><h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><p>Docker一般都在Linux系统上运行，实际在windows系统上安装时也是虚拟出一个Linux系统环境运行。安装只需要几行命令即可，可见官网文档。<br>需要注意的是windows家庭版安装docker会报错，需要升级到专业版，打开Hype-V功能。</p><h2 id="Docker基本使用"><a href="#Docker基本使用" class="headerlink" title="Docker基本使用"></a>Docker基本使用</h2><pre><code>docker run ubuntu:14.04  /bin/echo &quot;Hello world&quot;</code></pre><p>以上命令表示使用ubuntu14.04的镜像创建一个容器，运行/bin/echo “hello world”的命令，当本地找不到该镜像时，会自动去Docker-Hub下载对应的镜像。</p><p>使用</p><pre><code>docker image lsdocker ps -a</code></pre><p>分别查看docker镜像和容器，不加-a可以查看正在运行的容器。</p><pre><code>docker run -d ubuntu:15.10  /bin/sh -c &quot;while true; do echo hello world; sleep 1; done&quot;</code></pre><p>该行命令创建了一个容器运行后面的shell命令，-d表示在后台运行，此时该容器一只在每隔一秒打印hello world的信息。使用</p><pre><code>docker logs &lt;容器名或者容器id&gt;</code></pre><p>可以查看对应容器打印的信息。</p><pre><code>docker start &lt;容器名或者容器id&gt;docker stop &lt;容器名或者容器id&gt;</code></pre><p>上面两条命令可以启动或者停止容器。</p><pre><code>docker exec -it &lt;容器名或者容器id&gt; /bin/bash</code></pre><p>使用上面的命令可以进入容器查看容器内的文件结构，可以把容器看成是一个单独的操作系统，<strong>cat /proc/version</strong>和<strong>ls</strong>分别查看当前系统的版本信息和当前目录下的文件列表.<br>除了exec进入容器还可以使用attach，但attach进入容器使用exit退出后会自动停止容器，所以建议使用exec进入容器。</p><pre><code>docker pull &lt;镜像&gt;</code></pre><p>我们可以使用该命令从远程下载一个镜像。</p><pre><code>docker export &lt;容器id或者容器名&gt; &gt; xxxx.tar</code></pre><p>上面命令可以把容器导出到本地文件xxxx.tar</p><pre><code>cat docker/ubuntu.tar | docker import  - test/ubuntu:v1</code></pre><p>该命令用于把本地文件导入到test/ubuntu:v1镜像中。</p><pre><code>docker rm &lt;容器id或者容器名&gt;</code></pre><p>该命令用于删除一个容器</p><pre><code>docker rmi &lt;镜像名&gt;</code></pre><p>该命令用于删除一个镜像，删除镜像前需要删除建立在该镜像下的所有容器。</p><h2 id="使用Dockerfile定制镜像"><a href="#使用Dockerfile定制镜像" class="headerlink" title="使用Dockerfile定制镜像"></a>使用Dockerfile定制镜像</h2><p>在宿主机一个空文件夹下创建一个<strong>Dockerfile</strong>文件（非空目录会把目录下的所有文件一起打包到镜像，造成不必要的时间空间的浪费）<br>首先创建一个c语言程序，编译一个打印helloworld的可执行文件。<br><img src="https://s2.ax1x.com/2020/01/06/lsIMIU.png" alt="lsIMIU.png"><br>使用gcc编译后得到hello可执行文件，然后对Dockerfile进行编辑输入</p><p><img src="https://s2.ax1x.com/2020/01/06/lsIyQA.png" alt="lsIyQA.png"></p><p>FROM表示使用ubuntu:14.04的镜像，ADD表示将当前目录下的hello文件复制到容器内的/mydir/目录下，CMD则表示执行容器内该目录下的程序。</p><p>使用该Dockerfile创建镜像并运行如下：</p><p><img src="https://s2.ax1x.com/2020/01/06/lsoEFO.png" alt="lsoEFO.png"><br>上面的ADD可以替换成COPY，CMD可以替换成RUN，COPY表示复制文件但是不解压，而ADD会自动对压缩文件进行解压然后复制，CMD运行时机为Docker run，而RUN则为docker build。<br>此外，还有很多Dockerfile的命令，可见:</p><blockquote><p><a href="https://www.runoob.com/docker/docker-dockerfile.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-dockerfile.html</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;三层概念&quot;&gt;&lt;a href=&quot;#三层概念&quot; class=&quot;headerlink&quot; title=&quot;三层概念&quot;&gt;&lt;/a&gt;三层概念&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;仓库&lt;/strong&gt;：类似于Github或者Gitlab，不是保存代码，而是用来保存镜像。（D
+      
+    
+    </summary>
+    
+      <category term="docker" scheme="http://xfff.xyz/categories/docker/"/>
+    
+    
+      <category term="linux" scheme="http://xfff.xyz/tags/linux/"/>
+    
+      <category term="docker" scheme="http://xfff.xyz/tags/docker/"/>
+    
+  </entry>
   
   <entry>
     <title>我搬砖回来了~</title>
@@ -779,11 +807,11 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
     
     
+      <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
+    
       <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
     
       <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
-    
-      <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
     
   </entry>
   
