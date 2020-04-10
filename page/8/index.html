@@ -105,7 +105,7 @@
 				    
 				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(3)</small></a></li>
+				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(4)</small></a></li>
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
@@ -120,6 +120,8 @@
 				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/ssm/" class="animsition-link">ssm<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/swagger/" class="animsition-link">swagger<small>(1)</small></a></li>
 				    
 				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(1)</small></a></li>
 				    
@@ -251,6 +253,93 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2018/10/24/【ajax】请求服务器-参数双向传递/">【ajax】请求服务器+参数双向传递</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-10-24T09:02:07.000Z" itemprop="datePublished">
+          2018-10-24
+      </time>
+    
+    
+    | 
+    <a href='/tags/ajax/'>ajax</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+Ajax可以对服务器发送异步请求，从而在不刷新整个页面的情况下局部刷新页面。
+
+ 1. GET方式
+$(document).ready(function(){
+
+    $(&quot;#btnsub&quot;).click(function(){
+        var xmlhttp,cardId,date;
+        cardId=$(&quot;#cardId&quot;).val();
+        date=$(
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/10/24/【ajax】请求服务器-参数双向传递/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2018/10/24/mybatis操作text等长文本类型/">mybatis操作text等长文本类型</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-10-24T06:41:17.000Z" itemprop="datePublished">
+          2018-10-24
+      </time>
+    
+    
+    | 
+    <a href='/tags/mybatis/'>mybatis</a>,
+    
+    <a href='/tags/图片/'>图片</a>,
+    
+    <a href='/tags/数据库/'>数据库</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+在实现将图片以base64编码为字符串存入数据库时，我遇到了这个问题。由于字符串过长，创建表时我用text类型来存放图片对应的base64编码字符串。
+
+最初，我以为是事务配置有问题，导致对表数据修改没有提交，在我试了各种配置方法。
+&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceT
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/10/24/mybatis操作text等长文本类型/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -526,97 +615,6 @@ Markdown设计：
                     
                     <p class="pull-right readMore">
                         <a href="/2018/10/10/【好用的工具合集】/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/03/【Error集合】/">【Error集合】</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-03T09:02:07.000Z" itemprop="datePublished">
-          2018-10-03
-      </time>
-    
-    
-    | 
-    <a href='/tags/errors/'>errors</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        Struts2
-Struts2配置问题java.lang.ClassNotFoundException:org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
-动态通配符配置Action出错  
-动态调用action  
-关于struts2配置struts.devMode问题解释  
-
-
-Spring
-org.springframework.web.co
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/03/【Error集合】/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/03/【数据结构】基础结构实现集合/">【数据结构】基础结构实现集合</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-03T09:02:07.000Z" itemprop="datePublished">
-          2018-10-03
-      </time>
-    
-    
-    | 
-    <a href='/tags/数据结构/'>数据结构</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        一些我早期学数据结构的时候用C++实现的代码。指针在实现上比较方便
-
-(1)栈#include&lt;iostream&gt;
-
-using namespace std;
-
-#define OK 1
-#define ERROR 0
-
-typedef int SElemType;
-typedef struct StackNode{
-    SElemType data;
-    struct StackNode *next;
-}Stack
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/03/【数据结构】基础结构实现集合/">Read More...</a>
                     </p>
                     
                 </div>
