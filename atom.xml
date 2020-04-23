@@ -5,9 +5,9 @@
   <subtitle>BLOG</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://xfff.xyz/"/>
+  <link href="https://xfff.xyz/"/>
   <updated>2020-04-09T07:21:45.056Z</updated>
-  <id>http://xfff.xyz/</id>
+  <id>https://xfff.xyz/</id>
   
   <author>
     <name>XFF</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>【maven】maven使用中遇到的问题记录</title>
-    <link href="http://xfff.xyz/2020/04/09/%E3%80%90maven%E3%80%91maven%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
-    <id>http://xfff.xyz/2020/04/09/【maven】maven使用中遇到的问题记录/</id>
+    <link href="https://xfff.xyz/2020/04/09/%E3%80%90maven%E3%80%91maven%E4%BD%BF%E7%94%A8%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
+    <id>https://xfff.xyz/2020/04/09/【maven】maven使用中遇到的问题记录/</id>
     <published>2020-04-09T07:20:35.000Z</published>
     <updated>2020-04-09T07:21:45.056Z</updated>
     
@@ -35,17 +35,17 @@
     
     </summary>
     
-      <category term="errors" scheme="http://xfff.xyz/categories/errors/"/>
+      <category term="errors" scheme="https://xfff.xyz/categories/errors/"/>
     
     
-      <category term="maven" scheme="http://xfff.xyz/tags/maven/"/>
+      <category term="maven" scheme="https://xfff.xyz/tags/maven/"/>
     
   </entry>
   
   <entry>
     <title>【swagger-ui】通过注解生成api文档</title>
-    <link href="http://xfff.xyz/2020/04/09/%E3%80%90swagger-ui%E3%80%91%E9%80%9A%E8%BF%87%E6%B3%A8%E8%A7%A3%E7%94%9F%E6%88%90api%E6%96%87%E6%A1%A3/"/>
-    <id>http://xfff.xyz/2020/04/09/【swagger-ui】通过注解生成api文档/</id>
+    <link href="https://xfff.xyz/2020/04/09/%E3%80%90swagger-ui%E3%80%91%E9%80%9A%E8%BF%87%E6%B3%A8%E8%A7%A3%E7%94%9F%E6%88%90api%E6%96%87%E6%A1%A3/"/>
+    <id>https://xfff.xyz/2020/04/09/【swagger-ui】通过注解生成api文档/</id>
     <published>2020-04-09T00:44:14.000Z</published>
     <updated>2020-04-09T00:46:38.348Z</updated>
     
@@ -61,17 +61,17 @@
     
     </summary>
     
-      <category term="swagger" scheme="http://xfff.xyz/categories/swagger/"/>
+      <category term="swagger" scheme="https://xfff.xyz/categories/swagger/"/>
     
     
-      <category term="api文档" scheme="http://xfff.xyz/tags/api%E6%96%87%E6%A1%A3/"/>
+      <category term="api文档" scheme="https://xfff.xyz/tags/api%E6%96%87%E6%A1%A3/"/>
     
   </entry>
   
   <entry>
     <title>【Docker】docker基本使用</title>
-    <link href="http://xfff.xyz/2020/01/06/%E3%80%90Docker%E3%80%91docker%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2020/01/06/【Docker】docker基本使用/</id>
+    <link href="https://xfff.xyz/2020/01/06/%E3%80%90Docker%E3%80%91docker%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2020/01/06/【Docker】docker基本使用/</id>
     <published>2020-01-06T10:00:16.000Z</published>
     <updated>2020-01-06T10:02:27.755Z</updated>
     
@@ -87,19 +87,19 @@
     
     </summary>
     
-      <category term="docker" scheme="http://xfff.xyz/categories/docker/"/>
+      <category term="docker" scheme="https://xfff.xyz/categories/docker/"/>
     
     
-      <category term="linux" scheme="http://xfff.xyz/tags/linux/"/>
+      <category term="linux" scheme="https://xfff.xyz/tags/linux/"/>
     
-      <category term="docker" scheme="http://xfff.xyz/tags/docker/"/>
+      <category term="docker" scheme="https://xfff.xyz/tags/docker/"/>
     
   </entry>
   
   <entry>
     <title>我搬砖回来了~</title>
-    <link href="http://xfff.xyz/2019/08/20/%E6%88%91%E6%90%AC%E7%A0%96%E5%9B%9E%E6%9D%A5%E4%BA%86/"/>
-    <id>http://xfff.xyz/2019/08/20/我搬砖回来了/</id>
+    <link href="https://xfff.xyz/2019/08/20/%E6%88%91%E6%90%AC%E7%A0%96%E5%9B%9E%E6%9D%A5%E4%BA%86/"/>
+    <id>https://xfff.xyz/2019/08/20/我搬砖回来了/</id>
     <published>2019-08-20T09:58:03.000Z</published>
     <updated>2019-10-30T15:23:12.547Z</updated>
     
@@ -116,15 +116,15 @@
     
     </summary>
     
-      <category term="杂记" scheme="http://xfff.xyz/categories/%E6%9D%82%E8%AE%B0/"/>
+      <category term="杂记" scheme="https://xfff.xyz/categories/%E6%9D%82%E8%AE%B0/"/>
     
     
   </entry>
   
   <entry>
     <title>【SpringBoot】定时任务与Cron表达式</title>
-    <link href="http://xfff.xyz/2019/04/12/%E3%80%90SpringBoot%E3%80%91%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%8ECron%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    <id>http://xfff.xyz/2019/04/12/【SpringBoot】定时任务与Cron表达式/</id>
+    <link href="https://xfff.xyz/2019/04/12/%E3%80%90SpringBoot%E3%80%91%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%8ECron%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>https://xfff.xyz/2019/04/12/【SpringBoot】定时任务与Cron表达式/</id>
     <published>2019-04-12T03:45:07.000Z</published>
     <updated>2019-04-12T06:42:50.858Z</updated>
     
@@ -139,19 +139,19 @@
     
     </summary>
     
-      <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
+      <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="cron" scheme="http://xfff.xyz/tags/cron/"/>
+      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
     
-      <category term="定时任务" scheme="http://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     
   </entry>
   
   <entry>
     <title>【IndexedDB】基本使用</title>
-    <link href="http://xfff.xyz/2019/04/09/%E3%80%90IndexedDB%E3%80%91%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2019/04/09/【IndexedDB】基本使用/</id>
+    <link href="https://xfff.xyz/2019/04/09/%E3%80%90IndexedDB%E3%80%91%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2019/04/09/【IndexedDB】基本使用/</id>
     <published>2019-04-09T08:52:02.000Z</published>
     <updated>2019-04-09T08:58:55.690Z</updated>
     
@@ -167,19 +167,19 @@
     
     </summary>
     
-      <category term="数据库" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="js" scheme="http://xfff.xyz/tags/js/"/>
+      <category term="js" scheme="https://xfff.xyz/tags/js/"/>
     
-      <category term="前端" scheme="http://xfff.xyz/tags/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
   <entry>
     <title>【vue】引入ECharts图表和组件</title>
-    <link href="http://xfff.xyz/2019/03/21/%E3%80%90vue%E3%80%91%E5%BC%95%E5%85%A5ECharts%E5%9B%BE%E8%A1%A8%E5%92%8C%E7%BB%84%E4%BB%B6/"/>
-    <id>http://xfff.xyz/2019/03/21/【vue】引入ECharts图表和组件/</id>
+    <link href="https://xfff.xyz/2019/03/21/%E3%80%90vue%E3%80%91%E5%BC%95%E5%85%A5ECharts%E5%9B%BE%E8%A1%A8%E5%92%8C%E7%BB%84%E4%BB%B6/"/>
+    <id>https://xfff.xyz/2019/03/21/【vue】引入ECharts图表和组件/</id>
     <published>2019-03-21T07:20:37.000Z</published>
     <updated>2019-03-26T07:26:11.549Z</updated>
     
@@ -197,17 +197,17 @@
     
     </summary>
     
-      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="echarts" scheme="http://xfff.xyz/tags/echarts/"/>
+      <category term="echarts" scheme="https://xfff.xyz/tags/echarts/"/>
     
   </entry>
   
   <entry>
     <title>【java】日志打印</title>
-    <link href="http://xfff.xyz/2019/03/20/%E3%80%90java%E3%80%91%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0/"/>
-    <id>http://xfff.xyz/2019/03/20/【java】日志打印/</id>
+    <link href="https://xfff.xyz/2019/03/20/%E3%80%90java%E3%80%91%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0/"/>
+    <id>https://xfff.xyz/2019/03/20/【java】日志打印/</id>
     <published>2019-03-20T08:49:25.000Z</published>
     <updated>2019-04-11T09:21:38.244Z</updated>
     
@@ -225,15 +225,15 @@
     
     </summary>
     
-      <category term="java" scheme="http://xfff.xyz/categories/java/"/>
+      <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
   </entry>
   
   <entry>
     <title>【shiro】shiro整合redis保存session以及RememberMe探索</title>
-    <link href="http://xfff.xyz/2019/03/20/%E3%80%90shiro%E3%80%91shiro%E6%95%B4%E5%90%88redis%E4%BF%9D%E5%AD%98session%E4%BB%A5%E5%8F%8ARememberMe%E6%8E%A2%E7%B4%A2/"/>
-    <id>http://xfff.xyz/2019/03/20/【shiro】shiro整合redis保存session以及RememberMe探索/</id>
+    <link href="https://xfff.xyz/2019/03/20/%E3%80%90shiro%E3%80%91shiro%E6%95%B4%E5%90%88redis%E4%BF%9D%E5%AD%98session%E4%BB%A5%E5%8F%8ARememberMe%E6%8E%A2%E7%B4%A2/"/>
+    <id>https://xfff.xyz/2019/03/20/【shiro】shiro整合redis保存session以及RememberMe探索/</id>
     <published>2019-03-20T02:10:36.000Z</published>
     <updated>2019-03-20T02:39:00.728Z</updated>
     
@@ -250,17 +250,17 @@
     
     </summary>
     
-      <category term="shiro" scheme="http://xfff.xyz/categories/shiro/"/>
+      <category term="shiro" scheme="https://xfff.xyz/categories/shiro/"/>
     
     
-      <category term="redis" scheme="http://xfff.xyz/tags/redis/"/>
+      <category term="redis" scheme="https://xfff.xyz/tags/redis/"/>
     
   </entry>
   
   <entry>
     <title>【shiro】SpringBoot整合shiro实例</title>
-    <link href="http://xfff.xyz/2019/03/19/%E3%80%90shiro%E3%80%91SpringBoot%E6%95%B4%E5%90%88shiro%E5%AE%9E%E4%BE%8B/"/>
-    <id>http://xfff.xyz/2019/03/19/【shiro】SpringBoot整合shiro实例/</id>
+    <link href="https://xfff.xyz/2019/03/19/%E3%80%90shiro%E3%80%91SpringBoot%E6%95%B4%E5%90%88shiro%E5%AE%9E%E4%BE%8B/"/>
+    <id>https://xfff.xyz/2019/03/19/【shiro】SpringBoot整合shiro实例/</id>
     <published>2019-03-19T08:59:37.000Z</published>
     <updated>2019-03-19T09:41:08.792Z</updated>
     
@@ -275,17 +275,17 @@
     
     </summary>
     
-      <category term="shiro" scheme="http://xfff.xyz/categories/shiro/"/>
+      <category term="shiro" scheme="https://xfff.xyz/categories/shiro/"/>
     
     
-      <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
+      <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     
   </entry>
   
   <entry>
     <title>【shiro】初识shiro身份与权限验证</title>
-    <link href="http://xfff.xyz/2019/03/18/%E3%80%90shiro%E3%80%91%E5%88%9D%E8%AF%86shiro%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%9D%83%E9%99%90%E9%AA%8C%E8%AF%81/"/>
-    <id>http://xfff.xyz/2019/03/18/【shiro】初识shiro身份与权限验证/</id>
+    <link href="https://xfff.xyz/2019/03/18/%E3%80%90shiro%E3%80%91%E5%88%9D%E8%AF%86shiro%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%9D%83%E9%99%90%E9%AA%8C%E8%AF%81/"/>
+    <id>https://xfff.xyz/2019/03/18/【shiro】初识shiro身份与权限验证/</id>
     <published>2019-03-18T12:10:40.000Z</published>
     <updated>2019-03-18T13:00:40.848Z</updated>
     
@@ -302,15 +302,15 @@
     
     </summary>
     
-      <category term="shiro" scheme="http://xfff.xyz/categories/shiro/"/>
+      <category term="shiro" scheme="https://xfff.xyz/categories/shiro/"/>
     
     
   </entry>
   
   <entry>
     <title>【vue】关于push、replace、和go的使用问题</title>
-    <link href="http://xfff.xyz/2019/03/09/%E3%80%90vue%E3%80%91%E5%85%B3%E4%BA%8Epush%E3%80%81replace%E3%80%81%E5%92%8Cgo%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/"/>
-    <id>http://xfff.xyz/2019/03/09/【vue】关于push、replace、和go的使用问题/</id>
+    <link href="https://xfff.xyz/2019/03/09/%E3%80%90vue%E3%80%91%E5%85%B3%E4%BA%8Epush%E3%80%81replace%E3%80%81%E5%92%8Cgo%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/"/>
+    <id>https://xfff.xyz/2019/03/09/【vue】关于push、replace、和go的使用问题/</id>
     <published>2019-03-09T09:21:32.000Z</published>
     <updated>2019-03-09T09:45:05.183Z</updated>
     
@@ -328,19 +328,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
+      <category term="vue" scheme="https://xfff.xyz/tags/vue/"/>
     
-      <category term="error" scheme="http://xfff.xyz/tags/error/"/>
+      <category term="error" scheme="https://xfff.xyz/tags/error/"/>
     
   </entry>
   
   <entry>
     <title>【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法</title>
-    <link href="http://xfff.xyz/2019/03/05/%E3%80%90SpringBoot%E3%80%91%E4%BD%BF%E7%94%A8mybatis%E6%9F%A5%E8%AF%A2%E8%BF%94%E5%9B%9Emap%E6%97%B6%E7%A9%BA%E5%80%BC%E4%B8%8D%E4%BF%9D%E5%AD%98key%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
-    <id>http://xfff.xyz/2019/03/05/【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法/</id>
+    <link href="https://xfff.xyz/2019/03/05/%E3%80%90SpringBoot%E3%80%91%E4%BD%BF%E7%94%A8mybatis%E6%9F%A5%E8%AF%A2%E8%BF%94%E5%9B%9Emap%E6%97%B6%E7%A9%BA%E5%80%BC%E4%B8%8D%E4%BF%9D%E5%AD%98key%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>https://xfff.xyz/2019/03/05/【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法/</id>
     <published>2019-03-05T03:53:03.000Z</published>
     <updated>2019-03-05T06:47:21.418Z</updated>
     
@@ -357,19 +357,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
+      <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
-      <category term="error" scheme="http://xfff.xyz/tags/error/"/>
+      <category term="error" scheme="https://xfff.xyz/tags/error/"/>
     
   </entry>
   
   <entry>
     <title>关于热部署和切面方法的问题解决</title>
-    <link href="http://xfff.xyz/2019/03/02/%E5%85%B3%E4%BA%8E%E7%83%AD%E9%83%A8%E7%BD%B2%E5%92%8C%E5%88%87%E9%9D%A2%E6%96%B9%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
-    <id>http://xfff.xyz/2019/03/02/关于热部署和切面方法的问题解决/</id>
+    <link href="https://xfff.xyz/2019/03/02/%E5%85%B3%E4%BA%8E%E7%83%AD%E9%83%A8%E7%BD%B2%E5%92%8C%E5%88%87%E9%9D%A2%E6%96%B9%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    <id>https://xfff.xyz/2019/03/02/关于热部署和切面方法的问题解决/</id>
     <published>2019-03-02T05:16:07.000Z</published>
     <updated>2019-03-02T05:33:28.063Z</updated>
     
@@ -385,17 +385,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="errors" scheme="http://xfff.xyz/categories/errors/"/>
+      <category term="errors" scheme="https://xfff.xyz/categories/errors/"/>
     
     
-      <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
+      <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     
   </entry>
   
   <entry>
     <title>【mybatis】利用动态语句动态创建表和列</title>
-    <link href="http://xfff.xyz/2019/02/27/%E3%80%90mybatis%E3%80%91%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%AF%AD%E5%8F%A5%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E8%A1%A8%E5%92%8C%E5%88%97/"/>
-    <id>http://xfff.xyz/2019/02/27/【mybatis】利用动态语句动态创建表和列/</id>
+    <link href="https://xfff.xyz/2019/02/27/%E3%80%90mybatis%E3%80%91%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%AF%AD%E5%8F%A5%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E8%A1%A8%E5%92%8C%E5%88%97/"/>
+    <id>https://xfff.xyz/2019/02/27/【mybatis】利用动态语句动态创建表和列/</id>
     <published>2019-02-27T09:48:25.000Z</published>
     <updated>2019-02-28T01:43:17.646Z</updated>
     
@@ -411,17 +411,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="动态sql" scheme="http://xfff.xyz/tags/%E5%8A%A8%E6%80%81sql/"/>
+      <category term="动态sql" scheme="https://xfff.xyz/tags/%E5%8A%A8%E6%80%81sql/"/>
     
   </entry>
   
   <entry>
     <title>【java】关于replace字符串时特殊字符的坑</title>
-    <link href="http://xfff.xyz/2019/02/25/%E3%80%90java%E3%80%91%E5%85%B3%E4%BA%8Ereplace%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%97%B6%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E7%9A%84%E5%9D%91/"/>
-    <id>http://xfff.xyz/2019/02/25/【java】关于replace字符串时特殊字符的坑/</id>
+    <link href="https://xfff.xyz/2019/02/25/%E3%80%90java%E3%80%91%E5%85%B3%E4%BA%8Ereplace%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%97%B6%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E7%9A%84%E5%9D%91/"/>
+    <id>https://xfff.xyz/2019/02/25/【java】关于replace字符串时特殊字符的坑/</id>
     <published>2019-02-25T08:30:50.000Z</published>
     <updated>2019-02-25T08:31:37.967Z</updated>
     
@@ -440,15 +440,15 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="java" scheme="http://xfff.xyz/categories/java/"/>
+      <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
   </entry>
   
   <entry>
     <title>Tomcat控制台窗口中文乱码</title>
-    <link href="http://xfff.xyz/2019/02/21/Tomcat%E6%8E%A7%E5%88%B6%E5%8F%B0%E7%AA%97%E5%8F%A3%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
-    <id>http://xfff.xyz/2019/02/21/Tomcat控制台窗口中文乱码/</id>
+    <link href="https://xfff.xyz/2019/02/21/Tomcat%E6%8E%A7%E5%88%B6%E5%8F%B0%E7%AA%97%E5%8F%A3%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
+    <id>https://xfff.xyz/2019/02/21/Tomcat控制台窗口中文乱码/</id>
     <published>2019-02-21T07:02:35.000Z</published>
     <updated>2019-02-21T07:12:46.933Z</updated>
     
@@ -465,17 +465,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="tomcat" scheme="http://xfff.xyz/categories/tomcat/"/>
+      <category term="tomcat" scheme="https://xfff.xyz/categories/tomcat/"/>
     
     
-      <category term="乱码" scheme="http://xfff.xyz/tags/%E4%B9%B1%E7%A0%81/"/>
+      <category term="乱码" scheme="https://xfff.xyz/tags/%E4%B9%B1%E7%A0%81/"/>
     
   </entry>
   
   <entry>
     <title>【vue】与springboot后台项目数据交互</title>
-    <link href="http://xfff.xyz/2019/02/16/%E3%80%90vue%E3%80%91%E4%B8%8Espringboot%E5%90%8E%E5%8F%B0%E9%A1%B9%E7%9B%AE%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/"/>
-    <id>http://xfff.xyz/2019/02/16/【vue】与springboot后台项目数据交互/</id>
+    <link href="https://xfff.xyz/2019/02/16/%E3%80%90vue%E3%80%91%E4%B8%8Espringboot%E5%90%8E%E5%8F%B0%E9%A1%B9%E7%9B%AE%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/"/>
+    <id>https://xfff.xyz/2019/02/16/【vue】与springboot后台项目数据交互/</id>
     <published>2019-02-16T15:12:00.000Z</published>
     <updated>2019-03-09T09:24:11.472Z</updated>
     
@@ -491,19 +491,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
+      <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     
-      <category term="axios" scheme="http://xfff.xyz/tags/axios/"/>
+      <category term="axios" scheme="https://xfff.xyz/tags/axios/"/>
     
   </entry>
   
   <entry>
     <title>【vue】整合surveyjs工具生成在线问卷或考试</title>
-    <link href="http://xfff.xyz/2019/01/31/%E3%80%90vue%E3%80%91%E6%95%B4%E5%90%88surveyjs%E5%B7%A5%E5%85%B7%E7%94%9F%E6%88%90%E5%9C%A8%E7%BA%BF%E9%97%AE%E5%8D%B7%E6%88%96%E8%80%83%E8%AF%95/"/>
-    <id>http://xfff.xyz/2019/01/31/【vue】整合surveyjs工具生成在线问卷或考试/</id>
+    <link href="https://xfff.xyz/2019/01/31/%E3%80%90vue%E3%80%91%E6%95%B4%E5%90%88surveyjs%E5%B7%A5%E5%85%B7%E7%94%9F%E6%88%90%E5%9C%A8%E7%BA%BF%E9%97%AE%E5%8D%B7%E6%88%96%E8%80%83%E8%AF%95/"/>
+    <id>https://xfff.xyz/2019/01/31/【vue】整合surveyjs工具生成在线问卷或考试/</id>
     <published>2019-01-31T06:23:29.000Z</published>
     <updated>2019-01-31T09:27:42.000Z</updated>
     
@@ -522,19 +522,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
+      <category term="vue" scheme="https://xfff.xyz/tags/vue/"/>
     
-      <category term="surveyjs" scheme="http://xfff.xyz/tags/surveyjs/"/>
+      <category term="surveyjs" scheme="https://xfff.xyz/tags/surveyjs/"/>
     
   </entry>
   
   <entry>
     <title>vuejs发送异步请求</title>
-    <link href="http://xfff.xyz/2019/01/29/vuejs%E5%8F%91%E9%80%81%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/"/>
-    <id>http://xfff.xyz/2019/01/29/vuejs发送异步请求/</id>
+    <link href="https://xfff.xyz/2019/01/29/vuejs%E5%8F%91%E9%80%81%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82/"/>
+    <id>https://xfff.xyz/2019/01/29/vuejs发送异步请求/</id>
     <published>2019-01-29T08:56:23.000Z</published>
     <updated>2019-01-31T09:25:24.000Z</updated>
     
@@ -551,19 +551,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
+      <category term="vue" scheme="https://xfff.xyz/tags/vue/"/>
     
-      <category term="ajax" scheme="http://xfff.xyz/tags/ajax/"/>
+      <category term="ajax" scheme="https://xfff.xyz/tags/ajax/"/>
     
   </entry>
   
   <entry>
     <title>vuejs总体结构学习</title>
-    <link href="http://xfff.xyz/2019/01/29/vuejs%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://xfff.xyz/2019/01/29/vuejs总体结构学习/</id>
+    <link href="https://xfff.xyz/2019/01/29/vuejs%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://xfff.xyz/2019/01/29/vuejs总体结构学习/</id>
     <published>2019-01-29T07:50:24.000Z</published>
     <updated>2019-01-31T09:25:42.000Z</updated>
     
@@ -580,19 +580,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
+      <category term="vue" scheme="https://xfff.xyz/tags/vue/"/>
     
-      <category term="js" scheme="http://xfff.xyz/tags/js/"/>
+      <category term="js" scheme="https://xfff.xyz/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>【redis】jedis使用</title>
-    <link href="http://xfff.xyz/2019/01/25/%E3%80%90redis%E3%80%91jedis%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2019/01/25/【redis】jedis使用/</id>
+    <link href="https://xfff.xyz/2019/01/25/%E3%80%90redis%E3%80%91jedis%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2019/01/25/【redis】jedis使用/</id>
     <published>2019-01-25T07:57:30.000Z</published>
     <updated>2019-01-31T09:20:56.000Z</updated>
     
@@ -607,19 +607,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="数据库" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="jedis" scheme="http://xfff.xyz/tags/jedis/"/>
+      <category term="jedis" scheme="https://xfff.xyz/tags/jedis/"/>
     
-      <category term="java" scheme="http://xfff.xyz/tags/java/"/>
+      <category term="java" scheme="https://xfff.xyz/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>【redis】高级话题</title>
-    <link href="http://xfff.xyz/2019/01/25/%E3%80%90redis%E3%80%91%E9%AB%98%E7%BA%A7%E8%AF%9D%E9%A2%98/"/>
-    <id>http://xfff.xyz/2019/01/25/【redis】高级话题/</id>
+    <link href="https://xfff.xyz/2019/01/25/%E3%80%90redis%E3%80%91%E9%AB%98%E7%BA%A7%E8%AF%9D%E9%A2%98/"/>
+    <id>https://xfff.xyz/2019/01/25/【redis】高级话题/</id>
     <published>2019-01-25T06:52:28.000Z</published>
     <updated>2019-01-31T09:22:06.000Z</updated>
     
@@ -635,17 +635,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="数据库" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="redis" scheme="http://xfff.xyz/tags/redis/"/>
+      <category term="redis" scheme="https://xfff.xyz/tags/redis/"/>
     
   </entry>
   
   <entry>
     <title>【redis】可视化工具以及一些基本命令对5种类型操作</title>
-    <link href="http://xfff.xyz/2019/01/25/%E3%80%90redis%E3%80%91%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E5%AF%B95%E7%A7%8D%E7%B1%BB%E5%9E%8B%E6%93%8D%E4%BD%9C/"/>
-    <id>http://xfff.xyz/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/</id>
+    <link href="https://xfff.xyz/2019/01/25/%E3%80%90redis%E3%80%91%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E5%AF%B95%E7%A7%8D%E7%B1%BB%E5%9E%8B%E6%93%8D%E4%BD%9C/"/>
+    <id>https://xfff.xyz/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/</id>
     <published>2019-01-25T02:11:20.000Z</published>
     <updated>2019-01-31T09:22:22.000Z</updated>
     
@@ -664,17 +664,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="数据库" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="redis" scheme="http://xfff.xyz/tags/redis/"/>
+      <category term="redis" scheme="https://xfff.xyz/tags/redis/"/>
     
   </entry>
   
   <entry>
     <title>【redis】windows环境和linux环境下的安装使用</title>
-    <link href="http://xfff.xyz/2019/01/24/%E3%80%90redis%E3%80%91windows%E7%8E%AF%E5%A2%83%E5%92%8Clinux%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2019/01/24/【redis】windows环境和linux环境下的安装使用/</id>
+    <link href="https://xfff.xyz/2019/01/24/%E3%80%90redis%E3%80%91windows%E7%8E%AF%E5%A2%83%E5%92%8Clinux%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2019/01/24/【redis】windows环境和linux环境下的安装使用/</id>
     <published>2019-01-24T02:46:37.000Z</published>
     <updated>2019-01-31T09:21:48.000Z</updated>
     
@@ -691,17 +691,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="数据库" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="redis" scheme="http://xfff.xyz/tags/redis/"/>
+      <category term="redis" scheme="https://xfff.xyz/tags/redis/"/>
     
   </entry>
   
   <entry>
     <title>dubboDemo搭建例子</title>
-    <link href="http://xfff.xyz/2019/01/21/dubboDemo%E6%90%AD%E5%BB%BA%E4%BE%8B%E5%AD%90/"/>
-    <id>http://xfff.xyz/2019/01/21/dubboDemo搭建例子/</id>
+    <link href="https://xfff.xyz/2019/01/21/dubboDemo%E6%90%AD%E5%BB%BA%E4%BE%8B%E5%AD%90/"/>
+    <id>https://xfff.xyz/2019/01/21/dubboDemo搭建例子/</id>
     <published>2019-01-21T01:08:11.000Z</published>
     <updated>2019-01-21T01:48:06.000Z</updated>
     
@@ -718,19 +718,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="分布式" scheme="http://xfff.xyz/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+      <category term="分布式" scheme="https://xfff.xyz/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
     
-      <category term="dubbo" scheme="http://xfff.xyz/tags/dubbo/"/>
+      <category term="dubbo" scheme="https://xfff.xyz/tags/dubbo/"/>
     
-      <category term="demo" scheme="http://xfff.xyz/tags/demo/"/>
+      <category term="demo" scheme="https://xfff.xyz/tags/demo/"/>
     
   </entry>
   
   <entry>
     <title>dubboOPS控制台安装使用</title>
-    <link href="http://xfff.xyz/2019/01/18/dubboOPS%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2019/01/18/dubboOPS控制台安装使用/</id>
+    <link href="https://xfff.xyz/2019/01/18/dubboOPS%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2019/01/18/dubboOPS控制台安装使用/</id>
     <published>2019-01-18T02:16:50.000Z</published>
     <updated>2019-01-18T02:59:56.000Z</updated>
     
@@ -747,17 +747,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="分布式" scheme="http://xfff.xyz/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+      <category term="分布式" scheme="https://xfff.xyz/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
     
-      <category term="dubbo" scheme="http://xfff.xyz/tags/dubbo/"/>
+      <category term="dubbo" scheme="https://xfff.xyz/tags/dubbo/"/>
     
   </entry>
   
   <entry>
     <title>vue从入门到放弃</title>
-    <link href="http://xfff.xyz/2019/01/17/vue%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/"/>
-    <id>http://xfff.xyz/2019/01/17/vue从入门到放弃/</id>
+    <link href="https://xfff.xyz/2019/01/17/vue%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/"/>
+    <id>https://xfff.xyz/2019/01/17/vue从入门到放弃/</id>
     <published>2019-01-17T03:26:06.000Z</published>
     <updated>2019-01-31T09:36:28.000Z</updated>
     
@@ -773,17 +773,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
+      <category term="vue" scheme="https://xfff.xyz/tags/vue/"/>
     
   </entry>
   
   <entry>
     <title>vue学习01</title>
-    <link href="http://xfff.xyz/2019/01/17/vue%E5%AD%A6%E4%B9%A001/"/>
-    <id>http://xfff.xyz/2019/01/17/vue学习01/</id>
+    <link href="https://xfff.xyz/2019/01/17/vue%E5%AD%A6%E4%B9%A001/"/>
+    <id>https://xfff.xyz/2019/01/17/vue学习01/</id>
     <published>2019-01-17T01:40:33.000Z</published>
     <updated>2019-01-31T09:26:24.000Z</updated>
     
@@ -803,17 +803,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
+      <category term="vue" scheme="https://xfff.xyz/tags/vue/"/>
     
   </entry>
   
   <entry>
     <title>vue入门安装</title>
-    <link href="http://xfff.xyz/2019/01/15/vue%E5%85%A5%E9%97%A8%E5%AE%89%E8%A3%85/"/>
-    <id>http://xfff.xyz/2019/01/15/vue入门安装/</id>
+    <link href="https://xfff.xyz/2019/01/15/vue%E5%85%A5%E9%97%A8%E5%AE%89%E8%A3%85/"/>
+    <id>https://xfff.xyz/2019/01/15/vue入门安装/</id>
     <published>2019-01-15T07:02:32.000Z</published>
     <updated>2019-01-31T09:26:14.000Z</updated>
     
@@ -829,17 +829,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="vue" scheme="http://xfff.xyz/tags/vue/"/>
+      <category term="vue" scheme="https://xfff.xyz/tags/vue/"/>
     
   </entry>
   
   <entry>
     <title>SpringBoot学习使用(与mybatis plus整合)</title>
-    <link href="http://xfff.xyz/2019/01/14/SpringBoot%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2019/01/14/SpringBoot学习使用/</id>
+    <link href="https://xfff.xyz/2019/01/14/SpringBoot%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2019/01/14/SpringBoot学习使用/</id>
     <published>2019-01-14T02:28:28.000Z</published>
     <updated>2019-01-14T08:24:44.000Z</updated>
     
@@ -856,21 +856,21 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="SpringBoot" scheme="http://xfff.xyz/categories/SpringBoot/"/>
+      <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="springboot" scheme="http://xfff.xyz/tags/springboot/"/>
+      <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     
-      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
+      <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
   </entry>
   
   <entry>
     <title>mybatis plus插件使用</title>
-    <link href="http://xfff.xyz/2019/01/11/mybatis-plus%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2019/01/11/mybatis-plus插件使用/</id>
+    <link href="https://xfff.xyz/2019/01/11/mybatis-plus%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2019/01/11/mybatis-plus插件使用/</id>
     <published>2019-01-11T06:16:16.000Z</published>
     <updated>2019-01-11T07:17:16.000Z</updated>
     
@@ -887,17 +887,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
+      <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
     
   </entry>
   
   <entry>
     <title>mybatis plus自动生成代码</title>
-    <link href="http://xfff.xyz/2019/01/10/mybatis-plus%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/"/>
-    <id>http://xfff.xyz/2019/01/10/mybatis-plus自动生成代码/</id>
+    <link href="https://xfff.xyz/2019/01/10/mybatis-plus%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/"/>
+    <id>https://xfff.xyz/2019/01/10/mybatis-plus自动生成代码/</id>
     <published>2019-01-10T08:16:13.000Z</published>
     <updated>2019-01-11T02:02:34.000Z</updated>
     
@@ -913,17 +913,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
+      <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
     
   </entry>
   
   <entry>
     <title>mybatis plus简单使用</title>
-    <link href="http://xfff.xyz/2019/01/09/mybatis-plus%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2019/01/09/mybatis-plus简单使用/</id>
+    <link href="https://xfff.xyz/2019/01/09/mybatis-plus%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2019/01/09/mybatis-plus简单使用/</id>
     <published>2019-01-09T07:44:16.000Z</published>
     <updated>2019-01-10T03:39:32.000Z</updated>
     
@@ -941,17 +941,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="mybatis_plus" scheme="http://xfff.xyz/tags/mybatis-plus/"/>
+      <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
     
   </entry>
   
   <entry>
     <title>使用StackEdit为markdown格式画图</title>
-    <link href="http://xfff.xyz/2019/01/07/%E4%BD%BF%E7%94%A8StackEdit%E4%B8%BAmarkdown%E6%A0%BC%E5%BC%8F%E7%94%BB%E5%9B%BE/"/>
-    <id>http://xfff.xyz/2019/01/07/使用StackEdit为markdown格式画图/</id>
+    <link href="https://xfff.xyz/2019/01/07/%E4%BD%BF%E7%94%A8StackEdit%E4%B8%BAmarkdown%E6%A0%BC%E5%BC%8F%E7%94%BB%E5%9B%BE/"/>
+    <id>https://xfff.xyz/2019/01/07/使用StackEdit为markdown格式画图/</id>
     <published>2019-01-07T02:21:22.000Z</published>
     <updated>2019-01-07T02:32:20.000Z</updated>
     
@@ -966,19 +966,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="tools" scheme="http://xfff.xyz/categories/tools/"/>
+      <category term="tools" scheme="https://xfff.xyz/categories/tools/"/>
     
     
-      <category term="Markdown" scheme="http://xfff.xyz/tags/Markdown/"/>
+      <category term="Markdown" scheme="https://xfff.xyz/tags/Markdown/"/>
     
-      <category term="StackEdit" scheme="http://xfff.xyz/tags/StackEdit/"/>
+      <category term="StackEdit" scheme="https://xfff.xyz/tags/StackEdit/"/>
     
   </entry>
   
   <entry>
     <title>Mybatis传参方法</title>
-    <link href="http://xfff.xyz/2019/01/07/Mybatis%E4%BC%A0%E5%8F%82%E6%96%B9%E6%B3%95/"/>
-    <id>http://xfff.xyz/2019/01/07/Mybatis传参方法/</id>
+    <link href="https://xfff.xyz/2019/01/07/Mybatis%E4%BC%A0%E5%8F%82%E6%96%B9%E6%B3%95/"/>
+    <id>https://xfff.xyz/2019/01/07/Mybatis传参方法/</id>
     <published>2019-01-07T02:15:05.000Z</published>
     <updated>2019-01-07T02:58:30.000Z</updated>
     
@@ -994,17 +994,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="传参" scheme="http://xfff.xyz/tags/%E4%BC%A0%E5%8F%82/"/>
+      <category term="传参" scheme="https://xfff.xyz/tags/%E4%BC%A0%E5%8F%82/"/>
     
   </entry>
   
   <entry>
     <title>fish学习</title>
-    <link href="http://xfff.xyz/2019/01/03/fish%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://xfff.xyz/2019/01/03/fish学习/</id>
+    <link href="https://xfff.xyz/2019/01/03/fish%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://xfff.xyz/2019/01/03/fish学习/</id>
     <published>2019-01-03T09:02:07.000Z</published>
     <updated>2019-01-03T09:25:04.000Z</updated>
     
@@ -1021,17 +1021,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="前端" scheme="http://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="fish" scheme="http://xfff.xyz/tags/fish/"/>
+      <category term="fish" scheme="https://xfff.xyz/tags/fish/"/>
     
   </entry>
   
   <entry>
     <title>The Messenger通关</title>
-    <link href="http://xfff.xyz/2019/01/02/The-Messenger%E9%80%9A%E5%85%B3/"/>
-    <id>http://xfff.xyz/2019/01/02/The-Messenger通关/</id>
+    <link href="https://xfff.xyz/2019/01/02/The-Messenger%E9%80%9A%E5%85%B3/"/>
+    <id>https://xfff.xyz/2019/01/02/The-Messenger通关/</id>
     <published>2019-01-02T01:02:26.000Z</published>
     <updated>2019-01-02T02:03:14.000Z</updated>
     
@@ -1048,17 +1048,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="杂记" scheme="http://xfff.xyz/categories/%E6%9D%82%E8%AE%B0/"/>
+      <category term="杂记" scheme="https://xfff.xyz/categories/%E6%9D%82%E8%AE%B0/"/>
     
     
-      <category term="杂记，游戏" scheme="http://xfff.xyz/tags/%E6%9D%82%E8%AE%B0%EF%BC%8C%E6%B8%B8%E6%88%8F/"/>
+      <category term="杂记，游戏" scheme="https://xfff.xyz/tags/%E6%9D%82%E8%AE%B0%EF%BC%8C%E6%B8%B8%E6%88%8F/"/>
     
   </entry>
   
   <entry>
     <title>linux&amp;shell学习</title>
-    <link href="http://xfff.xyz/2018/12/27/linux-shell%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://xfff.xyz/2018/12/27/linux-shell学习/</id>
+    <link href="https://xfff.xyz/2018/12/27/linux-shell%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://xfff.xyz/2018/12/27/linux-shell学习/</id>
     <published>2018-12-27T01:18:08.000Z</published>
     <updated>2018-12-27T01:26:28.000Z</updated>
     
@@ -1075,19 +1075,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="linux" scheme="http://xfff.xyz/categories/linux/"/>
+      <category term="linux" scheme="https://xfff.xyz/categories/linux/"/>
     
     
-      <category term="linux" scheme="http://xfff.xyz/tags/linux/"/>
+      <category term="linux" scheme="https://xfff.xyz/tags/linux/"/>
     
-      <category term="shell" scheme="http://xfff.xyz/tags/shell/"/>
+      <category term="shell" scheme="https://xfff.xyz/tags/shell/"/>
     
   </entry>
   
   <entry>
     <title>Oracle学习笔记2</title>
-    <link href="http://xfff.xyz/2018/12/25/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/"/>
-    <id>http://xfff.xyz/2018/12/25/Oracle学习笔记2/</id>
+    <link href="https://xfff.xyz/2018/12/25/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/"/>
+    <id>https://xfff.xyz/2018/12/25/Oracle学习笔记2/</id>
     <published>2018-12-25T05:13:32.000Z</published>
     <updated>2019-01-31T09:19:54.000Z</updated>
     
@@ -1102,17 +1102,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="数据库" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="oracle" scheme="http://xfff.xyz/tags/oracle/"/>
+      <category term="oracle" scheme="https://xfff.xyz/tags/oracle/"/>
     
   </entry>
   
   <entry>
     <title>Oracle学习笔记1</title>
-    <link href="http://xfff.xyz/2018/12/23/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/"/>
-    <id>http://xfff.xyz/2018/12/23/Oracle学习笔记1/</id>
+    <link href="https://xfff.xyz/2018/12/23/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/"/>
+    <id>https://xfff.xyz/2018/12/23/Oracle学习笔记1/</id>
     <published>2018-12-23T04:34:45.000Z</published>
     <updated>2019-01-31T09:19:40.000Z</updated>
     
@@ -1130,17 +1130,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="数据库" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="oracle" scheme="http://xfff.xyz/tags/oracle/"/>
+      <category term="oracle" scheme="https://xfff.xyz/tags/oracle/"/>
     
   </entry>
   
   <entry>
     <title>工作第一天</title>
-    <link href="http://xfff.xyz/2018/12/19/%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
-    <id>http://xfff.xyz/2018/12/19/工作第一天/</id>
+    <link href="https://xfff.xyz/2018/12/19/%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
+    <id>https://xfff.xyz/2018/12/19/工作第一天/</id>
     <published>2018-12-19T06:40:39.000Z</published>
     <updated>2018-12-19T06:54:04.000Z</updated>
     
@@ -1160,17 +1160,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="杂记" scheme="http://xfff.xyz/categories/%E6%9D%82%E8%AE%B0/"/>
+      <category term="杂记" scheme="https://xfff.xyz/categories/%E6%9D%82%E8%AE%B0/"/>
     
     
-      <category term="日常生活" scheme="http://xfff.xyz/tags/%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB/"/>
+      <category term="日常生活" scheme="https://xfff.xyz/tags/%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
   <entry>
     <title>【springmvc】工作流程理解（一）</title>
-    <link href="http://xfff.xyz/2018/12/10/%E3%80%90springmvc%E3%80%91%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%90%86%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://xfff.xyz/2018/12/10/【springmvc】工作流程理解（一）/</id>
+    <link href="https://xfff.xyz/2018/12/10/%E3%80%90springmvc%E3%80%91%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%90%86%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://xfff.xyz/2018/12/10/【springmvc】工作流程理解（一）/</id>
     <published>2018-12-10T09:02:07.000Z</published>
     <updated>2019-02-19T06:15:27.261Z</updated>
     
@@ -1187,17 +1187,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="springmvc" scheme="http://xfff.xyz/categories/springmvc/"/>
+      <category term="springmvc" scheme="https://xfff.xyz/categories/springmvc/"/>
     
     
-      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
+      <category term="springmvc" scheme="https://xfff.xyz/tags/springmvc/"/>
     
   </entry>
   
   <entry>
     <title>SQL一些基本语句使用</title>
-    <link href="http://xfff.xyz/2018/11/29/SQL%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E8%AF%AD%E5%8F%A5%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2018/11/29/SQL一些基本语句使用/</id>
+    <link href="https://xfff.xyz/2018/11/29/SQL%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E8%AF%AD%E5%8F%A5%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2018/11/29/SQL一些基本语句使用/</id>
     <published>2018-11-28T16:18:06.000Z</published>
     <updated>2019-01-31T09:19:18.000Z</updated>
     
@@ -1212,17 +1212,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="数据库" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="sql" scheme="http://xfff.xyz/tags/sql/"/>
+      <category term="sql" scheme="https://xfff.xyz/tags/sql/"/>
     
   </entry>
   
   <entry>
     <title>比较器Comparator和Comparable的使用</title>
-    <link href="http://xfff.xyz/2018/11/23/%E6%AF%94%E8%BE%83%E5%99%A8Comparator%E5%92%8CComparable%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2018/11/23/比较器Comparator和Comparable的使用/</id>
+    <link href="https://xfff.xyz/2018/11/23/%E6%AF%94%E8%BE%83%E5%99%A8Comparator%E5%92%8CComparable%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2018/11/23/比较器Comparator和Comparable的使用/</id>
     <published>2018-11-23T08:45:52.000Z</published>
     <updated>2018-11-23T09:39:00.000Z</updated>
     
@@ -1239,17 +1239,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="java" scheme="http://xfff.xyz/categories/java/"/>
+      <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="比较器" scheme="http://xfff.xyz/tags/%E6%AF%94%E8%BE%83%E5%99%A8/"/>
+      <category term="比较器" scheme="https://xfff.xyz/tags/%E6%AF%94%E8%BE%83%E5%99%A8/"/>
     
   </entry>
   
   <entry>
     <title>【mybatis】逆向工程及详解</title>
-    <link href="http://xfff.xyz/2018/11/17/%E3%80%90mybatis%E3%80%91%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E5%8F%8A%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://xfff.xyz/2018/11/17/【mybatis】逆向工程及详解/</id>
+    <link href="https://xfff.xyz/2018/11/17/%E3%80%90mybatis%E3%80%91%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E5%8F%8A%E8%AF%A6%E8%A7%A3/"/>
+    <id>https://xfff.xyz/2018/11/17/【mybatis】逆向工程及详解/</id>
     <published>2018-11-17T09:02:07.000Z</published>
     <updated>2019-02-19T06:13:36.127Z</updated>
     
@@ -1264,19 +1264,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
-      <category term="逆向工程" scheme="http://xfff.xyz/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
+      <category term="逆向工程" scheme="https://xfff.xyz/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>【mybatis】与spring整合</title>
-    <link href="http://xfff.xyz/2018/11/15/%E3%80%90mybatis%E3%80%91%E4%B8%8Espring%E6%95%B4%E5%90%88/"/>
-    <id>http://xfff.xyz/2018/11/15/【mybatis】与spring整合/</id>
+    <link href="https://xfff.xyz/2018/11/15/%E3%80%90mybatis%E3%80%91%E4%B8%8Espring%E6%95%B4%E5%90%88/"/>
+    <id>https://xfff.xyz/2018/11/15/【mybatis】与spring整合/</id>
     <published>2018-11-15T09:02:07.000Z</published>
     <updated>2019-02-19T06:14:59.470Z</updated>
     
@@ -1293,17 +1293,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
   </entry>
   
   <entry>
     <title>【mybatis】学习总结(三)</title>
-    <link href="http://xfff.xyz/2018/11/10/%E3%80%90mybatis%E3%80%91%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93-%E4%B8%89/"/>
-    <id>http://xfff.xyz/2018/11/10/【mybatis】学习总结-三/</id>
+    <link href="https://xfff.xyz/2018/11/10/%E3%80%90mybatis%E3%80%91%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93-%E4%B8%89/"/>
+    <id>https://xfff.xyz/2018/11/10/【mybatis】学习总结-三/</id>
     <published>2018-11-10T09:02:07.000Z</published>
     <updated>2019-02-19T06:13:55.662Z</updated>
     
@@ -1319,17 +1319,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
   </entry>
   
   <entry>
     <title>【leetcode】笔记2</title>
-    <link href="http://xfff.xyz/2018/11/08/%E3%80%90leetcode%E3%80%91%E7%AC%94%E8%AE%B02/"/>
-    <id>http://xfff.xyz/2018/11/08/【leetcode】笔记2/</id>
+    <link href="https://xfff.xyz/2018/11/08/%E3%80%90leetcode%E3%80%91%E7%AC%94%E8%AE%B02/"/>
+    <id>https://xfff.xyz/2018/11/08/【leetcode】笔记2/</id>
     <published>2018-11-08T08:57:46.000Z</published>
     <updated>2019-01-31T09:29:24.000Z</updated>
     
@@ -1344,19 +1344,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="数据结构" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-      <category term="LeetCode" scheme="http://xfff.xyz/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="https://xfff.xyz/tags/LeetCode/"/>
     
-      <category term="算法" scheme="http://xfff.xyz/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://xfff.xyz/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>【mybatis】学习总结(二)</title>
-    <link href="http://xfff.xyz/2018/11/07/%E3%80%90mybatis%E3%80%91%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93(%E4%BA%8C)/"/>
-    <id>http://xfff.xyz/2018/11/07/【mybatis】学习总结(二)/</id>
+    <link href="https://xfff.xyz/2018/11/07/%E3%80%90mybatis%E3%80%91%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93(%E4%BA%8C)/"/>
+    <id>https://xfff.xyz/2018/11/07/【mybatis】学习总结(二)/</id>
     <published>2018-11-07T09:02:07.000Z</published>
     <updated>2019-02-19T06:14:15.452Z</updated>
     
@@ -1374,17 +1374,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
   </entry>
   
   <entry>
     <title>【LeetCode】笔记1</title>
-    <link href="http://xfff.xyz/2018/11/06/%E3%80%90leetcode%E3%80%91%E7%AC%94%E8%AE%B01/"/>
-    <id>http://xfff.xyz/2018/11/06/【leetcode】笔记1/</id>
+    <link href="https://xfff.xyz/2018/11/06/%E3%80%90leetcode%E3%80%91%E7%AC%94%E8%AE%B01/"/>
+    <id>https://xfff.xyz/2018/11/06/【leetcode】笔记1/</id>
     <published>2018-11-06T06:40:33.000Z</published>
     <updated>2019-01-31T09:29:08.000Z</updated>
     
@@ -1399,19 +1399,19 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="数据结构" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-      <category term="LeetCode" scheme="http://xfff.xyz/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="https://xfff.xyz/tags/LeetCode/"/>
     
-      <category term="算法" scheme="http://xfff.xyz/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://xfff.xyz/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>【mybatis】多对多关系</title>
-    <link href="http://xfff.xyz/2018/11/05/%E3%80%90mybatis%E3%80%91%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB/"/>
-    <id>http://xfff.xyz/2018/11/05/【mybatis】多对多关系/</id>
+    <link href="https://xfff.xyz/2018/11/05/%E3%80%90mybatis%E3%80%91%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB/"/>
+    <id>https://xfff.xyz/2018/11/05/【mybatis】多对多关系/</id>
     <published>2018-11-05T09:02:07.000Z</published>
     <updated>2019-02-19T06:14:33.178Z</updated>
     
@@ -1429,17 +1429,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
   </entry>
   
   <entry>
     <title>【mybatis】大概总结(一)</title>
-    <link href="http://xfff.xyz/2018/11/03/%E3%80%90mybatis%E3%80%91%E5%A4%A7%E6%A6%82%E6%80%BB%E7%BB%93(%E4%B8%80)/"/>
-    <id>http://xfff.xyz/2018/11/03/【mybatis】大概总结(一)/</id>
+    <link href="https://xfff.xyz/2018/11/03/%E3%80%90mybatis%E3%80%91%E5%A4%A7%E6%A6%82%E6%80%BB%E7%BB%93(%E4%B8%80)/"/>
+    <id>https://xfff.xyz/2018/11/03/【mybatis】大概总结(一)/</id>
     <published>2018-11-03T09:02:07.000Z</published>
     <updated>2019-02-19T06:13:14.530Z</updated>
     
@@ -1454,17 +1454,17 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
   </entry>
   
   <entry>
     <title>线程池的基本使用</title>
-    <link href="http://xfff.xyz/2018/10/30/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2018/10/30/线程池的基本使用/</id>
+    <link href="https://xfff.xyz/2018/10/30/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2018/10/30/线程池的基本使用/</id>
     <published>2018-10-30T06:23:35.000Z</published>
     <updated>2018-10-30T08:42:36.000Z</updated>
     
@@ -1480,21 +1480,21 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="java" scheme="http://xfff.xyz/categories/java/"/>
+      <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="java" scheme="http://xfff.xyz/tags/java/"/>
+      <category term="java" scheme="https://xfff.xyz/tags/java/"/>
     
-      <category term="多线程" scheme="http://xfff.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="多线程" scheme="https://xfff.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
-      <category term="线程池" scheme="http://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+      <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     
   </entry>
   
   <entry>
     <title>文件上传解析冲突问题</title>
-    <link href="http://xfff.xyz/2018/10/25/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%A7%A3%E6%9E%90%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/"/>
-    <id>http://xfff.xyz/2018/10/25/文件上传解析冲突问题/</id>
+    <link href="https://xfff.xyz/2018/10/25/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%A7%A3%E6%9E%90%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://xfff.xyz/2018/10/25/文件上传解析冲突问题/</id>
     <published>2018-10-25T13:27:07.000Z</published>
     <updated>2018-10-25T13:56:22.000Z</updated>
     
@@ -1511,21 +1511,21 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
     </summary>
     
-      <category term="errors" scheme="http://xfff.xyz/categories/errors/"/>
+      <category term="errors" scheme="https://xfff.xyz/categories/errors/"/>
     
     
-      <category term="error" scheme="http://xfff.xyz/tags/error/"/>
+      <category term="error" scheme="https://xfff.xyz/tags/error/"/>
     
-      <category term="resolver" scheme="http://xfff.xyz/tags/resolver/"/>
+      <category term="resolver" scheme="https://xfff.xyz/tags/resolver/"/>
     
-      <category term="文件上传" scheme="http://xfff.xyz/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
+      <category term="文件上传" scheme="https://xfff.xyz/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
     
   </entry>
   
   <entry>
     <title>【ajax】springmvc下使用</title>
-    <link href="http://xfff.xyz/2018/10/25/%E3%80%90ajax%E3%80%91springmvc%E4%B8%8B%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2018/10/25/【ajax】springmvc下使用/</id>
+    <link href="https://xfff.xyz/2018/10/25/%E3%80%90ajax%E3%80%91springmvc%E4%B8%8B%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2018/10/25/【ajax】springmvc下使用/</id>
     <published>2018-10-25T10:02:04.000Z</published>
     <updated>2018-10-25T10:29:04.000Z</updated>
     
@@ -1544,19 +1544,19 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="ajax" scheme="http://xfff.xyz/categories/ajax/"/>
+      <category term="ajax" scheme="https://xfff.xyz/categories/ajax/"/>
     
     
-      <category term="ajax" scheme="http://xfff.xyz/tags/ajax/"/>
+      <category term="ajax" scheme="https://xfff.xyz/tags/ajax/"/>
     
-      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
+      <category term="springmvc" scheme="https://xfff.xyz/tags/springmvc/"/>
     
   </entry>
   
   <entry>
     <title>【ajax】请求服务器+参数双向传递</title>
-    <link href="http://xfff.xyz/2018/10/24/%E3%80%90ajax%E3%80%91%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8-%E5%8F%82%E6%95%B0%E5%8F%8C%E5%90%91%E4%BC%A0%E9%80%92/"/>
-    <id>http://xfff.xyz/2018/10/24/【ajax】请求服务器-参数双向传递/</id>
+    <link href="https://xfff.xyz/2018/10/24/%E3%80%90ajax%E3%80%91%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8-%E5%8F%82%E6%95%B0%E5%8F%8C%E5%90%91%E4%BC%A0%E9%80%92/"/>
+    <id>https://xfff.xyz/2018/10/24/【ajax】请求服务器-参数双向传递/</id>
     <published>2018-10-24T09:02:07.000Z</published>
     <updated>2019-02-19T06:12:49.496Z</updated>
     
@@ -1575,17 +1575,17 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="ajax" scheme="http://xfff.xyz/categories/ajax/"/>
+      <category term="ajax" scheme="https://xfff.xyz/categories/ajax/"/>
     
     
-      <category term="ajax" scheme="http://xfff.xyz/tags/ajax/"/>
+      <category term="ajax" scheme="https://xfff.xyz/tags/ajax/"/>
     
   </entry>
   
   <entry>
     <title>mybatis操作text等长文本类型</title>
-    <link href="http://xfff.xyz/2018/10/24/mybatis%E6%93%8D%E4%BD%9Ctext%E7%AD%89%E9%95%BF%E6%96%87%E6%9C%AC%E7%B1%BB%E5%9E%8B/"/>
-    <id>http://xfff.xyz/2018/10/24/mybatis操作text等长文本类型/</id>
+    <link href="https://xfff.xyz/2018/10/24/mybatis%E6%93%8D%E4%BD%9Ctext%E7%AD%89%E9%95%BF%E6%96%87%E6%9C%AC%E7%B1%BB%E5%9E%8B/"/>
+    <id>https://xfff.xyz/2018/10/24/mybatis操作text等长文本类型/</id>
     <published>2018-10-24T06:41:17.000Z</published>
     <updated>2018-10-24T08:13:26.000Z</updated>
     
@@ -1603,21 +1603,21 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="mybatis" scheme="http://xfff.xyz/categories/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
-      <category term="图片" scheme="http://xfff.xyz/tags/%E5%9B%BE%E7%89%87/"/>
+      <category term="图片" scheme="https://xfff.xyz/tags/%E5%9B%BE%E7%89%87/"/>
     
-      <category term="数据库" scheme="http://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>图片的上传和下载以及存入数据库</title>
-    <link href="http://xfff.xyz/2018/10/22/%E5%9B%BE%E7%89%87%E7%9A%84%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD%E4%BB%A5%E5%8F%8A%E5%AD%98%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    <id>http://xfff.xyz/2018/10/22/图片的上传和下载以及存入数据库/</id>
+    <link href="https://xfff.xyz/2018/10/22/%E5%9B%BE%E7%89%87%E7%9A%84%E4%B8%8A%E4%BC%A0%E5%92%8C%E4%B8%8B%E8%BD%BD%E4%BB%A5%E5%8F%8A%E5%AD%98%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>https://xfff.xyz/2018/10/22/图片的上传和下载以及存入数据库/</id>
     <published>2018-10-22T14:55:10.000Z</published>
     <updated>2018-10-22T15:55:22.000Z</updated>
     
@@ -1633,21 +1633,21 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="java" scheme="http://xfff.xyz/categories/java/"/>
+      <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="数据库" scheme="http://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-      <category term="javaweb" scheme="http://xfff.xyz/tags/javaweb/"/>
+      <category term="javaweb" scheme="https://xfff.xyz/tags/javaweb/"/>
     
-      <category term="图片的上传下载" scheme="http://xfff.xyz/tags/%E5%9B%BE%E7%89%87%E7%9A%84%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD/"/>
+      <category term="图片的上传下载" scheme="https://xfff.xyz/tags/%E5%9B%BE%E7%89%87%E7%9A%84%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD/"/>
     
   </entry>
   
   <entry>
     <title>【JAVA8新特性】</title>
-    <link href="http://xfff.xyz/2018/10/20/%E3%80%90JAVA8%E6%96%B0%E7%89%B9%E6%80%A7%E3%80%91/"/>
-    <id>http://xfff.xyz/2018/10/20/【JAVA8新特性】/</id>
+    <link href="https://xfff.xyz/2018/10/20/%E3%80%90JAVA8%E6%96%B0%E7%89%B9%E6%80%A7%E3%80%91/"/>
+    <id>https://xfff.xyz/2018/10/20/【JAVA8新特性】/</id>
     <published>2018-10-20T09:02:07.000Z</published>
     <updated>2019-02-19T06:12:20.521Z</updated>
     
@@ -1662,17 +1662,17 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="java" scheme="http://xfff.xyz/categories/java/"/>
+      <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="java8" scheme="http://xfff.xyz/tags/java8/"/>
+      <category term="java8" scheme="https://xfff.xyz/tags/java8/"/>
     
   </entry>
   
   <entry>
     <title>【ssm】ssm整合配置</title>
-    <link href="http://xfff.xyz/2018/10/19/%E3%80%90ssm%E3%80%91ssm%E6%95%B4%E5%90%88%E9%85%8D%E7%BD%AE/"/>
-    <id>http://xfff.xyz/2018/10/19/【ssm】ssm整合配置/</id>
+    <link href="https://xfff.xyz/2018/10/19/%E3%80%90ssm%E3%80%91ssm%E6%95%B4%E5%90%88%E9%85%8D%E7%BD%AE/"/>
+    <id>https://xfff.xyz/2018/10/19/【ssm】ssm整合配置/</id>
     <published>2018-10-19T09:46:56.000Z</published>
     <updated>2018-10-19T17:25:56.000Z</updated>
     
@@ -1692,23 +1692,23 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="ssm" scheme="http://xfff.xyz/categories/ssm/"/>
+      <category term="ssm" scheme="https://xfff.xyz/categories/ssm/"/>
     
     
-      <category term="mybatis" scheme="http://xfff.xyz/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
-      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
+      <category term="springmvc" scheme="https://xfff.xyz/tags/springmvc/"/>
     
-      <category term="spring" scheme="http://xfff.xyz/tags/spring/"/>
+      <category term="spring" scheme="https://xfff.xyz/tags/spring/"/>
     
-      <category term="ssm" scheme="http://xfff.xyz/tags/ssm/"/>
+      <category term="ssm" scheme="https://xfff.xyz/tags/ssm/"/>
     
   </entry>
   
   <entry>
     <title>【springmvc】注解开发的详细使用</title>
-    <link href="http://xfff.xyz/2018/10/18/%E3%80%90springmvc%E3%80%91%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8/"/>
-    <id>http://xfff.xyz/2018/10/18/【springmvc】注解开发的详细使用/</id>
+    <link href="https://xfff.xyz/2018/10/18/%E3%80%90springmvc%E3%80%91%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2018/10/18/【springmvc】注解开发的详细使用/</id>
     <published>2018-10-18T07:17:03.000Z</published>
     <updated>2018-10-24T17:33:08.000Z</updated>
     
@@ -1723,19 +1723,19 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="springmvc" scheme="http://xfff.xyz/categories/springmvc/"/>
+      <category term="springmvc" scheme="https://xfff.xyz/categories/springmvc/"/>
     
     
-      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
+      <category term="springmvc" scheme="https://xfff.xyz/tags/springmvc/"/>
     
-      <category term="注解" scheme="http://xfff.xyz/tags/%E6%B3%A8%E8%A7%A3/"/>
+      <category term="注解" scheme="https://xfff.xyz/tags/%E6%B3%A8%E8%A7%A3/"/>
     
   </entry>
   
   <entry>
     <title>【springmvc】配置和使用(二)</title>
-    <link href="http://xfff.xyz/2018/10/18/%E3%80%90springmvc%E3%80%91%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8-%E4%BA%8C/"/>
-    <id>http://xfff.xyz/2018/10/18/【springmvc】配置和使用-二/</id>
+    <link href="https://xfff.xyz/2018/10/18/%E3%80%90springmvc%E3%80%91%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8-%E4%BA%8C/"/>
+    <id>https://xfff.xyz/2018/10/18/【springmvc】配置和使用-二/</id>
     <published>2018-10-18T03:38:00.000Z</published>
     <updated>2018-10-18T07:06:12.000Z</updated>
     
@@ -1755,19 +1755,19 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="springmvc" scheme="http://xfff.xyz/categories/springmvc/"/>
+      <category term="springmvc" scheme="https://xfff.xyz/categories/springmvc/"/>
     
     
-      <category term="springmvc" scheme="http://xfff.xyz/tags/springmvc/"/>
+      <category term="springmvc" scheme="https://xfff.xyz/tags/springmvc/"/>
     
-      <category term="springmvc配置" scheme="http://xfff.xyz/tags/springmvc%E9%85%8D%E7%BD%AE/"/>
+      <category term="springmvc配置" scheme="https://xfff.xyz/tags/springmvc%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
   <entry>
     <title>【好用的工具合集】</title>
-    <link href="http://xfff.xyz/2018/10/10/%E3%80%90%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E5%90%88%E9%9B%86%E3%80%91/"/>
-    <id>http://xfff.xyz/2018/10/10/【好用的工具合集】/</id>
+    <link href="https://xfff.xyz/2018/10/10/%E3%80%90%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E5%90%88%E9%9B%86%E3%80%91/"/>
+    <id>https://xfff.xyz/2018/10/10/【好用的工具合集】/</id>
     <published>2018-10-10T10:02:04.000Z</published>
     <updated>2019-01-11T09:28:20.000Z</updated>
     
@@ -1784,17 +1784,17 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="tools" scheme="http://xfff.xyz/categories/tools/"/>
+      <category term="tools" scheme="https://xfff.xyz/categories/tools/"/>
     
     
-      <category term="tools" scheme="http://xfff.xyz/tags/tools/"/>
+      <category term="tools" scheme="https://xfff.xyz/tags/tools/"/>
     
   </entry>
   
   <entry>
     <title>【Error集合】</title>
-    <link href="http://xfff.xyz/2018/10/03/%E3%80%90Error%E9%9B%86%E5%90%88%E3%80%91/"/>
-    <id>http://xfff.xyz/2018/10/03/【Error集合】/</id>
+    <link href="https://xfff.xyz/2018/10/03/%E3%80%90Error%E9%9B%86%E5%90%88%E3%80%91/"/>
+    <id>https://xfff.xyz/2018/10/03/【Error集合】/</id>
     <published>2018-10-03T09:02:07.000Z</published>
     <updated>2019-02-19T06:53:00.444Z</updated>
     
@@ -1810,17 +1810,17 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="errors" scheme="http://xfff.xyz/categories/errors/"/>
+      <category term="errors" scheme="https://xfff.xyz/categories/errors/"/>
     
     
-      <category term="errors" scheme="http://xfff.xyz/tags/errors/"/>
+      <category term="errors" scheme="https://xfff.xyz/tags/errors/"/>
     
   </entry>
   
   <entry>
     <title>【数据结构】基础结构实现集合</title>
-    <link href="http://xfff.xyz/2018/10/03/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84%E5%AE%9E%E7%8E%B0%E9%9B%86%E5%90%88/"/>
-    <id>http://xfff.xyz/2018/10/03/【数据结构】基础结构实现集合/</id>
+    <link href="https://xfff.xyz/2018/10/03/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84%E5%AE%9E%E7%8E%B0%E9%9B%86%E5%90%88/"/>
+    <id>https://xfff.xyz/2018/10/03/【数据结构】基础结构实现集合/</id>
     <published>2018-10-03T09:02:07.000Z</published>
     <updated>2019-02-19T06:07:17.956Z</updated>
     
@@ -1837,17 +1837,17 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="数据结构" scheme="http://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-      <category term="数据结构" scheme="http://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+      <category term="数据结构" scheme="https://xfff.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
   <entry>
     <title>win10使用hexo搭建blog</title>
-    <link href="http://xfff.xyz/2018/09/10/win10%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BAblog/"/>
-    <id>http://xfff.xyz/2018/09/10/win10使用hexo搭建blog/</id>
+    <link href="https://xfff.xyz/2018/09/10/win10%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BAblog/"/>
+    <id>https://xfff.xyz/2018/09/10/win10使用hexo搭建blog/</id>
     <published>2018-09-10T09:02:07.000Z</published>
     <updated>2019-02-19T06:11:32.554Z</updated>
     
@@ -1862,17 +1862,17 @@ $.post(&amp;quot;lover/deleteL&amp;quot;,{
     
     </summary>
     
-      <category term="hexo主题" scheme="http://xfff.xyz/categories/hexo%E4%B8%BB%E9%A2%98/"/>
+      <category term="hexo主题" scheme="https://xfff.xyz/categories/hexo%E4%B8%BB%E9%A2%98/"/>
     
     
-      <category term="hexo" scheme="http://xfff.xyz/tags/hexo/"/>
+      <category term="hexo" scheme="https://xfff.xyz/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://xfff.xyz/2018/08/03/hello-world/"/>
-    <id>http://xfff.xyz/2018/08/03/hello-world/</id>
+    <link href="https://xfff.xyz/2018/08/03/hello-world/"/>
+    <id>https://xfff.xyz/2018/08/03/hello-world/</id>
     <published>2018-08-03T09:02:07.000Z</published>
     <updated>2019-02-19T06:10:59.783Z</updated>
     
