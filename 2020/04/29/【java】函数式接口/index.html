@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>vue入门安装 | XFF&#39;s blog</title>
+  <title>【java】函数式接口 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -228,53 +228,71 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2019-01-15T07:02:32.000Z" itemprop="datePublished">
-          2019-01-15
+      <time datetime="2020-04-29T03:15:36.000Z" itemprop="datePublished">
+          2020-04-29
       </time>
     
     
     | 
-    <a href='/tags/vue/'>vue</a>
+    <a href='/tags/java8/'>java8</a>
     
     
 </span>
-                <h1>vue入门安装</h1>
+                <h1>【java】函数式接口</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p><em>入职前以为，我们写后端的，也许整天面对的就是后台的service、controller等层去开发，入职后上级和我们说后台大部分代码都可以自动生成，前端的js需要好好学习一下…</em>  </p>
-<p><em>我晕了，前端根本没怎么重视，JavaScript也没有系统地学习，现在想了想，要不好好学一个前端的框架吧。从各个网站上了解到一些信息和趋势，决定学习时下比较热门的前端框架vue.js</em>  </p>
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>安装…<br>先安装个nodejs，官网下载即可（因为之前用hexo搭建博客的时候安装过了，这里就不写步骤了）  </p>
-<p>为了减少对C盘的使用，把nodejs安装在其他盘之后，还需要更改设置，不然还是会把一些文件和缓存放在C盘<br> npm config set prefix “xxx”<br>    npm config set cache “xxx”  </p>
-<p>新建两个文件夹,路径填入xxx即可  </p>
-<p>安装vue-cli<br> npm install -g vue-cli</p>
-<p>如果无法识别vue，可能是npm版本太低，运行<br> npm install -g npm </p>
-<p>完事运行<br> vue -V   </p>
-<p>出现版本号表示成功。  </p>
-<hr>
-<h2 id="生成项目"><a href="#生成项目" class="headerlink" title="生成项目"></a>生成项目</h2><p>命令行找个目录运行<br> vue init webpack yourproject</p>
-<p>yourproject是项目名，webpack是vue模版，除了webpack还有其他几个模版  </p>
-<p>这个时候会从github上下载对应的模版文件（这里也可以输入自己的自定义模版导入），途中会有很多选项，网上都建议有个ESLint选no，因为不会用…<br>其他一路回车和输入Y，最后结束命令行会显示如何开始自己的项目，以前的版本还需要install一下依赖，现在好像不需要  </p>
-<p>反正新版本只需要cd 进入项目目录，然后<br> npm run dev </p>
-<p>即可，在对应的页面能看到项目初始默认的页面。端口号打包目录什么的可以在config目录里修改。  </p>
-<p>打包命令<br> npm run build </p>
-<p>运行会生成一个dist文件夹，实际使用时只需要把该文件夹放到服务器即可。  </p>
-<hr>
-<p>目录结构大概是这样<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1fz9byntaasj304e0cnt8l.jpg" alt=""><br>开发目录为src<br>assets放静态文件<br>components放模版<br>router是vue路由<br>main.js是程序入口<br>….  </p>
-<hr>
+      		<h2 id="Function-lt-A-B-gt"><a href="#Function-lt-A-B-gt" class="headerlink" title="Function&lt;A,B&gt;"></a>Function&lt;A,B&gt;</h2><p>Function接口可以通过实现其apply方法，然后为该接口传一段逻辑，以对象的形式保存，需要调用该段逻辑时，即可调出来使用。其中参数AB，是指传入一个A类型的参数返回一个B类型的参数。<br>见下面代码：</p>
+<pre><code>Function&lt;Integer, String&gt; function1 = i -&gt; String.valueOf(i+5);
+Function&lt;Integer, Integer&gt; function2 = i -&gt; i*10;
+System.out.println(function1.apply(3));
+System.out.println(&quot;f2.andThen(f1):&quot; + function2.andThen(function1).apply(4));
+System.out.println(&quot;f1.compose(f2):&quot; + function1.compose(function2).apply(4));
+</code></pre><p>由于java8提供的这些函数式接口都加了@FunctionalInterface注解，让我们可以直接使用lambda表达式来实现这些接口方法，让代码看起来更干净。</p>
+<ul>
+<li>andThen：是指先执行前面的方法，然后执行后面括号的方法</li>
+<li>compose：先执行后面括号里的方法，然后执行前面的方法</li>
+</ul>
+<p>来看看上面代码的返回输出：<br><img src="https://ftp.bmp.ovh/imgs/2020/04/afea961524cbe735.png" alt=""></p>
+<h2 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate<t></t></h2><p>断言类接口，返回一个boolean值，可传入一个T类型的参数。可以使用lambda表达式实现，或者实现接口方法test。<br>见下方代码：</p>
+<pre><code>Predicate&lt;Integer&gt; predicate1 = i -&gt; i&lt;10;
+System.out.println(predicate1.test(5));
+System.out.println(predicate1.test(20));
+//反向
+Predicate predicate2 = predicate1.negate();
+System.out.println(&quot;predi2:&quot; + predicate2.test(5));
+Predicate predicate3 = predicate1.and(new Predicate&lt;Integer&gt;() {
+    @Override
+    public boolean test(Integer integer) {
+        return false;
+    }
+});
+System.out.println(&quot;predi3:&quot; + predicate3.test(5) + &quot; +++ &quot; + predicate3.test(20));
+</code></pre><p>该接口的or和and方法则是将两个断言式接口的判断结果进行与或操作返回一个能得出最终结果的函数方法。<br>因此上方代码的返回结果为：</p>
+<pre><code>true
+false
+predi2:false
+predi3:false +++ false
+</code></pre><h2 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer<t></t></h2><p>消费类接口，该类型接口不返回数据，仅仅将传入的信息进行消费，其需要实现的方法为accept。<br>代码：</p>
+<pre><code>int [] myArr = new int[5];
+Arrays.fill(myArr, 1);
+Consumer&lt;int[]&gt; consumer1 = arr -&gt; arr[1]=0;
+consumer1.accept(myArr);
+System.out.println(&quot;Array:&quot; + Arrays.toString(myArr));
+</code></pre><p>输出结果为：</p>
+<pre><code>Array:[1, 0, 1, 1, 1]
+</code></pre><hr>
+<p>…</p>
+<p>综上，其实函数式接口就是为了让我们可以将方法定义为一个对象使用，能更方便使用函数方法块，而@FunctionalInterface注解让我们可以使用lambda的形式来实现这些接口，算是简化代码吧。</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2019/01/17/vue学习01/" style="float: left;">
-        ← vue学习01
-    </a>
     
-    
-    <a class="pull-right" href="/2019/01/14/SpringBoot学习使用/">
-        SpringBoot学习使用(与mybatis plus整合) →
+    <a class="pull-right" href="/2020/04/09/【maven】maven使用中遇到的问题记录/">
+        【maven】maven使用中遇到的问题记录 →
     </a>
     
 </nav>

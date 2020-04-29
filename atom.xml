@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-04-09T07:21:45.056Z</updated>
+  <updated>2020-04-29T03:16:56.415Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【java】函数式接口</title>
+    <link href="https://xfff.xyz/2020/04/29/%E3%80%90java%E3%80%91%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/"/>
+    <id>https://xfff.xyz/2020/04/29/【java】函数式接口/</id>
+    <published>2020-04-29T03:15:36.000Z</published>
+    <updated>2020-04-29T03:16:56.415Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Function-lt-A-B-gt"><a href="#Function-lt-A-B-gt" class="headerlink" title="Function&lt;A,B&gt;"></a>Function&lt;A,B&gt;</h2><p>Function接口可以通过实现其apply方法，然后为该接口传一段逻辑，以对象的形式保存，需要调用该段逻辑时，即可调出来使用。其中参数AB，是指传入一个A类型的参数返回一个B类型的参数。<br>见下面代码：</p><pre><code>Function&lt;Integer, String&gt; function1 = i -&gt; String.valueOf(i+5);Function&lt;Integer, Integer&gt; function2 = i -&gt; i*10;System.out.println(function1.apply(3));System.out.println(&quot;f2.andThen(f1):&quot; + function2.andThen(function1).apply(4));System.out.println(&quot;f1.compose(f2):&quot; + function1.compose(function2).apply(4));</code></pre><p>由于java8提供的这些函数式接口都加了@FunctionalInterface注解，让我们可以直接使用lambda表达式来实现这些接口方法，让代码看起来更干净。</p><ul><li>andThen：是指先执行前面的方法，然后执行后面括号的方法</li><li>compose：先执行后面括号里的方法，然后执行前面的方法</li></ul><p>来看看上面代码的返回输出：<br><img src="https://ftp.bmp.ovh/imgs/2020/04/afea961524cbe735.png" alt=""></p><h2 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate<t></t></h2><p>断言类接口，返回一个boolean值，可传入一个T类型的参数。可以使用lambda表达式实现，或者实现接口方法test。<br>见下方代码：</p><pre><code>Predicate&lt;Integer&gt; predicate1 = i -&gt; i&lt;10;System.out.println(predicate1.test(5));System.out.println(predicate1.test(20));//反向Predicate predicate2 = predicate1.negate();System.out.println(&quot;predi2:&quot; + predicate2.test(5));Predicate predicate3 = predicate1.and(new Predicate&lt;Integer&gt;() {    @Override    public boolean test(Integer integer) {        return false;    }});System.out.println(&quot;predi3:&quot; + predicate3.test(5) + &quot; +++ &quot; + predicate3.test(20));</code></pre><p>该接口的or和and方法则是将两个断言式接口的判断结果进行与或操作返回一个能得出最终结果的函数方法。<br>因此上方代码的返回结果为：</p><pre><code>truefalsepredi2:falsepredi3:false +++ false</code></pre><h2 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer<t></t></h2><p>消费类接口，该类型接口不返回数据，仅仅将传入的信息进行消费，其需要实现的方法为accept。<br>代码：</p><pre><code>int [] myArr = new int[5];Arrays.fill(myArr, 1);Consumer&lt;int[]&gt; consumer1 = arr -&gt; arr[1]=0;consumer1.accept(myArr);System.out.println(&quot;Array:&quot; + Arrays.toString(myArr));</code></pre><p>输出结果为：</p><pre><code>Array:[1, 0, 1, 1, 1]</code></pre><hr><p>…</p><p>综上，其实函数式接口就是为了让我们可以将方法定义为一个对象使用，能更方便使用函数方法块，而@FunctionalInterface注解让我们可以使用lambda的形式来实现这些接口，算是简化代码吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Function-lt-A-B-gt&quot;&gt;&lt;a href=&quot;#Function-lt-A-B-gt&quot; class=&quot;headerlink&quot; title=&quot;Function&amp;lt;A,B&amp;gt;&quot;&gt;&lt;/a&gt;Function&amp;lt;A,B&amp;gt;&lt;/h2&gt;&lt;p&gt;Func
+      
+    
+    </summary>
+    
+      <category term="java" scheme="https://xfff.xyz/categories/java/"/>
+    
+    
+      <category term="java8" scheme="https://xfff.xyz/tags/java8/"/>
+    
+  </entry>
   
   <entry>
     <title>【maven】maven使用中遇到的问题记录</title>
