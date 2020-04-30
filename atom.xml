@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-04-29T03:16:56.415Z</updated>
+  <updated>2020-04-30T01:20:21.830Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【kettle】简单常用场景使用</title>
+    <link href="https://xfff.xyz/2020/04/30/%E3%80%90kettle%E3%80%91%E7%AE%80%E5%8D%95%E5%B8%B8%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2020/04/30/【kettle】简单常用场景使用/</id>
+    <published>2020-04-30T01:18:02.000Z</published>
+    <updated>2020-04-30T01:20:21.830Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><p>新建一个转换<br><img src="https://ftp.bmp.ovh/imgs/2020/04/b0506729e57c43fc.png" alt=""></p></li><li><p>设置数据库连接<br><img src="https://ftp.bmp.ovh/imgs/2020/04/9288f6dd415cc07f.png" alt=""></p></li><li><p>添加表输入结点<br><img src="https://ftp.bmp.ovh/imgs/2020/04/182daad8bc0eecdc.png" alt=""></p></li><li><p>表输入设置<br><img src="https://ftp.bmp.ovh/imgs/2020/04/f0b9a268877dd8cd.png" alt=""></p></li><li><p>新增脚本结点并设置（连线按住shift拖拉）<br><img src="https://s1.ax1x.com/2020/04/29/JTXMC9.png" alt="JTXMC9.png"></p></li><li><p>新增输出（表插入）结点并设置<br><img src="https://s1.ax1x.com/2020/04/29/JTjKZ8.png" alt="JTjKZ8.png"><br>其中上面的表格要设置输入表和输出表的字段校验，左边是目标输出表的字段，右边可以选流程中设置的变量或者输入表的字段，当字段数据相同时会更新其它字段，当字段数据不同时会插入新数据；<br>下面是更新字段的设置，需要设置更新目标表的什么字段，同样是左边是目标输出表的字段，右边是变量或者输入表的字段。</p></li><li><p>最后点击校验和运行<br><img src="https://s1.ax1x.com/2020/04/29/JTjTSA.png" alt="JTjTSA.png"></p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;新建一个转换&lt;br&gt;&lt;img src=&quot;https://ftp.bmp.ovh/imgs/2020/04/b0506729e57c43fc.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置数据库连接&lt;br&gt;&lt;img src=&quot;https:/
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="kettle" scheme="https://xfff.xyz/tags/kettle/"/>
+    
+  </entry>
   
   <entry>
     <title>【java】函数式接口</title>

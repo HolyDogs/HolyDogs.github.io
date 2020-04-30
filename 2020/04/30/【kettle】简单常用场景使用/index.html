@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Category: 数据结构 | XFF&#39;s blog</title>
+  <title>【kettle】简单常用场景使用 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -222,88 +222,109 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>Just Go Away</h2>
-                        <p></p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/11/08/【leetcode】笔记2/">【leetcode】笔记2</a></h4>
-                            
-                            <p><time datetime="2018-11-08T08:57:46.000Z"><a href="/2018/11/08/【leetcode】笔记2/">2018-11-08</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/11/06/【leetcode】笔记1/">【LeetCode】笔记1</a></h4>
-                            
-                            <p><time datetime="2018-11-06T06:40:33.000Z"><a href="/2018/11/06/【leetcode】笔记1/">2018-11-06</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/03/【数据结构】基础结构实现集合/">【数据结构】基础结构实现集合</a></h4>
-                            
-                            <p><time datetime="2018-10-03T09:02:07.000Z"><a href="/2018/10/03/【数据结构】基础结构实现集合/">2018-10-03</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2020-04-30T01:18:02.000Z" itemprop="datePublished">
+          2020-04-30
+      </time>
+    
+    
+    | 
+    <a href='/tags/kettle/'>kettle</a>
+    
+    
+</span>
+                <h1>【kettle】简单常用场景使用</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<ol>
+<li><p>新建一个转换<br><img src="https://ftp.bmp.ovh/imgs/2020/04/b0506729e57c43fc.png" alt=""></p>
+</li>
+<li><p>设置数据库连接<br><img src="https://ftp.bmp.ovh/imgs/2020/04/9288f6dd415cc07f.png" alt=""></p>
+</li>
+<li><p>添加表输入结点<br><img src="https://ftp.bmp.ovh/imgs/2020/04/182daad8bc0eecdc.png" alt=""></p>
+</li>
+<li><p>表输入设置<br><img src="https://ftp.bmp.ovh/imgs/2020/04/f0b9a268877dd8cd.png" alt=""></p>
+</li>
+<li><p>新增脚本结点并设置（连线按住shift拖拉）<br><img src="https://s1.ax1x.com/2020/04/29/JTXMC9.png" alt="JTXMC9.png"></p>
+</li>
+<li><p>新增输出（表插入）结点并设置<br><img src="https://s1.ax1x.com/2020/04/29/JTjKZ8.png" alt="JTjKZ8.png"><br>其中上面的表格要设置输入表和输出表的字段校验，左边是目标输出表的字段，右边可以选流程中设置的变量或者输入表的字段，当字段数据相同时会更新其它字段，当字段数据不同时会插入新数据；<br>下面是更新字段的设置，需要设置更新目标表的什么字段，同样是左边是目标输出表的字段，右边是变量或者输入表的字段。</p>
+</li>
+<li><p>最后点击校验和运行<br><img src="https://s1.ax1x.com/2020/04/29/JTjTSA.png" alt="JTjTSA.png"></p>
+</li>
+</ol>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2020/04/29/【java】函数式接口/">
+        【java】函数式接口 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足,不敢停站,然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--

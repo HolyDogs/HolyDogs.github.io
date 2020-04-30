@@ -131,7 +131,7 @@
 				    
 				    <li><a href="/categories/前端/" class="animsition-link">前端<small>(10)</small></a></li>
 				    
-				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(8)</small></a></li>
+				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(9)</small></a></li>
 				    
 				    <li><a href="/categories/数据结构/" class="animsition-link">数据结构<small>(3)</small></a></li>
 				    
@@ -253,6 +253,47 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/01/25/【redis】高级话题/">【redis】高级话题</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-01-25T06:52:28.000Z" itemprop="datePublished">
+          2019-01-25
+      </time>
+    
+    
+    | 
+    <a href='/tags/redis/'>redis</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        事务multi标记一个事务的开始，多条命令会按照先后顺序放进一个队列中，总返回OK
+exec执行所有事务块的命令事务内的所有执行语句内容，事务被打断返回nil
+discard（当事务队列内的语句写到一半不想写了）取消事务，放弃事务内的所有命令，总返回OK
+
+当遇到语法错误时，事务就会被放弃
+当语法没错，但执行会出错时，redis不会回滚，前面正确的命令会正常执行
+watch key…监视一个或多个key，如果在事务执行前这些key被其他
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/01/25/【redis】高级话题/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -562,51 +603,6 @@ import App from
                     
                     <p class="pull-right readMore">
                         <a href="/2019/01/15/vue入门安装/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/01/14/SpringBoot学习使用/">SpringBoot学习使用(与mybatis plus整合)</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-01-14T02:28:28.000Z" itemprop="datePublished">
-          2019-01-14
-      </time>
-    
-    
-    | 
-    <a href='/tags/springboot/'>springboot</a>,
-    
-    <a href='/tags/mybatis-plus/'>mybatis_plus</a>,
-    
-    <a href='/tags/mybatis/'>mybatis</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        以一个简单的Demo为例搭建一个简单的SpringBoot项目
-File–&gt;new–&gt;project
-
-如上选择若没有Spring Assistant选项要在plugins里安装该插件
-
-选择各种需要的选项后，next，选web项目，取名等等这里就不写了。。。
-项目建好了结构大概是这样的。（这里我懒得创新的了，还有自己写的一些文件就忽略吧）反正没有example里的那4个文件夹，还有resources里的mapper和sta
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/14/SpringBoot学习使用/">Read More...</a>
                     </p>
                     
                 </div>
