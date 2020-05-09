@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-04-30T01:20:21.830Z</updated>
+  <updated>2020-05-09T08:08:40.060Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【java】使用jsonp请求并解析网页元素内容，爬取网站热点数据</title>
+    <link href="https://xfff.xyz/2020/05/09/%E3%80%90java%E3%80%91%E4%BD%BF%E7%94%A8jsonp%E8%AF%B7%E6%B1%82%E8%A7%A3%E6%9E%90%E7%BD%91%E9%A1%B5%E5%85%83%E7%B4%A0%E5%92%8C%E5%86%85%E5%AE%B9%EF%BC%8C%E7%88%AC%E5%8F%96%E7%BD%91%E7%AB%99%E7%83%AD%E7%82%B9%E6%95%B0%E6%8D%AE/"/>
+    <id>https://xfff.xyz/2020/05/09/【java】使用jsonp请求解析网页元素和内容，爬取网站热点数据/</id>
+    <published>2020-05-09T07:39:43.000Z</published>
+    <updated>2020-05-09T08:08:40.060Z</updated>
+    
+    <content type="html"><![CDATA[<p>org.jsonp这个包里的类可以用来对网页请求，然后获取请求返回的网页或者是json字符串。</p><pre><code>Document doc = null;  Connection connection = Jsoup.connect(url);  connection.header(&quot;Accept&quot;, &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;);  connection.header(&quot;Accept-Encoding&quot;, &quot;gzip, deflate, br&quot;);  connection.header(&quot;Accept-Language&quot;, &quot;en-US,en;q=0.5&quot;);  connection.header(&quot;User-Agent&quot;, &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0&quot;);if (headers != null)  {      connection.headers(headers);  }  try  {      doc = connection.timeout(10 * 1000).get();  }  catch (IOException e)  {      log.error(&quot;Fail to connect!&quot;, e);  }  return doc;</code></pre><hr><p>如果网页返回的为json字符串：</p><pre><code>String json = null;try{    json = Jsoup.connect(url).ignoreContentType(true).execute().body();}catch (IOException e){    log.error(&quot;Fail to connect the website!&quot;, e);}return json;</code></pre><hr><pre><code>import com.jayway.jsonpath.JsonPath;List&lt;String&gt; titles = JsonPath.read(jsonStr, &quot;$.rankList.[*].title&quot;);</code></pre><p>使用该JsonPath工具类可以读取json字符串<br>如上的使用方法为读取jsonStr该json字符串下的，rankList数组里所有元素的title值，然后放到一个list里面。</p><hr><h2 id="实例演示"><a href="#实例演示" class="headerlink" title="实例演示"></a>实例演示</h2><p>获取ACFUN的排行榜视频标题以及链接，放到一个列表里去：</p><p>首先去acfun官网排行榜页面找获取排行榜数据的请求，<br><img src="https://s1.ax1x.com/2020/05/09/YQvTYT.png" alt="YQvTYT.png"><br>得知该请求方式返回一个很长的json数据。<br>复制下来使用notepad++格式化后可以看到这样的数据层次：</p><pre><code>{    &quot;result&quot;: 0,    &quot;host-name&quot;: &quot;hb2-acfun-kcs085.aliyun&quot;,    &quot;rankList&quot;: [        {            &quot;groupId&quot;: &quot;Ml8wXzE1ODkwMTEyMjQ0NTVfNTY_1&quot;,            &quot;userId&quot;: 233486,            &quot;dougaId&quot;: &quot;15402363&quot;,            &quot;channelId&quot;: 86,            &quot;videoCover&quot;: &quot;https://tx-free-imgs.acfun.cn/content/2020_05_08/1588922111122.JPG?imageslim&quot;,            &quot;userImg&quot;: &quot;https://tx-free-imgs.acfun.cn/style/image/201907/tXEU6GKinPO0cygwHbmOU7DAsfw1iPvU.jpg?imageslim&quot;,            &quot;fansCount&quot;: 15747,            &quot;channelName&quot;: &quot;生活日常&quot;,            &quot;contentId&quot;: 15402363,            &quot;isFollowing&quot;: false,            &quot;contributionCount&quot;: 50,            &quot;danmuCount&quot;: 993,            &quot;contentTitle&quot;: &quot;MC石头：成年人的悲哀&quot;,            &quot;contentDesc&quot;: &quot;生活中总有那么一些成年后的烦恼，慢慢的就习惯了。Vx：mcfanjian QQ：337845818&quot;,            &quot;userSignature&quot;: &quot;Vx号mcfanjian，扣扣337845818，粉丝q群138836999，网易云：MC石头&quot;,            &quot;contributeTime&quot;: 1588924233279,            &quot;userName&quot;: &quot;MC石头&quot;,            &quot;contentType&quot;: 2,            &quot;duration&quot;: 62920,            &quot;durationMillis&quot;: 62920,            &quot;likeCount&quot;: 1641,            &quot;createTime&quot;: &quot;24小时前&quot;,            &quot;title&quot;: &quot;MC石头：成年人的悲哀&quot;,            ......</code></pre><p>于是我们的解析思路就有了：<br>首先通过Jsonp根据该请求url获取排行榜的json数据</p><pre><code>String hotJsonStr = Jsoup.connect(url).ignoreContentType(true).execute().body();</code></pre><p>根据上面的json格式，使用JsonPath对该数据进行解析，获取出所有排行榜视频的标题和链接</p><pre><code>List&lt;String&gt; titles = JsonPath.read(hotJsonStr, &quot;$.rankList.[*].title&quot;);  List&lt;String&gt; urlList = JsonPath.read(hotJsonStr, &quot;$.rankList.[*].shareUrl&quot;);</code></pre><p>然后根据自己的喜好将标题绑定链接显示在页面制成列表就可以了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;org.jsonp这个包里的类可以用来对网页请求，然后获取请求返回的网页或者是json字符串。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Document doc = null;  
+Connection connection = Jsoup.connect(url);  
+conne
+      
+    
+    </summary>
+    
+      <category term="java" scheme="https://xfff.xyz/categories/java/"/>
+    
+    
+      <category term="jsonp" scheme="https://xfff.xyz/tags/jsonp/"/>
+    
+  </entry>
   
   <entry>
     <title>【kettle】简单常用场景使用</title>
