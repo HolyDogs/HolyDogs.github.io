@@ -109,7 +109,7 @@
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(8)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(9)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -268,7 +268,7 @@ gulp release         # packaged &amp; minimized js will be emitted in dist folde
     self.flvPlayer.play();
     return self.flvPlayer;
 }
-</code></pre><p>只需要调用该方法，传入id（video控件的id）以及src（播放链接，可以是一个具体的视频链接，也可以是对后台的长连接请求地址，后台实时写流给前台播放）。<br>然后调用时赋值给一个变量</p>
+</code></pre><p>只需要调用该方法，传入id（video控件的id）以及src（播放链接，可以是一个具体的视频链接，也可以是对后台的长连接请求地址，后台实时写流给前台播放）。<br>然后调用时赋值给一个变量<br>flvjs的api文档：<a href="https://github.com/bilibili/flv.js/blob/master/docs/api.md" target="_blank" rel="noopener">https://github.com/bilibili/flv.js/blob/master/docs/api.md</a></p>
 <pre><code>var player = videoInit(&quot;video1&quot;,&quot;xxx&quot;);
 </code></pre><p>想要销毁该播放器，就调用该播放器实例的unload、destroy方法。</p>
 <pre><code>if(null != player){
@@ -302,6 +302,10 @@ gulp release         # packaged &amp; minimized js will be emitted in dist folde
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2020/06/01/【java】使用javaCV对直播RTSP流实时转码，使用flvjs控件播放/" style="float: left;">
+        ← 【java】使用javaCV对直播RTSP流实时转码，使用flvjs控件播放
+    </a>
     
     
     <a class="pull-right" href="/2020/05/09/【java】使用jsonp请求解析网页元素和内容，爬取网站热点数据/">
