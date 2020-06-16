@@ -81,13 +81,15 @@
                 <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
                 <ul class="sb-submenu">
                     
-                        <li><a href="https://github.com/HolyDogs/Survey-Creater" target="_BLANK" class="animsition-link">Survey-Creater</a></li>
+                        <li><a href="https://github.com/HolyDogs/Survey-Creater" target="_BLANK" class="animsition-link">Survey-Creater问卷系统</a></li>
                     
                         <li><a href="https://github.com/HolyDogs/WriteToFutureAndUserManager" target="_BLANK" class="animsition-link">写给未来的信</a></li>
                     
                         <li><a href="https://github.com/HolyDogs/Bank" target="_BLANK" class="animsition-link">Bank</a></li>
                     
                         <li><a href="https://github.com/HolyDogs/PhotoUpAndDown" target="_BLANK" class="animsition-link">头像图片管理</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/RTSP-Video-Flv" target="_BLANK" class="animsition-link">javaCV转RTSP视频流</a></li>
                     
                         <li><a href="https://github.com/HolyDogs/VueStructDemo" target="_BLANK" class="animsition-link">VueDemo</a></li>
                     
@@ -127,7 +129,7 @@
 				    
 				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(2)</small></a></li>
 				    
-				    <li><a href="/categories/分布式/" class="animsition-link">分布式<small>(2)</small></a></li>
+				    <li><a href="/categories/分布式/" class="animsition-link">分布式<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/前端/" class="animsition-link">前端<small>(11)</small></a></li>
 				    
@@ -253,6 +255,46 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/06/14/【rpc】RPC理解与实现/">【rpc】RPC理解与实现</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-06-14T07:10:32.000Z" itemprop="datePublished">
+          2020-06-14
+      </time>
+    
+    
+    | 
+    <a href='/tags/rpc/'>rpc</a>,
+    
+    <a href='/tags/动态代理/'>动态代理</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        rpc：远程过程调用（Remote Procedure Call）的缩写形式。不同于本地调用，函数与函数之间同属于同一块内存空间，如需调用某个函数，只需要找到所在内存地址即可。远程调用，通俗地说，便是有两台服务器 A，B，一个应用部署在 A 服务器上，想要调用 B 服务器上应用提供的函数/方法，需要通过网络来表达调用的语义和传达调用的数据。
+应用：分布式框架dubbo等。
+本地通过定义一个接口，动态代理一个请求返回的远程服务对象。
+三个
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/06/14/【rpc】RPC理解与实现/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -532,49 +574,6 @@ Function&lt;Integer, Intege
                     
                     <p class="pull-right readMore">
                         <a href="/2020/04/09/【swagger-ui】通过注解生成api文档/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/01/06/【Docker】docker基本使用/">【Docker】docker基本使用</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-01-06T10:00:16.000Z" itemprop="datePublished">
-          2020-01-06
-      </time>
-    
-    
-    | 
-    <a href='/tags/linux/'>linux</a>,
-    
-    <a href='/tags/docker/'>docker</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        三层概念
-仓库：类似于Github或者Gitlab，不是保存代码，而是用来保存镜像。（Docker Hub）
-镜像IMAGE：Docker镜像，相当于一个系统，容器基于镜像的环境运行，例如Ubuntu:14.04（冒号后面表示版本，可以自定义版本号名，如dev、test、prod）
-容器CONTAINER：容器是镜像运行的实体，可以被创建、启动、停止、删除、暂停等。
-
-
-Docker安装Docker一般都在Linux系统上运行，实际在w
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/01/06/【Docker】docker基本使用/">Read More...</a>
                     </p>
                     
                 </div>

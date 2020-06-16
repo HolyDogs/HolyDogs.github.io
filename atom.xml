@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-06-01T07:36:44.688Z</updated>
+  <updated>2020-06-16T07:12:13.444Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【rpc】RPC理解与实现</title>
+    <link href="https://xfff.xyz/2020/06/14/%E3%80%90rpc%E3%80%91RPC%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://xfff.xyz/2020/06/14/【rpc】RPC理解与实现/</id>
+    <published>2020-06-14T07:10:32.000Z</published>
+    <updated>2020-06-16T07:12:13.444Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>rpc</strong>：<strong>远程过程调用</strong>（Remote Procedure Call）的缩写形式。不同于本地调用，函数与函数之间同属于同一块内存空间，如需调用某个函数，只需要找到所在内存地址即可。远程调用，通俗地说，便是有两台服务器 A，B，一个应用部署在 A 服务器上，想要调用 B 服务器上应用提供的函数/方法，需要通过网络来表达调用的语义和传达调用的数据。</p><p>应用：分布式框架<strong>dubbo</strong>等。</p><p>本地通过定义一个接口，动态代理一个请求返回的远程服务对象。</p><p>三个要点：Call ID映射、序列化与反序列化、网络传输。<br>RPC调用过程：<br>1、客户端通过调用本地服务的方式调用服务<br>2、客户端将方法、入参等信息序列化后，找到服务端的远程服务地址，将消息通过网络发送给服务端<br>3、服务端收到消息进行解码（反序列化<br>4、服务端调用本地服务进行相关处理，将执行结果序列化后发送给客户端<br>5、客户端解码反序列化获取最后结果</p><h2 id="使用技术："><a href="#使用技术：" class="headerlink" title="使用技术："></a>使用技术：</h2><ul><li><strong>动态代理</strong><br>客户端使用动态代理代理服务端的服务对象，对消费方的请求进行处理。</li><li><strong>序列化与反序列化</strong><br>为了使参数对象可以在网络中传输，需要用到序列化技术。常见的序列化方式有 JDK 自带序列化（Serializable 接口），HESSIAN 序列化，Kryo 序列化等。</li><li><strong>NIO</strong><br>为了支持高并发，确保客户端与服务端的可靠通信，一般会使用到NIO技术，常用Netty作为网络应用框架实现。</li><li><strong>服务注册中心</strong><br>为了便于客户端找到远程服务的地址，使用类似Zookeeper这种注册中心提供服务端注册服务，并支持分布式部署集群。</li></ul><blockquote><p>参考文档<br><a href="https://www.jianshu.com/p/29d75a25eeaf" target="_blank" rel="noopener">https://www.jianshu.com/p/29d75a25eeaf</a><br><a href="https://www.jianshu.com/p/78f72ccf0377" target="_blank" rel="noopener">https://www.jianshu.com/p/78f72ccf0377</a><br>具体实现<br><a href="https://my.oschina.net/huangyong/blog/361751" target="_blank" rel="noopener">https://my.oschina.net/huangyong/blog/361751</a></p></blockquote><h2 id="tips-of-动态代理"><a href="#tips-of-动态代理" class="headerlink" title="tips of 动态代理"></a>tips of 动态代理</h2><p>动态代理与事务的冲突：<strong>在一个Service内部，事务方法之间的嵌套调用，普通方法和事务方法之间的嵌套调用，都不会开启新的事务。</strong><br>动态代理最终都是要调用原始对象的，而原始对象在去调用方法时，是不会再触发代理了！（触发的是代理类实例的方法，而非原对象的方法）</p><p>代理模式：使用代理对象来完成对另一对象方法、接口的调用，然后可以在此基础上增加自定义逻辑。<br>动态代理：<a href="https://www.cnblogs.com/gonjan-blog/p/6685611.html" target="_blank" rel="noopener">https://www.cnblogs.com/gonjan-blog/p/6685611.html</a></p><p>创建一个InvocationHandler对象<br>&nbsp;&nbsp;&nbsp;&nbsp;InvocationHandler\&lt;interfaceA><br>interfaceA指一个接口，为了动态代理该接口的所有实现类</p><p>动态创建一个代理对象</p><pre><code>Proxy.newProxyInstance(xx.class.getClassLoader(), new Class&lt;?&gt;[]{xxx.class}, invocationHandler);</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;rpc&lt;/strong&gt;：&lt;strong&gt;远程过程调用&lt;/strong&gt;（Remote Procedure Call）的缩写形式。不同于本地调用，函数与函数之间同属于同一块内存空间，如需调用某个函数，只需要找到所在内存地址即可。远程调用，通俗地说，便是有两台
+      
+    
+    </summary>
+    
+      <category term="分布式" scheme="https://xfff.xyz/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+      <category term="rpc" scheme="https://xfff.xyz/tags/rpc/"/>
+    
+      <category term="动态代理" scheme="https://xfff.xyz/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>【java】使用javaCV对直播RTSP流实时转码，使用flvjs控件播放</title>
