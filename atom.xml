@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-06-16T07:12:13.444Z</updated>
+  <updated>2020-07-05T01:58:41.496Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【SpringBoot】自定义SpringBoot定时任务线程池</title>
+    <link href="https://xfff.xyz/2020/07/05/%E3%80%90SpringBoot%E3%80%91%E8%87%AA%E5%AE%9A%E4%B9%89SpringBoot%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    <id>https://xfff.xyz/2020/07/05/【SpringBoot】自定义SpringBoot定时任务线程池/</id>
+    <published>2020-07-05T01:57:18.000Z</published>
+    <updated>2020-07-05T01:58:41.496Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>多个定时任务设置同时启动时，只有一个定时任务被执行。</p><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>ScheduledTaskRegistrar类里有一段这样的代码<br><img src="https://oscimg.oschina.net/oscnet/f93c93a461d70bcfd43b294e6972469cfa9.jpg" alt="jpg"><br>springBoot定时任务默认使用newSingleThreadScheduledExecutor创建线程池，最多只能同时存在一个定时任务线程运行。</p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>方法1：项目启动时注入TaskScheduler的bean，并设置线程池大小（未尝试）</p><pre><code>@Beanpublic TaskScheduler taskScheduler() {    ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();    taskScheduler.setPoolSize(50);    return taskScheduler;}</code></pre><p>方法2：增加springBoot配置</p><pre><code>spring.task.scheduling.pool.size=50</code></pre><hr><p>根据我的实际使用，发现运行过程中虽然可以成功创建多个线程来运行定时任务了，但是运行结束后通过Jconsole查看线程，线程一直处于未关闭的状态。我的定时任务设定是每个月执行一次，这样的线程池也不符合我的需求。于是便开始尝试使用自定的线程池来创建线程运行定时任务。</p><p>解决步骤：</p><ol><li><p>创建线程池配置类</p><pre><code>@Configurationpublic class TaskPoolConfig implements AsyncConfigurer {    @Override    @Bean(&quot;taskExecutor&quot;)    public Executor getAsyncExecutor(){        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();        //线程核心池，每月执行一次，设为0        taskExecutor.setCorePoolSize(0);        //线程核心池最大值        taskExecutor.setMaxPoolSize(50);        //线程等待队列0        taskExecutor.setQueueCapacity(0);        //线程空闲等待时间，超过60秒关闭        taskExecutor.setKeepAliveSeconds(60);        //线程前缀        taskExecutor.setThreadNamePrefix(&quot;taskExecutorXFF--&quot;);        taskExecutor.setWaitForTasksToCompleteOnShutdown(true);        taskExecutor.setAwaitTerminationSeconds(60);        return taskExecutor;    }}</code></pre></li><li><p>启动类上添加@EnableAsync注解</p></li><li><p>在定时任务方法上添加@Async(“taskExecutor”)注解</p><pre><code>@Scheduled(cron = &quot;0 0 0 1 7/1 ?&quot;)  @Async(&quot;taskExecutor&quot;)  public void dataUpdate1() {    ...}</code></pre></li></ol><p>这样就做到了自定义SpringBoot定时任务运行的线程池</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;多个定时任务设置同时启动时，只有一个定时任务被执行。&lt;/p&gt;
+&lt;h2 id=&quot;原因&quot;&gt;&lt;a href=&quot;#原因&quot; class=&quot;header
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
+    
+    
+      <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>【rpc】RPC理解与实现</title>
@@ -360,9 +388,9 @@ conne
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
-    
       <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
     
   </entry>
   
@@ -1701,11 +1729,11 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
+      <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
       <category term="java" scheme="https://xfff.xyz/tags/java/"/>
     
       <category term="多线程" scheme="https://xfff.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-      <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     
   </entry>
   

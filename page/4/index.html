@@ -101,7 +101,7 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
-				    <li><a href="/categories/SpringBoot/" class="animsition-link">SpringBoot<small>(3)</small></a></li>
+				    <li><a href="/categories/SpringBoot/" class="animsition-link">SpringBoot<small>(4)</small></a></li>
 				    
 				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(1)</small></a></li>
 				    
@@ -253,6 +253,44 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/02/25/【java】关于replace字符串时特殊字符的坑/">【java】关于replace字符串时特殊字符的坑</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-02-25T08:30:50.000Z" itemprop="datePublished">
+          2019-02-25
+      </time>
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        刚遇到个字符串替换的坑，记录一下
+实际使用时是这样的，有一个字符串里面包含\n \“等字符
+现在我要把他们替换为空格和”
+第一时间我想到的是
+str.replaceAll(&quot;\\n&quot;,&quot;&quot;);
+str.replaceAll(&quot;\\\&quot;&quot;,&quot;&quot;&quot;);
+实际上完全替换不了，还有错误
+实际\n和\“在java中是这样存储的
+\\n 和 \\&q
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/02/25/【java】关于replace字符串时特殊字符的坑/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -559,66 +597,6 @@ watch key…监视一个或多个key，如果在事务执行前这些key被其�
                     
                     <p class="pull-right readMore">
                         <a href="/2019/01/25/【redis】高级话题/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/">【redis】可视化工具以及一些基本命令对5种类型操作</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-01-25T02:11:20.000Z" itemprop="datePublished">
-          2019-01-25
-      </time>
-    
-    
-    | 
-    <a href='/tags/redis/'>redis</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        
-redis可视化工具安装
-redis-cli命令
-Key的五种数据类型
-基本命令
-
-字符串类型
-
-哈希类型hash
-
-列表list
-
-集合类型set
-
-有序集合zset
-
-
-
-
-
-redis关闭./redis-cli shutdownkill 进程
-连接指定地址的redis./redis-cli -h 127.0.0.1 -p 6379
-
-redis desktop managerredis的可视化管理工具download
-
-http
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/">Read More...</a>
                     </p>
                     
                 </div>
