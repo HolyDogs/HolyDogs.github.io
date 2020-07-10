@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-07-05T01:58:41.496Z</updated>
+  <updated>2020-07-10T02:23:17.905Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【SpringCloud】springCloud总体结构和技术熟悉</title>
+    <link href="https://xfff.xyz/2020/07/10/%E3%80%90SpringCloud%E3%80%91springCloud%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84%E5%92%8C%E6%8A%80%E6%9C%AF%E7%86%9F%E6%82%89/"/>
+    <id>https://xfff.xyz/2020/07/10/【SpringCloud】springCloud总体结构和技术熟悉/</id>
+    <published>2020-07-10T02:20:58.000Z</published>
+    <updated>2020-07-10T02:23:17.905Z</updated>
+    
+    <content type="html"><![CDATA[<p>springCloud组件图<br><img src="https://src.windmt.com/img/006tNc79ly1fqc4dcx75gj31ab0o775w.jpg" alt="https://src.windmt.com/img/006tNc79ly1fqc4dcx75gj31ab0o775w.jpg"><br>springCloud结构图<br><img src="https://src.windmt.com/img/006tNc79ly1fqc2klep72j30n00jhjsd.jpg" alt=""></p><h2 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h2><p><strong>服务注册中心：Eureka、（zookeeper等）</strong><br>负责管理服务的注册和发现。</p><h2 id="服务调用"><a href="#服务调用" class="headerlink" title="服务调用"></a>服务调用</h2><p><strong>调用端断路器：Hystrix</strong><br>当某个服务出问题时，设置快速失败机制，再多次失败后再次调用直接返回失败，避免出现雪崩现象（指由于前面的服务调用失败导致后面的服务调用全部失败导致调用端    持续等待影响了整体服务；服务雪崩效应是一种因 “服务提供者” 的不可用导致 “服务消费者” 的不可用，并将不可用逐渐放大的过程。）。</p><p><strong>调用端负载均衡：Ribbon</strong><br>对有多个实例的同一服务（集群），当调用服务时，进行负载均衡来让各个实例合理地分配到请求。</p><p><strong>调用端代码封装与抽象：Feign</strong><br>Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单。Feign默认集成了Ribbon与Hystrix，具有熔断的能力，与Eureka结合，默认实现了负载均衡的效果。</p><h2 id="服务路由和过滤"><a href="#服务路由和过滤" class="headerlink" title="服务路由和过滤"></a>服务路由和过滤</h2><p><strong>服务路由和过滤：Zuul</strong><br>1可以过滤cookie和httpHeader<br>2路径映射<br>3可实现动态路由，根据请求路径动态映射到不同服务，如下图<br><img src="https://s1.ax1x.com/2020/07/05/Up9r7V.png" alt="Up9r7V.png"></p><h2 id="监控数据收集"><a href="#监控数据收集" class="headerlink" title="监控数据收集"></a>监控数据收集</h2><p><strong>Hystrix Dashboard 和 Turbine</strong><br>对服务熔断情况进行监控。<br>只使用 Hystrix Dashboard 的话，你只能看到单个应用内的服务信息。<br>Turbine能让我们汇总系统内多个服务的数据并显示到 Hystrix Dashboard 上。</p><p><strong>Spring Cloud Sleuth 和 Zipkin</strong><br>通过 Sleuth 可以很清楚的了解到一个服务请求经过了哪些服务，每个服务处理花费了多长时间。从而让我们可以很方便的理清各微服务间的调用关系。</p><p>Zipkin 是 Twitter 的一个开源项目，允许开发者收集 Twitter 各个服务上的监控数据，并提供查询接口</p><p>分布式链路跟踪需要 Sleuth+Zipkin 结合来实现</p><h2 id="其它工具"><a href="#其它工具" class="headerlink" title="其它工具"></a>其它工具</h2><p><strong>Spring Cloud Config</strong><br>分布式系统的配置管理方案。</p><p><strong>Spring Cloud Bus</strong><br>用 AMQP 消息代理作为通道，通过分布式的启动器对 Spring Boot 应用进行扩展，也可以用来建立一个或多个应用之间的通信频道。可用于对分布式配置变化进行广播，不用对每个服务端都进行refresh操作就能更新所有服务的配置。</p><hr><blockquote><p>原文：<a href="https://windmt.com/2018/04/14/spring-cloud-0-microservices/" target="_blank" rel="noopener">https://windmt.com/2018/04/14/spring-cloud-0-microservices/</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;springCloud组件图&lt;br&gt;&lt;img src=&quot;https://src.windmt.com/img/006tNc79ly1fqc4dcx75gj31ab0o775w.jpg&quot; alt=&quot;https://src.windmt.com/img/006tNc79ly1f
+      
+    
+    </summary>
+    
+      <category term="SpringCloud" scheme="https://xfff.xyz/categories/SpringCloud/"/>
+    
+    
+      <category term="SpringCloud" scheme="https://xfff.xyz/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【SpringCloud】springCloud相关博客链接地址学习收集</title>
+    <link href="https://xfff.xyz/2020/07/10/%E3%80%90SpringCloud%E3%80%91springCloud%E7%9B%B8%E5%85%B3%E5%8D%9A%E5%AE%A2%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80%E5%AD%A6%E4%B9%A0%E6%94%B6%E9%9B%86/"/>
+    <id>https://xfff.xyz/2020/07/10/【SpringCloud】springCloud相关博客链接地址学习收集/</id>
+    <published>2020-07-10T02:11:50.000Z</published>
+    <updated>2020-07-10T02:22:25.947Z</updated>
+    
+    <content type="html"><![CDATA[<p>Spring Cloud Finchley; Spring Boot 2.0.3</p><ul><li><a href="http://blog.csdn.net/forezp/article/details/81040925" target="_blank" rel="noopener">史上最简单的 SpringCloud 教程 | 第一篇: 服务的注册与发现（Eureka）(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81040946" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第二篇: 服务消费者（rest+ribbon）(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81040965" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第三篇: 服务消费者（Feign）(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81040990" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第四篇:断路器（Hystrix）(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81041012" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第五篇: 路由网关(zuul)(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81041028" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第六篇: 分布式配置中心(Spring Cloud Config)(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81041045" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第七篇: 高可用的分布式配置中心(Spring Cloud Config)(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81041062" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第八篇: 消息总线(Spring Cloud Bus)(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81041078" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第九篇: 服务链路追踪(Spring Cloud Sleuth)(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81041101" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十篇: 高可用的服务注册中心(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81041113" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十二篇: 断路器监控(Hystrix Dashboard)(Finchley版本)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/81041125" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十三篇: 断路器聚合监控(Hystrix Turbine)(Finchley版本)</a></li><li><a href="https://blog.csdn.net/forezp/article/details/83792388" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十四篇: Spring Cloud Gateway初体验</a></li><li><a href="https://blog.csdn.net/forezp/article/details/84926662" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十五篇: Spring Cloud Gateway 之Predict篇</a></li><li><a href="https://blog.csdn.net/forezp/article/details/85057268" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十六篇: Spring Cloud Gateway 之filter篇</a></li><li><a href="https://blog.csdn.net/forezp/article/details/85081162" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十七篇: Spring Cloud Gateway 之限流篇</a></li><li><a href="https://blog.csdn.net/forezp/article/details/85210153" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十八篇: spring cloud gateway之服务注册与发现</a></li></ul><h3 id="D版本"><a href="#D版本" class="headerlink" title="D版本"></a>D版本</h3><ul><li><a href="http://blog.csdn.net/forezp/article/details/69696915" target="_blank" rel="noopener">史上最简单的 SpringCloud 教程 | 第一篇: 服务的注册与发现（Eureka）</a></li><li><a href="http://blog.csdn.net/forezp/article/details/69788938" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第二篇: 服务消费者（rest+ribbon）</a></li><li><a href="http://blog.csdn.net/forezp/article/details/69808079" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第三篇: 服务消费者（Feign）</a></li><li><a href="http://blog.csdn.net/forezp/article/details/69934399" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第四篇:断路器（Hystrix）</a></li><li><a href="http://blog.csdn.net/forezp/article/details/69939114" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第五篇: 路由网关(zuul)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/70037291" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第六篇: 分布式配置中心(Spring Cloud Config)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/70037513" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第七篇: 高可用的分布式配置中心(Spring Cloud Config)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/70148235" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第八篇: 消息总线(Spring Cloud Bus)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/70162074" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第九篇: 服务链路追踪(Spring Cloud Sleuth)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/70183572" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十篇: 高可用的服务注册中心</a></li><li><a href="http://blog.csdn.net/forezp/article/details/70198649" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十一篇:docker部署spring cloud项目</a></li><li><a href="http://blog.csdn.net/forezp/article/details/70217283" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十二篇: 断路器监控(Hystrix Dashboard)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/70233227" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十三篇: 断路器聚合监控(Hystrix Turbine)</a></li><li><a href="http://blog.csdn.net/forezp/article/details/70245644" target="_blank" rel="noopener">史上最简单的 SpringCloud 教程 | 第十四篇: 服务注册(consul)</a></li><li>未完。。。</li><li>还有很多篇。。。</li></ul><h3 id="Spring-Cloud-Alibaba教程"><a href="#Spring-Cloud-Alibaba教程" class="headerlink" title="Spring Cloud Alibaba教程"></a>Spring Cloud Alibaba教程</h3><ul><li><a href="https://blog.csdn.net/forezp/article/details/90142744" target="_blank" rel="noopener">Spring Cloud Alibaba教程：使用Nacos作为服务注册发现组件</a></li></ul><h3 id="Greenwich版本"><a href="#Greenwich版本" class="headerlink" title="Greenwich版本"></a>Greenwich版本</h3><ul><li><a href="https://blog.csdn.net/forezp/article/details/87273153" target="_blank" rel="noopener">Spring Cloud Consul 之Greenwich版本全攻略</a></li><li><a href="https://blog.csdn.net/forezp/article/details/87866560" target="_blank" rel="noopener">spring cloud config将配置存储在数据库中</a></li><li><a href="https://blog.csdn.net/forezp/article/details/87075651" target="_blank" rel="noopener">Spring Cloud Sleuth 之Greenwich版本全攻略</a></li><li><a href="https://blog.csdn.net/forezp/article/details/86105850" target="_blank" rel="noopener">Spring Boot Admin 2.1.0 全攻略</a></li><li><a href="https://blog.csdn.net/forezp/article/details/86634907" target="_blank" rel="noopener">阿里分布式事务框架GTS开源了！</a></li></ul><h3 id="源码篇："><a href="#源码篇：" class="headerlink" title="源码篇："></a>源码篇：</h3><ul><li><a href="http://blog.csdn.net/forezp/article/details/73480304" target="_blank" rel="noopener">深入理解Feign之源码解析</a></li><li><a href="http://blog.csdn.net/forezp/article/details/73017664" target="_blank" rel="noopener">深入理解Eureka之源码解析</a></li><li><a href="http://blog.csdn.net/forezp/article/details/74820899" target="_blank" rel="noopener">深入理解Ribbon之源码解析</a></li><li><a href="http://blog.csdn.net/forezp/article/details/75333088" target="_blank" rel="noopener">深入理解Hystrix之文档翻译</a></li><li><a href="http://blog.csdn.net/forezp/article/details/76211680" target="_blank" rel="noopener">深入理解Zuul之源码解析</a></li></ul><h3 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h3><ul><li><a href="http://blog.csdn.net/forezp/article/details/76795269" target="_blank" rel="noopener">Spring Cloud Sleuth超详细实战</a></li><li><a href="https://blog.csdn.net/forezp/article/details/83999882" target="_blank" rel="noopener">拜托！面试请不要再问我Spring Cloud底层原理</a></li><li><a href="https://blog.csdn.net/forezp/article/details/83999947" target="_blank" rel="noopener">微服务注册中心如何承载大型系统的千万级访问？</a></li><li><a href="https://blog.csdn.net/forezp/article/details/83999975" target="_blank" rel="noopener">每秒上万并发下的Spring Cloud参数优化实战</a></li></ul><h3 id="番外篇："><a href="#番外篇：" class="headerlink" title="番外篇："></a>番外篇：</h3><ul><li><a href="http://blog.csdn.net/forezp/article/details/69056017" target="_blank" rel="noopener">如何使用MongoDB+Springboot实现分布式ID?</a></li><li><a href="http://blog.csdn.net/forezp/article/details/68957681" target="_blank" rel="noopener">如何在springcloud分布式系统中实现分布式锁？</a></li><li><a href="http://blog.csdn.net/forezp/article/details/70305336" target="_blank" rel="noopener">如何用Redlock实现分布式锁</a></li><li><a href="http://blog.csdn.net/forezp/article/details/76408139" target="_blank" rel="noopener">如何在IDEA启动多个Spring Boot工程实例</a></li><li><a href="http://blog.csdn.net/forezp/article/details/78676036" target="_blank" rel="noopener">JWT如何在Spring Cloud微服务系统中在服务相互调时传</a></li></ul><h3 id="博客："><a href="#博客：" class="headerlink" title="博客："></a>博客：</h3><p><a href="https://windmt.com/2018/04/26/spring-cloud-full-reactive-microservices/" target="_blank" rel="noopener">https://windmt.com/2018/04/26/spring-cloud-full-reactive-microservices/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Spring Cloud Finchley; Spring Boot 2.0.3&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/forezp/article/details/81040925&quot; target=&quot;_blank&quot; rel=
+      
+    
+    </summary>
+    
+      <category term="SpringCloud" scheme="https://xfff.xyz/categories/SpringCloud/"/>
+    
+    
+      <category term="SpringCloud" scheme="https://xfff.xyz/tags/SpringCloud/"/>
+    
+  </entry>
   
   <entry>
     <title>【SpringBoot】自定义SpringBoot定时任务线程池</title>
@@ -38,9 +90,9 @@
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
-    
       <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+      <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     
   </entry>
   
@@ -388,9 +440,9 @@ conne
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
-    
       <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
+    
+      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     
   </entry>
   
@@ -1105,9 +1157,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
-    
       <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
     
       <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     

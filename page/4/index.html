@@ -103,6 +103,8 @@
 				  	
 				    <li><a href="/categories/SpringBoot/" class="animsition-link">SpringBoot<small>(4)</small></a></li>
 				    
+				    <li><a href="/categories/SpringCloud/" class="animsition-link">SpringCloud<small>(2)</small></a></li>
+				    
 				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(1)</small></a></li>
 				    
 				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(4)</small></a></li>
@@ -253,6 +255,85 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/03/02/关于热部署和切面方法的问题解决/">关于热部署和切面方法的问题解决</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-03-02T05:16:07.000Z" itemprop="datePublished">
+          2019-03-02
+      </time>
+    
+    
+    | 
+    <a href='/tags/springboot/'>springboot</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        今天在使用AOP切面方法对指定方法进行增强的时候有个异常问题，折腾了很久，网上找了很多博客和解答，都找不到有用的，终于，凭着自己的第六感，找到了问题所在。
+原因就是 我使用JRebel热部署，然后对切面方法进行了修改，修改了方法的返回类型（不知道修改方法内容会不会，应该不会），然后运行时就会抛出以下异常：
+具体代码如下
+我把项目停止重新运行后，成功解决
+
+这里就顺便写一下springboot使用aop的方法叭
+导入依赖&lt;depen
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/03/02/关于热部署和切面方法的问题解决/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/02/27/【mybatis】利用动态语句动态创建表和列/">【mybatis】利用动态语句动态创建表和列</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-02-27T09:48:25.000Z" itemprop="datePublished">
+          2019-02-27
+      </time>
+    
+    
+    | 
+    <a href='/tags/动态sql/'>动态sql</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        目的为了动态从数据库中生成表以及定义属性
+步骤创建新的xml文件以及mapper接口类TabelControllerMapper.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
+&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/02/27/【mybatis】利用动态语句动态创建表和列/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -513,90 +594,6 @@ https://blog.csdn.net/fungleo/article/details/77606321
                     
                     <p class="pull-right readMore">
                         <a href="/2019/01/29/vuejs总体结构学习/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/01/25/【redis】jedis使用/">【redis】jedis使用</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-01-25T07:57:30.000Z" itemprop="datePublished">
-          2019-01-25
-      </time>
-    
-    
-    | 
-    <a href='/tags/jedis/'>jedis</a>,
-    
-    <a href='/tags/java/'>java</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        使用jedis访问redis数据库创建个maven项目JedisDemo
-引入依赖
-&lt;dependencies&gt;  
-     &lt;dependency&gt; 
-        &lt;groupId&gt;redis.clients&lt;/groupId&gt;  
-         &lt;artifactId&gt;jedis&lt;/artifactId&gt;  
-         &lt;version&
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/25/【redis】jedis使用/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/01/25/【redis】高级话题/">【redis】高级话题</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-01-25T06:52:28.000Z" itemprop="datePublished">
-          2019-01-25
-      </time>
-    
-    
-    | 
-    <a href='/tags/redis/'>redis</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        事务multi标记一个事务的开始，多条命令会按照先后顺序放进一个队列中，总返回OK
-exec执行所有事务块的命令事务内的所有执行语句内容，事务被打断返回nil
-discard（当事务队列内的语句写到一半不想写了）取消事务，放弃事务内的所有命令，总返回OK
-
-当遇到语法错误时，事务就会被放弃
-当语法没错，但执行会出错时，redis不会回滚，前面正确的命令会正常执行
-watch key…监视一个或多个key，如果在事务执行前这些key被其他
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/25/【redis】高级话题/">Read More...</a>
                     </p>
                     
                 </div>

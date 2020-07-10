@@ -103,6 +103,8 @@
 				  	
 				    <li><a href="/categories/SpringBoot/" class="animsition-link">SpringBoot<small>(4)</small></a></li>
 				    
+				    <li><a href="/categories/SpringCloud/" class="animsition-link">SpringCloud<small>(2)</small></a></li>
+				    
 				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(1)</small></a></li>
 				    
 				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(4)</small></a></li>
@@ -253,6 +255,92 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/05/09/【java】使用jsonp请求解析网页元素和内容，爬取网站热点数据/">【java】使用jsonp请求并解析网页元素内容，爬取网站热点数据</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-05-09T07:39:43.000Z" itemprop="datePublished">
+          2020-05-09
+      </time>
+    
+    
+    | 
+    <a href='/tags/jsonp/'>jsonp</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        org.jsonp这个包里的类可以用来对网页请求，然后获取请求返回的网页或者是json字符串。
+Document doc = null;  
+Connection connection = Jsoup.connect(url);  
+connection.header(&quot;Accept&quot;, &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/05/09/【java】使用jsonp请求解析网页元素和内容，爬取网站热点数据/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/04/30/【kettle】简单常用场景使用/">【kettle】简单常用场景使用</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-04-30T01:18:02.000Z" itemprop="datePublished">
+          2020-04-30
+      </time>
+    
+    
+    | 
+    <a href='/tags/kettle/'>kettle</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+新建一个转换
+
+设置数据库连接
+
+添加表输入结点
+
+表输入设置
+
+新增脚本结点并设置（连线按住shift拖拉）
+
+新增输出（表插入）结点并设置其中上面的表格要设置输入表和输出表的字段校验，左边是目标输出表的字段，右边可以选流程中设置的变量或者输入表的字段，当字段数据相同时会更新其它字段，当字段数据不同时会插入新数据；下面是更新字段的设置，需要设置更新目标表的什么字段，同样是左边是目标输出表的字段，右边是变量或者输入表的字段。
+
+最后点
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/04/30/【kettle】简单常用场景使用/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -459,9 +547,9 @@ Docker安装Docker一般都在Linux系统上运行，实际在w
     
     
     | 
-    <a href='/tags/定时任务/'>定时任务</a>,
+    <a href='/tags/cron/'>cron</a>,
     
-    <a href='/tags/cron/'>cron</a>
+    <a href='/tags/定时任务/'>定时任务</a>
     
     
 </span>
@@ -479,89 +567,6 @@ Docker安装Docker一般都在Linux系统上运行，实际在w
                     
                     <p class="pull-right readMore">
                         <a href="/2019/04/12/【SpringBoot】定时任务与Cron表达式/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/04/09/【IndexedDB】基本使用/">【IndexedDB】基本使用</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-04-09T08:52:02.000Z" itemprop="datePublished">
-          2019-04-09
-      </time>
-    
-    
-    | 
-    <a href='/tags/js/'>js</a>,
-    
-    <a href='/tags/前端/'>前端</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        本文来源：本人在使用网页的StackEdit时，发现这东西不用网络，不用登陆，也能保存所有写过的文章，那么这些文章存在哪了呢？Cookie？LocalStorage？好像都不适合存太长的数据，然后发现了IndexedDB这个东西，随后对其进行了探索。
-介绍IndexedDB 是一种可以让你在用户的浏览器内持久化存储数据的方法。IndexedDB 为生成 Web Application 提供了丰富的查询能力，使我们的应用在在线和离线时都可
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/04/09/【IndexedDB】基本使用/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/03/21/【vue】引入ECharts图表和组件/">【vue】引入ECharts图表和组件</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-03-21T07:20:37.000Z" itemprop="datePublished">
-          2019-03-21
-      </time>
-    
-    
-    | 
-    <a href='/tags/echarts/'>echarts</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        如何在Vue项目中画出优雅的图表？
-ECharts文档如下
-
-https://www.echartsjs.com/tutorial.html#%E5%9C%A8%20webpack%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20ECharts
-
-引入步骤
-安装ECharts
-npm install echarts --save
-
-定义html容器用来渲染echarts图表
-&lt;div class=&quot;cha
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/03/21/【vue】引入ECharts图表和组件/">Read More...</a>
                     </p>
                     
                 </div>
