@@ -623,7 +623,7 @@ $('#intro').find('img').each(function(){
     }
 
     // get search zip version
-    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
+    $.get('/searchVersion?t=' + (+new Date()), function(res) {
       if (localStorage.getItem('searchVersion') !== res) {
         localStorage.setItem('searchVersion', res);
         initSearchJson();
