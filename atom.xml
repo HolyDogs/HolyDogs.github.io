@@ -199,9 +199,9 @@
       <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
-    
       <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
+    
+      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
     
   </entry>
   
@@ -227,9 +227,9 @@
       <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
-    
       <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
+    
+      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
     
   </entry>
   
@@ -391,6 +391,30 @@ conne
       <category term="linux" scheme="https://xfff.xyz/tags/linux/"/>
     
       <category term="docker" scheme="https://xfff.xyz/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Error】2020-7-20记录</title>
+    <link href="https://xfff.xyz/2020/01/01/%E3%80%90Error%E3%80%912020-7-20%E8%AE%B0%E5%BD%95/"/>
+    <id>https://xfff.xyz/2020/01/01/【Error】2020-7-20记录/</id>
+    <published>2020-01-01T08:24:37.000Z</published>
+    <updated>2020-07-20T08:32:54.753Z</updated>
+    
+    <content type="html"><![CDATA[<p>指定文件输入框可以多选文件：<strong>multiple</strong>属性</p><pre><code>&lt;input type=&quot;file&quot; size=&quot;30&quot; name=&quot;excel&quot; multiple=&quot;multiple&quot; accept=&quot;application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&quot; onchange=&quot;uploadFile(this)&quot;&gt;</code></pre><p>指定可选择的文件类型：<strong>accept</strong>属性</p><ul><li>xls文件：application/vnd.ms-excel</li><li>xlsx文件：application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</li></ul><p>多种类型用逗号隔开</p><hr><p>Vue使用webpack打包后放入服务器（后端代码）的步骤，resources下创建一个<strong>static</strong>文件夹，然后把打包生成的dist里的static和index.html放入这个文件夹</p><p>这个时候重新启动项目访问可能访问不了这个index.html文件，需要maven clean一下，重新编译运行项目后才可以正常访问。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;指定文件输入框可以多选文件：&lt;strong&gt;multiple&lt;/strong&gt;属性&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;input type=&amp;quot;file&amp;quot; size=&amp;quot;30&amp;quot; name=&amp;quot;excel&amp;quot; multi
+      
+    
+    </summary>
+    
+      <category term="errors" scheme="https://xfff.xyz/categories/errors/"/>
+    
     
   </entry>
   
@@ -1157,9 +1181,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
-    
       <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
+    
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
       <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     
