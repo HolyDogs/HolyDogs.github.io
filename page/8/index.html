@@ -832,7 +832,7 @@ $('#intro').find('img').each(function(){
     });
 
     function initSearchJson () {
-      initLoad(['/search.zip'], {
+      initLoad(['/search'], {
         loadOptions: {
           success: function(obj) {
             localStorage.setItem('searchJson', obj['search.json'])
