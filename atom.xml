@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-07-10T02:23:17.905Z</updated>
+  <updated>2020-07-23T08:42:00.300Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【杂记】码云gitee禁止外链访问txt、zip等文件导致hexo搜索失效</title>
+    <link href="https://xfff.xyz/2020/07/23/%E3%80%90%E6%9D%82%E8%AE%B0%E3%80%91%E7%A0%81%E4%BA%91gitee%E7%A6%81%E6%AD%A2%E5%A4%96%E9%93%BE%E8%AE%BF%E9%97%AEtxt%E3%80%81zip%E7%AD%89%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4hexo%E6%90%9C%E7%B4%A2%E5%A4%B1%E6%95%88/"/>
+    <id>https://xfff.xyz/2020/07/23/【杂记】码云gitee禁止外链访问txt、zip等文件导致hexo搜索失效/</id>
+    <published>2020-07-23T08:24:14.000Z</published>
+    <updated>2020-07-23T08:42:00.300Z</updated>
+    
+    <content type="html"><![CDATA[<p>由于github page国内访问太慢,于是在码云(gitee.com)同步了一份相同的博客.</p><p>本来想把码云博客地址绑定到我的域名<a href="xfff.xyz">xfff.xyz</a>的,发现国内的域名都要备案才能成功解析CNAME….备案又要买个服务器…算了,不整了</p><p>最近发现gitee的博客又用不了搜索功能了,莫名其妙…</p><p>打开F12喵一眼,发现是搜索文件的版本号文件取不到,报404<br>大概是这么个文件:<strong>searchVersion.txt</strong><br>打开仓库看一眼发现仓库里是有的,然后试着打开同目录下的html文件以及CNAME(无后缀),都成功了,搜索了下,果然发现近两个月gitee把txt外链禁止了.</p><p>后来想了想,既然禁止txt,那我换个样子不就行了嘛,然后去主题里找搜索文件的命名,然后修改.</p><p>修改后倒是成功了,可以访问到searchVersion文件了,问题又来了,又找不到search.zip文件了…啊啊</p><p>故技重施,去掉后缀试试,还真可以了…</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>hexo配置文件中找到以下内容,修改</p><pre><code>#searchsearch:  path: search.json  zipPath: search.zip  versionPath: searchVersion.txt  field: post</code></pre><p>修改后:</p><pre><code>#searchsearch:  path: search.json  zipPath: search  versionPath: searchVersion  field: post</code></pre><p>重新hexo g打包生成后,部署上去(gitee不能自动部署…得去页面自己点),再试试搜索功能,终于解决了</p><p><img src="https://s1.ax1x.com/2020/07/23/ULj6TU.png" alt="ULj6TU.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;由于github page国内访问太慢,于是在码云(gitee.com)同步了一份相同的博客.&lt;/p&gt;
+&lt;p&gt;本来想把码云博客地址绑定到我的域名&lt;a href=&quot;xfff.xyz&quot;&gt;xfff.xyz&lt;/a&gt;的,发现国内的域名都要备案才能成功解析CNAME….备案又要买个服务
+      
+    
+    </summary>
+    
+      <category term="杂记" scheme="https://xfff.xyz/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>【SpringCloud】springCloud总体结构和技术熟悉</title>
