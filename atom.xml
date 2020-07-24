@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-07-23T08:42:00.300Z</updated>
+  <updated>2020-07-24T01:16:00.292Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【转】一文学会索引设计技巧</title>
+    <link href="https://xfff.xyz/2020/07/24/%E3%80%90%E8%BD%AC%E3%80%91%E4%B8%80%E6%96%87%E5%AD%A6%E4%BC%9A%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/"/>
+    <id>https://xfff.xyz/2020/07/24/【转】一文学会索引设计技巧/</id>
+    <published>2020-07-24T01:14:08.000Z</published>
+    <updated>2020-07-24T01:16:00.292Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文来源于微信公众号码海  ，作者码海</p></blockquote><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>生产上为了高效地查询数据库中的数据，我们常常会给表中的字段添加索引，大家是否有考虑过如何添加索引才能使索引更高效，考虑如下问题：</p><ul><li><p>添加的索引是越多越好吗？</p></li><li><p>为啥有时候明明添加了索引却不生效？</p></li><li><p>索引有哪些类型？</p></li><li><p>如何评判一个索引设计的好坏？</p></li></ul><p>看了本文相信你会对索引的原理有更清晰的认识。本文将会从以下几个方面来讲述索引的相关知识，相信大家耐心看了之后肯定有收获。</p><ul><li><p>什么是索引，索引的作用</p></li><li><p>索引的种类</p></li><li><p>高性能索引策略</p></li><li><p>索引设计准则：三星索引</p></li></ul><h2 id="什么是索引，索引的作用"><a href="#什么是索引，索引的作用" class="headerlink" title="什么是索引，索引的作用"></a>什么是索引，索引的作用</h2><p>当我们要在新华字典里查某个字（如「先」）具体含义的时候，通常都会拿起一本新华字典来查，你可以先从头到尾查询每一页是否有「先」这个字，这样做（对应数据库中的全表扫描）确实能找到，但效率无疑是非常低下的，更高效的方法相信大家也都知道，就是在首页的索引里先查找「先」对应的页数，然后直接跳到相应的页面查找，这样查询时间大大减少了，可以是 O(1)。</p><p><img src="https://s1.ax1x.com/2020/07/24/UXghLR.jpg" alt="UXghLR.jpg"></p><p>数据库中的索引也是类似的，通过索引定位到要读取的页，大大减少了需要扫描的行数，能极大地提升效率。简而言之，索引主要有以下几个作用：</p><ol><li><p>即上述所说，索引能极大地减少扫描行数。</p></li><li><p>索引可以帮助服务器避免排序和临时表。</p></li><li><p>索引可以将随机 IO 变成顺序 IO。</p></li></ol><p>第一点上文已经解释了，我们来看下第二点和第三点。</p><p>先来看第二点，假设我们不用索引，试想运行如下语句：</p><p><code>SELECT * FROM user order by age desc;</code></p><p>则 MySQL 的流程是这样的，扫描所有行，把所有行加载到内存后，再按 age 排序生成一张临时表，再把这表排序后将相应行返回给客户端，更糟的，如果这张临时表的大小大于 tmp_table_size 的值（默认为 16 M），内存临时表会转为磁盘临时表，性能会更差，如果加了索引，索引本身是有序的 ，所以从磁盘读的行数本身就是按 age 排序好的，也就不会生成临时表，就不用再额外排序 ，无疑提升了性能。</p><p>再来看随机 IO 和顺序 IO。先来解释下这两个概念。</p><p>相信不少人应该吃过旋转火锅，服务员把一盘盘的菜放在旋转传输带上，然后等到这些菜转到我们面前，我们就可以拿到菜了。假设转一圈需要 4 分钟，则最短等待时间是 0（即菜就在你跟前），最长等待时间是 4 分钟（菜刚好在你跟前错过），那么平均等待时间即为 2 分钟。假设我们现在要拿四盘菜，这四盘菜<strong>随机分配</strong>在传输带上，则可知拿到这四盘菜的平均等待时间是 8 分钟（随机 IO），如果这四盘菜刚好紧邻着排在一起，则等待时间只需 2 分钟（顺序 IO）。</p><p>上述中传输带就类比磁道，磁道上的菜就类比扇区（sector）中的信息，磁盘块（block）是由多个相邻的扇区组成的，是操作系统读取的最小单元，这样如果信息能以 block 的形式聚集在一起，就能极大减少磁盘 IO 时间，这就是顺序 IO 带来的性能提升，下文中我们将会看到 B+ 树索引就起到这样的作用。</p><p><img src="https://s1.ax1x.com/2020/07/24/UX29Ff.png" alt="UX29Ff.png"></p><p><em>如图示：多个扇区组成了一个 block，如果要读的信息都在这个 block 中，则只需一次 IO 读</em></p><p>而如果信息在一个磁道中分散地分布在各个扇区中，或者分布在不同磁道的扇区上（寻道时间是随机IO主要瓶颈所在），将会造成随机 IO，影响性能。</p><p>我们来看一下一个随机 IO 的时间分布：</p><p><img src="https://s1.ax1x.com/2020/07/24/UX21l4.png" alt="UX21l4.png"></p><ol><li><p>seek Time: 寻道时间，磁头移动到扇区所在的磁道。</p></li><li><p>Rotational Latency：完成步骤 1 后，磁头移动到同一磁道扇区对应的位置所需求时间。</p></li><li><p>Transfer Time 从磁盘读取信息传入内存时间。</p></li></ol><p>这其中寻道时间占据了绝大多数的时间（大概占据随机 IO 时间的40%）。</p><p>随机 IO 和顺序 IO 大概相差百倍 (随机 IO：10 ms/ page，顺序 IO：0.1ms / page)，可见顺序 IO 性能之高，索引带来的性能提升显而易见！</p><h2 id="索引的种类"><a href="#索引的种类" class="headerlink" title="索引的种类"></a>索引的种类</h2><p>索引主要分为以下几类：</p><ul><li><p>B+树索引</p></li><li><p>哈希索引</p></li></ul><h3 id="B-树索引"><a href="#B-树索引" class="headerlink" title="B+树索引"></a>B+树索引</h3><p>B+ 树索引如下图所示：</p><p><img src="https://s1.ax1x.com/2020/07/24/UX2Uk6.png" alt="UX2Uk6.png"></p><p>B+ 树是以 N 叉树的形式存在的，这样有效降低了树的高度，查找数据也不需要全表扫描了，顺着根节点层层往下查找能很快地找到我们的目标数据，每个节点的大小即一个磁盘块的大小，一次 IO 会将一个页（每页包含多个磁盘块）的数据都读入（即磁盘预读，程序局部性原理：读到了某个值，很大可能这个值周围的数据也会被用到，干脆一起读入内存），叶子节点通过指针的相互指向连接，能有效减少顺序遍历时的随机 IO，而且我们也可以看到，叶子节点都是按索引的顺序排序好的，这也意味着根据索引查找或排序都是排序好了的，不会再在内存中形成临时表。</p><h3 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h3><p>哈希索引基本散列表实现，散列表（也称哈希表）是根据关键码值(Key value)而直接进行访问的数据结构，它让码值经过哈希函数的转换映射到散列表对应的位置上，查找效率非常高。假设我们对名字建立了哈希索引，则查找过程如下图所示：</p><p><img src="https://s1.ax1x.com/2020/07/24/UX260I.png" alt="UX260I.png"></p><p>对于每一行数据，存储引擎都会对所有的索引列（上图中的 name 列）计算一个哈希码（上图散列表的位置），散列表里的每个元素指向数据行的指针，由于索引自身只存储对应的哈希值，所以索引的结构十分紧凑，这让哈希索引查找速度非常快！</p><p>当然了，哈希表的劣势也是比较明显的，不支持区间查找，不支持排序，所以更多的时候哈希表是与 B Tree等一起使用的。在 InnoDB 引擎中就有一种名为「自适应哈希索引」的特殊索引，当 innoDB 注意到某些索引值使用非常频繁时，就会在内存中基于 B-Tree 索引之上再创建哈希索引，这样也就让 B+ 树索引也有了哈希索引的快速查找等优点，这是完全自动的内部的行为，用户无法控制或配置，不过如果有必要，可以关闭该功能。</p><p>innoDB 引擎本身是不支持显式创建哈希索引的，我们可以在 B+ 树的基础上创建一个伪哈希索引，它与真正的哈希索引不是一回事，它是以哈希值而非键本身来进行索引查找的，这种伪哈希索引的使用场景是怎样的呢？假设我们在 db 某张表中有个 url 字段，我们知道每个 url 的长度都很长，如果以 url 这个字段创建索引，无疑要占用很大的存储空间，如果能通过哈希（比如CRC32）把此 url 映射成 4 个字节，再以此哈希值作索引 ，索引占用无疑大大缩短！不过在查询的时候要记得同时带上 url 和 url_crc，主要是为了避免哈希冲突，导致 url_crc 的值可能一样：</p><p><code>SELECT id FROM url WHERE url = &quot;http://www.baidu.com&quot;  AND url_crc = CRC32(&quot;http://www.baidu.com&quot;)</code></p><p>这样做把基于 url 的字符串索引改成了基于 url_crc 的整型索引，效率更高，同时索引占用的空间也大大减少，一举两得，当然有人可能会说需要手动维护索引太麻烦了，那可以改进触发器实现。</p><p>除了上文说的两个索引 ，还有空间索引（R-Tree），全文索引等，由于生产中不是很常用，这里不作过多阐述。</p><h2 id="高性能索引策略"><a href="#高性能索引策略" class="headerlink" title="高性能索引策略"></a>高性能索引策略</h2><p>不同的索引设计选择能对性能产生很大的影响，有人可能会发现生产中明明加了索引却不生效，有时候加了虽然生效但对搜索性能并没有提升多少，对于多列联合索引，哪列在前，哪列在后也是有讲究的，我们一起来看看。</p><h3 id="加了索引，为何却不生效"><a href="#加了索引，为何却不生效" class="headerlink" title="加了索引，为何却不生效"></a>加了索引，为何却不生效</h3><p>加了索引却不生效可能会有以下几种原因。</p><p>1、索引列是表示式的一部分，或是函数的一部分。</p><p>如下 SQL：</p><p><code>SELECT book_id FROM BOOK WHERE book_id + 1 = 5;</code></p><p>或者</p><p><code>SELECT book_id FROM BOOK WHERE TO_DAYS(CURRENT_DATE) - TO_DAYS(gmt_create) &lt;= 10</code></p><p>上述两个 SQL 虽然在列 book_id 和 gmt_create 设置了索引 ，但由于它们是表达式或函数的一部分，导致索引无法生效，最终导致全表扫描。</p><p>2、隐式类型转换</p><p>以上两种情况相信不少人都知道索引不能生效，但下面这种隐式类型转换估计会让不少人栽跟头，来看下面这个例子。</p><p>假设有以下表:</p><p><code>CREATE TABLE `tradelog` (    `id` int(11) NOT NULL,    `tradeid` varchar(32) DEFAULT NULL,    `operator` int(11) DEFAULT NULL,    `t_modified` datetime DEFAULT NULL,     PRIMARY KEY (`id`),     KEY `tradeid` (`tradeid`),     KEY `t_modified` (`t_modified`)  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</code></p><p>执行 SQL 语句：</p><p><code>SELECT * FROM tradelog WHERE tradeid=110717;</code></p><p>交易编号 tradeid 上有索引，但用 EXPLAIN 执行却发现使用了全表扫描，为啥呢，tradeid 的类型是 varchar(32)，而此 SQL 用 tradeid 一个数字类型进行比较，发生了隐形转换，会隐式地将字符串转成整型，如下:</p><p><code>mysql&gt; SELECT * FROM tradelog WHERE CAST(tradid AS signed int) = 110717;</code></p><p>这样也就触发了上文中第一条的规则 ，即：索引列不能是函数的一部分。</p><p>3、隐式编码转换</p><p>这种情况非常隐蔽，来看下面这个例子。</p><p><code>CREATE TABLE `trade_detail` (    `id` int(11) NOT NULL,    `tradeid` varchar(32) DEFAULT NULL,    `trade_step` int(11) DEFAULT NULL, /*操作步骤*/    `step_info` varchar(32) DEFAULT NULL, /*步骤信息*/      PRIMARY KEY (`id`), KEY `tradeid` (`tradeid`)  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;</code></p><p>trade_detail 是交易详情， tradelog 是操作此交易详情的记录，现在要查询 id=2 的交易的所有操作步骤信息，则我们会采用如下方式：</p><p><code>SELECT d.* FROM tradelog l, trade_detail d WHERE d.tradeid=l.tradeid AND l.id=2;</code></p><p>由于 tradelog 与 trade_detail 这两个表的字符集不同，且 tradelog 的字符集是 utf8mb4，而 trade_detail 字符集是 utf8，utf8mb4 是 utf8 的超集，所以会自动将 utf8 转成 utf8mb4。即上述语句会发生如下转换：</p><p><code>SELECT d.* FROM tradelog l, trade_detail d WHERE (CONVERT(d.traideid USING utf8mb4)))=l.tradeid AND l.id=2;</code></p><p>自然也就触发了 「索引列不能是函数的一部分」这条规则。怎么解决呢？第一种方案当然是把两个表的字符集改成一样，如果业务量比较大，生产上不方便改的话，还有一种方案是把 utf8mb4 转成 utf8，如下：</p><p><code>mysql&gt; SELECT d.* FROM tradelog l , trade_detail d WHERE d.tradeid=CONVERT(l.tradeid USING utf8) AND l.id=2;</code> </p><p>这样索引列就生效了。</p><p>4、使用 order by 造成的全表扫描</p><p><code>SELECT * FROM user ORDER BY age DESC</code></p><p>上述语句在 age 上加了索引，但依然造成了全表扫描，这是因为我们使用了 SELECT * 导致回表查询，MySQL 认为回表的代价比全表扫描更大，所以不选择使用索引，如果想使用到 age 的索引，我们可以用覆盖索引来代替：</p><p><code>SELECT age FROM user ORDER BY age DESC</code></p><p>或者加上 limit 的条件（数据比较小）：</p><p><code>SELECT * FROM user ORDER BY age DESC limit 10</code></p><p>这样就能利用到索引。</p><h3 id="无法避免对索引列使用函数，怎么使用索引"><a href="#无法避免对索引列使用函数，怎么使用索引" class="headerlink" title="无法避免对索引列使用函数，怎么使用索引"></a>无法避免对索引列使用函数，怎么使用索引</h3><p>有时候我们无法避免对索引列使用函数，但这样做会导致全表索引，是否有更好的方式呢。</p><p>比如我现在就是想记录 2016 ~ 2018 所有年份 7月份的交易记录总数：</p><p><code>mysql&gt; SELECT count(*) FROM tradelog WHERE month(t_modified)=7;</code></p><p>由于索引列是函数的参数，所以显然无法用到索引，我们可以将它改造成基本字段区间的查找如下：</p><p><code>SELECT count(*) FROM tradelog WHERE      -&gt; (t_modified &gt;= &#39;2016-7-1&#39; AND t_modified&lt;&#39;2016-8-1&#39;) or      -&gt; (t_modified &gt;= &#39;2017-7-1&#39; AND t_modified&lt;&#39;2017-8-1&#39;) or       -&gt; (t_modified &gt;= &#39;2018-7-1&#39; AND t_modified&lt;&#39;2018-8-1&#39;);</code></p><h3 id="前缀索引与索引选择性"><a href="#前缀索引与索引选择性" class="headerlink" title="前缀索引与索引选择性"></a>前缀索引与索引选择性</h3><p>之前我们说过，如于长字符串的字段（如 url），我们可以用伪哈希索引的形式来创建索引，以避免索引变得既大又慢，除此之外其实还可以用前缀索引（字符串的部分字符）的形式来达到我们的目的，那么这个前缀索引应该如何选取呢，这就涉及到一个叫索引选择性的概念。</p><blockquote><p>索引选择性：不重复的索引值（也称为基数，cardinality）和数据表的记录总数的比值，比值越高，代表索引的选择性越好，唯一索引的选择性是最好的，比值是 1。</p></blockquote><p>画外音：我们可以通过  <strong>SHOW INDEXES FROM table</strong>  来查看每个索引 cardinality 的值以评估索引设计的合理性。</p><p>怎么选择这个比例呢，我们可以分别取前 3，4，5，6，7 的前缀索引，然后再比较下选择这几个前缀索引的选择性，执行以下语句：</p><p><code>SELECT    COUNT(DISTINCT LEFT(city,3))/COUNT(*) as sel3,   COUNT(DISTINCT LEFT(city,4))/COUNT(*) as sel4,   COUNT(DISTINCT LEFT(city,5))/COUNT(*) as sel5,   COUNT(DISTINCT LEFT(city,6))/COUNT(*) as sel6,   COUNT(DISTINCT LEFT(city,7))/COUNT(*) as sel7  FROM city_demo</code></p><p>得结果如下：</p><p>sel3</p><p>sel4</p><p>sel5</p><p>sel6</p><p>sel7</p><p>0.0239</p><p>0.0293</p><p>0.0305</p><p>0.0309</p><p>0.0310</p><p>可以看到当前缀长度为 7 时，索引选择性提升的比例已经很小了，也就是说应该选择 city 的前六个字符作为前缀索引，如下：</p><p><code>ALTER TABLE city_demo ADD KEY(city(6))</code></p><p>我们当前是以平均选择性为指标的，有时候这样是不够的，还得考虑最坏情况下的选择性，以这个 demo 为例，可能一些人看到选择 4，5 的前缀索引与选择 6，7 的选择性相差不大，那就得看下选择 4，5 的前缀索引分布是否均匀了：</p><p><code>SELECT       COUNT(*) AS  cnt,       LEFT(city, 4) AS pref    FROM city_demo GROUP BY pref ORDER BY cnt DESC LIMIT 5</code></p><p>可能会出现以下结果：</p><p>cnt</p><p>pref</p><p>305</p><p>Sant</p><p>200</p><p>Toul</p><p>90</p><p>Chic</p><p>20</p><p>Chan</p><p>可以看到分布极不均匀，以 Sant，Toul 为前缀索引的数量极多，这两者的选择性都不是很理想，所以要选择前缀索引时也要考虑最差的选择性的情况。</p><p>前缀索引虽然能实现索引占用空间小且快的效果，但它也有明显的弱点，MySQL 无法使用前缀索引做 ORDER BY 和 GROUP BY ，而且也无法使用前缀索引做覆盖扫描，前缀索引也有可能增加扫描行数。</p><p>假设有以下表数据及要执行的 SQL：</p><p>id</p><p>email</p><p>1</p><p><a href="mailto:zhangssxyz@163.com" target="_blank" rel="noopener">zhangssxyz@163.com</a></p><p>2</p><p><a href="mailto:zhangs1@163.com" target="_blank" rel="noopener">zhangs1@163.com</a></p><p>3</p><p><a href="mailto:zhangs1@163.com" target="_blank" rel="noopener">zhangs1@163.com</a></p><p>4</p><p><a href="mailto:zhangs1@163.com" target="_blank" rel="noopener">zhangs1@163.com</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id,email FROM user WHERE email=&apos;zhangssxyz@xxx.com&apos;;</span><br></pre></td></tr></table></figure><p>如果我们针对 email 设置的是整个字段的索引，则上表中根据 「<a href="mailto:zhangssxyz@163.com" target="_blank" rel="noopener">zhangssxyz@163.com</a>」查询到相关记记录后，再查询此记录的下一条记录，发现没有，停止扫描，此时可知<strong>只扫描一行记录</strong>，如果我们以前六个字符（即 email(6)）作为前缀索引，则显然要扫描四行记录，并且获得行记录后不得不回到主键索引再判断 email 字段的值，所以使用前缀索引要评估它带来的这些开销。</p><p>另外有一种情况我们可能需要考虑一下，如果前缀基本都是相同的该怎么办，比如现在我们为某市的市民建立一个人口信息表，则这个市人口的身份证虽然不同，但身份证前面的几位数都是相同的，这种情况该怎么建立前缀索引呢。</p><p>一种方式就是我们上文说的，针对身份证建立哈希索引，另一种方式比较巧妙，将身份证倒序存储，查的时候可以按如下方式查询:</p><p><code>SELECT field_list FROM t WHERE id_card = reverse(&#39;input_id_card_string&#39;);</code></p><p>这样就可以用身份证的后六位作前缀索引了，是不是很巧妙 ^_^</p><p>实际上上文所述的索引选择性同样适用于联合索引的设计，如果没有特殊情况，我们一般建议在建立联合索引时，把选择性最高的列放在最前面，比如，对于以下语句：</p><p><code>SELECT * FROM payment WHERE staff_id = xxx AND customer_id = xxx;</code></p><p>单就这个语句而言， (staff_id，customer_id) 和 (customer_id，staff_id) 这两个联合索引我们应该建哪一个呢，可以统计下这两者的选择性。</p><p><code>SELECT    COUNT(DISTINCT staff_id)/COUNT(*) as staff_id_selectivity,   COUNT(DISTINCT customer_id)/COUNT(*) as customer_id_selectivity,   COUNT(*)  FROM payment</code></p><p>结果为：</p><p><code>staff_id_selectivity: 0.0001  customer_id_selectivity: 0.0373  COUNT(*): 16049</code></p><p>从中可以看出 customer_id 的选择性更高，所以应该选择 customer_id 作为第一列。</p><h2 id="索引设计准则：三星索引"><a href="#索引设计准则：三星索引" class="headerlink" title="索引设计准则：三星索引"></a>索引设计准则：三星索引</h2><p>上文我们得出了一个索引列顺序的经验法则：将选择性最高的列放在索引的最前列，这种建立在某些场景可能有用，但通常不如避免随机 IO 和排序那么重要，这里引入索引设计中非常著名的一个准则：三星索引。</p><p>如果一个查询满足三星索引中三颗星的所有索引条件，<strong>理论上</strong>可以认为我们设计的索引是最好的索引。什么是三星索引：</p><ol><li><p>第一颗星：WHERE 后面参与查询的列可以组成单列索引或联合索引。</p></li><li><p>第二颗星：避免排序，即如果 SQL 语句中出现 order by colulmn，那么取出的结果集就已经是按照 column 排序好的，不需要再生成临时表。</p></li><li><p>第三颗星：SELECT 对应的列应该尽量是索引列，即尽量避免回表查询。</p></li></ol><p>所以对于如下语句:</p><p><code>SELECT age, name, city where age = xxx and name = xxx order by age</code></p><p>设计的索引应该是 (age, name,city) 或者 (name, age,city)</p><p>当然了，三星索引是一个比较理想化的标准，实际操作往往只能满足期望中的一颗或两颗星，考虑如下语句:</p><p><code>SELECT age, name, city where age &gt;= 10 AND age &lt;= 20 and city = xxx order by name desc</code></p><p>假设我们分别为这三列建了联合索引，则显然它符合第三颗星（使用了覆盖索引），如果索引是（city, age, name)，则虽然满足了第一颗星，但排序无法用到索引，不满足第二颗星，如果索引是 (city, name, age)，则第二颗星满足了，但此时 age 在 WHERE 中的搜索条件又无法满足第一星。</p><p>另外第三颗星（尽量使用覆盖索引）也无法完全满足，试想我要 SELECT 多列，要把这多列都设置为联合索引吗，这对索引的维护是个问题，因为每一次表的 CURD 都伴随着索引的更新，很可能频繁伴随着页分裂与页合并。</p><p>综上所述，三星索引只是给我们构建索引提供了一个参考，索引设计应该尽量靠近三星索引的标准，但实际场景我们一般无法同时满足三星索引，一般我们会优先选择满足第三颗星（因为回表代价较大）至于第一，二颗星就要依赖于实际的成本及实际的业务场景考虑。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文简述了索引的基本原理，索引的几种类型，以及分析了一下设计索引尽量应该遵循的一些准则，相信我们对索引的理解又更深了一步。另外强烈建议大家去学习一下附录中的几本书。文中的挺多例子都是在文末的参考资料中总结出来的，读经典书籍，相信大家会受益匪浅！</p><p><strong>巨人的肩膀</strong></p><p>《高性能 MySQL》</p><p>《Relational Database index design and the optimizers》</p><p>《MySQL实战45讲》<a href="https://time.geekbang.org/column/article/71492" target="_blank" rel="noopener">https://time.geekbang.org/column/article/71492</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本文来源于微信公众号码海  ，作者码海&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;生产上为了高效地查询数据库中的数
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="索引" scheme="https://xfff.xyz/tags/%E7%B4%A2%E5%BC%95/"/>
+    
+  </entry>
   
   <entry>
     <title>【杂记】码云gitee禁止外链访问txt、zip等文件导致hexo搜索失效</title>
@@ -114,9 +142,9 @@
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
-    
       <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     
   </entry>
   
@@ -223,9 +251,9 @@
       <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
-    
       <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
+    
+      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
     
   </entry>
   
@@ -251,9 +279,9 @@
       <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
-    
       <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
+    
+      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
     
   </entry>
   
@@ -488,9 +516,9 @@ conne
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
-    
       <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
     
   </entry>
   
