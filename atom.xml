@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-07-24T01:16:00.292Z</updated>
+  <updated>2020-08-17T08:36:52.569Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Vue】父子组件参数互传</title>
+    <link href="https://xfff.xyz/2020/08/17/%E3%80%90Vue%E3%80%91%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E5%8F%82%E6%95%B0%E4%BA%92%E4%BC%A0/"/>
+    <id>https://xfff.xyz/2020/08/17/【Vue】父子组件参数互传/</id>
+    <published>2020-08-17T08:09:30.000Z</published>
+    <updated>2020-08-17T08:36:52.569Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题起因："><a href="#问题起因：" class="headerlink" title="问题起因："></a>问题起因：</h2><p>父组件内使用了子组件（component），而子组件内需要确认当前父组件点击或选择的是哪个元素。</p><h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><p>一般来说子组件与父组件每个组件间的变量作用域是只限于本组件内的。Vue提供了方法让父子组件间可以互相传递参数。</p><h3 id="父传子"><a href="#父传子" class="headerlink" title="父传子"></a>父传子</h3><p>想让父组件的变量传递给子组件，如下图，在父组件中使用子组件时增加一个v-bind绑定一个自定义的属性名，然后值为父组件中需要传递的参数。<br><img src="https://s1.ax1x.com/2020/08/17/deO5wT.png" alt="deO5wT.png"><br>子组件中，需要定义props属性，其中的值为在父组件中v-bind绑定的属性名。<br><img src="https://s1.ax1x.com/2020/08/17/deXw9J.png" alt="deXw9J.png"><br>经以上步骤后，子组件中需要使用时只需要按下面这样调用即可<br><img src="https://s1.ax1x.com/2020/08/17/dejMVK.png" alt="dejMVK.png"></p><hr><h3 id="子传父"><a href="#子传父" class="headerlink" title="子传父"></a>子传父</h3><p>当子组件需要向父组件传值回调时，只需要在子组件中使用$emit调用父组件绑定方法即可。<br>如下图，子组件去触发父组件的一个zchange事件，并传值123<br><img src="https://s1.ax1x.com/2020/08/17/devpzd.png" alt="devpzd.png"><br>看看父组件中如何触发该事件以及获取参数值<br><img src="https://s1.ax1x.com/2020/08/17/dex03Q.png" alt="dex03Q.png"><br>首先定义了一个@zchange事件，然后触发方法zchange，参数写<br>$event（必要，这样才能获取正确值）<br><img src="https://s1.ax1x.com/2020/08/17/dexsun.png" alt="dexsun.png"><br>然后在该方法内就能正常获取子组件传递过来的参数值。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;问题起因：&quot;&gt;&lt;a href=&quot;#问题起因：&quot; class=&quot;headerlink&quot; title=&quot;问题起因：&quot;&gt;&lt;/a&gt;问题起因：&lt;/h2&gt;&lt;p&gt;父组件内使用了子组件（component），而子组件内需要确认当前父组件点击或选择的是哪个元素。&lt;/p&gt;
+&lt;h2 i
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="vue" scheme="https://xfff.xyz/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【ORACLE】数据库同步，表空间操作等</title>
+    <link href="https://xfff.xyz/2020/08/17/%E3%80%90ORACLE%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8C%E6%AD%A5%EF%BC%8C%E8%A1%A8%E7%A9%BA%E9%97%B4%E6%93%8D%E4%BD%9C%E7%AD%89/"/>
+    <id>https://xfff.xyz/2020/08/17/【ORACLE】数据库同步，表空间操作等/</id>
+    <published>2020-08-17T07:16:42.000Z</published>
+    <updated>2020-08-17T08:08:18.449Z</updated>
+    
+    <content type="html"><![CDATA[<p>近日需要同步本地一个oracle数据库的所有数据包括表结构等到现场一台服务器上， 平时未接触，因此不太熟练，这里记录下同步过程。</p><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>远程到本地安装oracle数据库的那台服务器上，使用命令行将对应需要的用户下的所有数据导出为dmp文件。（安装了oracle即有该命令）</p><pre><code>exp 用户名/密码 file=路径 log=日志 owner=导出用户</code></pre><p>这样就能在选择的路径下得到dmp文件、日志等文件。</p><h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><p>远程到需要同步的那台服务器上，登录进后，如果需要覆盖一个用户下的所有表，那么可能需要将该用户删除然后重新创建一个新用户，然后导入数据。</p><blockquote><p>网上还有另一个方案，使用impdp命令导入，然后设置table_exists_action参数为replace，可以在遇到已存在表时，删除原表然后重新建表并追加数据。但是该命令只能应用于expdp命令导出的文件，当时我用的exp导出的文件用impdp导入报错，因为数据量较大导出时间较长，我就没有再测试重新导出。</p></blockquote><p>那么正式开始同步过程：</p><ol><li>登录</li></ol><pre><code>sqlplus / as sysdba</code></pre><ol start="2"><li>删除原用户：</li></ol><pre><code>DROP USER GYJCBI CASCADE --删除用户DROP TABLESPACE USERS INCLUDING CONTENTS AND DATAFILES;--删除表空间</code></pre><ol start="3"><li><p>创建新用户，并设置相关信息‘</p><pre><code>CREATE USER GYDSJ IDENTIFIED BY passwordDEFAULT TABLESPACE GYDSJ_DATA --默认表空间TEMPORARY TABLESPACE GYDSJ_TEMP;  --临时表空间</code></pre></li><li><p>创建表空间</p><pre><code>CREATE TEMPORARY TABLESPACE GYDSJ_tempTEMPFILE &apos;G:\oracle\product\10.2.0\oradata\orcl\GYDSJ_temp01.dbf&apos;SIZE 512M --空间大小AUTOEXTEND ON --自动扩容NEXT 50M MAXSIZE 1024M --每次扩50M最大1024MEXTENT MANAGEMENT LOCAL;CREATE TABLESPACE GYDSJ_dataLOGGINGDATAFILE &apos;G:\oracle\product\10.2.0\oradata\ORCL\GYDSJ_DATA01.DBF&apos; SIZE 5G  --空间大小，不要设置太小，不然导入会报错AUTOEXTEND ON NEXT 512M MAXSIZE 10GEXTENT MANAGEMENT LOCAL;</code></pre></li><li><p>导入数据dmp文件<br>使用之前导出的dmp文件， 运行下面的命令（导入导出命令都不是oracle的sql命令，需要先从sqlplus退出登录）</p><pre><code>imp 用户名/密码 file=文件路径 log=日志 full=y</code></pre></li><li>等待导入结束即可</li></ol><hr><h2 id="题外"><a href="#题外" class="headerlink" title="题外"></a>题外</h2><h3 id="oracle注意事项："><a href="#oracle注意事项：" class="headerlink" title="oracle注意事项："></a>oracle注意事项：</h3><p>oracle中空字符串等于NULL，如果一个字段不允许为空，当向其中插入一个空字符串时就会报错。</p><p>sql生成UUID：SELECT LOWER(RAWTOHEX(sys_guid())</p><p>允许存在换行符，java获取后可以使用”\\\n”匹配。</p><p>分页使用rownum，常在原语句外面嵌套一层select * from () where rownum …<br>使用java推荐使用pageHelper分页，如下配置，在查询前使用PageHelper.startPage(pageNum, 10);即可</p><pre><code>@Bean PageInterceptor getPageInterceptor() {     PageInterceptor pageInterceptor = new PageInterceptor();     Properties properties = new Properties();     properties.setProperty(&quot;helperDialect&quot;, &quot;oracle&quot;);     pageInterceptor.setProperties(properties);     return pageInterceptor; } @Bean PageHelper pageHelper(){     PageHelper pageHelper = new PageHelper();     Properties properties = new Properties();     properties.setProperty(&quot;helperDialect&quot;, &quot;oracle&quot;);     pageHelper.setProperties(properties);     return pageHelper; }</code></pre><p>使用mybatis动态创建表或者需要变量表示表或者字段这些值的时候，变量要用${}符号来包括，平时的字符串形式都使用#{}</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;近日需要同步本地一个oracle数据库的所有数据包括表结构等到现场一台服务器上， 平时未接触，因此不太熟练，这里记录下同步过程。&lt;/p&gt;
+&lt;h2 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="oracle" scheme="https://xfff.xyz/tags/oracle/"/>
+    
+  </entry>
   
   <entry>
     <title>【转】一文学会索引设计技巧</title>
@@ -142,9 +194,9 @@
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
-    
       <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     
   </entry>
   
@@ -251,9 +303,9 @@
       <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
-    
       <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
+    
+      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
@@ -279,9 +331,9 @@
       <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
-    
       <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
+    
+      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
@@ -516,9 +568,9 @@ conne
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
-    
       <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
     
   </entry>
   
