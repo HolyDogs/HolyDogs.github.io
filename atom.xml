@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-08-17T08:36:52.569Z</updated>
+  <updated>2020-09-07T02:41:34.109Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【java】excel文件上传处理解析</title>
+    <link href="https://xfff.xyz/2020/09/07/%E3%80%90java%E3%80%91excel%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%A4%84%E7%90%86%E8%A7%A3%E6%9E%90/"/>
+    <id>https://xfff.xyz/2020/09/07/【java】excel文件上传处理解析/</id>
+    <published>2020-09-07T02:40:13.000Z</published>
+    <updated>2020-09-07T02:41:34.109Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>使用Element-UI上传文件控件（可以限制文件类型、文件大小等，选中多个文件上传时，该控件会将多个文件拆成多次请求到后台，每次请求是一个文件）</p><pre><code>&lt;template&gt;  &lt;div class=&quot;app-container&quot; align=&quot;center&quot;&gt;    &lt;el-upload      class=&quot;upload-demo&quot;      action=&quot;/gyProj/hahaha&quot;      :on-preview=&quot;handlePreview&quot;      :on-remove=&quot;handleRemove&quot;      :before-remove=&quot;beforeRemove&quot;      multiple      :file-list=&quot;fileList&quot;&gt;      &lt;el-button size=&quot;small&quot; type=&quot;primary&quot;&gt;点击上传&lt;/el-button&gt;      &lt;div slot=&quot;tip&quot; class=&quot;el-upload__tip&quot;&gt;excel文件上传&lt;/div&gt;    &lt;/el-upload&gt;  &lt;/div&gt;&lt;/template&gt;&lt;script&gt;export default {  name: &apos;excel-imp&apos;,  data() {    return {      fileList:[]    }  },  created() {  },  methods: {  }}&lt;/script&gt;&lt;style type=&quot;text/css&quot; scoped&gt;&lt;/style&gt;</code></pre><p>需要导入依赖：</p><pre><code>&lt;dependency&gt;    &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;    &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;    &lt;version&gt;1.4&lt;/version&gt;&lt;/dependency&gt;</code></pre><p>可配置文件上传大小限制（下面是yml配置）：</p><pre><code>spring:    servlet:        multipart:          max-file-size: 10MB  //单个文件大小限制        max-request-size: 100MB  //单次请求大小限制        enabled: true</code></pre><h2 id="后台接收"><a href="#后台接收" class="headerlink" title="后台接收"></a>后台接收</h2><p>使用MultipartFile类型接收该文件</p><pre><code>@RequestParam(&quot;file&quot;) MultipartFile file</code></pre><h2 id="类型转化"><a href="#类型转化" class="headerlink" title="类型转化"></a>类型转化</h2><p>接收后将该类型文件转化为流，然后使用excel解析类转化，其中：</p><ul><li><p>xlsx类型的表格：</p><pre><code>Workbook wb = new XSSFWorkbook(fi);依赖：&lt;dependency&gt;    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;    &lt;artifactId&gt;poi-ooxml&lt;/artifactId&gt;    &lt;version&gt;4.0.0&lt;/version&gt;&lt;/dependency&gt;</code></pre></li><li><p>普通类型的表格（xls）：</p><pre><code>Workbook wb = new HSSFWorkbook(fi);依赖：&lt;dependency&gt;    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;    &lt;artifactId&gt;poi&lt;/artifactId&gt;    &lt;version&gt;4.0.0&lt;/version&gt;&lt;/dependency&gt;</code></pre></li></ul><h2 id="sheet获取"><a href="#sheet获取" class="headerlink" title="sheet获取"></a>sheet获取</h2><p>一个excel可能包含多个sheet，所以要获取各个sheet。</p><pre><code>//获取第一个sheet对象Sheet sheet = wb.getSheetAt(0);</code></pre><p>之后根据获取的对象解析即可</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;文件上传&quot;&gt;&lt;a href=&quot;#文件上传&quot; class=&quot;headerlink&quot; title=&quot;文件上传&quot;&gt;&lt;/a&gt;文件上传&lt;/h2&gt;&lt;p&gt;使用Element-UI上传文件控件（可以限制文件类型、文件大小等，选中多个文件上传时，该控件会将多个文件拆成多次请求到后台
+      
+    
+    </summary>
+    
+      <category term="java" scheme="https://xfff.xyz/categories/java/"/>
+    
+    
+      <category term="文件上传" scheme="https://xfff.xyz/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
+    
+      <category term="excel" scheme="https://xfff.xyz/tags/excel/"/>
+    
+  </entry>
   
   <entry>
     <title>【Vue】父子组件参数互传</title>
@@ -1942,9 +1969,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
     
       <category term="error" scheme="https://xfff.xyz/tags/error/"/>
     
-      <category term="resolver" scheme="https://xfff.xyz/tags/resolver/"/>
-    
       <category term="文件上传" scheme="https://xfff.xyz/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
+    
+      <category term="resolver" scheme="https://xfff.xyz/tags/resolver/"/>
     
   </entry>
   
