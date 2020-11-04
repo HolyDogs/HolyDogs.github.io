@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【SpringBoot】定时任务与Cron表达式 | XFF&#39;s blog</title>
+  <title>【SpringCloud】springCloud相关博客链接地址学习收集 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -230,74 +230,102 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2019-04-12T03:45:07.000Z" itemprop="datePublished">
-          2019-04-12
+      <time datetime="2020-07-20T02:11:50.000Z" itemprop="datePublished">
+          2020-07-20
       </time>
     
     
     | 
-    <a href='/tags/cron/'>cron</a>,
-    
-    <a href='/tags/定时任务/'>定时任务</a>
+    <a href='/tags/SpringCloud/'>SpringCloud</a>
     
     
 </span>
-                <h1>【SpringBoot】定时任务与Cron表达式</h1>
+                <h1>【SpringCloud】springCloud相关博客链接地址学习收集</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h1 id="SpringBoot定时器"><a href="#SpringBoot定时器" class="headerlink" title="SpringBoot定时器"></a>SpringBoot定时器</h1><p>SpringBoot自带定时器功能，若不考虑重复启动定时任务以及并发带来的问题，可以选择这种方式来简单快速地定义定时器。</p>
-<p>使用时只需要在声明定时任务的类或者启动类上添加注解@EnableScheduling配合使用在方法上的@Scheduled注解就能简单定义一个定时任务</p>
-<p>在启动类上加@EnableScheduling可以方便对所有任务进行开启和关闭</p>
-<p>在声明定时任务的类上需要加@Component将该类实例化到Spring容器中，才能被扫描到类里的定时任务。</p>
-<p>在方法上添加@Scheduled注解添加参数设置定时策略，有两种设置方式</p>
-<h2 id="1-fixedRate"><a href="#1-fixedRate" class="headerlink" title="1.fixedRate"></a>1.fixedRate</h2><p>这种方式适合不指定特定时间，间歇一段时间就执行一次的情况，功能较弱。</p>
-<h2 id="2-cron表达式"><a href="#2-cron表达式" class="headerlink" title="2.cron表达式"></a>2.cron表达式</h2><p>可以指定什么时候触发、多久触发一次等，功能较强大，需要使用特定的表达式。</p>
-<hr>
-<p><strong>两种方式使用如下：</strong></p>
-<pre><code>@Component
-@Slf4j
-public class MyScheduledTask {
-
-    @Scheduled(fixedRate = 1000 * 5)
-    public void bootSchedule(){
-        log.info(&quot;SpringBoot自带定时器fixedRate5s启动：{}&quot;,LocalDateTime.now());
-    }
-
-    @Scheduled(cron = &quot;10/10 * * * * ?&quot;)
-    public void bootScheduleCron(){
-        log.info(&quot;SpringBoot自带Cron定时器fixedRate10s启动：{}&quot;, LocalDateTime.now().toString());
-    }
-}
-</code></pre><ul>
-<li>上面的方法表示每5秒该任务会执行一次</li>
-<li>下面的方法则表示任务会从每分钟的第10秒开始，每10秒执行一次</li>
-</ul>
-<p>运行效果如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zoaoxn1uj30rv07p40a.jpg" alt=""></p>
-<p><strong>为什么上面的5条中，5秒运行一次的任务连续执行了4次而10秒的任务没有运行呢？</strong><br>原因是，当50秒时，运行10秒后进入到下一分钟的范围，而该任务指定从每分钟的第10秒开始运行，所以这次不会调用该任务。</p>
-<h2 id="Cron表达式介绍"><a href="#Cron表达式介绍" class="headerlink" title="Cron表达式介绍"></a>Cron表达式介绍</h2><p>cron表达式有6或7个域，中间以逗号分隔，理解也比较简单，每个域顺序表示的意义如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zugibc32j30l504kaa7.jpg" alt=""></p>
+      		<p>Spring Cloud Finchley; Spring Boot 2.0.3</p>
 <ul>
-<li><p><strong>每个符号的含义</strong></p>
-<p> <img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zuh44kq2j30oi0ev3zj.jpg" alt=""></p>
-</li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81040925" target="_blank" rel="noopener">史上最简单的 SpringCloud 教程 | 第一篇: 服务的注册与发现（Eureka）(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81040946" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第二篇: 服务消费者（rest+ribbon）(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81040965" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第三篇: 服务消费者（Feign）(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81040990" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第四篇:断路器（Hystrix）(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81041012" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第五篇: 路由网关(zuul)(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81041028" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第六篇: 分布式配置中心(Spring Cloud Config)(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81041045" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第七篇: 高可用的分布式配置中心(Spring Cloud Config)(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81041062" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第八篇: 消息总线(Spring Cloud Bus)(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81041078" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第九篇: 服务链路追踪(Spring Cloud Sleuth)(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81041101" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十篇: 高可用的服务注册中心(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81041113" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十二篇: 断路器监控(Hystrix Dashboard)(Finchley版本)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/81041125" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十三篇: 断路器聚合监控(Hystrix Turbine)(Finchley版本)</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/83792388" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十四篇: Spring Cloud Gateway初体验</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/84926662" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十五篇: Spring Cloud Gateway 之Predict篇</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/85057268" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十六篇: Spring Cloud Gateway 之filter篇</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/85081162" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十七篇: Spring Cloud Gateway 之限流篇</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/85210153" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十八篇: spring cloud gateway之服务注册与发现</a></li>
 </ul>
-<p><strong>注意：每周的第一天是周日</strong></p>
-<hr>
-<p>情景测试，我想让一个任务在2019到2020年每月的第3个周三的晚上6点的第20分开始，每5分钟的第30秒执行一次</p>
-<pre><code>30 20/5 18 ? * 4#3 2019-2020
-</code></pre>
+<h3 id="D版本"><a href="#D版本" class="headerlink" title="D版本"></a>D版本</h3><ul>
+<li><a href="http://blog.csdn.net/forezp/article/details/69696915" target="_blank" rel="noopener">史上最简单的 SpringCloud 教程 | 第一篇: 服务的注册与发现（Eureka）</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/69788938" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第二篇: 服务消费者（rest+ribbon）</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/69808079" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第三篇: 服务消费者（Feign）</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/69934399" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第四篇:断路器（Hystrix）</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/69939114" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第五篇: 路由网关(zuul)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/70037291" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第六篇: 分布式配置中心(Spring Cloud Config)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/70037513" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第七篇: 高可用的分布式配置中心(Spring Cloud Config)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/70148235" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第八篇: 消息总线(Spring Cloud Bus)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/70162074" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第九篇: 服务链路追踪(Spring Cloud Sleuth)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/70183572" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十篇: 高可用的服务注册中心</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/70198649" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十一篇:docker部署spring cloud项目</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/70217283" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十二篇: 断路器监控(Hystrix Dashboard)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/70233227" target="_blank" rel="noopener">史上最简单的SpringCloud教程 | 第十三篇: 断路器聚合监控(Hystrix Turbine)</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/70245644" target="_blank" rel="noopener">史上最简单的 SpringCloud 教程 | 第十四篇: 服务注册(consul)</a></li>
+<li>未完。。。</li>
+<li>还有很多篇。。。</li>
+</ul>
+<h3 id="Spring-Cloud-Alibaba教程"><a href="#Spring-Cloud-Alibaba教程" class="headerlink" title="Spring Cloud Alibaba教程"></a>Spring Cloud Alibaba教程</h3><ul>
+<li><a href="https://blog.csdn.net/forezp/article/details/90142744" target="_blank" rel="noopener">Spring Cloud Alibaba教程：使用Nacos作为服务注册发现组件</a></li>
+</ul>
+<h3 id="Greenwich版本"><a href="#Greenwich版本" class="headerlink" title="Greenwich版本"></a>Greenwich版本</h3><ul>
+<li><a href="https://blog.csdn.net/forezp/article/details/87273153" target="_blank" rel="noopener">Spring Cloud Consul 之Greenwich版本全攻略</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/87866560" target="_blank" rel="noopener">spring cloud config将配置存储在数据库中</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/87075651" target="_blank" rel="noopener">Spring Cloud Sleuth 之Greenwich版本全攻略</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/86105850" target="_blank" rel="noopener">Spring Boot Admin 2.1.0 全攻略</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/86634907" target="_blank" rel="noopener">阿里分布式事务框架GTS开源了！</a></li>
+</ul>
+<h3 id="源码篇："><a href="#源码篇：" class="headerlink" title="源码篇："></a>源码篇：</h3><ul>
+<li><a href="http://blog.csdn.net/forezp/article/details/73480304" target="_blank" rel="noopener">深入理解Feign之源码解析</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/73017664" target="_blank" rel="noopener">深入理解Eureka之源码解析</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/74820899" target="_blank" rel="noopener">深入理解Ribbon之源码解析</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/75333088" target="_blank" rel="noopener">深入理解Hystrix之文档翻译</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/76211680" target="_blank" rel="noopener">深入理解Zuul之源码解析</a></li>
+</ul>
+<h3 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h3><ul>
+<li><a href="http://blog.csdn.net/forezp/article/details/76795269" target="_blank" rel="noopener">Spring Cloud Sleuth超详细实战</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/83999882" target="_blank" rel="noopener">拜托！面试请不要再问我Spring Cloud底层原理</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/83999947" target="_blank" rel="noopener">微服务注册中心如何承载大型系统的千万级访问？</a></li>
+<li><a href="https://blog.csdn.net/forezp/article/details/83999975" target="_blank" rel="noopener">每秒上万并发下的Spring Cloud参数优化实战</a></li>
+</ul>
+<h3 id="番外篇："><a href="#番外篇：" class="headerlink" title="番外篇："></a>番外篇：</h3><ul>
+<li><a href="http://blog.csdn.net/forezp/article/details/69056017" target="_blank" rel="noopener">如何使用MongoDB+Springboot实现分布式ID?</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/68957681" target="_blank" rel="noopener">如何在springcloud分布式系统中实现分布式锁？</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/70305336" target="_blank" rel="noopener">如何用Redlock实现分布式锁</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/76408139" target="_blank" rel="noopener">如何在IDEA启动多个Spring Boot工程实例</a></li>
+<li><a href="http://blog.csdn.net/forezp/article/details/78676036" target="_blank" rel="noopener">JWT如何在Spring Cloud微服务系统中在服务相互调时传</a></li>
+</ul>
+<h3 id="博客："><a href="#博客：" class="headerlink" title="博客："></a>博客：</h3><p><a href="https://windmt.com/2018/04/26/spring-cloud-full-reactive-microservices/" target="_blank" rel="noopener">https://windmt.com/2018/04/26/spring-cloud-full-reactive-microservices/</a></p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2019/08/20/我搬砖回来了/" style="float: left;">
-        ← 我搬砖回来了~
+    <a class="pull-left" href="/2020/07/21/【SpringCloud】springCloud总体结构和技术熟悉/" style="float: left;">
+        ← 【SpringCloud】springCloud总体结构和技术熟悉
     </a>
     
     
-    <a class="pull-right" href="/2019/04/09/【IndexedDB】基本使用/">
-        【IndexedDB】基本使用 →
+    <a class="pull-right" href="/2020/07/05/【SpringBoot】自定义SpringBoot定时任务线程池/">
+        【SpringBoot】自定义SpringBoot定时任务线程池 →
     </a>
     
 </nav>

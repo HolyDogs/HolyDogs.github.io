@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【SpringBoot】定时任务与Cron表达式 | XFF&#39;s blog</title>
+  <title>【java】excel文件上传处理解析 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -230,74 +230,113 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2019-04-12T03:45:07.000Z" itemprop="datePublished">
-          2019-04-12
+      <time datetime="2020-10-06T02:40:13.000Z" itemprop="datePublished">
+          2020-10-06
       </time>
     
     
     | 
-    <a href='/tags/cron/'>cron</a>,
+    <a href='/tags/文件上传/'>文件上传</a>,
     
-    <a href='/tags/定时任务/'>定时任务</a>
+    <a href='/tags/excel/'>excel</a>
     
     
 </span>
-                <h1>【SpringBoot】定时任务与Cron表达式</h1>
+                <h1>【java】excel文件上传处理解析</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h1 id="SpringBoot定时器"><a href="#SpringBoot定时器" class="headerlink" title="SpringBoot定时器"></a>SpringBoot定时器</h1><p>SpringBoot自带定时器功能，若不考虑重复启动定时任务以及并发带来的问题，可以选择这种方式来简单快速地定义定时器。</p>
-<p>使用时只需要在声明定时任务的类或者启动类上添加注解@EnableScheduling配合使用在方法上的@Scheduled注解就能简单定义一个定时任务</p>
-<p>在启动类上加@EnableScheduling可以方便对所有任务进行开启和关闭</p>
-<p>在声明定时任务的类上需要加@Component将该类实例化到Spring容器中，才能被扫描到类里的定时任务。</p>
-<p>在方法上添加@Scheduled注解添加参数设置定时策略，有两种设置方式</p>
-<h2 id="1-fixedRate"><a href="#1-fixedRate" class="headerlink" title="1.fixedRate"></a>1.fixedRate</h2><p>这种方式适合不指定特定时间，间歇一段时间就执行一次的情况，功能较弱。</p>
-<h2 id="2-cron表达式"><a href="#2-cron表达式" class="headerlink" title="2.cron表达式"></a>2.cron表达式</h2><p>可以指定什么时候触发、多久触发一次等，功能较强大，需要使用特定的表达式。</p>
-<hr>
-<p><strong>两种方式使用如下：</strong></p>
-<pre><code>@Component
-@Slf4j
-public class MyScheduledTask {
+      		<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>使用Element-UI上传文件控件（可以限制文件类型、文件大小等，选中多个文件上传时，该控件会将多个文件拆成多次请求到后台，每次请求是一个文件）</p>
+<pre><code>&lt;template&gt;
+  &lt;div class=&quot;app-container&quot; align=&quot;center&quot;&gt;
 
-    @Scheduled(fixedRate = 1000 * 5)
-    public void bootSchedule(){
-        log.info(&quot;SpringBoot自带定时器fixedRate5s启动：{}&quot;,LocalDateTime.now());
-    }
+    &lt;el-upload
+      class=&quot;upload-demo&quot;
+      action=&quot;/gyProj/hahaha&quot;
+      :on-preview=&quot;handlePreview&quot;
+      :on-remove=&quot;handleRemove&quot;
+      :before-remove=&quot;beforeRemove&quot;
+      multiple
+      :file-list=&quot;fileList&quot;&gt;
+      &lt;el-button size=&quot;small&quot; type=&quot;primary&quot;&gt;点击上传&lt;/el-button&gt;
+      &lt;div slot=&quot;tip&quot; class=&quot;el-upload__tip&quot;&gt;excel文件上传&lt;/div&gt;
+    &lt;/el-upload&gt;
 
-    @Scheduled(cron = &quot;10/10 * * * * ?&quot;)
-    public void bootScheduleCron(){
-        log.info(&quot;SpringBoot自带Cron定时器fixedRate10s启动：{}&quot;, LocalDateTime.now().toString());
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+
+export default {
+  name: &apos;excel-imp&apos;,
+  data() {
+    return {
+      fileList:[]
     }
+  },
+  created() {
+
+  },
+  methods: {
+
+  }
 }
-</code></pre><ul>
-<li>上面的方法表示每5秒该任务会执行一次</li>
-<li>下面的方法则表示任务会从每分钟的第10秒开始，每10秒执行一次</li>
-</ul>
-<p>运行效果如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zoaoxn1uj30rv07p40a.jpg" alt=""></p>
-<p><strong>为什么上面的5条中，5秒运行一次的任务连续执行了4次而10秒的任务没有运行呢？</strong><br>原因是，当50秒时，运行10秒后进入到下一分钟的范围，而该任务指定从每分钟的第10秒开始运行，所以这次不会调用该任务。</p>
-<h2 id="Cron表达式介绍"><a href="#Cron表达式介绍" class="headerlink" title="Cron表达式介绍"></a>Cron表达式介绍</h2><p>cron表达式有6或7个域，中间以逗号分隔，理解也比较简单，每个域顺序表示的意义如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zugibc32j30l504kaa7.jpg" alt=""></p>
+&lt;/script&gt;
+
+&lt;style type=&quot;text/css&quot; scoped&gt;
+
+
+&lt;/style&gt;
+</code></pre><p>需要导入依赖：</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
+    &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
+    &lt;version&gt;1.4&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>可配置文件上传大小限制（下面是yml配置）：</p>
+<pre><code>spring:
+    servlet:  
+      multipart:  
+        max-file-size: 10MB  //单个文件大小限制
+        max-request-size: 100MB  //单次请求大小限制
+        enabled: true
+</code></pre><h2 id="后台接收"><a href="#后台接收" class="headerlink" title="后台接收"></a>后台接收</h2><p>使用MultipartFile类型接收该文件</p>
+<pre><code>@RequestParam(&quot;file&quot;) MultipartFile file
+</code></pre><h2 id="类型转化"><a href="#类型转化" class="headerlink" title="类型转化"></a>类型转化</h2><p>接收后将该类型文件转化为流，然后使用excel解析类转化，其中：</p>
 <ul>
-<li><p><strong>每个符号的含义</strong></p>
-<p> <img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zuh44kq2j30oi0ev3zj.jpg" alt=""></p>
-</li>
+<li><p>xlsx类型的表格：</p>
+<pre><code>Workbook wb = new XSSFWorkbook(fi);
+
+依赖：
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;
+    &lt;artifactId&gt;poi-ooxml&lt;/artifactId&gt;
+    &lt;version&gt;4.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></li>
+<li><p>普通类型的表格（xls）：</p>
+<pre><code>Workbook wb = new HSSFWorkbook(fi);
+
+依赖：
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;
+    &lt;artifactId&gt;poi&lt;/artifactId&gt;
+    &lt;version&gt;4.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></li>
 </ul>
-<p><strong>注意：每周的第一天是周日</strong></p>
-<hr>
-<p>情景测试，我想让一个任务在2019到2020年每月的第3个周三的晚上6点的第20分开始，每5分钟的第30秒执行一次</p>
-<pre><code>30 20/5 18 ? * 4#3 2019-2020
-</code></pre>
+<h2 id="sheet获取"><a href="#sheet获取" class="headerlink" title="sheet获取"></a>sheet获取</h2><p>一个excel可能包含多个sheet，所以要获取各个sheet。</p>
+<pre><code>//获取第一个sheet对象
+Sheet sheet = wb.getSheetAt(0);
+</code></pre><p>之后根据获取的对象解析即可</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2019/08/20/我搬砖回来了/" style="float: left;">
-        ← 我搬砖回来了~
-    </a>
     
-    
-    <a class="pull-right" href="/2019/04/09/【IndexedDB】基本使用/">
-        【IndexedDB】基本使用 →
+    <a class="pull-right" href="/2020/09/17/【Vue】父子组件参数互传/">
+        【Vue】父子组件参数互传 →
     </a>
     
 </nav>

@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【SpringBoot】定时任务与Cron表达式 | XFF&#39;s blog</title>
+  <title>【SpringCloud】springCloud总体结构和技术熟悉 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -230,74 +230,49 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2019-04-12T03:45:07.000Z" itemprop="datePublished">
-          2019-04-12
+      <time datetime="2020-07-21T02:20:58.000Z" itemprop="datePublished">
+          2020-07-21
       </time>
     
     
     | 
-    <a href='/tags/cron/'>cron</a>,
-    
-    <a href='/tags/定时任务/'>定时任务</a>
+    <a href='/tags/SpringCloud/'>SpringCloud</a>
     
     
 </span>
-                <h1>【SpringBoot】定时任务与Cron表达式</h1>
+                <h1>【SpringCloud】springCloud总体结构和技术熟悉</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h1 id="SpringBoot定时器"><a href="#SpringBoot定时器" class="headerlink" title="SpringBoot定时器"></a>SpringBoot定时器</h1><p>SpringBoot自带定时器功能，若不考虑重复启动定时任务以及并发带来的问题，可以选择这种方式来简单快速地定义定时器。</p>
-<p>使用时只需要在声明定时任务的类或者启动类上添加注解@EnableScheduling配合使用在方法上的@Scheduled注解就能简单定义一个定时任务</p>
-<p>在启动类上加@EnableScheduling可以方便对所有任务进行开启和关闭</p>
-<p>在声明定时任务的类上需要加@Component将该类实例化到Spring容器中，才能被扫描到类里的定时任务。</p>
-<p>在方法上添加@Scheduled注解添加参数设置定时策略，有两种设置方式</p>
-<h2 id="1-fixedRate"><a href="#1-fixedRate" class="headerlink" title="1.fixedRate"></a>1.fixedRate</h2><p>这种方式适合不指定特定时间，间歇一段时间就执行一次的情况，功能较弱。</p>
-<h2 id="2-cron表达式"><a href="#2-cron表达式" class="headerlink" title="2.cron表达式"></a>2.cron表达式</h2><p>可以指定什么时候触发、多久触发一次等，功能较强大，需要使用特定的表达式。</p>
+      		<p>springCloud组件图<br><img src="https://src.windmt.com/img/006tNc79ly1fqc4dcx75gj31ab0o775w.jpg" alt="https://src.windmt.com/img/006tNc79ly1fqc4dcx75gj31ab0o775w.jpg"><br>springCloud结构图<br><img src="https://src.windmt.com/img/006tNc79ly1fqc2klep72j30n00jhjsd.jpg" alt=""></p>
+<h2 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h2><p><strong>服务注册中心：Eureka、（zookeeper等）</strong><br>负责管理服务的注册和发现。</p>
+<h2 id="服务调用"><a href="#服务调用" class="headerlink" title="服务调用"></a>服务调用</h2><p><strong>调用端断路器：Hystrix</strong><br>当某个服务出问题时，设置快速失败机制，再多次失败后再次调用直接返回失败，避免出现雪崩现象（指由于前面的服务调用失败导致后面的服务调用全部失败导致调用端    持续等待影响了整体服务；服务雪崩效应是一种因 “服务提供者” 的不可用导致 “服务消费者” 的不可用，并将不可用逐渐放大的过程。）。</p>
+<p><strong>调用端负载均衡：Ribbon</strong><br>对有多个实例的同一服务（集群），当调用服务时，进行负载均衡来让各个实例合理地分配到请求。</p>
+<p><strong>调用端代码封装与抽象：Feign</strong><br>Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单。Feign默认集成了Ribbon与Hystrix，具有熔断的能力，与Eureka结合，默认实现了负载均衡的效果。</p>
+<h2 id="服务路由和过滤"><a href="#服务路由和过滤" class="headerlink" title="服务路由和过滤"></a>服务路由和过滤</h2><p><strong>服务路由和过滤：Zuul</strong><br>1可以过滤cookie和httpHeader<br>2路径映射<br>3可实现动态路由，根据请求路径动态映射到不同服务，如下图<br><img src="https://s1.ax1x.com/2020/07/05/Up9r7V.png" alt="Up9r7V.png"></p>
+<h2 id="监控数据收集"><a href="#监控数据收集" class="headerlink" title="监控数据收集"></a>监控数据收集</h2><p><strong>Hystrix Dashboard 和 Turbine</strong><br>对服务熔断情况进行监控。<br>只使用 Hystrix Dashboard 的话，你只能看到单个应用内的服务信息。<br>Turbine能让我们汇总系统内多个服务的数据并显示到 Hystrix Dashboard 上。</p>
+<p><strong>Spring Cloud Sleuth 和 Zipkin</strong><br>通过 Sleuth 可以很清楚的了解到一个服务请求经过了哪些服务，每个服务处理花费了多长时间。从而让我们可以很方便的理清各微服务间的调用关系。</p>
+<p>Zipkin 是 Twitter 的一个开源项目，允许开发者收集 Twitter 各个服务上的监控数据，并提供查询接口</p>
+<p>分布式链路跟踪需要 Sleuth+Zipkin 结合来实现</p>
+<h2 id="其它工具"><a href="#其它工具" class="headerlink" title="其它工具"></a>其它工具</h2><p><strong>Spring Cloud Config</strong><br>分布式系统的配置管理方案。</p>
+<p><strong>Spring Cloud Bus</strong><br>用 AMQP 消息代理作为通道，通过分布式的启动器对 Spring Boot 应用进行扩展，也可以用来建立一个或多个应用之间的通信频道。可用于对分布式配置变化进行广播，不用对每个服务端都进行refresh操作就能更新所有服务的配置。</p>
 <hr>
-<p><strong>两种方式使用如下：</strong></p>
-<pre><code>@Component
-@Slf4j
-public class MyScheduledTask {
+<blockquote>
+<p>原文：<a href="https://windmt.com/2018/04/14/spring-cloud-0-microservices/" target="_blank" rel="noopener">https://windmt.com/2018/04/14/spring-cloud-0-microservices/</a></p>
+</blockquote>
 
-    @Scheduled(fixedRate = 1000 * 5)
-    public void bootSchedule(){
-        log.info(&quot;SpringBoot自带定时器fixedRate5s启动：{}&quot;,LocalDateTime.now());
-    }
-
-    @Scheduled(cron = &quot;10/10 * * * * ?&quot;)
-    public void bootScheduleCron(){
-        log.info(&quot;SpringBoot自带Cron定时器fixedRate10s启动：{}&quot;, LocalDateTime.now().toString());
-    }
-}
-</code></pre><ul>
-<li>上面的方法表示每5秒该任务会执行一次</li>
-<li>下面的方法则表示任务会从每分钟的第10秒开始，每10秒执行一次</li>
-</ul>
-<p>运行效果如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zoaoxn1uj30rv07p40a.jpg" alt=""></p>
-<p><strong>为什么上面的5条中，5秒运行一次的任务连续执行了4次而10秒的任务没有运行呢？</strong><br>原因是，当50秒时，运行10秒后进入到下一分钟的范围，而该任务指定从每分钟的第10秒开始运行，所以这次不会调用该任务。</p>
-<h2 id="Cron表达式介绍"><a href="#Cron表达式介绍" class="headerlink" title="Cron表达式介绍"></a>Cron表达式介绍</h2><p>cron表达式有6或7个域，中间以逗号分隔，理解也比较简单，每个域顺序表示的意义如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zugibc32j30l504kaa7.jpg" alt=""></p>
-<ul>
-<li><p><strong>每个符号的含义</strong></p>
-<p> <img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zuh44kq2j30oi0ev3zj.jpg" alt=""></p>
-</li>
-</ul>
-<p><strong>注意：每周的第一天是周日</strong></p>
-<hr>
-<p>情景测试，我想让一个任务在2019到2020年每月的第3个周三的晚上6点的第20分开始，每5分钟的第30秒执行一次</p>
-<pre><code>30 20/5 18 ? * 4#3 2019-2020
-</code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2019/08/20/我搬砖回来了/" style="float: left;">
-        ← 我搬砖回来了~
+    <a class="pull-left" href="/2020/07/24/【转】一文学会索引设计技巧/" style="float: left;">
+        ← 【转】一文学会索引设计技巧
     </a>
     
     
-    <a class="pull-right" href="/2019/04/09/【IndexedDB】基本使用/">
-        【IndexedDB】基本使用 →
+    <a class="pull-right" href="/2020/07/20/【SpringCloud】springCloud相关博客链接地址学习收集/">
+        【SpringCloud】springCloud相关博客链接地址学习收集 →
     </a>
     
 </nav>

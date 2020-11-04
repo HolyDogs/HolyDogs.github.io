@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>【SpringBoot】定时任务与Cron表达式 | XFF&#39;s blog</title>
+  <title>【ORACLE】数据库同步，表空间操作等 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -230,74 +230,105 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2019-04-12T03:45:07.000Z" itemprop="datePublished">
-          2019-04-12
+      <time datetime="2020-08-27T07:16:42.000Z" itemprop="datePublished">
+          2020-08-27
       </time>
     
     
     | 
-    <a href='/tags/cron/'>cron</a>,
-    
-    <a href='/tags/定时任务/'>定时任务</a>
+    <a href='/tags/oracle/'>oracle</a>
     
     
 </span>
-                <h1>【SpringBoot】定时任务与Cron表达式</h1>
+                <h1>【ORACLE】数据库同步，表空间操作等</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h1 id="SpringBoot定时器"><a href="#SpringBoot定时器" class="headerlink" title="SpringBoot定时器"></a>SpringBoot定时器</h1><p>SpringBoot自带定时器功能，若不考虑重复启动定时任务以及并发带来的问题，可以选择这种方式来简单快速地定义定时器。</p>
-<p>使用时只需要在声明定时任务的类或者启动类上添加注解@EnableScheduling配合使用在方法上的@Scheduled注解就能简单定义一个定时任务</p>
-<p>在启动类上加@EnableScheduling可以方便对所有任务进行开启和关闭</p>
-<p>在声明定时任务的类上需要加@Component将该类实例化到Spring容器中，才能被扫描到类里的定时任务。</p>
-<p>在方法上添加@Scheduled注解添加参数设置定时策略，有两种设置方式</p>
-<h2 id="1-fixedRate"><a href="#1-fixedRate" class="headerlink" title="1.fixedRate"></a>1.fixedRate</h2><p>这种方式适合不指定特定时间，间歇一段时间就执行一次的情况，功能较弱。</p>
-<h2 id="2-cron表达式"><a href="#2-cron表达式" class="headerlink" title="2.cron表达式"></a>2.cron表达式</h2><p>可以指定什么时候触发、多久触发一次等，功能较强大，需要使用特定的表达式。</p>
-<hr>
-<p><strong>两种方式使用如下：</strong></p>
-<pre><code>@Component
-@Slf4j
-public class MyScheduledTask {
+      		<p>近日需要同步本地一个oracle数据库的所有数据包括表结构等到现场一台服务器上， 平时未接触，因此不太熟练，这里记录下同步过程。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>远程到本地安装oracle数据库的那台服务器上，使用命令行将对应需要的用户下的所有数据导出为dmp文件。（安装了oracle即有该命令）</p>
+<pre><code>exp 用户名/密码 file=路径 log=日志 owner=导出用户
+</code></pre><p>这样就能在选择的路径下得到dmp文件、日志等文件。</p>
+<h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><p>远程到需要同步的那台服务器上，登录进后，如果需要覆盖一个用户下的所有表，那么可能需要将该用户删除然后重新创建一个新用户，然后导入数据。</p>
+<blockquote>
+<p>网上还有另一个方案，使用impdp命令导入，然后设置table_exists_action参数为replace，可以在遇到已存在表时，删除原表然后重新建表并追加数据。但是该命令只能应用于expdp命令导出的文件，当时我用的exp导出的文件用impdp导入报错，因为数据量较大导出时间较长，我就没有再测试重新导出。</p>
+</blockquote>
+<p>那么正式开始同步过程：</p>
+<ol>
+<li>登录</li>
+</ol>
+<pre><code>sqlplus / as sysdba
+</code></pre><ol start="2">
+<li>删除原用户：</li>
+</ol>
+<pre><code>DROP USER GYJCBI CASCADE --删除用户
+DROP TABLESPACE USERS INCLUDING CONTENTS AND DATAFILES;--删除表空间
+</code></pre><ol start="3">
+<li><p>创建表空间</p>
+<pre><code>--临时表空间
+CREATE TEMPORARY TABLESPACE GYDSJ_temp
+TEMPFILE &apos;G:\oracle\product\10.2.0\oradata\orcl\GYDSJ_temp01.dbf&apos;
+SIZE 512M --空间大小
+AUTOEXTEND ON --自动扩容
+NEXT 50M MAXSIZE 1024M --每次扩50M最大1024M
+EXTENT MANAGEMENT LOCAL;
 
-    @Scheduled(fixedRate = 1000 * 5)
-    public void bootSchedule(){
-        log.info(&quot;SpringBoot自带定时器fixedRate5s启动：{}&quot;,LocalDateTime.now());
-    }
-
-    @Scheduled(cron = &quot;10/10 * * * * ?&quot;)
-    public void bootScheduleCron(){
-        log.info(&quot;SpringBoot自带Cron定时器fixedRate10s启动：{}&quot;, LocalDateTime.now().toString());
-    }
-}
-</code></pre><ul>
-<li>上面的方法表示每5秒该任务会执行一次</li>
-<li>下面的方法则表示任务会从每分钟的第10秒开始，每10秒执行一次</li>
-</ul>
-<p>运行效果如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zoaoxn1uj30rv07p40a.jpg" alt=""></p>
-<p><strong>为什么上面的5条中，5秒运行一次的任务连续执行了4次而10秒的任务没有运行呢？</strong><br>原因是，当50秒时，运行10秒后进入到下一分钟的范围，而该任务指定从每分钟的第10秒开始运行，所以这次不会调用该任务。</p>
-<h2 id="Cron表达式介绍"><a href="#Cron表达式介绍" class="headerlink" title="Cron表达式介绍"></a>Cron表达式介绍</h2><p>cron表达式有6或7个域，中间以逗号分隔，理解也比较简单，每个域顺序表示的意义如下<br><img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zugibc32j30l504kaa7.jpg" alt=""></p>
-<ul>
-<li><p><strong>每个符号的含义</strong></p>
-<p> <img src="http://ww1.sinaimg.cn/large/006azB5Sly1g1zuh44kq2j30oi0ev3zj.jpg" alt=""></p>
-</li>
-</ul>
-<p><strong>注意：每周的第一天是周日</strong></p>
+--表空间
+CREATE TABLESPACE GYDSJ_DATA
+LOGGING
+DATAFILE &apos;G:\oracle\product\10.2.0\oradata\ORCL\GYDSJ_DATA01.DBF&apos; 
+SIZE 2G  --空间大小，不要设置太小，不然导入会报错
+AUTOEXTEND ON 
+NEXT 512M MAXSIZE 5G --设置扩展大小和最大，可不填
+EXTENT MANAGEMENT LOCAL;
+</code></pre></li>
+<li><p>创建新用户，并设置相关信息‘</p>
+<pre><code>CREATE USER GYDSJ IDENTIFIED BY password
+DEFAULT TABLESPACE GYDSJ_DATA --默认表空间
+TEMPORARY TABLESPACE GYDSJ_TEMP;  --临时表空间 可不选
+</code></pre></li>
+<li><p>用户赋权</p>
+<pre><code>grant connect,dba,resource to GYDSJ;
+</code></pre></li>
+<li><p>导入数据dmp文件<br>使用之前导出的dmp文件， 运行下面的命令（导入导出命令都不是oracle的sql命令，需要先从sqlplus退出登录）</p>
+<pre><code>imp 用户名/密码 file=文件路径 log=日志 full=y
+</code></pre></li>
+<li>等待导入结束即可</li>
+</ol>
 <hr>
-<p>情景测试，我想让一个任务在2019到2020年每月的第3个周三的晚上6点的第20分开始，每5分钟的第30秒执行一次</p>
-<pre><code>30 20/5 18 ? * 4#3 2019-2020
-</code></pre>
+<h2 id="题外"><a href="#题外" class="headerlink" title="题外"></a>题外</h2><h3 id="oracle注意事项："><a href="#oracle注意事项：" class="headerlink" title="oracle注意事项："></a>oracle注意事项：</h3><p>oracle中空字符串等于NULL，如果一个字段不允许为空，当向其中插入一个空字符串时就会报错。</p>
+<p>sql生成UUID：SELECT LOWER(RAWTOHEX(sys_guid())</p>
+<p>允许存在换行符，java获取后可以使用”\\\n”匹配。</p>
+<p>分页使用rownum，常在原语句外面嵌套一层select * from () where rownum …<br>使用java推荐使用pageHelper分页，如下配置，在查询前使用PageHelper.startPage(pageNum, 10);即可</p>
+<pre><code>@Bean
+ PageInterceptor getPageInterceptor() {
+     PageInterceptor pageInterceptor = new PageInterceptor();
+     Properties properties = new Properties();
+     properties.setProperty(&quot;helperDialect&quot;, &quot;oracle&quot;);
+     pageInterceptor.setProperties(properties);
+     return pageInterceptor;
+ }
+ @Bean
+ PageHelper pageHelper(){
+     PageHelper pageHelper = new PageHelper();
+     Properties properties = new Properties();
+     properties.setProperty(&quot;helperDialect&quot;, &quot;oracle&quot;);
+     pageHelper.setProperties(properties);
+     return pageHelper;
+ }
+</code></pre><p>使用mybatis动态创建表或者需要变量表示表或者字段这些值的时候，变量要用${}符号来包括，平时的字符串形式都使用#{}</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2019/08/20/我搬砖回来了/" style="float: left;">
-        ← 我搬砖回来了~
+    <a class="pull-left" href="/2020/09/17/【Vue】父子组件参数互传/" style="float: left;">
+        ← 【Vue】父子组件参数互传
     </a>
     
     
-    <a class="pull-right" href="/2019/04/09/【IndexedDB】基本使用/">
-        【IndexedDB】基本使用 →
+    <a class="pull-right" href="/2020/08/13/【杂记】码云gitee禁止外链访问txt、zip等文件导致hexo搜索失效/">
+        【杂记】码云gitee禁止外链访问txt、zip等文件导致hexo搜索失效 →
     </a>
     
 </nav>
