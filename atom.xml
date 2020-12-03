@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-11-04T02:00:48.996Z</updated>
+  <updated>2020-12-03T02:32:42.881Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【ORACLE】sql优化记录</title>
+    <link href="https://xfff.xyz/2020/12/03/%E3%80%90ORACLE%E3%80%91sql%E4%BC%98%E5%8C%96%E8%AE%B0%E5%BD%95/"/>
+    <id>https://xfff.xyz/2020/12/03/【ORACLE】sql优化记录/</id>
+    <published>2020-12-03T02:31:49.000Z</published>
+    <updated>2020-12-03T02:32:42.881Z</updated>
+    
+    <content type="html"><![CDATA[<p>先看段sql</p><p><em>WITH ydz AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB_CPCLJC_ZS_TJ WHERE statistic_mark = ‘月度值’ ),<br>tb AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB_CPCLJC_ZS_TJ WHERE statistic_mark = ‘月度同比’ ) SELECT<br>row_number () over ( partition BY c.nf || c.yf ORDER BY c.tb ) 序号,<br>c.zbmc 产品名称,<br>c.cl 产量,<br>c.dw 单位,<br>c.tb 同比,<br>c.nf 年份,<br>c.yf 月份<br>FROM<br>    (<br>    SELECT<br>        a.zbmc,<br>        a.value cl,<br>        a.jldw dw,<br>        b.value tb,<br>        a.nf,<br>        a.yf<br>    FROM<br>        ydz a<br>        LEFT JOIN tb b ON a.zbmc = b.zbmc<br>        AND a.nf = b.nf<br>        AND a.yf = b.yf<br>    ) c<br>ORDER BY<br>    6 DESC,<br>    7 DESC,<br>    5 DESC nulls last</em></p><p>partition by类似group by又完全不一样，partition by也用于分组，但计算统计时是以逐条累计的方式计算结果的。<br>常与row_number() over一起用来计算每个分组的里面单独排序的序号。</p><p>with用于提前定义查询结果，然后用该结果再进行其它后续操作。</p><p>SQL分析<br>MYSQL:EXPLAIN<br>ORACLE:EXPLAIN PLAN FOR </p><p>使用PageHelper进行oracle分页时，数据量稍微比较大的时候（百万级），分页查询速度很慢，如下，使用pageHelper分页并没有用到索引。<br><a href="https://imgchr.com/i/DoqK0I" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/12/03/DoqK0I.png" alt="DoqK0I.png"></a></p><ul><li>Operation表示语句执行的顺序</li><li>object表示语句执行用到的索引</li><li>cost是大概需要花费的时间</li><li>cardinality表示作用的条数</li><li>access predicates: 知道要什么数据，也知道在哪里，直接去取</li><li>filter predicates: 先把数据取出来，再判断是否满足条件，不满足的就丢弃</li></ul><p>对应的后台分页代码可能就是简单的</p><pre><code>PageHelper.startPage(start, size);//DO SELECTreturn new PageInfo(resultList);</code></pre><p>考虑到使用索引来查询能更快，于是考虑将查询分页sql改成下面这样。先利用ID的索引来查询分页数据ID，然后利用ID去查询分页的完整数据。但是这样需要自己封装一个分页信息（如共计多少条、分页大小等），需要另外执行sql查询数据库，花费时间需要相加，而且不能很好搭配筛选条件进行查询分页。<br><a href="https://imgchr.com/i/DoOI6e" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/12/03/DoOI6e.png" alt="DoOI6e.png"></a></p><p>最后选择了折中的方法（不用写太多代码，但速度也不算特快，但比之前分页快多了）<br><a href="https://imgchr.com/i/DojXQS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/12/03/DojXQS.png" alt="DojXQS.png"></a></p><p>和第一种方式一样，但一开始不查询出所有数据，查询ID的分页信息，PageHelper会自动获取分页信息。<br>然后利用ID再去查询相应数据（这一步几乎不耗多少时间）。<br>代码也很简单</p><pre><code>PageHelper.startPage(start, size);//DO SELECT ID =&gt; idListPageInfo page= new PageInfo(resultIdList);//use idList to select data =&gt; dataListpage.setList(dataList);return page;</code></pre><p>这样就做到了百万级数据查询的优化。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;先看段sql&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;WITH ydz AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB_CPCLJC_ZS_TJ WHERE statistic_mark = ‘月
+      
+    
+    </summary>
+    
+      <category term="ORACLE" scheme="https://xfff.xyz/categories/ORACLE/"/>
+    
+    
+      <category term="sql优化" scheme="https://xfff.xyz/tags/sql%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>【java】excel文件上传处理解析</title>
