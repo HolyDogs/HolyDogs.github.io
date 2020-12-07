@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-12-03T02:32:42.881Z</updated>
+  <updated>2020-12-07T09:25:49.757Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【SpringBoot】使用webSocket主动给客户端发送消息</title>
+    <link href="https://xfff.xyz/2020/12/07/%E3%80%90SpringBoot%E3%80%91%E4%BD%BF%E7%94%A8webSocket%E4%B8%BB%E5%8A%A8%E7%BB%99%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF/"/>
+    <id>https://xfff.xyz/2020/12/07/【SpringBoot】使用webSocket主动给客户端发送消息/</id>
+    <published>2020-12-07T09:22:37.000Z</published>
+    <updated>2020-12-07T09:25:49.757Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="websocket协议与http协议"><a href="#websocket协议与http协议" class="headerlink" title="websocket协议与http协议"></a>websocket协议与http协议</h2><p><strong>相同点</strong>：建立在TCP协议之上，同http协议一样通过TCP传输数据</p><p><strong>不同点</strong>：HTTP协议为单向协议，只有客户端能向服务器端发送请求，服务器不能主动向客户端传递数据，包括短连接和长连接，短连接为每次http请求都要经过三次握手，长连接为建立连接后保持TCP连接维持一段时间。<br>为了解决服务器端不能主动给客户端传输数据以及避免长连接和轮询问题，WebSocket出现了。WebSocket也需要先进行http请求建立握手连接，连接成功后，后续数据传输则完全与http协议无关。<br>三次握手建立连接，四次挥手断开连接。</p><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p><em>以下皆为springBoot项目代码</em></p><p><strong>引入关键依赖</strong></p><pre><code>&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spring-boot-starter-websocket&lt;/artifactId&gt;&lt;/dependency&gt;</code></pre><p><strong>创建配置类：</strong></p><pre><code>@Configurationpublic class WebSocketConfig {    @Bean    public ServerEndpointExporter serverEndpointExporter() {        return new ServerEndpointExporter();    }}</code></pre><hr><p><strong>设置WebSocket建立连接请求的地址、以及各个连接过程中的方法</strong></p><pre><code>package com.example.mybatisplus.config;import com.alibaba.fastjson.JSON;import com.alibaba.fastjson.JSONObject;import lombok.extern.slf4j.Slf4j;import org.apache.commons.lang.StringUtils;import org.springframework.stereotype.Component;import javax.websocket.*;import javax.websocket.server.PathParam;import javax.websocket.server.ServerEndpoint;import java.io.IOException;import java.util.concurrent.ConcurrentHashMap;/** * @author xufeng * @version 1.0 * @date 2020/12/7 15:30 **/@ServerEndpoint(&quot;/imserver/{userId}&quot;)@Component@Slf4jpublic class WebSocketServer {    /**静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。*/    private static int onlineCount = 0;    /**concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。*/    private static ConcurrentHashMap&lt;String,WebSocketServer&gt; webSocketMap = new ConcurrentHashMap&lt;&gt;();    /**与某个客户端的连接会话，需要通过它来给客户端发送数据*/    private Session session;    /**接收userId*/    private String userId=&quot;&quot;;    /**     * 连接建立成功调用的方法*/    @OnOpen    public void onOpen(Session session,@PathParam(&quot;userId&quot;) String userId) {        this.session = session;        this.userId=userId;        if(webSocketMap.containsKey(userId)){            webSocketMap.remove(userId);            webSocketMap.put(userId,this);            //加入set中        }else{            webSocketMap.put(userId,this);            //加入set中            addOnlineCount();            //在线数加1        }        log.info(&quot;用户连接:&quot;+userId+&quot;,当前在线人数为:&quot; + getOnlineCount());        try {            sendMessage(&quot;连接成功&quot;);        } catch (IOException e) {            log.error(&quot;用户:&quot;+userId+&quot;,网络异常!!!!!!&quot;);        }    }    /**     * 连接关闭调用的方法     */    @OnClose    public void onClose() {        if(webSocketMap.containsKey(userId)){            webSocketMap.remove(userId);            //从set中删除            subOnlineCount();        }        log.info(&quot;用户退出:&quot;+userId+&quot;,当前在线人数为:&quot; + getOnlineCount());    }    /**     * 收到客户端消息后调用的方法     *     * @param message 客户端发送过来的消息*/    @OnMessage    public void onMessage(String message, Session session) {        log.info(&quot;用户消息:&quot;+userId+&quot;,报文:&quot;+message);        //可以群发消息        //消息保存到数据库、redis        if(StringUtils.isNotBlank(message)){            try {                //解析发送的报文                JSONObject jsonObject = JSON.parseObject(message);                //追加发送人(防止串改)                jsonObject.put(&quot;fromUserId&quot;,this.userId);                String toUserId=jsonObject.getString(&quot;toUserId&quot;);                //传送给对应toUserId用户的websocket                if(StringUtils.isNotBlank(toUserId)&amp;&amp;webSocketMap.containsKey(toUserId)){                    webSocketMap.get(toUserId).sendMessage(jsonObject.toJSONString());                }else{                    log.error(&quot;请求的userId:&quot;+toUserId+&quot;不在该服务器上&quot;);                    //否则不在这个服务器上，发送到mysql或者redis                }            }catch (Exception e){                e.printStackTrace();            }        }    }    /**     *     * @param session     * @param error     */    @OnError    public void onError(Session session, Throwable error) {        log.error(&quot;用户错误:&quot;+this.userId+&quot;,原因:&quot;+error.getMessage());        error.printStackTrace();    }    public static synchronized int getOnlineCount() {        return onlineCount;    }    public static synchronized void addOnlineCount() {        WebSocketServer.onlineCount++;    }    public static synchronized void subOnlineCount() {        WebSocketServer.onlineCount--;    }    /**     * 发送自定义消息     * */    public static void sendInfo(String message,@PathParam(&quot;userId&quot;) String userId) throws IOException {        log.info(&quot;发送消息到:&quot;+userId+&quot;，报文:&quot;+message);        if(StringUtils.isNotBlank(userId)&amp;&amp;webSocketMap.containsKey(userId)){            webSocketMap.get(userId).sendMessage(message);        }else{            log.error(&quot;用户&quot;+userId+&quot;,不在线！&quot;);        }    }    private void sendMessage(String message) throws IOException {        this.session.getBasicRemote().sendText(message);    }}</code></pre><p>设置一个controller（任选触发时机，也可以不要该controller）</p><pre><code>@RestControllerpublic class SocketController {    @RequestMapping(&quot;/push/{toUserId}&quot;)    public ResponseEntity&lt;String&gt; pushToWeb(String message, @PathVariable String toUserId) throws IOException {        WebSocketServer.sendInfo(message,toUserId);        return ResponseEntity.ok(&quot;MSG SEND SUCCESS&quot;);    }}</code></pre><hr><p>前端，使用Vue简单实现（应该有更方便的第三方WebSocket框架使用，自行百度）：</p><pre><code>&lt;template&gt;    &lt;div class=&quot;login&quot;&gt;        &lt;el-button @click=&quot;zzzClick&quot;&gt;ZZZZZZZZZZ&lt;/el-button&gt;    &lt;/div&gt;&lt;/template&gt;&lt;script&gt;export default {    data() {        return {            socket:null,            userId:23,            toUserId:&apos;2&apos;,            content:&apos;3&apos;        }    },  methods: {      zzzClick() {          this.openSocket();      },    openSocket() {      if (typeof WebSocket == &quot;undefined&quot;) {        console.log(&quot;您的浏览器不支持WebSocket&quot;);      } else {        console.log(&quot;您的浏览器支持WebSocket&quot;);        //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接        //等同于socket = new WebSocket(&quot;ws://localhost:8888/xxxx/im/25&quot;);        //var socketUrl=&quot;${request.contextPath}/im/&quot;+$(&quot;#userId&quot;).val();        var socketUrl =          &quot;http://localhost:8090/imserver/&quot; + this.userId;        socketUrl = socketUrl.replace(&quot;https&quot;, &quot;ws&quot;).replace(&quot;http&quot;, &quot;ws&quot;);        console.log(socketUrl);        if (this.socket != null) {          this.socket.close();          this.socket = null;        }        this.socket = new WebSocket(socketUrl);        //打开事件        this.socket.onopen = function() {          console.log(&quot;websocket已打开&quot;);          //socket.send(&quot;这是来自客户端的消息&quot; + location.href + new Date());        };        //获得消息事件        this.socket.onmessage = function(msg) {          console.log(msg.data);          //发现消息进入    开始处理前端触发逻辑        };        //关闭事件        this.socket.onclose = function() {          console.log(&quot;websocket已关闭&quot;);        };        //发生了错误事件        this.socket.onerror = function() {          console.log(&quot;websocket发生了错误&quot;);        };      }    },    sendMessage() {      if (typeof WebSocket == &quot;undefined&quot;) {        console.log(&quot;您的浏览器不支持WebSocket&quot;);      } else {        console.log(&quot;您的浏览器支持WebSocket&quot;);        console.log(          &apos;{&quot;toUserId&quot;:&quot;&apos; +             this.toUserId +            &apos;&quot;,&quot;contentText&quot;:&quot;&apos; +             this.content +            &apos;&quot;}&apos;        );        this.socket.send(          &apos;{&quot;toUserId&quot;:&quot;&apos; +             this.toUserId +            &apos;&quot;,&quot;contentText&quot;:&quot;&apos; +             this.content +            &apos;&quot;}&apos;         );            }        }    }}&lt;/script&gt;</code></pre><h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p>路由设置好后访问该页面，点击按钮即可与后台建立webSocket连接，控制台打印如下<br><a href="https://imgchr.com/i/DxB6RH" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/12/07/DxB6RH.png" alt="DxB6RH.png"></a></p><hr><p>然后打开postMan，发送一个请求信息<br><a href="https://imgchr.com/i/DxBLyn" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/12/07/DxBLyn.png" alt="DxBLyn.png"></a></p><hr><ul><li>后台打印信息：</li></ul><p><a href="https://imgchr.com/i/DxD1OI" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/12/07/DxD1OI.png" alt="DxD1OI.png"></a></p><ul><li>前台打印信息：</li></ul><p><a href="https://imgchr.com/i/DxDdpQ" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/12/07/DxDdpQ.png" alt="DxDdpQ.png"></a></p><p>后台主动向前台发送信息成功！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;websocket协议与http协议&quot;&gt;&lt;a href=&quot;#websocket协议与http协议&quot; class=&quot;headerlink&quot; title=&quot;websocket协议与http协议&quot;&gt;&lt;/a&gt;websocket协议与http协议&lt;/h2&gt;&lt;p&gt;&lt;stron
+      
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
+    
+    
+      <category term="webSocket" scheme="https://xfff.xyz/tags/webSocket/"/>
+    
+  </entry>
   
   <entry>
     <title>【ORACLE】sql优化记录</title>
@@ -247,9 +272,9 @@
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
-    
       <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     
   </entry>
   
@@ -356,9 +381,9 @@
       <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
-    
       <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
+    
+      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
@@ -384,9 +409,9 @@
       <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
-    
       <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
+    
+      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
@@ -621,9 +646,9 @@ conne
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
-    
       <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
     
   </entry>
   
