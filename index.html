@@ -135,7 +135,7 @@
 				    
 				    <li><a href="/categories/前端/" class="animsition-link">前端<small>(14)</small></a></li>
 				    
-				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(11)</small></a></li>
+				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(12)</small></a></li>
 				    
 				    <li><a href="/categories/数据结构/" class="animsition-link">数据结构<small>(3)</small></a></li>
 				    
@@ -257,6 +257,47 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/12/15/【redis】redis的数据同步机制/">【redis】redis的数据同步机制</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-12-15T03:43:46.000Z" itemprop="datePublished">
+          2020-12-15
+      </time>
+    
+    
+    | 
+    <a href='/tags/redis/'>redis</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        redis 与 memcache比较
+redis提供持久化
+
+持久化的两种方式 =》 dump.rdb1、客户端使用BGSAVE或者SAVE手动保存到数据文件中，避免使用2、配置文件中配置了一定时间内有多少key被修改了则自动进行RDB持久化
+AOF:文件追加写命令持久化即在发生写命令时追加命令到AOF文件中，可配置是否开启
+REDIS主从复制
+机制1-master同步所有slave机制2-master同步到一部分slave，然后该sl
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/12/15/【redis】redis的数据同步机制/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -524,43 +565,6 @@ exp 用户名/密码 file=路径 log=日志 owner=导出用户
                     
                     <p class="pull-right readMore">
                         <a href="/2020/07/24/【转】一文学会索引设计技巧/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/07/21/【SpringCloud】springCloud总体结构和技术熟悉/">【SpringCloud】springCloud总体结构和技术熟悉</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-07-21T02:20:58.000Z" itemprop="datePublished">
-          2020-07-21
-      </time>
-    
-    
-    | 
-    <a href='/tags/SpringCloud/'>SpringCloud</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        springCloud组件图springCloud结构图
-服务注册与发现服务注册中心：Eureka、（zookeeper等）负责管理服务的注册和发现。
-服务调用调用端断路器：Hystrix当某个服务出问题时，设置快速失败机制，再多次失败后再次调用直接返回失败，避免出现雪崩现象（指由于前面的服务调用失败导致后面的服务调用全部失败导致调用端    持续等待影响了整体服务；服务雪崩效应是一种因 “服务提供者” 的不可用导致 “服务消费者” 的
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/07/21/【SpringCloud】springCloud总体结构和技术熟悉/">Read More...</a>
                     </p>
                     
                 </div>

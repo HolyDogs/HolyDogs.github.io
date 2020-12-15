@@ -135,7 +135,7 @@
 				    
 				    <li><a href="/categories/前端/" class="animsition-link">前端<small>(14)</small></a></li>
 				    
-				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(11)</small></a></li>
+				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(12)</small></a></li>
 				    
 				    <li><a href="/categories/数据结构/" class="animsition-link">数据结构<small>(3)</small></a></li>
 				    
@@ -257,6 +257,48 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/03/05/【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法/">【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-03-05T03:53:03.000Z" itemprop="datePublished">
+          2019-03-05
+      </time>
+    
+    
+    | 
+    <a href='/tags/mybatis/'>mybatis</a>,
+    
+    <a href='/tags/error/'>error</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        在使用mybatis对数据库进行查询然后返回一个map类型的时候，如果某一列的值为空
+那么返回的map里是会没有这个值对应的列的key，也就是map的容量会比预期小，很容易出一些问题
+我在前端对传来的map遍历存入table时，由于缺少一些key，导致后面的列往前面推，使表格混乱
+为了解决这个问题，我先是找到了这篇博客,分析了一下mybatis给map类型赋值的过程
+
+https://blog.csdn.net/zdazx/articl
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/03/05/【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -548,54 +590,6 @@ xxx替换为对
                     
                     <p class="pull-right readMore">
                         <a href="/2019/01/29/vuejs发送异步请求/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/01/29/vuejs总体结构学习/">vuejs总体结构学习</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-01-29T07:50:24.000Z" itemprop="datePublished">
-          2019-01-29
-      </time>
-    
-    
-    | 
-    <a href='/tags/vue/'>vue</a>,
-    
-    <a href='/tags/js/'>js</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        偶然翻到一篇讲解一个vue项目的搭建的博客。全部撸完后觉得写的很好，决定在这里总结一下，原博地址
-
-https://blog.csdn.net/fungleo/article/details/77606321
-
-
-首先，看一下大体的项目结构
-
-贴代码main.js
-
-红框框起来的是必要代码，引入Vue和App模版、vue路由。然后引入全局的路由配置文件routes.js使用路由需要Vue.use(VueRouter)
-
-看一下App.v
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/29/vuejs总体结构学习/">Read More...</a>
                     </p>
                     
                 </div>

@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Category: tools | XFF&#39;s blog</title>
+  <title>【redis】redis的数据同步机制 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -226,79 +226,107 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(https://uploadbeta.com/api/pictures/random/) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>Just Go Away</h2>
-                        <p></p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/01/07/使用StackEdit为markdown格式画图/">使用StackEdit为markdown格式画图</a></h4>
-                            
-                            <p><time datetime="2019-01-07T02:21:22.000Z"><a href="/2019/01/07/使用StackEdit为markdown格式画图/">2019-01-07</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/10/【好用的工具合集】/">【好用的工具合集】</a></h4>
-                            
-                            <p><time datetime="2018-10-10T10:02:04.000Z"><a href="/2018/10/10/【好用的工具合集】/">2018-10-10</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2020-12-15T03:43:46.000Z" itemprop="datePublished">
+          2020-12-15
+      </time>
+    
+    
+    | 
+    <a href='/tags/redis/'>redis</a>
+    
+    
+</span>
+                <h1>【redis】redis的数据同步机制</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<p><strong>redis 与 memcache比较</strong></p>
+<p>redis提供持久化</p>
+<hr>
+<p><strong>持久化的两种方式 =》 dump.rdb</strong><br>1、客户端使用BGSAVE或者SAVE手动保存到数据文件中，避免使用<br>2、配置文件中配置了一定时间内有多少key被修改了则自动进行RDB持久化</p>
+<p>AOF:文件追加写命令持久化<br>即在发生写命令时追加命令到AOF文件中，可配置是否开启</p>
+<p>REDIS主从复制</p>
+<p>机制1-master同步所有slave<br>机制2-master同步到一部分slave，然后该slave再同步到其它slave</p>
+<h2 id="全量同步："><a href="#全量同步：" class="headerlink" title="全量同步："></a>全量同步：</h2><p>服务器重启，redis2.8之前的版本短线重连会发生全量同步，同步过程：<br>1、slave发送SYNC命令给master，master通过BGSAVE启动一个子进程将当前数据快照写到一个快照文件，同时使用一个缓冲区保存这段时间所有的写请求，这时如果有请求到该slave，可通过配置是否用旧数据响应客户端或者直接报错。另外如果有多个slave发送SYNC给master，也只会执行一次BGSAVE<br>2、子进程完成快照文件写入，给slave发送该文件，slave接收后清空旧数据开始载入，这段时间会阻塞客户端请求<br>3、master将缓冲区的写命令内容发送给slave，slave载入第二步的快照文件后可以接收客户端的请求，并同时执行master发送来的写命令<br>4、之后进入增量同步过程；</p>
+<h2 id="增量同步："><a href="#增量同步：" class="headerlink" title="增量同步："></a>增量同步：</h2><p>master每接收一个写命令并执行后都会同步给其它slave执行</p>
+<h2 id="部分同步PSYNC："><a href="#部分同步PSYNC：" class="headerlink" title="部分同步PSYNC："></a>部分同步PSYNC：</h2><p>redis2.8版本后，slave与master断线重连后，默认使用PSYNC同步方法，命令格式：<br>run_id：用于记录master的身份<br>offset：偏移量，用于记录slave短线时最后一次接收命令的数据版本</p>
+<p>master会根据复制挤压缓冲区内是否有该偏移量的记录来同步数据给slave，如果偏移量超出了缓冲区的大小，则需要执行全量同步</p>
+<hr>
+<p>REDIS主从同步是符合AP协议的</p>
+<p>CAP理论<br>分布式系统不能同时满足CP和AP<br>CP:Consistency partition一致性 （zookeeper）<br>AP：Availability partition可用性 （eureka）</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2020/12/07/【SpringBoot】使用webSocket主动给客户端发送消息/">
+        【SpringBoot】使用webSocket主动给客户端发送消息 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足,不敢停站,然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--
