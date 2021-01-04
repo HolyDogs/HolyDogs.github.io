@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2020-12-15T03:44:56.268Z</updated>
+  <updated>2021-01-04T01:50:28.539Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【springBoot】多模块划分</title>
+    <link href="https://xfff.xyz/2020/12/30/%E3%80%90springBoot%E3%80%91%E5%A4%9A%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86/"/>
+    <id>https://xfff.xyz/2020/12/30/【springBoot】多模块划分/</id>
+    <published>2020-12-30T01:48:19.000Z</published>
+    <updated>2021-01-04T01:50:28.539Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近把项目代码进行了重构，根据规范大致对进行中的项目进行了模块划分。</p><p>多模块的优点：<br>可维护性<br>1.灵活架构，焦点分离<br>2.方便模块间组合、分解<br>3.方便单个模块功能调试、升级<br>4.多人协作互不干扰</p><p>springBoot多模块划分</p><p>根据通用规范，我把项目划分为如下模块</p><pre><code>&lt;modules&gt;    &lt;module&gt;gyjc-web&lt;/module&gt;    &lt;module&gt;gyjc-service&lt;/module&gt;    &lt;module&gt;gyjc-common&lt;/module&gt;    &lt;module&gt;gyjc-task&lt;/module&gt;    &lt;module&gt;gyjc-api&lt;/module&gt;    &lt;module&gt;gyjc-entity&lt;/module&gt;    &lt;module&gt;gyjc-statistics&lt;/module&gt;&lt;/modules&gt;</code></pre><p>除了statistics为项目个性化统计模块、task为定时任务、线程定义的模块外，其它都是一些常见的通用模块。</p><h2 id="版本管理"><a href="#版本管理" class="headerlink" title="版本管理"></a>版本管理</h2><p>为了对项目版本进行统一的管理，我在外层的pom文件中使用了revision来统一版本信息。</p><pre><code>&lt;artifactId&gt;gyjcProj&lt;/artifactId&gt;  &lt;packaging&gt;pom&lt;/packaging&gt;  &lt;version&gt;${revision}&lt;/version&gt;&lt;properties&gt;      &lt;revision&gt;1.8.1-SNAPSHOT&lt;/revision&gt;  &lt;/properties&gt;</code></pre><p>子模块的pom文件中这样定义</p><pre><code>&lt;parent&gt;    &lt;artifactId&gt;gyjcProj&lt;/artifactId&gt;    &lt;groupId&gt;xxxx&lt;/groupId&gt;    &lt;version&gt;${revision}&lt;/version&gt;&lt;/parent&gt;&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;&lt;artifactId&gt;gyjc-api&lt;/artifactId&gt;&lt;dependencies&gt;    &lt;dependency&gt;        &lt;groupId&gt;xxxx&lt;/groupId&gt;        &lt;artifactId&gt;gyjc-entity&lt;/artifactId&gt;        &lt;version&gt;${project.version}&lt;/version&gt;    &lt;/dependency&gt;&lt;/dependencies&gt;</code></pre><p>这样修改版本号时只需修改外部pom文件的版本号即可。</p><p>多模块划分后，对于部分只在某个模块使用的依赖包，可以只在子模块的pom文件中引入，避免父模块pom文件过长难以维护。</p><h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>比如要启动的是web模块，在web模块的pom文件中加入其它模块的依赖后，配置如下：</p><pre><code>&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;&lt;packaging&gt;jar&lt;/packaging&gt;&lt;artifactId&gt;gyjc-web&lt;/artifactId&gt;&lt;dependencies&gt;    ...&lt;/dependencies&gt;&lt;build&gt;    &lt;plugins&gt;        &lt;plugin&gt;            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;            &lt;configuration&gt;                &lt;!-- 设置启动类入口 --&gt;                &lt;mainClass&gt;com.xxxx.MybatisplusSpringbootApplication&lt;/mainClass&gt;            &lt;/configuration&gt;            &lt;executions&gt;                &lt;execution&gt;                    &lt;goals&gt;                        &lt;goal&gt;repackage&lt;/goal&gt;                    &lt;/goals&gt;                &lt;/execution&gt;            &lt;/executions&gt;        &lt;/plugin&gt;        &lt;plugin&gt;            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;            &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;            &lt;configuration&gt;                &lt;!--打包时跳过test的编译--&gt;                &lt;skipTests&gt;true&lt;/skipTests&gt;            &lt;/configuration&gt;        &lt;/plugin&gt;        &lt;plugin&gt;            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;            &lt;configuration&gt;                &lt;source&gt;1.8&lt;/source&gt;                &lt;target&gt;1.8&lt;/target&gt;            &lt;/configuration&gt;        &lt;/plugin&gt;    &lt;/plugins&gt;&lt;/build&gt;</code></pre><p>其中goal的repackage表示打包时将其它依赖包打到web包里，配置启动类后，这样就可以直接运行启动了。</p><p>多模块划分后，以后如果想加一些个性化功能，可以直接另开模块实现，若部分模块不需要了也只需要在web 的依赖中去除即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近把项目代码进行了重构，根据规范大致对进行中的项目进行了模块划分。&lt;/p&gt;
+&lt;p&gt;多模块的优点：&lt;br&gt;可维护性&lt;br&gt;1.灵活架构，焦点分离&lt;br&gt;2.方便模块间组合、分解&lt;br&gt;3.方便单个模块功能调试、升级&lt;br&gt;4.多人协作互不干扰&lt;/p&gt;
+&lt;p&gt;springBo
+      
+    
+    </summary>
+    
+      <category term="springBoot" scheme="https://xfff.xyz/categories/springBoot/"/>
+    
+    
+      <category term="多模块" scheme="https://xfff.xyz/tags/%E5%A4%9A%E6%A8%A1%E5%9D%97/"/>
+    
+  </entry>
   
   <entry>
     <title>【redis】redis的数据同步机制</title>
