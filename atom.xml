@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2021-01-04T01:50:28.539Z</updated>
+  <updated>2021-01-11T03:08:51.491Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【mybatis】多数据源实现</title>
+    <link href="https://xfff.xyz/2021/01/11/%E3%80%90mybatis%E3%80%91%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://xfff.xyz/2021/01/11/【mybatis】多数据源实现/</id>
+    <published>2021-01-11T03:05:12.000Z</published>
+    <updated>2021-01-11T03:08:51.491Z</updated>
+    
+    <content type="html"><![CDATA[<p>Mybatis多数据库兼容</p><p>mysql+oracle..</p><hr><p>1.mybatis配置两个数据库</p><pre><code>xff.mysql.datasource.driver=com.mysql.jdbc.Driver#xff.mysql.datasource.url=jdbc:mysql://122.***.9.**:19087/xff.mysql.datasource.url=jdbc:mysql://10.45.**.**:3306/testdb?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=falsexff.mysql.datasource.username=rootxff.mysql.datasource.password=rootxff.oracle.datasource.driver=oracle.jdbc.driver.OracleDriverxff.oracle.datasource.url=jdbc:oracle:thin:@10.45.**.**:1521:testDbxff.oracle.datasource.username=rootxff.oracle.datasource.password=root</code></pre><p>在mybatis配置文件配置两个数据源</p><pre><code>&lt;bean id=&quot;datasource1&quot; parent=&quot;parentDataSource&quot; init-method=&quot;init&quot; destroy-method=&quot;close&quot;&gt;    &lt;property name=&quot;url&quot; value=&quot;${xff.mysql.datasource.url}&quot;/&gt;    &lt;property name=&quot;username&quot; value=&quot;${xff.mysql.datasource.username}&quot;/&gt;    &lt;property name=&quot;password&quot; value=&quot;${xff.mysql.datasource.password}&quot;/&gt;    &lt;property name=&quot;driverClassName&quot; value=&quot;${xff.mysql.datasource.driver}&quot;/&gt;&lt;/bean&gt;&lt;bean id=&quot;datasource2&quot; parent=&quot;parentOracleDataSource&quot; init-method=&quot;init&quot; destroy-method=&quot;close&quot;&gt;    &lt;property name=&quot;url&quot; value=&quot;${xff.oracle.datasource.url}&quot;/&gt;    &lt;property name=&quot;username&quot; value=&quot;${xff.oracle.datasource.username}&quot;/&gt;    &lt;property name=&quot;password&quot; value=&quot;${xff.oracle.datasource.password}&quot;/&gt;    &lt;property name=&quot;driverClassName&quot; value=&quot;${xff.oracle.datasource.driver}&quot;/&gt;&lt;/bean&gt;&lt;bean id=&quot;dataSource&quot; class=&quot;com.xff.simulation.common.bean.MultiDataSource&quot;&gt;    &lt;property name=&quot;targetDataSources&quot;&gt;        &lt;map key-type=&quot;java.lang.String&quot;&gt;            &lt;!-- 选择数据源 --&gt;            &lt;entry value-ref=&quot;datasource2&quot; key=&quot;oracle&quot;/&gt;        &lt;/map&gt;    &lt;/property&gt;    &lt;!-- 选择数据源 --&gt;    &lt;property name=&quot;defaultTargetDataSource&quot; ref=&quot;datasource2&quot;/&gt;&lt;/bean&gt;</code></pre><p>2.配置databaseIdProvider</p><pre><code>&lt;bean id=&quot;sqlSessionFactory&quot;      class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;    &lt;property name=&quot;vfs&quot; value=&quot;org.mybatis.spring.boot.autoconfigure.SpringBootVFS&quot;/&gt;    &lt;!-- 自动扫描Mapping.xml文件 --&gt;    &lt;property name=&quot;mapperLocations&quot;&gt;        &lt;array&gt;            &lt;value&gt;classpath*:/mapper/*.xml&lt;/value&gt;        &lt;/array&gt;    &lt;/property&gt;    &lt;property name=&quot;databaseIdProvider&quot; ref=&quot;databaseIdProvider&quot; /&gt;    &lt;property name=&quot;configLocation&quot; value=&quot;classpath:mybatis/mybatisConfig.xml&quot;/&gt;&lt;/bean&gt;&lt;bean id=&quot;vendorProperties&quot;      class=&quot;org.springframework.beans.factory.config.PropertiesFactoryBean&quot;&gt;    &lt;property name=&quot;properties&quot;&gt;        &lt;props&gt;            &lt;prop key=&quot;Oracle&quot;&gt;oracle&lt;/prop&gt;            &lt;prop key=&quot;MySQL&quot;&gt;mysql&lt;/prop&gt;        &lt;/props&gt;    &lt;/property&gt;&lt;/bean&gt;&lt;!-- 配置databaseIdProvider--&gt;&lt;bean id=&quot;databaseIdProvider&quot; class=&quot;org.apache.ibatis.mapping.VendorDatabaseIdProvider&quot;&gt;    &lt;property name=&quot;properties&quot; ref=&quot;vendorProperties&quot;/&gt;&lt;/bean&gt;</code></pre><p>3.使用：如果只是简单的增删改查，没有用到函数，一套sql可以共用，不必加databaseId，如果负载sql需要区分</p><pre><code>&lt;select id=&quot;qryAllUserInfo&quot; databaseId=&quot;oracle&quot; parameterType=&quot;****&quot; &gt;    select * from sys_user&lt;/select&gt;&lt;select id=&quot;qryAllUserInfo&quot; databaseId=&quot;mysql&quot; parameterType=&quot;****&quot; &gt;    select * from sys_user&lt;/select&gt;</code></pre><hr><p>另一种多数据库配置方式：</p><blockquote><p><a href="https://www.cnblogs.com/Donnnnnn/p/12073424.html" target="_blank" rel="noopener">https://www.cnblogs.com/Donnnnnn/p/12073424.html</a></p></blockquote><hr><h2 id="使用Mybatis-plus的dynamic-datasource-spring-boot-starter包实现多数据源"><a href="#使用Mybatis-plus的dynamic-datasource-spring-boot-starter包实现多数据源" class="headerlink" title="使用Mybatis-plus的dynamic-datasource-spring-boot-starter包实现多数据源"></a>使用Mybatis-plus的dynamic-datasource-spring-boot-starter包实现多数据源</h2><p>引入依赖</p><pre><code>&lt;!--dynamic-datasource-多数据源--&gt;&lt;dependency&gt;    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;    &lt;artifactId&gt;dynamic-datasource-spring-boot-starter&lt;/artifactId&gt;    &lt;version&gt;${dynamic.datasource.boot.version}&lt;/version&gt;&lt;/dependency&gt;</code></pre><p>配置如下</p><pre><code>#数据库配置spring:  autoconfigure:    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure  # 为了某些版本的springboot  @SpringBootApplication(exclude= {DataSourceAutoConfiguration.class}) 无法生效  datasource:    dynamic:      primary: master #设置默认的数据源或者数据源组,默认值即为master，如果只是单数据源只需要注释掉slave相关配置即可      datasource:        master:          url: jdbc:oracle:thin:@localhost:1521:ORCL          username: xxx          password: password          driverClassName: oracle.jdbc.OracleDriver        #多数据源使用场景        #slave:          #url: jdbc:oracle:thin:@localhost:1521:ORCL          #username: xxx          #password: password          #driverClassName: oracle.jdbc.driver.OracleDriver        #secure:          #url: jdbc:oracle:thin:@192.168.2.16:1521:ORCL          #username: xxx          #password: password          #driverClassName: oracle.jdbc.OracleDriver</code></pre><p>配置好后，在对应的mapper接口上添加@DS(“xxx”)注解可以指定该接口使用哪个数据源来查询数据。<br>默认不添加或者找不到对应的数据源的情况下都会使用默认的primary指定的主数据库。</p><p>数据库方言可以设置autoRuntimeDialect为true</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Mybatis多数据库兼容&lt;/p&gt;
+&lt;p&gt;mysql+oracle..&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;1.mybatis配置两个数据库&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;xff.mysql.datasource.driver=com.mysql.jdbc.Driver
+#xff.my
+      
+    
+    </summary>
+    
+      <category term="mybatis" scheme="https://xfff.xyz/categories/mybatis/"/>
+    
+    
+      <category term="多数据源" scheme="https://xfff.xyz/tags/%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/"/>
+    
+  </entry>
   
   <entry>
     <title>【springBoot】多模块划分</title>
@@ -48,9 +78,9 @@
     <link href="https://xfff.xyz/2020/12/15/%E3%80%90redis%E3%80%91redis%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/"/>
     <id>https://xfff.xyz/2020/12/15/【redis】redis的数据同步机制/</id>
     <published>2020-12-15T03:43:46.000Z</published>
-    <updated>2020-12-15T03:44:56.268Z</updated>
+    <updated>2021-01-04T01:54:26.741Z</updated>
     
-    <content type="html"><![CDATA[<p><strong>redis 与 memcache比较</strong></p><p>redis提供持久化</p><hr><p><strong>持久化的两种方式 =》 dump.rdb</strong><br>1、客户端使用BGSAVE或者SAVE手动保存到数据文件中，避免使用<br>2、配置文件中配置了一定时间内有多少key被修改了则自动进行RDB持久化</p><p>AOF:文件追加写命令持久化<br>即在发生写命令时追加命令到AOF文件中，可配置是否开启</p><p>REDIS主从复制</p><p>机制1-master同步所有slave<br>机制2-master同步到一部分slave，然后该slave再同步到其它slave</p><h2 id="全量同步："><a href="#全量同步：" class="headerlink" title="全量同步："></a>全量同步：</h2><p>服务器重启，redis2.8之前的版本短线重连会发生全量同步，同步过程：<br>1、slave发送SYNC命令给master，master通过BGSAVE启动一个子进程将当前数据快照写到一个快照文件，同时使用一个缓冲区保存这段时间所有的写请求，这时如果有请求到该slave，可通过配置是否用旧数据响应客户端或者直接报错。另外如果有多个slave发送SYNC给master，也只会执行一次BGSAVE<br>2、子进程完成快照文件写入，给slave发送该文件，slave接收后清空旧数据开始载入，这段时间会阻塞客户端请求<br>3、master将缓冲区的写命令内容发送给slave，slave载入第二步的快照文件后可以接收客户端的请求，并同时执行master发送来的写命令<br>4、之后进入增量同步过程；</p><h2 id="增量同步："><a href="#增量同步：" class="headerlink" title="增量同步："></a>增量同步：</h2><p>master每接收一个写命令并执行后都会同步给其它slave执行</p><h2 id="部分同步PSYNC："><a href="#部分同步PSYNC：" class="headerlink" title="部分同步PSYNC："></a>部分同步PSYNC：</h2><p>redis2.8版本后，slave与master断线重连后，默认使用PSYNC同步方法，命令格式：<br>run_id：用于记录master的身份<br>offset：偏移量，用于记录slave短线时最后一次接收命令的数据版本</p><p>master会根据复制挤压缓冲区内是否有该偏移量的记录来同步数据给slave，如果偏移量超出了缓冲区的大小，则需要执行全量同步</p><hr><p>REDIS主从同步是符合AP协议的</p><p>CAP理论<br>分布式系统不能同时满足CP和AP<br>CP:Consistency partition一致性 （zookeeper）<br>AP：Availability partition可用性 （eureka）</p>]]></content>
+    <content type="html"><![CDATA[<p><strong>redis 与 memcache比较</strong></p><p>redis提供持久化</p><hr><p><strong>持久化的两种方式 =》 dump.rdb</strong><br>1、客户端使用BGSAVE或者SAVE手动保存到数据文件中，避免使用<br>2、配置文件中配置了一定时间内有多少key被修改了则自动进行RDB持久化</p><p>AOF:文件追加写命令持久化<br>即在发生写命令时追加命令到AOF文件中，可配置是否开启</p><p>REDIS主从复制</p><p>机制1-master同步所有slave<br>机制2-master同步到一部分slave，然后该slave再同步到其它slave</p><h2 id="全量同步："><a href="#全量同步：" class="headerlink" title="全量同步："></a>全量同步：</h2><p>服务器重启，redis2.8之前的版本短线重连会发生全量同步，同步过程：<br>1、slave发送SYNC命令给master，master通过BGSAVE启动一个子进程将当前数据快照写到一个快照文件，同时使用一个缓冲区保存这段时间所有的写请求，这时如果有请求到该slave，可通过配置是否用旧数据响应客户端或者直接报错。另外如果有多个slave发送SYNC给master，也只会执行一次BGSAVE<br>2、子进程完成快照文件写入，给slave发送该文件，slave接收后清空旧数据开始载入，这段时间会阻塞客户端请求<br>3、master将缓冲区的写命令内容发送给slave，slave载入第二步的快照文件后可以接收客户端的请求，并同时执行master发送来的写命令<br>4、之后进入增量同步过程；</p><h2 id="增量同步："><a href="#增量同步：" class="headerlink" title="增量同步："></a>增量同步：</h2><p>master每接收一个写命令并执行后都会同步给其它slave执行</p><h2 id="部分同步PSYNC："><a href="#部分同步PSYNC：" class="headerlink" title="部分同步PSYNC："></a>部分同步PSYNC：</h2><p>redis2.8版本后，slave与master断线重连后，默认使用PSYNC同步方法，命令格式：<br>run_id：用于记录master的身份<br>offset：偏移量，用于记录slave短线时最后一次接收命令的数据版本</p><p>master会根据复制挤压缓冲区内是否有该偏移量的记录来同步数据给slave，如果偏移量超出了缓冲区的大小，则需要执行全量同步</p><hr><p>REDIS符合CP协议<br>REDIS主从同步是符合AP协议的<br><img src="https://www.runoob.com/wp-content/uploads/2013/10/cap-theoram-image.png" alt=""><br>CAP理论<br>分布式系统不能同时满足CP和AP<br>CP:Consistency partition一致性 （zookeeper）<br>AP：Availability partition可用性 （eureka）</p>]]></content>
     
     <summary type="html">
     
@@ -2042,9 +2072,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
-    
       <category term="java" scheme="https://xfff.xyz/tags/java/"/>
+    
+      <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     
       <category term="多线程" scheme="https://xfff.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     

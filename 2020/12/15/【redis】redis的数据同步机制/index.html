@@ -117,7 +117,7 @@
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(12)</small></a></li>
+				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(13)</small></a></li>
 				    
 				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
@@ -260,8 +260,7 @@
 <h2 id="部分同步PSYNC："><a href="#部分同步PSYNC：" class="headerlink" title="部分同步PSYNC："></a>部分同步PSYNC：</h2><p>redis2.8版本后，slave与master断线重连后，默认使用PSYNC同步方法，命令格式：<br>run_id：用于记录master的身份<br>offset：偏移量，用于记录slave短线时最后一次接收命令的数据版本</p>
 <p>master会根据复制挤压缓冲区内是否有该偏移量的记录来同步数据给slave，如果偏移量超出了缓冲区的大小，则需要执行全量同步</p>
 <hr>
-<p>REDIS主从同步是符合AP协议的</p>
-<p>CAP理论<br>分布式系统不能同时满足CP和AP<br>CP:Consistency partition一致性 （zookeeper）<br>AP：Availability partition可用性 （eureka）</p>
+<p>REDIS符合CP协议<br>REDIS主从同步是符合AP协议的<br><img src="https://www.runoob.com/wp-content/uploads/2013/10/cap-theoram-image.png" alt=""><br>CAP理论<br>分布式系统不能同时满足CP和AP<br>CP:Consistency partition一致性 （zookeeper）<br>AP：Availability partition可用性 （eureka）</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
