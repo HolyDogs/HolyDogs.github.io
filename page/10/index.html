@@ -113,7 +113,7 @@
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(10)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(11)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -263,6 +263,49 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
+                    <h3><a href="/2018/11/07/【mybatis】学习总结(二)/">【mybatis】学习总结(二)</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-11-07T09:02:07.000Z" itemprop="datePublished">
+          2018-11-07
+      </time>
+    
+    
+    | 
+    <a href='/tags/mybatis/'>mybatis</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+动态Sqlmybatis真正强大的地方，是可以灵活的运用sql语句进行查询。
+
+if语句
+
+在mapper映射文件中可以使用\标签来对语句接收的参数进行判断，从而动态改变sql语句。
+为了避免多次遇到同一段判断代码时的累赘，可以使用SQL片段来重复利用代码。如下：
+&lt;sql id=&quot;thereissqlblock&quot;&gt;
+        &lt;if test=&quot;goods!=null and u
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2018/11/07/【mybatis】学习总结(二)/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
                     <h3><a href="/2018/11/06/【leetcode】笔记1/">【LeetCode】笔记1</a></h3>
                     <span>
                         <span class="post-meta">
@@ -402,11 +445,11 @@
     
     
     | 
+    <a href='/tags/多线程/'>多线程</a>,
+    
     <a href='/tags/java/'>java</a>,
     
-    <a href='/tags/线程池/'>线程池</a>,
-    
-    <a href='/tags/多线程/'>多线程</a>
+    <a href='/tags/线程池/'>线程池</a>
     
     
 </span>
@@ -557,49 +600,6 @@ $(document).ready(function(){
                     
                     <p class="pull-right readMore">
                         <a href="/2018/10/24/【ajax】请求服务器-参数双向传递/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2018/10/24/mybatis操作text等长文本类型/">mybatis操作text等长文本类型</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2018-10-24T06:41:17.000Z" itemprop="datePublished">
-          2018-10-24
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>,
-    
-    <a href='/tags/图片/'>图片</a>,
-    
-    <a href='/tags/数据库/'>数据库</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        
-在实现将图片以base64编码为字符串存入数据库时，我遇到了这个问题。由于字符串过长，创建表时我用text类型来存放图片对应的base64编码字符串。
-
-最初，我以为是事务配置有问题，导致对表数据修改没有提交，在我试了各种配置方法。
-&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceT
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2018/10/24/mybatis操作text等长文本类型/">Read More...</a>
                     </p>
                     
                 </div>

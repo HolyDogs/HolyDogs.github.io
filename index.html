@@ -113,7 +113,7 @@
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(10)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(11)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -259,6 +259,49 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2021/01/20/【java】ThreadLocal应用以及理解/">【java】ThreadLocal应用以及理解</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2021-01-20T08:25:15.000Z" itemprop="datePublished">
+          2021-01-20
+      </time>
+    
+    
+    | 
+    <a href='/tags/多线程/'>多线程</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        ThreadLocal使用以线程为作用域，每个线程可以定义线程内独有的变量，不会对其它线程或者作用域造成影响。
+如某线程调用了如下方法:
+void doWork(User user){
+    functionA(user);
+    functionB(user);
+    functionC(user);
+    functionD(user);
+}
+线程中频繁地参数传递或者状态传递比较容易出现过度传参、状态不一致等问题。在上面的d
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2021/01/20/【java】ThreadLocal应用以及理解/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -526,45 +569,6 @@ WITH ydz AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB
                     
                     <p class="pull-right readMore">
                         <a href="/2020/09/17/【Vue】父子组件参数互传/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/08/27/【ORACLE】数据库同步，表空间操作等/">【ORACLE】数据库同步，表空间操作等</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-08-27T07:16:42.000Z" itemprop="datePublished">
-          2020-08-27
-      </time>
-    
-    
-    | 
-    <a href='/tags/oracle/'>oracle</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        近日需要同步本地一个oracle数据库的所有数据包括表结构等到现场一台服务器上， 平时未接触，因此不太熟练，这里记录下同步过程。
-准备工作远程到本地安装oracle数据库的那台服务器上，使用命令行将对应需要的用户下的所有数据导出为dmp文件。（安装了oracle即有该命令）
-exp 用户名/密码 file=路径 log=日志 owner=导出用户
-这样就能在选择的路径下得到dmp文件、日志等文件。
-同步远程到需要同步的那台服务器上，登录
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/08/27/【ORACLE】数据库同步，表空间操作等/">Read More...</a>
                     </p>
                     
                 </div>

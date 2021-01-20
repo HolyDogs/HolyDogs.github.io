@@ -113,7 +113,7 @@
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(10)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(11)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -259,6 +259,45 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/08/27/【ORACLE】数据库同步，表空间操作等/">【ORACLE】数据库同步，表空间操作等</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-08-27T07:16:42.000Z" itemprop="datePublished">
+          2020-08-27
+      </time>
+    
+    
+    | 
+    <a href='/tags/oracle/'>oracle</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        近日需要同步本地一个oracle数据库的所有数据包括表结构等到现场一台服务器上， 平时未接触，因此不太熟练，这里记录下同步过程。
+准备工作远程到本地安装oracle数据库的那台服务器上，使用命令行将对应需要的用户下的所有数据导出为dmp文件。（安装了oracle即有该命令）
+exp 用户名/密码 file=路径 log=日志 owner=导出用户
+这样就能在选择的路径下得到dmp文件、日志等文件。
+同步远程到需要同步的那台服务器上，登录
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/08/27/【ORACLE】数据库同步，表空间操作等/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -534,47 +573,6 @@ public TaskScheduler taskSche
                     
                     <p class="pull-right readMore">
                         <a href="/2020/06/10/【quartz】spring配置形式使用quartz实现定时任务/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/06/07/【单元测试】加载配置文件实现单元测试/">【单元测试】加载配置文件实现单元测试</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-06-07T07:48:50.000Z" itemprop="datePublished">
-          2020-06-07
-      </time>
-    
-    
-    | 
-    <a href='/tags/单元测试/'>单元测试</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        首先引入JUnit依赖，注意版本，很容易报错
-&lt;dependency&gt;
-    &lt;groupId&gt;junit&lt;/groupId&gt;
-    &lt;artifactId&gt;junit&lt;/artifactId&gt;
-    &lt;version&gt;4.12&lt;/version&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependenc
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/06/07/【单元测试】加载配置文件实现单元测试/">Read More...</a>
                     </p>
                     
                 </div>

@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: java8 | XFF&#39;s blog</title>
+  <title>【java】ThreadLocal应用以及理解 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -228,79 +228,186 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(https://uploadbeta.com/api/pictures/random/) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>Just Go Away</h2>
-                        <p></p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2020/04/29/【java】函数式接口/">【java】函数式接口</a></h4>
-                            
-                            <p><time datetime="2020-04-29T03:15:36.000Z"><a href="/2020/04/29/【java】函数式接口/">2020-04-29</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/20/【JAVA8新特性】/">【JAVA8新特性】</a></h4>
-                            
-                            <p><time datetime="2018-10-20T09:02:07.000Z"><a href="/2018/10/20/【JAVA8新特性】/">2018-10-20</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-01-20T08:25:15.000Z" itemprop="datePublished">
+          2021-01-20
+      </time>
+    
+    
+    | 
+    <a href='/tags/多线程/'>多线程</a>
+    
+    
+</span>
+                <h1>【java】ThreadLocal应用以及理解</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="ThreadLocal使用"><a href="#ThreadLocal使用" class="headerlink" title="ThreadLocal使用"></a>ThreadLocal使用</h2><p>以线程为作用域，每个线程可以定义线程内独有的变量，不会对其它线程或者作用域造成影响。</p>
+<p>如某线程调用了如下方法:</p>
+<pre><code>void doWork(User user){
+    functionA(user);
+    functionB(user);
+    functionC(user);
+    functionD(user);
+}
+</code></pre><p>线程中频繁地参数传递或者状态传递比较容易出现过度传参、状态不一致等问题。<br>在上面的doWork方法中，假如ABCD又需要一个新的参数，修改起来也很不方便。<br>这个时候就可以使用到ThreadLocal来在单个线程作用域内设置和保存一个变量的值或者保持一个状态。</p>
+<p>使用ThreadLocal后上面的代码就可以改造成</p>
+<pre><code>static final ThreadLocal&lt;User&gt; sThreadLocal = new ThreadLocal&lt;User&gt;();
+
+void doWork(User user){
+    try{
+        sThreadLocal.set(user);
+        functionA();
+        functionB();
+        functionC();
+        functionD();
+    }...
+    finally{
+        //在确认某个变量在线程中不再使用时，需要remove防止内存泄漏
+        sThreadLocal.remove();
+    }
+}
+
+functionA(){
+    User user = sThreadLocal.get();
+    //do something
+    //...
+}
+
+functionB(){...}
+......
+</code></pre><hr>
+<h2 id="经典使用场景"><a href="#经典使用场景" class="headerlink" title="经典使用场景"></a>经典使用场景</h2><p><strong>spring的事务隔离级别控制</strong>，如何保证事务之间的独立性单独提交？这里就用到了ThreadLocal用来保证每个事务使用的是同一个数据库连接</p>
+<p>TransactionSynchronizationManager类部分源码：</p>
+<pre><code>private  static  final Log logger = LogFactory.getLog(TransactionSynchronizationManager.class);
+
+private  static  final ThreadLocal&lt;Map&lt;Object, Object&gt;&gt; resources =  new  NamedThreadLocal&lt;&gt;(&quot;Transactional resources&quot;);
+
+private  static  final ThreadLocal&lt;Set&lt;TransactionSynchronization&gt;&gt; synchronizations =  new  NamedThreadLocal&lt;&gt;(&quot;Transaction synchronizations&quot;);
+
+private  static  final ThreadLocal&lt;String&gt; currentTransactionName =  new  NamedThreadLocal&lt;&gt;(&quot;Current transaction name&quot;);
+</code></pre><p>此外还有session的数据隔离也用到了ThreadLocal。</p>
+<h2 id="ThreadLocal源码"><a href="#ThreadLocal源码" class="headerlink" title="ThreadLocal源码"></a>ThreadLocal源码</h2><p>ThreadLocal是以ThreadLocalMap来存储对象的，每个线程都有一个自己的ThreadLocalMap。取数据时，调用threadLocal的get方法，方法中分三步:</p>
+<ol>
+<li>首先获取当前线程，用当前线程获取ThreadLocalMap对象</li>
+<li>获取到该Map对象后，再用threadLocal本身作为key去获取Entry</li>
+<li>获取该entry的value值</li>
+</ol>
+<p>get源码如下：</p>
+<pre><code>public T get() {
+    Thread t = Thread.currentThread();
+    ThreadLocalMap map = getMap(t);
+    if (map != null) {
+        ThreadLocalMap.Entry e = map.getEntry(this);
+        if (e != null) {
+            @SuppressWarnings(&quot;unchecked&quot;)
+            T result = (T)e.value;
+            return result;
+        }
+    }
+    return setInitialValue();
+}
+</code></pre><p>set源码如下：</p>
+<pre><code>public void set(T value) {
+    Thread t = Thread.currentThread();
+    ThreadLocalMap map = getMap(t);
+    if (map != null)
+        map.set(this, value);
+    else
+        createMap(t, value);
+}
+</code></pre><h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><p>ThreadLocalMap是Thread的一个属性，被当前线程所引用，所以它的生命周期跟Thread一样长。</p>
+<p>ThreadLocalMap是ThreadLocal的内部静态类，当一个线程使用到多个ThreadLocal对象时，对应的ThreadLocalMap则根据多个key去取value。</p>
+<p>ThreadLocalMap对Entry的key使用了弱引用，如下：</p>
+<pre><code>static class Entry extends WeakReference&lt;ThreadLocal&lt;?&gt;&gt; {
+    /** The value associated with this ThreadLocal. */
+    Object value;
+
+    Entry(ThreadLocal&lt;?&gt; k, Object v) {
+        super(k);
+        value = v;
+    }
+}
+</code></pre><p>弱引用可以在ThreadLocal使用完成时，由于Entry对ThreadLocal（key）为弱引用，所以ThreadLocal可以被正常回收，但仍有可能存在内存泄漏的问题。<br>除了threadLocal这个key，还有value是被Entry强引用的，如果entry没有被删除，那么就会造成value的内存泄漏。<br>这种内存泄漏有两个前提，同时符合这两个前提时，就有可能造成内存泄漏：</p>
+<ol>
+<li>调用完成后没有手动删除这个Entry</li>
+<li>CurrentThread仍然运行</li>
+</ol>
+<p>由于ThreadLocalMap的生命周期跟Thread一样长，于是导致了该Entry也一直存在于内存中，造成浪费。</p>
+<p>因此使用ThreadLocal时，当一个值设置后不再使用，需要手动对其进行删除，调用ThreadLocal的remove方法即可。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    
+    <a class="pull-right" href="/2021/01/11/【mybatis】多数据源实现/">
+        【mybatis】多数据源实现 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足,不敢停站,然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--
