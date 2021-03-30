@@ -121,7 +121,7 @@
 				    
 				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
-				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(3)</small></a></li>
+				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(4)</small></a></li>
 				    
 				    <li><a href="/categories/springBoot/" class="animsition-link">springBoot<small>(1)</small></a></li>
 				    
@@ -259,6 +259,43 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/09/17/【Vue】父子组件参数互传/">【Vue】父子组件参数互传</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-09-17T08:09:30.000Z" itemprop="datePublished">
+          2020-09-17
+      </time>
+    
+    
+    | 
+    <a href='/tags/vue/'>vue</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        问题起因：父组件内使用了子组件（component），而子组件内需要确认当前父组件点击或选择的是哪个元素。
+解决方法：一般来说子组件与父组件每个组件间的变量作用域是只限于本组件内的。Vue提供了方法让父子组件间可以互相传递参数。
+父传子想让父组件的变量传递给子组件，如下图，在父组件中使用子组件时增加一个v-bind绑定一个自定义的属性名，然后值为父组件中需要传递的参数。子组件中，需要定义props属性，其中的值为在父组件中v-bind绑
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/09/17/【Vue】父子组件参数互传/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -533,46 +570,6 @@ public TaskScheduler taskSche
                     
                     <p class="pull-right readMore">
                         <a href="/2020/06/14/【rpc】RPC理解与实现/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/06/10/【quartz】spring配置形式使用quartz实现定时任务/">【quartz】spring配置形式使用quartz实现定时任务</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-06-10T07:44:21.000Z" itemprop="datePublished">
-          2020-06-10
-      </time>
-    
-    
-    | 
-    <a href='/tags/quartz/'>quartz</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        quartz定时器配置实现：假如有一个RedisTask类有一个myFunc方法，配置其为定时执行的方法:
-&lt;!--首先是配置要定时加载的目标类--&gt;
-&lt;bean id=&quot;redisTaskAction&quot; class=&quot;com.me.RedisTask&quot;/&gt;
-
-&lt;!--配置定时执行的方法参数--&gt;
-&lt;bean id=&quot;redisTaskMetho
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/06/10/【quartz】spring配置形式使用quartz实现定时任务/">Read More...</a>
                     </p>
                     
                 </div>

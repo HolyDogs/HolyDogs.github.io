@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2021-01-20T08:27:33.171Z</updated>
+  <updated>2021-03-30T12:43:19.332Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【spring】spring事务</title>
+    <link href="https://xfff.xyz/2021/03/30/%E3%80%90spring%E3%80%91spring%E4%BA%8B%E5%8A%A1/"/>
+    <id>https://xfff.xyz/2021/03/30/【spring】spring事务/</id>
+    <published>2021-03-30T12:40:23.000Z</published>
+    <updated>2021-03-30T12:43:19.332Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="spring支持声明式注解"><a href="#spring支持声明式注解" class="headerlink" title="spring支持声明式注解"></a>spring支持声明式注解</h2><p>事务@Transactional注解只能用于public修饰的方法</p><p>一个方法被事务注解后，需要等方法运行完才能提交所有的sql</p><p>事务的ACID特征：即原子性（<strong>A</strong>tomicity，或称不可分割性）、一致性（<strong>C</strong>onsistency）、隔离性（<strong>I</strong>solation，又称独立性）、持久性（<strong>D</strong>urability）。</p><p>rollbackFor可以指定事务回滚的异常类，一般分为两种：RuntimeException运行时异常以及其它。</p><h2 id="事务传播行为："><a href="#事务传播行为：" class="headerlink" title="事务传播行为："></a>事务传播行为：</h2><pre><code>@Transactional(propagation=Propagation.REQUIRED) ：如果有事务, 那么加入事务, 没有的话新建一个(默认情况下) @Transactional(propagation=Propagation.NOT_SUPPORTED) ：容器不为这个方法开启事务 @Transactional(propagation=Propagation.REQUIRES_NEW) ：不管是否存在事务，都创建一个新的事务，原来的挂起，新的执行完毕后继续执行老的事务 @Transactional(propagation=Propagation.MANDATORY) ：必须在一个已有的事务中执行，否则抛出异常 @Transactional(propagation=Propagation.NEVER) ：必须在一个没有的事务中执行，否则抛出异常(与Propagation.MANDATORY相反) @Transactional(propagation=Propagation.SUPPORTS) ：如果其他bean调用这个方法，在其他bean中声明事务那就用事务，如果其他bean没有声明事务，那就不用事务</code></pre><p><a href="https://www.cnblogs.com/jasonboren/p/13678237.html" target="_blank" rel="noopener">https://www.cnblogs.com/jasonboren/p/13678237.html</a></p><h2 id="spring事务隔离级别"><a href="#spring事务隔离级别" class="headerlink" title="spring事务隔离级别"></a>spring事务隔离级别</h2><p>1)DEFAULT<strong>默认</strong></p><p>2)READ_UNCOMMITTED<strong>读未提交</strong></p><p>3)READ_COMMITTED<strong>读已提交</strong></p><p>4)REPEATABLE_READ<strong>可重复读</strong></p><p>5)SERIALIZABLE<strong>串行化</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;spring支持声明式注解&quot;&gt;&lt;a href=&quot;#spring支持声明式注解&quot; class=&quot;headerlink&quot; title=&quot;spring支持声明式注解&quot;&gt;&lt;/a&gt;spring支持声明式注解&lt;/h2&gt;&lt;p&gt;事务@Transactional注解只能用于publ
+      
+    
+    </summary>
+    
+      <category term="spring" scheme="https://xfff.xyz/categories/spring/"/>
+    
+    
+      <category term="事务" scheme="https://xfff.xyz/tags/%E4%BA%8B%E5%8A%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>【java】ThreadLocal应用以及理解</title>
@@ -491,9 +516,9 @@
       <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
-    
       <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
+    
+      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
     
   </entry>
   
@@ -519,9 +544,9 @@
       <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
-    
       <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
+    
+      <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
     
   </entry>
   
@@ -1473,9 +1498,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
-    
       <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
     
       <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     

@@ -121,7 +121,7 @@
 				    
 				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
-				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(3)</small></a></li>
+				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(4)</small></a></li>
 				    
 				    <li><a href="/categories/springBoot/" class="animsition-link">springBoot<small>(1)</small></a></li>
 				    
@@ -259,6 +259,44 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2021/03/30/【spring】spring事务/">【spring】spring事务</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2021-03-30T12:40:23.000Z" itemprop="datePublished">
+          2021-03-30
+      </time>
+    
+    
+    | 
+    <a href='/tags/事务/'>事务</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        spring支持声明式注解事务@Transactional注解只能用于public修饰的方法
+一个方法被事务注解后，需要等方法运行完才能提交所有的sql
+事务的ACID特征：即原子性（Atomicity，或称不可分割性）、一致性（Consistency）、隔离性（Isolation，又称独立性）、持久性（Durability）。
+rollbackFor可以指定事务回滚的异常类，一般分为两种：RuntimeException运行时异常以及
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2021/03/30/【spring】spring事务/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -532,43 +570,6 @@ WITH ydz AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB
                     
                     <p class="pull-right readMore">
                         <a href="/2020/10/06/【java】excel文件上传处理解析/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/09/17/【Vue】父子组件参数互传/">【Vue】父子组件参数互传</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-09-17T08:09:30.000Z" itemprop="datePublished">
-          2020-09-17
-      </time>
-    
-    
-    | 
-    <a href='/tags/vue/'>vue</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        问题起因：父组件内使用了子组件（component），而子组件内需要确认当前父组件点击或选择的是哪个元素。
-解决方法：一般来说子组件与父组件每个组件间的变量作用域是只限于本组件内的。Vue提供了方法让父子组件间可以互相传递参数。
-父传子想让父组件的变量传递给子组件，如下图，在父组件中使用子组件时增加一个v-bind绑定一个自定义的属性名，然后值为父组件中需要传递的参数。子组件中，需要定义props属性，其中的值为在父组件中v-bind绑
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/09/17/【Vue】父子组件参数互传/">Read More...</a>
                     </p>
                     
                 </div>
