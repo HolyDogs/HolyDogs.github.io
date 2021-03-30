@@ -1473,9 +1473,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
-    
       <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
+    
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
       <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     
@@ -2097,9 +2097,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="多线程" scheme="https://xfff.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
       <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+      <category term="多线程" scheme="https://xfff.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
       <category term="java" scheme="https://xfff.xyz/tags/java/"/>
     
