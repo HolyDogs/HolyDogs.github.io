@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2021-03-30T12:43:19.332Z</updated>
+  <updated>2021-04-17T10:15:02.302Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【MYSQL】空间字段POLYGON</title>
+    <link href="https://xfff.xyz/2021/04/17/%E3%80%90MYSQL%E3%80%91%E7%A9%BA%E9%97%B4%E5%AD%97%E6%AE%B5POLYGON/"/>
+    <id>https://xfff.xyz/2021/04/17/【MYSQL】空间字段POLYGON/</id>
+    <published>2021-04-17T09:44:35.000Z</published>
+    <updated>2021-04-17T10:15:02.302Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="空间字段"><a href="#空间字段" class="headerlink" title="空间字段"></a>空间字段</h2><p>MYSQL支持空间数据类型，包括：</p><p>   <strong>Geometry</strong>:可以存储所有的几何类型</p><p>   <strong>Point</strong>:简单点</p><p>   <strong>LINESTRING</strong>:简单线</p><p>   <strong>POLYGON</strong>:简单面</p><p>   <strong>MULTIPOINT</strong>：多点</p><p>   <strong>MULITILINESTRING</strong>:多线</p><p>   <strong>MUILITIPOLYGON</strong>：很多方面</p><p>   <strong>GEOMETRYCOLLECTION</strong>:任何几何集合</p><p>简单的点数据一般表示为POINT(X  Y);<br>简单的面数据则由多个点坐标组成POLYGON((X Y, X Y, X Y…))<br>多面数据比较复杂MUILITIPOLYGON(((X Y,X Y, X Y, X Y…..)))</p><h2 id="简单的计算方法"><a href="#简单的计算方法" class="headerlink" title="简单的计算方法"></a>简单的计算方法</h2><p>如下可以通过点数据point与半径radius求以point点为圆心，radius为半径的圆范围内的数据。</p><pre><code>SELECT A.* FROM mapTable A WHERE INTERSECTS(A.GEO, GEOMFROMTEXT(CONCAT(&apos;POLYGON((&apos;,  X(GEOMFROMTEXT(#{point})) - #{radius}, &apos; &apos;, Y(GEOMFROMTEXT(#{point})) - #{radius}, &apos;,&apos;,  X(GEOMFROMTEXT(#{point})) + #{radius}, &apos; &apos;, Y(GEOMFROMTEXT(#{point})) - #{radius}, &apos;,&apos;,  X(GEOMFROMTEXT(#{point})) + #{radius}, &apos; &apos;, Y(GEOMFROMTEXT(#{point})) + #{radius}, &apos;,&apos;,  X(GEOMFROMTEXT(#{point})) - #{radius}, &apos; &apos;, Y(GEOMFROMTEXT(#{point})) + #{radius}, &apos;,&apos;,  X(GEOMFROMTEXT(#{point})) - #{radius}, &apos; &apos;, Y(GEOMFROMTEXT(#{point})) - #{radius}, &apos;))&apos;  )))</code></pre><p><strong>INTERSECTS</strong>为计算包含关系的函数方法，若<del>参数1被参数2包含</del>（实际是判断两个几何的MBR是否相交），则表示TRUE<br>除此之外也可以用<strong>ST_Contains</strong>来表示几何之间的包含关系。<br><strong>GEOMFROMTEXT</strong>函数表示将字符串类型的数据转化成空间数据类型。</p><p>更多方法</p><blockquote><p><a href="https://blog.csdn.net/qq_27690839/article/details/90377659" target="_blank" rel="noopener">https://blog.csdn.net/qq_27690839/article/details/90377659</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;空间字段&quot;&gt;&lt;a href=&quot;#空间字段&quot; class=&quot;headerlink&quot; title=&quot;空间字段&quot;&gt;&lt;/a&gt;空间字段&lt;/h2&gt;&lt;p&gt;MYSQL支持空间数据类型，包括：&lt;/p&gt;
+&lt;p&gt;   &lt;strong&gt;Geometry&lt;/strong&gt;:可以存储所有的几
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="mysql" scheme="https://xfff.xyz/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>【spring】spring事务</title>
@@ -407,9 +433,9 @@
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
-    
       <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     
   </entry>
   
@@ -516,9 +542,9 @@
       <category term="java" scheme="https://xfff.xyz/categories/java/"/>
     
     
-      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
-    
       <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
+    
+      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
@@ -544,9 +570,9 @@
       <category term="前端" scheme="https://xfff.xyz/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
-    
       <category term="flvjs" scheme="https://xfff.xyz/tags/flvjs/"/>
+    
+      <category term="视频" scheme="https://xfff.xyz/tags/%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
@@ -781,9 +807,9 @@ conne
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
-    
       <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+      <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
     
   </entry>
   
@@ -1498,9 +1524,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
-    
       <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
+    
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
       <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     

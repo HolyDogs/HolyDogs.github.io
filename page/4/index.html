@@ -137,7 +137,7 @@
 				    
 				    <li><a href="/categories/前端/" class="animsition-link">前端<small>(14)</small></a></li>
 				    
-				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(12)</small></a></li>
+				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(13)</small></a></li>
 				    
 				    <li><a href="/categories/数据结构/" class="animsition-link">数据结构<small>(3)</small></a></li>
 				    
@@ -259,6 +259,45 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/04/09/【maven】maven使用中遇到的问题记录/">【maven】maven使用中遇到的问题记录</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-04-09T07:20:35.000Z" itemprop="datePublished">
+          2020-04-09
+      </time>
+    
+    
+    | 
+    <a href='/tags/maven/'>maven</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        依赖冲突如下图解决，去除该依赖下冲突的包
+&lt;dependency&gt;
+    &lt;groupId&gt;org.flowable&lt;/groupId&gt;
+    &lt;artifactId&gt;flowable-spring-boot-starter-process&lt;/artifactId&gt;
+    &lt;version&gt;${flowable.version}&lt;/version&gt;
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/04/09/【maven】maven使用中遇到的问题记录/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -420,9 +459,9 @@ Docker安装Docker一般都在Linux系统上运行，实际在w
     
     
     | 
-    <a href='/tags/cron/'>cron</a>,
+    <a href='/tags/定时任务/'>定时任务</a>,
     
-    <a href='/tags/定时任务/'>定时任务</a>
+    <a href='/tags/cron/'>cron</a>
     
     
 </span>
@@ -523,41 +562,6 @@ npm install echarts --save
                     
                     <p class="pull-right readMore">
                         <a href="/2019/03/21/【vue】引入ECharts图表和组件/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/03/20/【java】日志打印/">【java】日志打印</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-03-20T08:49:25.000Z" itemprop="datePublished">
-          2019-03-20
-      </time>
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        日常开发中，想打印某些值的信息时
-总是Syso=&gt;System.out.pringln(xxx)
-然后在代码规范里看到了，禁止使用这种方式打印信息，可以选择日志工具打印查看
-日常使用的工具有log4j、logback、slf4j
-log4j必须配置配置文件log4j.properties，类似下面这样，可以指定打印级别
-# Configure logging for testing: optionally with log fil
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/03/20/【java】日志打印/">Read More...</a>
                     </p>
                     
                 </div>
