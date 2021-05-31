@@ -113,7 +113,7 @@
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(11)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(12)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -259,6 +259,47 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/07/05/【SpringBoot】自定义SpringBoot定时任务线程池/">【SpringBoot】自定义SpringBoot定时任务线程池</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-07-05T01:57:18.000Z" itemprop="datePublished">
+          2020-07-05
+      </time>
+    
+    
+    | 
+    <a href='/tags/定时任务/'>定时任务</a>,
+    
+    <a href='/tags/线程池/'>线程池</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        问题多个定时任务设置同时启动时，只有一个定时任务被执行。
+原因ScheduledTaskRegistrar类里有一段这样的代码springBoot定时任务默认使用newSingleThreadScheduledExecutor创建线程池，最多只能同时存在一个定时任务线程运行。
+解决方法1：项目启动时注入TaskScheduler的bean，并设置线程池大小（未尝试）
+@Bean
+public TaskScheduler taskSche
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/07/05/【SpringBoot】自定义SpringBoot定时任务线程池/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -542,43 +583,6 @@ connection.header(&quot;Accept&quot;, &quot;text/html,application/xhtml+xml,appl
                     
                     <p class="pull-right readMore">
                         <a href="/2020/04/30/【kettle】简单常用场景使用/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/04/29/【java】函数式接口/">【java】函数式接口</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-04-29T03:15:36.000Z" itemprop="datePublished">
-          2020-04-29
-      </time>
-    
-    
-    | 
-    <a href='/tags/java8/'>java8</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        Function&lt;A,B&gt;Function接口可以通过实现其apply方法，然后为该接口传一段逻辑，以对象的形式保存，需要调用该段逻辑时，即可调出来使用。其中参数AB，是指传入一个A类型的参数返回一个B类型的参数。见下面代码：
-Function&lt;Integer, String&gt; function1 = i -&gt; String.valueOf(i+5);
-Function&lt;Integer, Intege
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/04/29/【java】函数式接口/">Read More...</a>
                     </p>
                     
                 </div>

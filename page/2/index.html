@@ -113,7 +113,7 @@
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(11)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(12)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -259,6 +259,42 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/12/03/【ORACLE】sql优化记录/">【ORACLE】sql优化记录</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-12-03T02:31:49.000Z" itemprop="datePublished">
+          2020-12-03
+      </time>
+    
+    
+    | 
+    <a href='/tags/sql优化/'>sql优化</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        先看段sql
+WITH ydz AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB_CPCLJC_ZS_TJ WHERE statistic_mark = ‘月度值’ ),tb AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB_CPCLJC_ZS_TJ 
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/12/03/【ORACLE】sql优化记录/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -531,47 +567,6 @@ exp 用户名/密码 file=路径 log=日志 owner=导出用户
                     
                     <p class="pull-right readMore">
                         <a href="/2020/07/20/【SpringCloud】springCloud相关博客链接地址学习收集/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/07/05/【SpringBoot】自定义SpringBoot定时任务线程池/">【SpringBoot】自定义SpringBoot定时任务线程池</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-07-05T01:57:18.000Z" itemprop="datePublished">
-          2020-07-05
-      </time>
-    
-    
-    | 
-    <a href='/tags/线程池/'>线程池</a>,
-    
-    <a href='/tags/定时任务/'>定时任务</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        问题多个定时任务设置同时启动时，只有一个定时任务被执行。
-原因ScheduledTaskRegistrar类里有一段这样的代码springBoot定时任务默认使用newSingleThreadScheduledExecutor创建线程池，最多只能同时存在一个定时任务线程运行。
-解决方法1：项目启动时注入TaskScheduler的bean，并设置线程池大小（未尝试）
-@Bean
-public TaskScheduler taskSche
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/07/05/【SpringBoot】自定义SpringBoot定时任务线程池/">Read More...</a>
                     </p>
                     
                 </div>
