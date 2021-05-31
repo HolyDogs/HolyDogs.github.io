@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2021-05-31T12:56:42.752Z</updated>
+  <updated>2021-05-31T13:01:12.672Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>java</title>
+    <title>【java】根据模板生成word下载</title>
     <link href="https://xfff.xyz/2021/05/30/%E3%80%90java%E3%80%91%E6%A0%B9%E6%8D%AE%E6%A8%A1%E6%9D%BF%E7%94%9F%E6%88%90word%E6%96%87%E4%BB%B6/"/>
     <id>https://xfff.xyz/2021/05/30/【java】根据模板生成word文件/</id>
     <published>2021-05-30T08:14:59.000Z</published>
-    <updated>2021-05-31T12:56:42.752Z</updated>
+    <updated>2021-05-31T13:01:12.672Z</updated>
     
     <content type="html"><![CDATA[<h2 id="模板准备"><a href="#模板准备" class="headerlink" title="模板准备"></a>模板准备</h2><p>首先准备word模板，编辑好后在需要插入变量的地方以${xxx}设置变量，然后另存为2003版本的xml文件（好像老版本word才有）。然后再修改后缀为ftl模板文件。</p><h2 id="图片插入"><a href="#图片插入" class="headerlink" title="图片插入"></a>图片插入</h2><p>多张图片的插入</p><pre><code>&lt;#if listim??&gt;  &lt;#list listim as listimlist&gt;  &lt;w:p wsp:rsidR=&quot;00682D71&quot; wsp:rsidRDefault=&quot;00492E77&quot; wsp:rsidP=&quot;00AD0653&quot;&gt;  &lt;w:r&gt;  &lt;w:rPr&gt;  &lt;w:rFonts w:hint=&quot;fareast&quot; /&gt;  &lt;wx:font wx:val=&quot;宋体&quot; /&gt;  &lt;/w:rPr&gt;  &lt;w:t&gt;${listimlist.imgName}&lt;/w:t&gt;  &lt;/w:r&gt;  &lt;/w:p&gt;  &lt;#if listimlist.image??&gt;  &lt;#list listimlist.image as im&gt;  &lt;w:p wsp:rsidR=&quot;00492E77&quot; wsp:rsidRPr=&quot;002D72B0&quot; wsp:rsidRDefault=&quot;00372090&quot; wsp:rsidP=&quot;00AD0653&quot;&gt;  &lt;w:pPr&gt;  &lt;w:rPr&gt;  &lt;w:rFonts w:hint=&quot;fareast&quot; /&gt;&lt;/w:rPr&gt;  &lt;/w:pPr&gt;  &lt;w:r wsp:rsidRPr=&quot;004E4E9E&quot;&gt;  &lt;w:rPr&gt;  &lt;w:noProof/&gt;&lt;/w:rPr&gt;  &lt;w:pict&gt;  &lt;v:shapetype id=&quot;_x0000_t75&quot; coordsize=&quot;21600,21600&quot; o:spt=&quot;75&quot; o:preferrelative=&quot;t&quot; path=&quot;m@4@5l@4@11@9@11@9@5xe&quot; filled=&quot;f&quot; stroked=&quot;f&quot;&gt;  &lt;v:stroke joinstyle=&quot;miter&quot; /&gt;  &lt;v:formulas&gt;  &lt;v:f eqn=&quot;if lineDrawn pixelLineWidth 0&quot; /&gt;  &lt;v:f eqn=&quot;sum @0 1 0&quot; /&gt;  &lt;v:f eqn=&quot;sum 0 0 @1&quot; /&gt;  &lt;v:f eqn=&quot;prod @2 1 2&quot; /&gt;  &lt;v:f eqn=&quot;prod @3 21600 pixelWidth&quot; /&gt;  &lt;v:f eqn=&quot;prod @3 21600 pixelHeight&quot; /&gt;  &lt;v:f eqn=&quot;sum @0 0 1&quot; /&gt;  &lt;v:f eqn=&quot;prod @6 1 2&quot; /&gt;  &lt;v:f eqn=&quot;prod @7 21600 pixelWidth&quot; /&gt;  &lt;v:f eqn=&quot;sum @8 21600 0&quot; /&gt;  &lt;v:f eqn=&quot;prod @7 21600 pixelHeight&quot; /&gt;  &lt;v:f eqn=&quot;sum @10 21600 0&quot; /&gt;&lt;![](file:///C:\Users\fenghere\AppData\Roaming\Tencent\QQTempSys\[LC3U)F{0XCAB)LKNIT0K@G.gif):formulas&gt;  &lt;v:path o:extrusionok=&quot;f&quot; gradientshapeok=&quot;t&quot; o:connecttype=&quot;rect&quot; /&gt;  &lt;o:lock v:ext=&quot;edit&quot; aspectratio=&quot;t&quot; /&gt;  &lt;![](file:///C:\Users\fenghere\AppData\Roaming\Tencent\QQTempSys\[LC3U)F{0XCAB)LKNIT0K@G.gif):shapetype&gt;  &lt;w:binData w:name=&quot;${&quot;wordml://0&quot;+listimlist_index+3+&quot;00000&quot;+im_index+1+&quot;.png&quot;}&quot; xml:space=&quot;preserve&quot;&gt;${im}&lt;/w:binData&gt;  &lt;v:shape id=&quot;图片 1&quot; o:spid=&quot;_x0000_i1025&quot; type=&quot;#_x0000_t75&quot; style=&quot;width:283.5pt;height:217.5pt;visibility:visible&quot;&gt;  &lt;v:imagedata src=&quot;${&quot;wordml://0&quot;+listimlist_index+3+&quot;00000&quot;+im_index+1+&quot;.png&quot;}&quot; o:title=&quot;&quot; /&gt;&lt;![](file:///C:\Users\fenghere\AppData\Roaming\Tencent\QQTempSys\[LC3U)F{0XCAB)LKNIT0K@G.gif):shape&gt;  &lt;/w:pict&gt;  &lt;/w:r&gt;  &lt;/w:p&gt;  &lt;/#list&gt;  &lt;/#if&gt;  &lt;/#list&gt;  &lt;/#if&gt;</code></pre><p>图片转化为base64的编码</p><pre><code>File file = new File(imgFile);  if(!file.exists())return &quot;&quot;;  byte[] data = null;  InputStream in = null;  Encoder encoder = Base64.getEncoder();  try {      in = new FileInputStream(file);      data = new byte[in.available()];      in.read(data);      in.close();  } catch (IOException e) {      throw e;  }finally {      if(in != null) in.close();  }  return data != null ? encoder.encodeToString(data) : &quot;&quot;;</code></pre><h2 id="数据模板结合"><a href="#数据模板结合" class="headerlink" title="数据模板结合"></a>数据模板结合</h2><p>使用freemarker的template类，将模板和数据合并成文件（调用<strong>process</strong>(dataMap, out)方法，）然后输出为word。</p><p>dataMap封装的是对应模板里$符号的变量，out是模板文件。</p>]]></content>
     
@@ -1549,9 +1549,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
-    
       <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
+    
+      <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
     
       <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     
