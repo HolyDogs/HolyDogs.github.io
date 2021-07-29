@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2021-05-31T13:01:12.672Z</updated>
+  <updated>2021-07-29T14:10:44.347Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【redis】记一次性能排查记录</title>
+    <link href="https://xfff.xyz/2021/07/29/%E3%80%90redis%E3%80%91%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%80%A7%E8%83%BD%E6%8E%92%E6%9F%A5%E8%AE%B0%E5%BD%95/"/>
+    <id>https://xfff.xyz/2021/07/29/【redis】记一次性能排查记录/</id>
+    <published>2021-07-29T13:59:38.000Z</published>
+    <updated>2021-07-29T14:10:44.347Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近遇到了系统登录、加载等特慢的问题</p><p>经过排查大致锁定了是redis查询慢的问题</p><p>于是对redis性能进行了排查</p><h2 id="测试延迟、网络"><a href="#测试延迟、网络" class="headerlink" title="测试延迟、网络"></a>测试延迟、网络</h2><p>首先在可连接redis服务器的机器上，（前提是有redis-cli工具）使用命令</p><pre><code>redis-cli -h xxx.xxx.xxx.xxx(或者域名) -p 6379 -a xxx(认证密码) --latency</code></pre><p>测试redis延迟，一般来说avg小于0.3可视为正常</p><pre><code>redis-cli -h xxx.xxx.xxx.xxx(或者域名) -p 6379 -a xxx(认证密码)</code></pre><h2 id="查询内存使用情况"><a href="#查询内存使用情况" class="headerlink" title="查询内存使用情况"></a>查询内存使用情况</h2><p>进入redis连接，使用<strong>info memory</strong>命令查询内存使用情况</p><p><img src="https://i.loli.net/2021/07/29/YNjHspM1Xu4v5J3.png" alt="微信图片_20210729090053.png"></p><ul><li><strong>used_memory</strong>：表示<strong>Redis</strong>分配器分配的内存总量，以字节（byte）为单位，<br><strong>used_memory_human</strong>表示以人能看懂的形式展示内存总量</li><li><strong>used_memory_rss</strong>：表示从操作系统的角度，返回 <strong>Redis</strong> 已分配的内存总量（俗称常驻集大小）</li><li><strong>used_memory_peak</strong>： <strong>Redis</strong> 的内存消耗峰值</li><li><strong>mem_allocator</strong>：在编译时指定的， Redis 所使用的内存分配器。可以是 libc 、 jemalloc 或者 tcmalloc</li></ul><ol><li><p>当 rss &gt; used ，且两者的值相差较大时，表示存在（内部或外部的）内存碎片。<br>内存碎片的比率可以通过 mem_fragmentation_ratio 的值看出。</p></li><li><p>当 used &gt; rss 时，表示 Redis 的部分内存被操作系统换出到交换空间了，在这种情况下，操作可能会产生明显的延迟。</p></li></ol><h2 id="慢查询查看"><a href="#慢查询查看" class="headerlink" title="慢查询查看"></a>慢查询查看</h2><p>上面步骤下来看到<strong>redis</strong>应该也挺正常的，那系统为什么卡呢，继续执行下面的命令</p><pre><code>slowlog get 20</code></pre><p>获取最近20条执行慢的查询<br>可配置慢查询阈值，超过该时间的查询视为慢查询并记录</p><pre><code>CONFIG SET slowlog-log-slower-than 10000</code></pre><p>默认<strong>slowlog-log-slower-than</strong>值为10000微秒=10ms</p><p>查询结果如下：</p><p><img src="https://i.loli.net/2021/07/29/FQ1j4CvNaXKYWDr.png" alt="sd.png"></p><p>好家伙，结果发现这么多通过通配符查询token的命令，赶紧去代码里全局搜了一遍，结果发现代码里有个通过用户ID获取token的方法，写的是先通配符获取所有token，然后通过key取里面的userid与自身进行对比。并且该方法使用的地方也不少。<br>用膝盖想就知道性能极差，于是便对方法进行了优化，尽量减少这种情况的调用，解决后重新测试果然快了不少。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近遇到了系统登录、加载等特慢的问题&lt;/p&gt;
+&lt;p&gt;经过排查大致锁定了是redis查询慢的问题&lt;/p&gt;
+&lt;p&gt;于是对redis性能进行了排查&lt;/p&gt;
+&lt;h2 id=&quot;测试延迟、网络&quot;&gt;&lt;a href=&quot;#测试延迟、网络&quot; class=&quot;headerlink&quot; title=&quot;
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="https://xfff.xyz/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="redis" scheme="https://xfff.xyz/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>【java】根据模板生成word下载</title>
@@ -1549,9 +1577,9 @@ this.$router.replace({path:&amp;apos;/&amp;apos;,query.
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
-    
       <category term="mybatis_plus" scheme="https://xfff.xyz/tags/mybatis-plus/"/>
+    
+      <category term="mybatis" scheme="https://xfff.xyz/tags/mybatis/"/>
     
       <category term="springboot" scheme="https://xfff.xyz/tags/springboot/"/>
     
