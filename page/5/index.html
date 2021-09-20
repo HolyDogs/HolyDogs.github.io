@@ -119,6 +119,8 @@
 				    
 				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(13)</small></a></li>
 				    
+				    <li><a href="/categories/nginx/" class="animsition-link">nginx<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(4)</small></a></li>
@@ -131,7 +133,7 @@
 				    
 				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(2)</small></a></li>
+				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/分布式/" class="animsition-link">分布式<small>(3)</small></a></li>
 				    
@@ -259,6 +261,79 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/08/20/我搬砖回来了/">我搬砖回来了~</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-08-20T09:58:03.000Z" itemprop="datePublished">
+          2019-08-20
+      </time>
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        这段时间忙于毕业和工作，很久都没写博客。习惯这种东西，一断就容易断很久很久。其实也有相当大的一部分原因是自己懒。
+毕业的这段时间，自己也没有花时间学习新东西，挺惭愧的，还沉迷于炉石传说[擦汗]不能自拔。
+毕业后6月3、4号拿到毕业证学位证，10号就出差到广州，然后正式进入工作状态。第一天、第二天….都挺不安的，慢慢的自己摸、问，终于是熟悉了一些。
+很多时候觉得自己还是不要太胆小，敢做敢写，发现有问题了再改会印象深很多（当然熟悉了这样写不
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/08/20/我搬砖回来了/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/04/12/【SpringBoot】定时任务与Cron表达式/">【SpringBoot】定时任务与Cron表达式</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-04-12T03:45:07.000Z" itemprop="datePublished">
+          2019-04-12
+      </time>
+    
+    
+    | 
+    <a href='/tags/定时任务/'>定时任务</a>,
+    
+    <a href='/tags/cron/'>cron</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        SpringBoot定时器SpringBoot自带定时器功能，若不考虑重复启动定时任务以及并发带来的问题，可以选择这种方式来简单快速地定义定时器。
+使用时只需要在声明定时任务的类或者启动类上添加注解@EnableScheduling配合使用在方法上的@Scheduled注解就能简单定义一个定时任务
+在启动类上加@EnableScheduling可以方便对所有任务进行开启和关闭
+在声明定时任务的类上需要加@Component将该类实例化到
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/04/12/【SpringBoot】定时任务与Cron表达式/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -489,91 +564,6 @@ log4j必须配置配置文件log4j.properties，类似下面这样，可以指�
                     
                     <p class="pull-right readMore">
                         <a href="/2019/03/18/【shiro】初识shiro身份与权限验证/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/03/09/【vue】关于push、replace、和go的使用问题/">【vue】关于push、replace、和go的使用问题</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-03-09T09:21:32.000Z" itemprop="datePublished">
-          2019-03-09
-      </time>
-    
-    
-    | 
-    <a href='/tags/vue/'>vue</a>,
-    
-    <a href='/tags/error/'>error</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        在vue方法中跳转到另一个页面有以下三种方式
-this.$router.push({path:&apos;/&apos;,query.....})
-
-this.$router.replace({path:&apos;/&apos;,query.....})
-
-this.$router.go(n)
-其中push和replace类似，可以指定在路由里指定的路径path跳转到指定页面，可以附带query和一些参数，实际跳转后query里的参数
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/03/09/【vue】关于push、replace、和go的使用问题/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/03/05/【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法/">【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-03-05T03:53:03.000Z" itemprop="datePublished">
-          2019-03-05
-      </time>
-    
-    
-    | 
-    <a href='/tags/mybatis/'>mybatis</a>,
-    
-    <a href='/tags/error/'>error</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        在使用mybatis对数据库进行查询然后返回一个map类型的时候，如果某一列的值为空
-那么返回的map里是会没有这个值对应的列的key，也就是map的容量会比预期小，很容易出一些问题
-我在前端对传来的map遍历存入table时，由于缺少一些key，导致后面的列往前面推，使表格混乱
-为了解决这个问题，我先是找到了这篇博客,分析了一下mybatis给map类型赋值的过程
-
-https://blog.csdn.net/zdazx/articl
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/03/05/【SpringBoot】使用mybatis查询返回map时空值不保存key的解决方法/">Read More...</a>
                     </p>
                     
                 </div>

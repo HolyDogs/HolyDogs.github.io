@@ -119,6 +119,8 @@
 				    
 				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(13)</small></a></li>
 				    
+				    <li><a href="/categories/nginx/" class="animsition-link">nginx<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(4)</small></a></li>
@@ -131,7 +133,7 @@
 				    
 				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(2)</small></a></li>
+				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/分布式/" class="animsition-link">分布式<small>(3)</small></a></li>
 				    
@@ -259,6 +261,90 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/01/17/vue从入门到放弃/">vue从入门到放弃</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-01-17T03:26:06.000Z" itemprop="datePublished">
+          2019-01-17
+      </time>
+    
+    
+    | 
+    <a href='/tags/vue/'>vue</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        v-html将对应的html标签转为html页面形式而不是字符串
+v-cloak加载完script里的脚本才会加载被该属性标记的元素
+v-text等同于
+{{}}
+卧槽，这里生成的时候一直报错，原来不能直接用两个花括号写在博客里，害我找了好久的错误    
+v-bind告诉属性名指定的是一个变量   v-bind:text=”变量名”，可以简写为：，里面可以写表达式
+v-on事件绑定  v-on：事件名，简写为@
+v-model数据的双
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/01/17/vue从入门到放弃/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/01/17/vue学习01/">vue学习01</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-01-17T01:40:33.000Z" itemprop="datePublished">
+          2019-01-17
+      </time>
+    
+    
+    | 
+    <a href='/tags/vue/'>vue</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+这个时候我还没学路由…
+直接上使用的代码部分
+main.js
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from &apos;vue&apos;
+import App from 
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/01/17/vue学习01/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -511,84 +597,6 @@ Quotes
                     
                     <p class="pull-right readMore">
                         <a href="/2019/01/07/使用StackEdit为markdown格式画图/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/01/07/Mybatis传参方法/">Mybatis传参方法</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-01-07T02:15:05.000Z" itemprop="datePublished">
-          2019-01-07
-      </time>
-    
-    
-    | 
-    <a href='/tags/传参/'>传参</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        Mybatis在xml文件中使用接口类传来的参数一般设置parameterType类型，然后在对应的接口方法中传入相应类型的参数，即可在xml语句中使用上面的参数
-然而我今天在使用中遇到了不使用parameterType的方式，记录一下
-方法1一般来说，我们传多个参数可以使用parameterType，自定义一个pojo类，然后把想传入的多个参数放入该类中，parameterType指定该类，即可通过该类调用其中包含的多个参数。
-方法2
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/07/Mybatis传参方法/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2019/01/03/fish学习/">fish学习</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2019-01-03T09:02:07.000Z" itemprop="datePublished">
-          2019-01-03
-      </time>
-    
-    
-    | 
-    <a href='/tags/fish/'>fish</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        fish，前端框架。
-
-安装命令$ npm i -g @ngweb/fish-cli –registry http://registry.npm.ztesoft.com
-fish new或n &lt;project-name&gt;创建项目
-fish config或c在当前目录下，创建fish.config.js文件
-fish serve或s [-p port/--port] [-w / --watch]启动服务，-p/–port设置启
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2019/01/03/fish学习/">Read More...</a>
                     </p>
                     
                 </div>

@@ -119,6 +119,8 @@
 				    
 				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(13)</small></a></li>
 				    
+				    <li><a href="/categories/nginx/" class="animsition-link">nginx<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(4)</small></a></li>
@@ -131,7 +133,7 @@
 				    
 				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(2)</small></a></li>
+				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/分布式/" class="animsition-link">分布式<small>(3)</small></a></li>
 				    
@@ -259,6 +261,88 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/12/30/【springBoot】多模块划分/">【springBoot】多模块划分</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-12-30T01:48:19.000Z" itemprop="datePublished">
+          2020-12-30
+      </time>
+    
+    
+    | 
+    <a href='/tags/多模块/'>多模块</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        最近把项目代码进行了重构，根据规范大致对进行中的项目进行了模块划分。
+多模块的优点：可维护性1.灵活架构，焦点分离2.方便模块间组合、分解3.方便单个模块功能调试、升级4.多人协作互不干扰
+springBoot多模块划分
+根据通用规范，我把项目划分为如下模块
+&lt;modules&gt;
+    &lt;module&gt;gyjc-web&lt;/module&gt;
+    &lt;module&gt;gyjc-service&l
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/12/30/【springBoot】多模块划分/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/12/15/【redis】redis的数据同步机制/">【redis】redis的数据同步机制</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-12-15T03:43:46.000Z" itemprop="datePublished">
+          2020-12-15
+      </time>
+    
+    
+    | 
+    <a href='/tags/redis/'>redis</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        redis 与 memcache比较
+redis提供持久化
+
+持久化的两种方式 =》 dump.rdb1、客户端使用BGSAVE或者SAVE手动保存到数据文件中，避免使用2、配置文件中配置了一定时间内有多少key被修改了则自动进行RDB持久化
+AOF:文件追加写命令持久化即在发生写命令时追加命令到AOF文件中，可配置是否开启
+REDIS主从复制
+机制1-master同步所有slave机制2-master同步到一部分slave，然后该sl
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/12/15/【redis】redis的数据同步机制/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -475,94 +559,6 @@ exp 用户名/密码 file=路径 log=日志 owner=导出用户
                     
                     <p class="pull-right readMore">
                         <a href="/2020/08/13/【杂记】码云gitee禁止外链访问txt、zip等文件导致hexo搜索失效/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/07/24/【转】一文学会索引设计技巧/">【转】一文学会索引设计技巧</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-07-24T01:14:08.000Z" itemprop="datePublished">
-          2020-07-24
-      </time>
-    
-    
-    | 
-    <a href='/tags/索引/'>索引</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        
-本文来源于微信公众号码海  ，作者码海
-
-前言生产上为了高效地查询数据库中的数据，我们常常会给表中的字段添加索引，大家是否有考虑过如何添加索引才能使索引更高效，考虑如下问题：
-
-添加的索引是越多越好吗？
-
-为啥有时候明明添加了索引却不生效？
-
-索引有哪些类型？
-
-如何评判一个索引设计的好坏？
-
-
-看了本文相信你会对索引的原理有更清晰的认识。本文将会从以下几个方面来讲述索引的相关知识，相信大家耐心看了之后肯定有收获。
-
-什么是索引，索引
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/07/24/【转】一文学会索引设计技巧/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/07/21/【SpringCloud】springCloud总体结构和技术熟悉/">【SpringCloud】springCloud总体结构和技术熟悉</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-07-21T02:20:58.000Z" itemprop="datePublished">
-          2020-07-21
-      </time>
-    
-    
-    | 
-    <a href='/tags/SpringCloud/'>SpringCloud</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        springCloud组件图springCloud结构图
-服务注册与发现服务注册中心：Eureka、（zookeeper等）负责管理服务的注册和发现。
-服务调用调用端断路器：Hystrix当某个服务出问题时，设置快速失败机制，再多次失败后再次调用直接返回失败，避免出现雪崩现象（指由于前面的服务调用失败导致后面的服务调用全部失败导致调用端    持续等待影响了整体服务；服务雪崩效应是一种因 “服务提供者” 的不可用导致 “服务消费者” 的
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/07/21/【SpringCloud】springCloud总体结构和技术熟悉/">Read More...</a>
                     </p>
                     
                 </div>

@@ -119,6 +119,8 @@
 				    
 				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(13)</small></a></li>
 				    
+				    <li><a href="/categories/nginx/" class="animsition-link">nginx<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(4)</small></a></li>
@@ -131,7 +133,7 @@
 				    
 				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(2)</small></a></li>
+				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/分布式/" class="animsition-link">分布式<small>(3)</small></a></li>
 				    
@@ -263,6 +265,94 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
+                    <h3><a href="/2020/07/24/【转】一文学会索引设计技巧/">【转】一文学会索引设计技巧</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-07-24T01:14:08.000Z" itemprop="datePublished">
+          2020-07-24
+      </time>
+    
+    
+    | 
+    <a href='/tags/索引/'>索引</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+本文来源于微信公众号码海  ，作者码海
+
+前言生产上为了高效地查询数据库中的数据，我们常常会给表中的字段添加索引，大家是否有考虑过如何添加索引才能使索引更高效，考虑如下问题：
+
+添加的索引是越多越好吗？
+
+为啥有时候明明添加了索引却不生效？
+
+索引有哪些类型？
+
+如何评判一个索引设计的好坏？
+
+
+看了本文相信你会对索引的原理有更清晰的认识。本文将会从以下几个方面来讲述索引的相关知识，相信大家耐心看了之后肯定有收获。
+
+什么是索引，索引
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/07/24/【转】一文学会索引设计技巧/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/07/21/【SpringCloud】springCloud总体结构和技术熟悉/">【SpringCloud】springCloud总体结构和技术熟悉</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-07-21T02:20:58.000Z" itemprop="datePublished">
+          2020-07-21
+      </time>
+    
+    
+    | 
+    <a href='/tags/SpringCloud/'>SpringCloud</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        springCloud组件图springCloud结构图
+服务注册与发现服务注册中心：Eureka、（zookeeper等）负责管理服务的注册和发现。
+服务调用调用端断路器：Hystrix当某个服务出问题时，设置快速失败机制，再多次失败后再次调用直接返回失败，避免出现雪崩现象（指由于前面的服务调用失败导致后面的服务调用全部失败导致调用端    持续等待影响了整体服务；服务雪崩效应是一种因 “服务提供者” 的不可用导致 “服务消费者” 的
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/07/21/【SpringCloud】springCloud总体结构和技术熟悉/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
                     <h3><a href="/2020/07/20/【SpringCloud】springCloud相关博客链接地址学习收集/">【SpringCloud】springCloud相关博客链接地址学习收集</a></h3>
                     <span>
                         <span class="post-meta">
@@ -312,9 +402,9 @@
     
     
     | 
-    <a href='/tags/定时任务/'>定时任务</a>,
+    <a href='/tags/线程池/'>线程池</a>,
     
-    <a href='/tags/线程池/'>线程池</a>
+    <a href='/tags/定时任务/'>定时任务</a>
     
     
 </span>
@@ -494,87 +584,6 @@ public TaskScheduler taskSche
                     
                     <p class="pull-right readMore">
                         <a href="/2020/06/01/【java】使用javaCV对直播RTSP流实时转码，使用flvjs控件播放/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/05/29/【flvjs】使用flvjs实现h5控件播放视频、直播流/">【flvjs】使用flvjs实现h5控件播放视频、直播流</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-05-29T09:19:44.000Z" itemprop="datePublished">
-          2020-05-29
-      </time>
-    
-    
-    | 
-    <a href='/tags/flvjs/'>flvjs</a>,
-    
-    <a href='/tags/视频/'>视频</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        
-flvjs源码地址：https://github.com/bilibili/flv.js
-
-下载下来后，使用进入项目根目录运行
-npm install          # install dev-dependences
-npm install -g gulp  # install build tool
-gulp release         # packaged &amp; minimized js will be emitted
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/05/29/【flvjs】使用flvjs实现h5控件播放视频、直播流/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/05/09/【java】使用jsonp请求解析网页元素和内容，爬取网站热点数据/">【java】使用jsonp请求并解析网页元素内容，爬取网站热点数据</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-05-09T07:39:43.000Z" itemprop="datePublished">
-          2020-05-09
-      </time>
-    
-    
-    | 
-    <a href='/tags/jsonp/'>jsonp</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        org.jsonp这个包里的类可以用来对网页请求，然后获取请求返回的网页或者是json字符串。
-Document doc = null;  
-Connection connection = Jsoup.connect(url);  
-connection.header(&quot;Accept&quot;, &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/05/09/【java】使用jsonp请求解析网页元素和内容，爬取网站热点数据/">Read More...</a>
                     </p>
                     
                 </div>

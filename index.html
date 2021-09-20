@@ -119,6 +119,8 @@
 				    
 				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(13)</small></a></li>
 				    
+				    <li><a href="/categories/nginx/" class="animsition-link">nginx<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(4)</small></a></li>
@@ -131,7 +133,7 @@
 				    
 				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(2)</small></a></li>
+				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/分布式/" class="animsition-link">分布式<small>(3)</small></a></li>
 				    
@@ -259,6 +261,82 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2021/09/20/【postman】使用postman生成快速批量请求/">【postman】使用postman生成快速批量请求</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2021-09-20T11:23:49.000Z" itemprop="datePublished">
+          2021-09-20
+      </time>
+    
+    
+    | 
+    <a href='/tags/postman/'>postman</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        最近用户甩了一个excel过来，里面有300多位用户的信息，让给这些用户授权某些权限。由于系统上没有批量授权的功能，而且用户分布比较散乱，一个个找比较麻烦。而且授权接口中有对其他第三方系统同步信息的行为，不能直接修改数据库数据来授权。于是打算写一个小程序来做批量请求授权。
+首先，用管理员账号登录系统，对一个样例用户进行授权，F12抓取授权接口信息，右键copy as cURL(bash)然后打开postman，import点击conti
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2021/09/20/【postman】使用postman生成快速批量请求/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2021/09/20/【nginx】nginx简单使用场景/">【nginx】nginx简单使用场景</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2021-09-20T11:21:56.000Z" itemprop="datePublished">
+          2021-09-20
+      </time>
+    
+    
+    | 
+    <a href='/tags/负载均衡/'>负载均衡</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        NGINX需求1：将向本服务器8666端口的请求映射到A服务器的8699端口无服务器A，暂时修改host使用，在host文件中添加以下内容
+ 127.0.0.1 www.xff.xyz假设A服务器域名为www.xff.xyz
+找到配置文件，nginx/conf/nginx.conf，添加以下内容
+upstream mytest{
+  server www.xff.xyz:8699; }
+ server {  listen 8666;  
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2021/09/20/【nginx】nginx简单使用场景/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -498,88 +576,6 @@ xff.mysql.datasource.url=jdbc:mysql://10.45.**.**:3306/testdb?us
                     
                     <p class="pull-right readMore">
                         <a href="/2021/01/11/【mybatis】多数据源实现/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/12/30/【springBoot】多模块划分/">【springBoot】多模块划分</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-12-30T01:48:19.000Z" itemprop="datePublished">
-          2020-12-30
-      </time>
-    
-    
-    | 
-    <a href='/tags/多模块/'>多模块</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        最近把项目代码进行了重构，根据规范大致对进行中的项目进行了模块划分。
-多模块的优点：可维护性1.灵活架构，焦点分离2.方便模块间组合、分解3.方便单个模块功能调试、升级4.多人协作互不干扰
-springBoot多模块划分
-根据通用规范，我把项目划分为如下模块
-&lt;modules&gt;
-    &lt;module&gt;gyjc-web&lt;/module&gt;
-    &lt;module&gt;gyjc-service&l
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/12/30/【springBoot】多模块划分/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/12/15/【redis】redis的数据同步机制/">【redis】redis的数据同步机制</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-12-15T03:43:46.000Z" itemprop="datePublished">
-          2020-12-15
-      </time>
-    
-    
-    | 
-    <a href='/tags/redis/'>redis</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        redis 与 memcache比较
-redis提供持久化
-
-持久化的两种方式 =》 dump.rdb1、客户端使用BGSAVE或者SAVE手动保存到数据文件中，避免使用2、配置文件中配置了一定时间内有多少key被修改了则自动进行RDB持久化
-AOF:文件追加写命令持久化即在发生写命令时追加命令到AOF文件中，可配置是否开启
-REDIS主从复制
-机制1-master同步所有slave机制2-master同步到一部分slave，然后该sl
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/12/15/【redis】redis的数据同步机制/">Read More...</a>
                     </p>
                     
                 </div>
