@@ -113,7 +113,7 @@
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(12)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(13)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -265,6 +265,42 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
+                    <h3><a href="/2021/10/21/【RSA】rsa加密算法使用/">【RSA】rsa加密算法使用</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2021-10-21T14:26:06.000Z" itemprop="datePublished">
+          2021-10-21
+      </time>
+    
+    
+    | 
+    <a href='/tags/rsa/'>rsa</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        近日遇到一个漏洞修复需求，需要把一个老系统登录时请求里的明文密码进行加密再传输。由于系统太老，也不方便对数据库用户密码（后台收到密码后使用另一套加密算法加密后保存）进行修改，只能在前端加密后由后端再解密出来，不太适合用不可逆的加密算法来操作。于是打算使用RSA算法进行加密解密（中间还用了base64编码密码后传输，被打回了hhh）。
+RSA加密算法是一种非对称加密算法，使用时需要生成成对的公钥和私钥。一般使用公钥加密，私钥解密，根据具体
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2021/10/21/【RSA】rsa加密算法使用/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
                     <h3><a href="/2021/09/20/【postman】使用postman生成快速批量请求/">【postman】使用postman生成快速批量请求</a></h3>
                     <span>
                         <span class="post-meta">
@@ -323,8 +359,11 @@
  127.0.0.1 www.xff.xyz假设A服务器域名为www.xff.xyz
 找到配置文件，nginx/conf/nginx.conf，添加以下内容
 upstream mytest{
-  server www.xff.xyz:8699; }
- server {  listen 8666;  
+  server www.xff.xyz:8699;
+ }
+
+ server {
+  listen 8666
                       
                     </p>
                     
@@ -535,47 +574,6 @@ void doWork(User user){
                     
                     <p class="pull-right readMore">
                         <a href="/2021/01/20/【java】ThreadLocal应用以及理解/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2021/01/11/【mybatis】多数据源实现/">【mybatis】多数据源实现</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2021-01-11T03:05:12.000Z" itemprop="datePublished">
-          2021-01-11
-      </time>
-    
-    
-    | 
-    <a href='/tags/多数据源/'>多数据源</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        Mybatis多数据库兼容
-mysql+oracle..
-
-1.mybatis配置两个数据库
-xff.mysql.datasource.driver=com.mysql.jdbc.Driver
-#xff.mysql.datasource.url=jdbc:mysql://122.***.9.**:19087/
-xff.mysql.datasource.url=jdbc:mysql://10.45.**.**:3306/testdb?us
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2021/01/11/【mybatis】多数据源实现/">Read More...</a>
                     </p>
                     
                 </div>
