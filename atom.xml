@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xfff.xyz/"/>
-  <updated>2021-10-21T14:29:28.645Z</updated>
+  <updated>2022-01-07T15:23:51.456Z</updated>
   <id>https://xfff.xyz/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【error】漏洞修复记录</title>
+    <link href="https://xfff.xyz/2022/12/26/%E3%80%90error%E3%80%91%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D%E8%AE%B0%E5%BD%95/"/>
+    <id>https://xfff.xyz/2022/12/26/【error】漏洞修复记录/</id>
+    <published>2022-12-26T15:19:33.000Z</published>
+    <updated>2022-01-07T15:23:51.456Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1、nginx使用OPTIONS方式请求报错，暴露nginx版本"><a href="#1、nginx使用OPTIONS方式请求报错，暴露nginx版本" class="headerlink" title="1、nginx使用OPTIONS方式请求报错，暴露nginx版本"></a>1、nginx使用OPTIONS方式请求报错，暴露nginx版本</h3><p>nginx配置里加上</p><pre><code>server_tokens off;</code></pre><p>即可隐藏nginx版本</p><h3 id="2、tomcat404、504等等报错时，暴露tomcat版本号"><a href="#2、tomcat404、504等等报错时，暴露tomcat版本号" class="headerlink" title="2、tomcat404、504等等报错时，暴露tomcat版本号"></a>2、tomcat404、504等等报错时，暴露tomcat版本号</h3><p>web.xml加上</p><pre><code>&lt;error-page&gt;    &lt;error-code&gt;404&lt;/error-code&gt;    &lt;location&gt;/404.html&lt;/location&gt;&lt;/error-page&gt;</code></pre><p>然后在该项目根目录放入404页面即可</p><h3 id="3、druid监控平台页面暴露至外网"><a href="#3、druid监控平台页面暴露至外网" class="headerlink" title="3、druid监控平台页面暴露至外网"></a>3、druid监控平台页面暴露至外网</h3><p>web.xml中原配置如下</p><pre><code>&lt;servlet&gt;  &lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;  &lt;servlet-class&gt;com.alibaba.druid.support.http.StatViewServlet&lt;/servlet-class&gt;&lt;/servlet&gt;&lt;servlet-mapping&gt;  &lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;  &lt;url-pattern&gt;/druid/*&lt;/url-pattern&gt;&lt;/servlet-mapping&gt;</code></pre><p>修改增加ip白名单限制以及账号密码登录限制才可访问</p><pre><code>&lt;servlet&gt;  &lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;  &lt;servlet-class&gt;com.alibaba.druid.support.http.StatViewServlet&lt;/servlet-class&gt;  &lt;init-param&gt;      &lt;!-- 白名单 --&gt;      &lt;param-name&gt;allow&lt;/param-name&gt;      &lt;param-value&gt;127.0.0.1&lt;/param-value&gt;  &lt;/init-param&gt;  &lt;init-param&gt;    &lt;!-- 账号 --&gt;    &lt;param-name&gt;loginUsername&lt;/param-name&gt;    &lt;param-value&gt;admin&lt;/param-value&gt;  &lt;/init-param&gt;  &lt;init-param&gt;    &lt;!-- 密码 --&gt;    &lt;param-name&gt;loginPassword&lt;/param-name&gt;    &lt;param-value&gt;mydruid&lt;/param-value&gt;  &lt;/init-param&gt;&lt;/servlet&gt;&lt;servlet-mapping&gt;  &lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;  &lt;url-pattern&gt;/druid/*&lt;/url-pattern&gt;&lt;/servlet-mapping&gt;</code></pre><h3 id="4、某些cookie没有设置httponly或者secure属性"><a href="#4、某些cookie没有设置httponly或者secure属性" class="headerlink" title="4、某些cookie没有设置httponly或者secure属性"></a>4、某些cookie没有设置httponly或者secure属性</h3><p>增加过滤器，拦截请求，设置cookie属性</p><pre><code>package com.zjasm.filter;  import javax.servlet.Filter;  import javax.servlet.FilterChain;  import javax.servlet.FilterConfig;  import javax.servlet.ServletException;  import javax.servlet.ServletRequest;  import javax.servlet.ServletResponse;  import javax.servlet.annotation.WebFilter;  import javax.servlet.http.Cookie;  import javax.servlet.http.HttpServletRequest;  import javax.servlet.http.HttpServletResponse;  import java.io.IOException;  /**  * Servlet Filter implementation class CookieFilter  *  * 解决 Cookie未设置HttpOnly &amp;&amp; Cookie未设置Secure标识 问题  *  */  @WebFilter(filterName=&quot;cookieFilter&quot;,urlPatterns={&quot;/*&quot;})  public class CookieFilter implements Filter{  /**  * Default constructor.  */  public CookieFilter() {  // TODO Auto-generated constructor stub  }  /**  * @see Filter#destroy()  */  public void destroy() {  // TODO Auto-generated method stub  }  /**  * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)  */  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {  HttpServletRequest req = (HttpServletRequest)request;  HttpServletResponse resp = (HttpServletResponse)response;  Cookie[] cookies = req.getCookies();  if (cookies != null) {  for (Cookie cookie : cookies) {  String value = cookie.getValue();  StringBuilder builder = new StringBuilder();  builder.append(cookie.getName()+&quot;=&quot;+value+&quot;;&quot;);  builder.append(&quot;Secure;&quot;);//Cookie设置Secure标识  builder.append(&quot;HttpOnly;&quot;);//Cookie设置HttpOnly  // Calendar cal = Calendar.getInstance();  // cal.add(Calendar.HOUR, 1);  // Date date = cal.getTime();  // Locale locale = Locale.CHINA;  // SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd-MM-yyyy HH:mm:ss&quot;,locale);  // builder.append(&quot;Expires=&quot;+sdf.format(date));  resp.addHeader(&quot;Set-Cookie&quot;, builder.toString());  resp.addHeader(&quot;x-frame-options&quot;,&quot;SAMEORIGIN&quot;);//Header配置X-Frame-Options  }  }  chain.doFilter(request, response);  }  /**  * @see Filter#init(FilterConfig)  */  public void init(FilterConfig fConfig) throws ServletException {  // TODO Auto-generated method stub  }  }</code></pre><h3 id="5、nginx404页面添加"><a href="#5、nginx404页面添加" class="headerlink" title="5、nginx404页面添加"></a>5、nginx404页面添加</h3><p>如404为tomcat抛出，经过nginx需要配置</p><pre><code>proxy_intercept_errors on;</code></pre><p>404页面配置，root代表nginx目录根目录路径，404页面放在html目录下</p><pre><code>error_page 404 /404.html;location = /404.html {  root html;}</code></pre><h3 id="6、tomcat启动环境异常"><a href="#6、tomcat启动环境异常" class="headerlink" title="6、tomcat启动环境异常"></a>6、tomcat启动环境异常</h3><p>打开catalina.bat（windows环境），在setlocal下设置jdk环境</p><pre><code>set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_91set JRE_HOME=C:\Program Files\Java\jdk1.8.0_91\jre</code></pre><h3 id="7、tomcat运行内存不足"><a href="#7、tomcat运行内存不足" class="headerlink" title="7、tomcat运行内存不足"></a>7、tomcat运行内存不足</h3><p>在“rem —– Execute The Requested Command ———————-”下加入</p><p><strong>_JAVA_OPTS=”-server -Xms800m -Xmx800m -XXNewSize=256M -XX:PermSize=256M -XX:MaxNewSize=512m -XX:MaxPermSize=512m”_</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;1、nginx使用OPTIONS方式请求报错，暴露nginx版本&quot;&gt;&lt;a href=&quot;#1、nginx使用OPTIONS方式请求报错，暴露nginx版本&quot; class=&quot;headerlink&quot; title=&quot;1、nginx使用OPTIONS方式请求报错，暴露ngi
+      
+    
+    </summary>
+    
+      <category term="errors" scheme="https://xfff.xyz/categories/errors/"/>
+    
+    
+      <category term="漏洞修复" scheme="https://xfff.xyz/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【skyWalking】链路追踪安装使用</title>
+    <link href="https://xfff.xyz/2022/01/07/%E3%80%90skyWalking%E3%80%91%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
+    <id>https://xfff.xyz/2022/01/07/【skyWalking】链路追踪安装使用/</id>
+    <published>2022-01-07T15:25:49.000Z</published>
+    <updated>2022-01-07T15:29:45.699Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>链路追踪，可以监测系统服务运行情况。</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote><p><a href="https://skywalking.apache.org/downloads/" target="_blank" rel="noopener">https://skywalking.apache.org/downloads/</a><br><a href="https://archive.apache.org/dist/skywalking/" target="_blank" rel="noopener">https://archive.apache.org/dist/skywalking/</a></p></blockquote><p><img src="https://s2.loli.net/2022/01/05/gMxD9N1YzLwsV4B.png" alt="1641353485_1_.jpg"></p><p>根据需要选择不同的版本。</p><p>这里我选择ES7作为存储。（虽然也可以选择Mysql作为存储，但是据网上所说Mysql不适合用来做这个链路追踪的存储）</p><p>ES7安装</p><blockquote><p><a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.10.2-windows-x86_64.zip" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.10.2-windows-x86_64.zip</a></p></blockquote><p>ES7安装好后进入bin目录双击elasticsearch.bat启动（默认端口9200，可进入<a href="http://localhost:9200" target="_blank" rel="noopener">http://localhost:9200</a>查看是否安装成功）。</p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>解压下好的skyWalking，进入config/application.yml，修改storage.elasticsearch7的clusterNodes节点为安装的es的地址，默认为localhost:9200，如果是本地刚安装的不用做任何修改。<br>如有其它数据库、注册中心等也都在这里配置地址，寻找到对应配置位置修改即可。</p><p>端口相关配置在webapp/webapp.yml里修改。</p><p>双击bin/startup.bat启动监控应用。此时会弹出两个窗口如下<br><img src="https://s2.loli.net/2022/01/05/JLwIQmVYTgh3CHo.png" alt="1641364145_1_.jpg"></p><p>如未修改默认端口，启动成功后可以进入<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>查看应用是否运行成功，进入后页面应该没有具体内容，因为还未接入监测应用。</p><h2 id="应用设置"><a href="#应用设置" class="headerlink" title="应用设置"></a>应用设置</h2><p>监控哪个应用需要具体在那个应用启动时设置。其实就是在启动时加上vm参数，指定skyWalking-agent的位置。<br>如，IDEA运行项目可以在run config里设置<br><img src="https://s2.loli.net/2022/01/05/fMiwdPtWchQGAln.png" alt="image.png"></p><pre><code>-javaagent:YOURPATH\agent\skywalking-agent.jar</code></pre><p>tomcat在catalina.bat里设置</p><pre><code>set &quot;CATALINA_OPTS=-javaagent:YOURPATH\agent\skywalking-agent.jar&quot;</code></pre><p>亦或使用springBoot，java -jar运行时，也可以在启动命令里加上VM参数</p><pre><code>-javaagent:YOURPATH\agent\skywalking-agent.jar</code></pre><h2 id="监控查看"><a href="#监控查看" class="headerlink" title="监控查看"></a>监控查看</h2><p>再打开skyWalking-UI页面查看（记得设置右下角的时间范围），就会发现自动监控了应用运行的服务接口、数据库查询状态、接口内部访问链路等。</p><p>服务：<br><img src="https://s2.loli.net/2022/01/05/WMDyPE2UGKt3mqp.png" alt="image.png"></p><p>数据库：<br><img src="https://s2.loli.net/2022/01/05/WcGiNEBbhaUfpZy.png" alt="image.png"></p><p>拓扑图<br><img src="https://s2.loli.net/2022/01/05/p6q98zZvjSUsKgb.png" alt="image.png"></p><p>接口链路追踪：<br><img src="https://s2.loli.net/2022/01/05/TkMBvb6OjQYza2n.png" alt="image.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;链路追踪，可以监测系统服务运行情况。&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; ti
+      
+    
+    </summary>
+    
+      <category term="java" scheme="https://xfff.xyz/categories/java/"/>
+    
+    
+      <category term="分布式" scheme="https://xfff.xyz/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="tomcat" scheme="https://xfff.xyz/tags/tomcat/"/>
+    
+  </entry>
   
   <entry>
     <title>【RSA】rsa加密算法使用</title>
@@ -561,9 +614,9 @@
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
-    
       <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+      <category term="线程池" scheme="https://xfff.xyz/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
     
   </entry>
   
@@ -935,9 +988,9 @@ conne
       <category term="SpringBoot" scheme="https://xfff.xyz/categories/SpringBoot/"/>
     
     
-      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
-    
       <category term="cron" scheme="https://xfff.xyz/tags/cron/"/>
+    
+      <category term="定时任务" scheme="https://xfff.xyz/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     
   </entry>
   

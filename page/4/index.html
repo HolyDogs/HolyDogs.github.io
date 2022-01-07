@@ -109,11 +109,11 @@
 				    
 				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(5)</small></a></li>
+				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(6)</small></a></li>
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(13)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(14)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -261,6 +261,87 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/06/10/【quartz】spring配置形式使用quartz实现定时任务/">【quartz】spring配置形式使用quartz实现定时任务</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-06-10T07:44:21.000Z" itemprop="datePublished">
+          2020-06-10
+      </time>
+    
+    
+    | 
+    <a href='/tags/quartz/'>quartz</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        quartz定时器配置实现：假如有一个RedisTask类有一个myFunc方法，配置其为定时执行的方法:
+&lt;!--首先是配置要定时加载的目标类--&gt;
+&lt;bean id=&quot;redisTaskAction&quot; class=&quot;com.me.RedisTask&quot;/&gt;
+
+&lt;!--配置定时执行的方法参数--&gt;
+&lt;bean id=&quot;redisTaskMetho
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/06/10/【quartz】spring配置形式使用quartz实现定时任务/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/06/07/【单元测试】加载配置文件实现单元测试/">【单元测试】加载配置文件实现单元测试</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-06-07T07:48:50.000Z" itemprop="datePublished">
+          2020-06-07
+      </time>
+    
+    
+    | 
+    <a href='/tags/单元测试/'>单元测试</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        首先引入JUnit依赖，注意版本，很容易报错
+&lt;dependency&gt;
+    &lt;groupId&gt;junit&lt;/groupId&gt;
+    &lt;artifactId&gt;junit&lt;/artifactId&gt;
+    &lt;version&gt;4.12&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependenc
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/06/07/【单元测试】加载配置文件实现单元测试/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -499,90 +580,6 @@ Function&lt;Integer, Intege
                     
                     <p class="pull-right readMore">
                         <a href="/2020/04/09/【maven】maven使用中遇到的问题记录/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/04/09/【swagger-ui】通过注解生成api文档/">【swagger-ui】通过注解生成api文档</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-04-09T00:44:14.000Z" itemprop="datePublished">
-          2020-04-09
-      </time>
-    
-    
-    | 
-    <a href='/tags/api文档/'>api文档</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        swagger-ui添加依赖
-&lt;dependency&gt;
-    &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-    &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
-    &lt;version&gt;2.9.2&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/04/09/【swagger-ui】通过注解生成api文档/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/01/06/【Docker】docker基本使用/">【Docker】docker基本使用</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-01-06T10:00:16.000Z" itemprop="datePublished">
-          2020-01-06
-      </time>
-    
-    
-    | 
-    <a href='/tags/linux/'>linux</a>,
-    
-    <a href='/tags/docker/'>docker</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        三层概念
-仓库：类似于Github或者Gitlab，不是保存代码，而是用来保存镜像。（Docker Hub）
-镜像IMAGE：Docker镜像，相当于一个系统，容器基于镜像的环境运行，例如Ubuntu:14.04（冒号后面表示版本，可以自定义版本号名，如dev、test、prod）
-容器CONTAINER：容器是镜像运行的实体，可以被创建、启动、停止、删除、暂停等。
-
-
-Docker安装Docker一般都在Linux系统上运行，实际在w
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/01/06/【Docker】docker基本使用/">Read More...</a>
                     </p>
                     
                 </div>

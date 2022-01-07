@@ -109,11 +109,11 @@
 				    
 				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(5)</small></a></li>
+				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(6)</small></a></li>
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(13)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(14)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -261,6 +261,82 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/09/17/【Vue】父子组件参数互传/">【Vue】父子组件参数互传</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-09-17T08:09:30.000Z" itemprop="datePublished">
+          2020-09-17
+      </time>
+    
+    
+    | 
+    <a href='/tags/vue/'>vue</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        问题起因：父组件内使用了子组件（component），而子组件内需要确认当前父组件点击或选择的是哪个元素。
+解决方法：一般来说子组件与父组件每个组件间的变量作用域是只限于本组件内的。Vue提供了方法让父子组件间可以互相传递参数。
+父传子想让父组件的变量传递给子组件，如下图，在父组件中使用子组件时增加一个v-bind绑定一个自定义的属性名，然后值为父组件中需要传递的参数。子组件中，需要定义props属性，其中的值为在父组件中v-bind绑
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/09/17/【Vue】父子组件参数互传/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/08/27/【ORACLE】数据库同步，表空间操作等/">【ORACLE】数据库同步，表空间操作等</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-08-27T07:16:42.000Z" itemprop="datePublished">
+          2020-08-27
+      </time>
+    
+    
+    | 
+    <a href='/tags/oracle/'>oracle</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        近日需要同步本地一个oracle数据库的所有数据包括表结构等到现场一台服务器上， 平时未接触，因此不太熟练，这里记录下同步过程。
+准备工作远程到本地安装oracle数据库的那台服务器上，使用命令行将对应需要的用户下的所有数据导出为dmp文件。（安装了oracle即有该命令）
+exp 用户名/密码 file=路径 log=日志 owner=导出用户
+这样就能在选择的路径下得到dmp文件、日志等文件。
+同步远程到需要同步的那台服务器上，登录
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/08/27/【ORACLE】数据库同步，表空间操作等/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -435,9 +511,9 @@
     
     
     | 
-    <a href='/tags/线程池/'>线程池</a>,
+    <a href='/tags/定时任务/'>定时任务</a>,
     
-    <a href='/tags/定时任务/'>定时任务</a>
+    <a href='/tags/线程池/'>线程池</a>
     
     
 </span>
@@ -496,87 +572,6 @@ public TaskScheduler taskSche
                     
                     <p class="pull-right readMore">
                         <a href="/2020/06/14/【rpc】RPC理解与实现/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/06/10/【quartz】spring配置形式使用quartz实现定时任务/">【quartz】spring配置形式使用quartz实现定时任务</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-06-10T07:44:21.000Z" itemprop="datePublished">
-          2020-06-10
-      </time>
-    
-    
-    | 
-    <a href='/tags/quartz/'>quartz</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        quartz定时器配置实现：假如有一个RedisTask类有一个myFunc方法，配置其为定时执行的方法:
-&lt;!--首先是配置要定时加载的目标类--&gt;
-&lt;bean id=&quot;redisTaskAction&quot; class=&quot;com.me.RedisTask&quot;/&gt;
-
-&lt;!--配置定时执行的方法参数--&gt;
-&lt;bean id=&quot;redisTaskMetho
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/06/10/【quartz】spring配置形式使用quartz实现定时任务/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2020/06/07/【单元测试】加载配置文件实现单元测试/">【单元测试】加载配置文件实现单元测试</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2020-06-07T07:48:50.000Z" itemprop="datePublished">
-          2020-06-07
-      </time>
-    
-    
-    | 
-    <a href='/tags/单元测试/'>单元测试</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        首先引入JUnit依赖，注意版本，很容易报错
-&lt;dependency&gt;
-    &lt;groupId&gt;junit&lt;/groupId&gt;
-    &lt;artifactId&gt;junit&lt;/artifactId&gt;
-    &lt;version&gt;4.12&lt;/version&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependenc
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2020/06/07/【单元测试】加载配置文件实现单元测试/">Read More...</a>
                     </p>
                     
                 </div>

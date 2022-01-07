@@ -109,11 +109,11 @@
 				    
 				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(5)</small></a></li>
+				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(6)</small></a></li>
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(13)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(14)</small></a></li>
 				    
 				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
 				    
@@ -261,6 +261,93 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2022/12/26/【error】漏洞修复记录/">【error】漏洞修复记录</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2022-12-26T15:19:33.000Z" itemprop="datePublished">
+          2022-12-26
+      </time>
+    
+    
+    | 
+    <a href='/tags/漏洞修复/'>漏洞修复</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        1、nginx使用OPTIONS方式请求报错，暴露nginx版本nginx配置里加上
+server_tokens off;
+即可隐藏nginx版本
+2、tomcat404、504等等报错时，暴露tomcat版本号web.xml加上
+&lt;error-page&gt;
+    &lt;error-code&gt;404&lt;/error-code&gt;
+    &lt;location&gt;/404.html&lt;/locati
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2022/12/26/【error】漏洞修复记录/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2022/01/07/【skyWalking】链路追踪安装使用/">【skyWalking】链路追踪安装使用</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2022-01-07T15:25:49.000Z" itemprop="datePublished">
+          2022-01-07
+      </time>
+    
+    
+    | 
+    <a href='/tags/分布式/'>分布式</a>,
+    
+    <a href='/tags/tomcat/'>tomcat</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        简介链路追踪，可以监测系统服务运行情况。
+安装
+https://skywalking.apache.org/downloads/https://archive.apache.org/dist/skywalking/
+
+
+根据需要选择不同的版本。
+这里我选择ES7作为存储。（虽然也可以选择Mysql作为存储，但是据网上所说Mysql不适合用来做这个链路追踪的存储）
+ES7安装
+
+https://artifacts.elastic.co/d
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2022/01/07/【skyWalking】链路追踪安装使用/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -493,87 +580,6 @@ redis-cli -h xxx.xxx.
                     
                     <p class="pull-right readMore">
                         <a href="/2021/04/17/【MYSQL】空间字段POLYGON/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2021/03/30/【spring】spring事务/">【spring】spring事务</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2021-03-30T12:40:23.000Z" itemprop="datePublished">
-          2021-03-30
-      </time>
-    
-    
-    | 
-    <a href='/tags/事务/'>事务</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        spring支持声明式注解事务@Transactional注解只能用于public修饰的方法
-一个方法被事务注解后，需要等方法运行完才能提交所有的sql
-事务的ACID特征：即原子性（Atomicity，或称不可分割性）、一致性（Consistency）、隔离性（Isolation，又称独立性）、持久性（Durability）。
-rollbackFor可以指定事务回滚的异常类，一般分为两种：RuntimeException运行时异常以及
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2021/03/30/【spring】spring事务/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2021/01/20/【java】ThreadLocal应用以及理解/">【java】ThreadLocal应用以及理解</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2021-01-20T08:25:15.000Z" itemprop="datePublished">
-          2021-01-20
-      </time>
-    
-    
-    | 
-    <a href='/tags/多线程/'>多线程</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        ThreadLocal使用以线程为作用域，每个线程可以定义线程内独有的变量，不会对其它线程或者作用域造成影响。
-如某线程调用了如下方法:
-void doWork(User user){
-    functionA(user);
-    functionB(user);
-    functionC(user);
-    functionD(user);
-}
-线程中频繁地参数传递或者状态传递比较容易出现过度传参、状态不一致等问题。在上面的d
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2021/01/20/【java】ThreadLocal应用以及理解/">Read More...</a>
                     </p>
                     
                 </div>
