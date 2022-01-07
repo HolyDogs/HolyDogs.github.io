@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Category: errors | XFF&#39;s blog</title>
+  <title>【error】漏洞修复记录 | XFF&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -61,7 +61,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -230,118 +230,225 @@
         <!-- ============================ Header & Logo bar =========================== -->
 
 
-      <!-- ============================ Hero Image =========================== -->
-
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/1.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div>
-                        
-                        <h2>Just Go Away</h2>
-                        <!-- <p></p> -->
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+      
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2021/12/26/【error】漏洞修复记录/">【error】漏洞修复记录</a></h4>
-                            
-                            <p><time datetime="2021-12-26T15:19:33.000Z"><a href="/2021/12/26/【error】漏洞修复记录/">2021-12-26</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2020/04/09/【maven】maven使用中遇到的问题记录/">【maven】maven使用中遇到的问题记录</a></h4>
-                            
-                            <p><time datetime="2020-04-09T07:20:35.000Z"><a href="/2020/04/09/【maven】maven使用中遇到的问题记录/">2020-04-09</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2020/01/01/【Error】2020-7-20记录/">【Error】2020-7-20记录</a></h4>
-                            
-                            <p><time datetime="2020-01-01T08:24:37.000Z"><a href="/2020/01/01/【Error】2020-7-20记录/">2020-01-01</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2019/03/02/关于热部署和切面方法的问题解决/">关于热部署和切面方法的问题解决</a></h4>
-                            
-                            <p><time datetime="2019-03-02T05:16:07.000Z"><a href="/2019/03/02/关于热部署和切面方法的问题解决/">2019-03-02</a></time></p>
-                        </div>
-                    
-                        
-                            </div><div class="row boxes">
-                            
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/25/文件上传解析冲突问题/">文件上传解析冲突问题</a></h4>
-                            
-                            <p><time datetime="2018-10-25T13:27:07.000Z"><a href="/2018/10/25/文件上传解析冲突问题/">2018-10-25</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2018/10/03/【Error集合】/">【Error集合】</a></h4>
-                            
-                            <p><time datetime="2018-10-03T09:02:07.000Z"><a href="/2018/10/03/【Error集合】/">2018-10-03</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-12-26T15:19:33.000Z" itemprop="datePublished">
+          2021-12-26
+      </time>
+    
+    
+    | 
+    <a href='/tags/漏洞修复/'>漏洞修复</a>
+    
+    
+</span>
+                <h1>【error】漏洞修复记录</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination">
-            
-            
-        </nav>
+        <div class="col-md-8 col-md-offset-2">
+      		<h3 id="1、nginx使用OPTIONS方式请求报错，暴露nginx版本"><a href="#1、nginx使用OPTIONS方式请求报错，暴露nginx版本" class="headerlink" title="1、nginx使用OPTIONS方式请求报错，暴露nginx版本"></a>1、nginx使用OPTIONS方式请求报错，暴露nginx版本</h3><p>nginx配置里加上</p>
+<pre><code>server_tokens off;
+</code></pre><p>即可隐藏nginx版本</p>
+<h3 id="2、tomcat404、504等等报错时，暴露tomcat版本号"><a href="#2、tomcat404、504等等报错时，暴露tomcat版本号" class="headerlink" title="2、tomcat404、504等等报错时，暴露tomcat版本号"></a>2、tomcat404、504等等报错时，暴露tomcat版本号</h3><p>web.xml加上</p>
+<pre><code>&lt;error-page&gt;
+    &lt;error-code&gt;404&lt;/error-code&gt;
+    &lt;location&gt;/404.html&lt;/location&gt;
+&lt;/error-page&gt;
+</code></pre><p>然后在该项目根目录放入404页面即可</p>
+<h3 id="3、druid监控平台页面暴露至外网"><a href="#3、druid监控平台页面暴露至外网" class="headerlink" title="3、druid监控平台页面暴露至外网"></a>3、druid监控平台页面暴露至外网</h3><p>web.xml中原配置如下</p>
+<pre><code>&lt;servlet&gt;
+  &lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;com.alibaba.druid.support.http.StatViewServlet&lt;/servlet-class&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;/druid/*&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre><p>修改增加ip白名单限制以及账号密码登录限制才可访问</p>
+<pre><code>&lt;servlet&gt;
+  &lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;com.alibaba.druid.support.http.StatViewServlet&lt;/servlet-class&gt;
+  &lt;init-param&gt;
+      &lt;!-- 白名单 --&gt;
+      &lt;param-name&gt;allow&lt;/param-name&gt;
+      &lt;param-value&gt;127.0.0.1&lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;!-- 账号 --&gt;
+    &lt;param-name&gt;loginUsername&lt;/param-name&gt;
+    &lt;param-value&gt;admin&lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;!-- 密码 --&gt;
+    &lt;param-name&gt;loginPassword&lt;/param-name&gt;
+    &lt;param-value&gt;mydruid&lt;/param-value&gt;
+  &lt;/init-param&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;DruidStatView&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;/druid/*&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre><h3 id="4、某些cookie没有设置httponly或者secure属性"><a href="#4、某些cookie没有设置httponly或者secure属性" class="headerlink" title="4、某些cookie没有设置httponly或者secure属性"></a>4、某些cookie没有设置httponly或者secure属性</h3><p>增加过滤器，拦截请求，设置cookie属性</p>
+<pre><code>package com.zjasm.filter;  
+
+import javax.servlet.Filter;  
+import javax.servlet.FilterChain;  
+import javax.servlet.FilterConfig;  
+import javax.servlet.ServletException;  
+import javax.servlet.ServletRequest;  
+import javax.servlet.ServletResponse;  
+import javax.servlet.annotation.WebFilter;  
+import javax.servlet.http.Cookie;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+import java.io.IOException;  
+
+/**  
+* Servlet Filter implementation class CookieFilter  
+*  
+* 解决 Cookie未设置HttpOnly &amp;&amp; Cookie未设置Secure标识 问题  
+*  
+*/  
+@WebFilter(filterName=&quot;cookieFilter&quot;,urlPatterns={&quot;/*&quot;})  
+public class CookieFilter implements Filter{  
+/**  
+* Default constructor.  
+*/  
+public CookieFilter() {  
+// TODO Auto-generated constructor stub  
+}  
+
+/**  
+* @see Filter#destroy()  
+*/  
+public void destroy() {  
+// TODO Auto-generated method stub  
+}  
+
+/**  
+* @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)  
+*/  
+public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {  
+HttpServletRequest req = (HttpServletRequest)request;  
+HttpServletResponse resp = (HttpServletResponse)response;  
+Cookie[] cookies = req.getCookies();  
+if (cookies != null) {  
+for (Cookie cookie : cookies) {  
+String value = cookie.getValue();  
+StringBuilder builder = new StringBuilder();  
+builder.append(cookie.getName()+&quot;=&quot;+value+&quot;;&quot;);  
+builder.append(&quot;Secure;&quot;);//Cookie设置Secure标识  
+builder.append(&quot;HttpOnly;&quot;);//Cookie设置HttpOnly  
+// Calendar cal = Calendar.getInstance();  
+// cal.add(Calendar.HOUR, 1);  
+// Date date = cal.getTime();  
+// Locale locale = Locale.CHINA;  
+// SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd-MM-yyyy HH:mm:ss&quot;,locale);  
+// builder.append(&quot;Expires=&quot;+sdf.format(date));  
+resp.addHeader(&quot;Set-Cookie&quot;, builder.toString());  
+resp.addHeader(&quot;x-frame-options&quot;,&quot;SAMEORIGIN&quot;);//Header配置X-Frame-Options  
+}  
+
+}  
+chain.doFilter(request, response);  
+}  
+
+/**  
+* @see Filter#init(FilterConfig)  
+*/  
+public void init(FilterConfig fConfig) throws ServletException {  
+// TODO Auto-generated method stub  
+}  
+
+}
+</code></pre><h3 id="5、nginx404页面添加"><a href="#5、nginx404页面添加" class="headerlink" title="5、nginx404页面添加"></a>5、nginx404页面添加</h3><p>如404为tomcat抛出，经过nginx需要配置</p>
+<pre><code>proxy_intercept_errors on;
+</code></pre><p>404页面配置，root代表nginx目录根目录路径，404页面放在html目录下</p>
+<pre><code>error_page 404 /404.html;
+
+location = /404.html {
+  root html;
+}
+</code></pre><h3 id="6、tomcat启动环境异常"><a href="#6、tomcat启动环境异常" class="headerlink" title="6、tomcat启动环境异常"></a>6、tomcat启动环境异常</h3><p>打开catalina.bat（windows环境），在setlocal下设置jdk环境</p>
+<pre><code>set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_91
+set JRE_HOME=C:\Program Files\Java\jdk1.8.0_91\jre
+</code></pre><h3 id="7、tomcat运行内存不足"><a href="#7、tomcat运行内存不足" class="headerlink" title="7、tomcat运行内存不足"></a>7、tomcat运行内存不足</h3><p>在“rem —– Execute The Requested Command ———————-”下加入</p>
+<p><strong>_JAVA_OPTS=”-server -Xms800m -Xmx800m -XXNewSize=256M -XX:PermSize=256M -XX:MaxNewSize=512m -XX:MaxPermSize=512m”_</strong></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2022/01/07/【skyWalking】链路追踪安装使用/" style="float: left;">
+        ← 【skyWalking】链路追踪安装使用
+    </a>
+    
+    
+    <a class="pull-right" href="/2021/10/21/【RSA】rsa加密算法使用/">
+        【RSA】rsa加密算法使用 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
 </section>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>不能满足,不敢停站,然后怎样</p>
-        </div>
-    </div>
-</section>
+
       
 <!-- ============================ Footer =========================== -->
 <!--
