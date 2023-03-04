@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>【springCloud】网关实现 | XFF&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="XFF's blog">
+    <meta name="author" content="XFF">
+    <meta name="description" content="BLOG" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="XFF&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="https://github.com/HolyDogs/Survey-Creater" target="_BLANK" class="animsition-link">Survey-Creater问卷系统</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/WriteToFutureAndUserManager" target="_BLANK" class="animsition-link">写给未来的信</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/Bank" target="_BLANK" class="animsition-link">Bank</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/PhotoUpAndDown" target="_BLANK" class="animsition-link">头像图片管理</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/RTSP-Video-Flv" target="_BLANK" class="animsition-link">javaCV转RTSP视频流</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/VueStructDemo" target="_BLANK" class="animsition-link">VueDemo</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/ORACLE/" class="animsition-link">ORACLE<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/SpringBoot/" class="animsition-link">SpringBoot<small>(5)</small></a></li>
+				    
+				    <li><a href="/categories/SpringCloud/" class="animsition-link">SpringCloud<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(6)</small></a></li>
+				    
+				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(13)</small></a></li>
+				    
+				    <li><a href="/categories/nginx/" class="animsition-link">nginx<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/quartz/" class="animsition-link">quartz<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/redis/" class="animsition-link">redis<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(7)</small></a></li>
+				    
+				    <li><a href="/categories/springBoot/" class="animsition-link">springBoot<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/springCloud/" class="animsition-link">springCloud<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/swagger/" class="animsition-link">swagger<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/分布式/" class="animsition-link">分布式<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/前端/" class="animsition-link">前端<small>(14)</small></a></li>
+				    
+				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/数据结构/" class="animsition-link">数据结构<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/杂记/" class="animsition-link">杂记<small>(5)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="https://github.com/HolyDogs" class="animsition-link">holydogs</a></li>
+                    
+                    <li><a href="https://gitee.com/holydogs" class="animsition-link">码云</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="javascript:;" class="popup-trigger" title="Search"><span class="search-icon"></span>Search</a></li>
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>  
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">XFF's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/HolyDogs" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/XFF34707256" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                        <!--    
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                             	-->
+                            
+                            <li><a href="https://weibo.com/u/5653044424" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li><a href="javascript:;" class="popup-trigger" title="Search"><span class="search-icon"></span>Click To Search My Blog</a></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2022-08-04T06:57:30.000Z" itemprop="datePublished">
+          2022-08-04
+      </time>
+    
+</span>
+                <h1>【springCloud】网关实现</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h1 id="1-什么是网关"><a href="#1-什么是网关" class="headerlink" title="1.什么是网关"></a>1.什么是网关</h1><p>API 网关是一个搭建在客户端和微服务之间的服务，我们可以在 API 网关中处理一些非业务功能的逻辑，例如权限验证、监控、缓存、请求路由等。</p>
+<p>网关的核心作用就是路由转发 API 网关就像整个微服务系统的门面一样，是系统对外的唯一入口。有了它，客户端会先将请求发送到 API 网关，然后由 API 网关根据请求的标识信息将请求转发到微服务实例。如下图：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/gjnldtnoHOoIdJmESBWCLZmVxzuDp1zA6tZoxu2Do6GRRaKOQGj2w1wviaGpczpoIT444VFUI9S9csCoibXic3R7A/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p>
+<h1 id="2-为什么要网关"><a href="#2-为什么要网关" class="headerlink" title="2. 为什么要网关"></a>2. 为什么要网关</h1><p>在微服务架构中，一个系统往往由多个微服务组成，而这些服务可能部署在不同机房、不同地区、不同域名下。这种情况下，客户端（例如浏览器、手机、软件工具等）想要直接请求这些服务，就需要知道它们具体的地址信息，例如 IP 地址、端口号等。这种客户端直接请求服务的方式存在以下问题：</p>
+<p>●当服务数量众多时，客户端需要维护大量的服务地址，这对于客户端来说，是非常繁琐复杂的。</p>
+<p>●在某些场景下可能会存在跨域请求的问题。</p>
+<p>●身份认证的难度大，每个微服务需要独立认证。</p>
+<p>我们可以通过 API 网关来解决这些问题</p>
+<h1 id="3-网关的优点"><a href="#3-网关的优点" class="headerlink" title="3. 网关的优点"></a>3. 网关的优点</h1><p>对于服务数量众多、复杂度较高、规模比较大的系统来说，使用 API 网关具有以下好处：</p>
+<ul>
+<li><p>客户端通过 API 网关与微服务交互时，客户端只需要知道 API 网关地址即可，而不需要维护大量的服务地址，简化了客户端的开发。</p>
+</li>
+<li><p>客户端直接与 API 网关通信，能够减少客户端与各个服务的交互次数。</p>
+</li>
+<li><p>客户端与后端的服务耦合度降低。</p>
+</li>
+<li><p>节省流量，提高性能，提升用户体验。</p>
+</li>
+<li><p>API 网关还提供了安全、流控、过滤、缓存、计费以及监控等 API 管理功能。</p>
+</li>
+</ul>
+<h1 id="4-网关的种类"><a href="#4-网关的种类" class="headerlink" title="4. 网关的种类"></a>4. 网关的种类</h1><p>1Spring Cloud Gateway</p>
+<p>2Spring Cloud Netflix Zuul</p>
+<p>3Kong</p>
+<p>4Nginx+Lua</p>
+<p>5Traefik</p>
+<h1 id="5-Spring-Cloud-Gateway"><a href="#5-Spring-Cloud-Gateway" class="headerlink" title="5. Spring Cloud Gateway"></a>5. Spring Cloud Gateway</h1><h2 id="5-1-什么是Spring-Cloud-Gateway"><a href="#5-1-什么是Spring-Cloud-Gateway" class="headerlink" title="5.1 什么是Spring Cloud Gateway"></a>5.1 什么是Spring Cloud Gateway</h2><p>Spring Cloud Gateway 是 Spring Cloud 团队基于 Spring 5.0、Spring Boot 2.0 和 Project Reactor 等技术开发的高性能 API 网关组件。Spring Cloud Gateway 旨在提供一种简单而有效的途径来发送 API，并为它们提供横切关注点，例如：安全性，监控/指标和弹性。</p>
+<p>Spring Cloud Gateway 是基于 WebFlux响应式编程框架实现的，而 WebFlux 框架底层则使用了高性能的 Reactor 模式通信框架 Netty。</p>
+<h2 id="5-2-Spring-Cloud-Gateway的核心概念"><a href="#5-2-Spring-Cloud-Gateway的核心概念" class="headerlink" title="5.2 Spring Cloud Gateway的核心概念"></a>5.2 Spring Cloud Gateway的核心概念</h2><p>核心概念</p>
+<p>描述</p>
+<p>Route（路由）</p>
+<p>网关最基本的模块。它由一个 ID、一个目标 URI、一组断言（Predicate）和一组过滤器（Filter）组成。</p>
+<p>Predicate（断言）</p>
+<p>路由转发的判断条件，我们可以通过 Predicate 对 HTTP 请求进行匹配，例如请求方式、请求路径、请求头、参数等，如果请求与断言匹配成功，则将请求转发到相应的服务。</p>
+<p>Filter（过滤器）</p>
+<p>过滤器，我们可以使用它对请求进行拦截和修改，还可以使用它对上文的响应进行再处理。</p>
+<p>注意：其中 Route 和 Predicate 必须同时声明。</p>
+<h2 id="5-3-Spring-Cloud-Gateway的特征"><a href="#5-3-Spring-Cloud-Gateway的特征" class="headerlink" title="5.3 Spring Cloud Gateway的特征"></a>5.3 Spring Cloud Gateway的特征</h2><ul>
+<li><p>基于 Spring Framework 5、Project Reactor 和 Spring Boot 2.0 构建。</p>
+</li>
+<li><p>能够在任意请求属性上匹配路由。</p>
+</li>
+<li><p>predicates（断言） 和 filters（过滤器）是特定于路由的。</p>
+</li>
+<li><p>集成了 Hystrix 熔断器。</p>
+</li>
+<li><p>集成了 Spring Cloud DiscoveryClient（服务发现客户端）。</p>
+</li>
+<li><p>易于编写断言和过滤器。</p>
+</li>
+<li><p>能够限制请求频率。</p>
+</li>
+<li><p>能够重写请求路径。</p>
+</li>
+</ul>
+<h2 id="5-4-Spring-Cloud-Gateway工作流程"><a href="#5-4-Spring-Cloud-Gateway工作流程" class="headerlink" title="5.4 Spring Cloud Gateway工作流程"></a>5.4 Spring Cloud Gateway工作流程</h2><ul>
+<li><p>客户端将请求发送到 Spring Cloud Gateway 上。</p>
+</li>
+<li><p>Spring Cloud Gateway 通过 Gateway Handler Mapping 找到与请求相匹配的路由，将其发送给 Gateway Web Handler。</p>
+</li>
+<li><p>Gateway Web Handler 通过指定的过滤器链（Filter Chain），将请求转发到实际的服务节点中，执行业务逻辑返回响应结果。</p>
+</li>
+<li><p>过滤器之间用虚线分开是因为过滤器可能会在转发请求之前（pre）或之后（post）执行业务逻辑。</p>
+</li>
+<li><p>过滤器（Filter）可以在请求被转发到服务端前，对请求进行拦截和修改，例如参数校验、权限校验、流量监控、日志输出以及协议转换等。</p>
+</li>
+<li><p>过滤器可以在响应返回客户端之前，对响应进行拦截和再处理，例如修改响应内容或响应头、日志输出、流量监控等。</p>
+</li>
+<li><p>响应原路返回给客户端。</p>
+</li>
+<li><p><img src="https://mmbiz.qpic.cn/mmbiz_png/gjnldtnoHOoIdJmESBWCLZmVxzuDp1zANHk3OeeohJQstTZ4kS4eHbXz9fItpChoUQmbEwkKHS5mWZRKFbChUQ/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p>
+</li>
+</ul>
+<p>总而言之，客户端发送到 Spring Cloud Gateway 的请求需要通过一定的匹配条件，才能定位到真正的服务节点。在将请求转发到服务进行处理的过程前后（pre 和 post），我们还可以对请求和响应进行一些精细化控制。Predicate 就是路由的匹配条件，而 Filter 就是对请求和响应进行精细化控制的工具。有了这两个元素，再加上目标 URI，就可以实现一个具体的路由了。</p>
+<h1 id="6-Predicate-断言"><a href="#6-Predicate-断言" class="headerlink" title="6. Predicate 断言"></a>6. Predicate 断言</h1><p>Spring Cloud Gateway 通过 Predicate 断言来实现 Route 路由的匹配规则。简单点说，Predicate 是路由转发的判断条件，请求只有满足了 Predicate 的条件，才会被转发到指定的服务上进行处理。使用 Predicate 断言需要注意以下 3 点：</p>
+<ul>
+<li><p>Route 路由与 Predicate 断言的对应关系为“一对多”，一个路由可以包含多个不同断言。</p>
+</li>
+<li><p>一个请求想要转发到指定的路由上，就必须同时匹配路由上的所有断言。</p>
+</li>
+<li><p>当一个请求同时满足多个路由的断言条件时，请求只会被首个成功匹配的路由转发。</p>
+</li>
+</ul>
+<p>常见的 Predicate 断言如下表：</p>
+<p>断言</p>
+<p>示例</p>
+<p>说明</p>
+<p>Path</p>
+<ul>
+<li>Path=/dept/list/**</li>
+</ul>
+<p>当请求路径与 /dept/list/** 匹配时，该请求才能被转发到 <code>http://localhost:8001</code> 上。</p>
+<p>Before</p>
+<ul>
+<li>Before=2021-10-20T11:47:34.255+08:00[Asia/Shanghai]</li>
+</ul>
+<p>在 2021 年 10 月 20 日 11 时 47 分 34.255 秒之前的请求，才会被转发到 <code>http://localhost:8001</code> 上。</p>
+<p>After</p>
+<ul>
+<li>After=2021-10-20T11:47:34.255+08:00[Asia/Shanghai]</li>
+</ul>
+<p>在 2021 年 10 月 20 日 11 时 47 分 34.255 秒之后的请求，才会被转发到 <code>http://localhost:8001</code> 上。</p>
+<p>Between</p>
+<ul>
+<li>Between=2021-10-20T15:18:33.226+08:00[Asia/Shanghai],2021-10-20T15:23:33.226+08:00[Asia/Shanghai]</li>
+</ul>
+<p>在 2021 年 10 月 20 日 15 时 18 分 33.226 秒 到 2021 年 10 月 20 日 15 时 23 分 33.226 秒之间的请求，才会被转发到 <code>http://localhost:8001</code> 服务器上。</p>
+<p>Cookie</p>
+<ul>
+<li>Cookie=name,c.biancheng.net</li>
+</ul>
+<p>携带 Cookie 且 Cookie 的内容为 name=c.biancheng.net 的请求，才会被转发到 <code>http://localhost:8001</code> 上。</p>
+<p>Header</p>
+<ul>
+<li>Header=X-Request-Id,\d+</li>
+</ul>
+<p>请求头上携带属性 X-Request-Id 且属性值为整数的请求，才会被转发到 <code>http://localhost:8001</code> 上。</p>
+<p>Method</p>
+<ul>
+<li>Method=GET</li>
+</ul>
+<p>只有 GET 请求才会被转发到 <code>http://localhost:8001</code> 上。</p>
+<h1 id="7-动态路由实现简单的路由服务器"><a href="#7-动态路由实现简单的路由服务器" class="headerlink" title="7. 动态路由实现简单的路由服务器"></a>7. 动态路由实现简单的路由服务器</h1><p>引入依赖</p>
+<!--特别注意：在 gateway 网关服务中不能引入 spring-boot-starter-web 的依赖，否则会报错-->  
+<!-- Spring cloud gateway 网关依赖-->  
+<dependency><br><groupid>org.springframework.boot</groupid><br><artifactid>spring-boot-starter</artifactid><br></dependency><br><dependency><br><groupid>org.springframework.cloud</groupid><br><artifactid>spring-cloud-starter-gateway</artifactid><br></dependency>
+
+<p>编写配置文件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">server:  </span><br><span class="line">port: <span class="number">9527</span>  </span><br><span class="line">  </span><br><span class="line">spring:  </span><br><span class="line">application:  </span><br><span class="line"> name: gateway  </span><br><span class="line">cloud:  </span><br><span class="line"> gateway: #网关路由配置  </span><br><span class="line"> routes:  </span><br><span class="line"> #将service5提供的服务隐藏起来，不暴露给客户端，只给客户端暴露API网关的地址9527  </span><br><span class="line"> - id: service5_routh   #路由id,没有固定规则，但唯一，建议与服务名对应  </span><br><span class="line"> uri: lb:<span class="comment">//service5   #动态路由匹配后提供服务的路由地址：lb://$&#123;服务名&#125;  </span></span><br><span class="line"> predicates:  </span><br><span class="line"> #以下是断言条件，必选全部符合条件  </span><br><span class="line"> - Path=/api/v1/service5<span class="comment">/**               #断言，路径匹配 注意：Path 中 P 为大写  </span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">eureka:  </span></span><br><span class="line"><span class="comment">instance:  </span></span><br><span class="line"><span class="comment"> instance-id: spring-cloud-gateway  </span></span><br><span class="line"><span class="comment"> prefer-ip-address: true  </span></span><br><span class="line"><span class="comment"> lease-expiration-duration-in-seconds: 15 #服务过期时间，如果超过这个时间没有检测到心跳，就将这个实例剔除  </span></span><br><span class="line"><span class="comment"> lease-renewal-interval-in-seconds: 5 #client发送心跳给server端的频率  </span></span><br><span class="line"><span class="comment">client:  </span></span><br><span class="line"><span class="comment"> registry-fetch-interval-seconds: 5  </span></span><br><span class="line"><span class="comment"> service-url:  </span></span><br><span class="line"><span class="comment"> defaultZone: http://eureka1001.com:1001/eureka/,http://eureka2001.com:2001/eureka/</span></span><br></pre></td></tr></table></figure></p>
+<p>默认情况下，Spring Cloud Gateway 会根据服务注册中心（例如 Eureka Server）中维护的服务列表，以服务名（spring.application.name）作为路径创建动态路由进行转发，从而实现动态路由功能。</p>
+<p>我们可以在配置文件中，将 Route 的 uri 地址修改为以下形式：lb://service-name 以上配置说明如下：</p>
+<ul>
+<li><p>lb（loadBalance）：uri 的协议，表示开启 Spring Cloud Gateway 的负载均衡功能。</p>
+</li>
+<li><p>service-name：服务名，Spring Cloud Gateway 会根据它获取到具体的微服务地址</p>
+</li>
+</ul>
+<p>启动类添加注解<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span>  </span><br><span class="line"><span class="meta">@EnableEurekaClient</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GatewayApplication</span> </span>&#123;  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">SpringApplication.run(GatewayApplication.class, args);  </span><br><span class="line">&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="8-Filter-过滤器"><a href="#8-Filter-过滤器" class="headerlink" title="8. Filter 过滤器"></a>8. Filter 过滤器</h1><p>通常情况下，出于安全方面的考虑，服务端提供的服务往往都会有一定的校验逻辑，例如用户登录状态校验、签名校验等。在微服务架构中，系统由多个微服务组成，所有这些服务都需要这些校验逻辑，此时我们就可以将这些校验逻辑写到 Spring Cloud Gateway 的 Filter 过滤器中。</p>
+<p>Filter 的分类</p>
+<p>Spring Cloud Gateway 提供了以下两种类型的过滤器，可以对请求和响应进行精细化控制。</p>
+<p>过滤器类型</p>
+<p>说明</p>
+<p>Pre 类型</p>
+<p>这种过滤器在请求被转发到微服务之前可以对请求进行拦截和修改，例如参数校验、权限校验、流量监控、日志输出以及协议转换等操作。</p>
+<p>Post 类型</p>
+<p>这种过滤器在微服务对请求做出响应后可以对响应进行拦截和再处理，例如修改响应内容或响应头、日志输出、流量监控等。</p>
+<p>按照作用范围划分，Spring Cloud gateway 的 Filter 可以分为 2 类：</p>
+<p>●GatewayFilter：应用在单个路由或者一组路由上的过滤器。</p>
+<p>●GlobalFilter：应用在所有的路由上的过滤器。</p>
+<p>GatewayFilter 网关过滤器</p>
+<p>GatewayFilter 是 Spring Cloud Gateway 网关中提供的一种应用在单个或一组路由上的过滤器。它可以对单个路由或者一组路由上传入的请求和传出响应进行拦截，并实现一些与业务无关的功能，比如登陆状态校验、签名校验、权限校验、日志输出、流量监控等。</p>
+<p>GatewayFilter 在配置文件（例如 application.yml）中的写法与 Predicate 类似，格式如下:</p>
+<p>spring:<br>cloud:<br> gateway:<br> routes:  </p>
+<ul>
+<li>id: xxxx<br>uri: xxxx<br>predicates:  </li>
+<li>Path=xxxx<br>filters:  </li>
+<li>AddRequestParameter=X-Request-Id,1024 #过滤器工厂会在匹配的请求头加上一对请求头，名称为 X-Request-Id 值为 1024  </li>
+<li>PrefixPath=/dept #在请求路径前面加上 /dept<br>……</li>
+</ul>
+<p>Spring Cloud Gateway 内置了多达 31 种 GatewayFilter，下表中列举了几种常用的网关过滤器及其使用示例。</p>
+<p>路由过滤器</p>
+<p>描述</p>
+<p>参数</p>
+<p>使用示例</p>
+<p>AddRequestHeader</p>
+<p>拦截传入的请求，并在请求上添加一个指定的请求头参数。</p>
+<p>name：需要添加的请求头参数的 key；value：需要添加的请求头参数的 value。</p>
+<ul>
+<li>AddRequestHeader=my-request-header,1024</li>
+</ul>
+<p>AddRequestParameter</p>
+<p>拦截传入的请求，并在请求上添加一个指定的请求参数。</p>
+<p>name：需要添加的请求参数的 key；value：需要添加的请求参数的 value。</p>
+<ul>
+<li>AddRequestParameter=my-request-param,c.biancheng.net</li>
+</ul>
+<p>AddResponseHeader</p>
+<p>拦截响应，并在响应上添加一个指定的响应头参数。</p>
+<p>name：需要添加的响应头的 key；value：需要添加的响应头的 value。</p>
+<ul>
+<li>AddResponseHeader=my-response-header,c.biancheng.net</li>
+</ul>
+<p>PrefixPath</p>
+<p>拦截传入的请求，并在请求路径增加一个指定的前缀。</p>
+<p>prefix：需要增加的路径前缀。</p>
+<ul>
+<li>PrefixPath=/consumer</li>
+</ul>
+<p>PreserveHostHeader</p>
+<p>转发请求时，保持客户端的 Host 信息不变，然后将它传递到提供具体服务的微服务中。</p>
+<p>无</p>
+<ul>
+<li>PreserveHostHeader</li>
+</ul>
+<p>RemoveRequestHeader</p>
+<p>移除请求头中指定的参数。</p>
+<p>name：需要移除的请求头的 key。</p>
+<ul>
+<li>RemoveRequestHeader=my-request-header</li>
+</ul>
+<p>RemoveResponseHeader</p>
+<p>移除响应头中指定的参数。</p>
+<p>name：需要移除的响应头。</p>
+<ul>
+<li>RemoveResponseHeader=my-response-header</li>
+</ul>
+<p>RemoveRequestParameter</p>
+<p>移除指定的请求参数。</p>
+<p>name：需要移除的请求参数。</p>
+<ul>
+<li>RemoveRequestParameter=my-request-param</li>
+</ul>
+<p>RequestSize</p>
+<p>配置请求体的大小，当请求体过大时，将会返回 413 Payload Too Large。</p>
+<p>maxSize：请求体的大小。</p>
+<ul>
+<li>name: RequestSize args: maxSize: 5000000</li>
+</ul>
+<p>GlobalFilter 全局过滤器</p>
+<p>GlobalFilter 是一种作用于所有的路由上的全局过滤器，通过它，我们可以实现一些统一化的业务功能，例如权限认证、IP 访问限制等。当某个请求被路由匹配时，那么所有的 GlobalFilter 会和该路由自身配置的 GatewayFilter 组合成一个过滤器链。Spring Cloud Gateway 为我们提供了多种默认的 GlobalFilter，例如与转发、路由、负载均衡等相关的全局过滤器。但在实际的项目开发中，通常我们都会自定义一些自己的 GlobalFilter 全局过滤器以满足我们自身的业务需求，而很少直接使用 Spring Cloud Config 提供这些默认的 GlobalFilter。</p>
+<p>关于默认的全局过滤器的详细内容，请参考 <strong>Spring Cloud 官网</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#global-filters</span><br></pre></td></tr></table></figure>
+<h1 id="9-全局过滤器的各种姿势"><a href="#9-全局过滤器的各种姿势" class="headerlink" title="9. 全局过滤器的各种姿势"></a>9. 全局过滤器的各种姿势</h1><h2 id="9-1-白名单路由、获取请求URL参数"><a href="#9-1-白名单路由、获取请求URL参数" class="headerlink" title="9.1 白名单路由、获取请求URL参数"></a>9.1 白名单路由、获取请求URL参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Component</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalFilter1</span> <span class="keyword">implements</span> <span class="title">GlobalFilter</span>, <span class="title">Ordered</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line"> <span class="meta">@Override</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOrder</span><span class="params">()</span> </span>&#123;  </span><br><span class="line"> <span class="keyword">return</span> Integer.MIN_VALUE;  </span><br><span class="line"> &#125;  </span><br><span class="line">  </span><br><span class="line"> <span class="meta">@Override</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line"> System.out.println(<span class="string">"通过参数过滤器"</span>);  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//1.对于特定路由的放行逻辑  </span></span><br><span class="line"> URI uri = exchange.getRequest().getURI();  </span><br><span class="line"> <span class="keyword">if</span> (<span class="string">"/api/v1/service8"</span>.equals(uri.getPath())) &#123;  </span><br><span class="line"> <span class="keyword">return</span> chain.filter(exchange);  </span><br><span class="line"> &#125;  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//2.获取URL参数  </span></span><br><span class="line"> MultiValueMap&lt;String, String&gt; queryParams = exchange.getRequest().getQueryParams();  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//3.其他路由进行权限校验  </span></span><br><span class="line"> <span class="keyword">if</span> (<span class="keyword">null</span> == queryParams.get(<span class="string">"p1"</span>)) &#123;  </span><br><span class="line"> exchange.getResponse().setStatusCode(HttpStatus.BAD_REQUEST);  </span><br><span class="line"> <span class="keyword">return</span> exchange.getResponse().writeWith(Flux.just(exchange.getResponse().bufferFactory()  </span><br><span class="line"> .wrap(<span class="string">"请填写请求参数p1"</span>.getBytes())));  </span><br><span class="line"> &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line"> <span class="keyword">return</span> chain.filter(exchange);  </span><br><span class="line"> &#125;  </span><br><span class="line"> &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PS：</p>
+<ul>
+<li><p>getOrder方法可以用于指定当前filter在执行链路的顺序，整个链路按照Order由小到大的顺序执行</p>
+</li>
+<li><p>对于白名单链路放行，整个filter链路都要编写放行逻辑</p>
+</li>
+</ul>
+<h2 id="9-2-获取请求体参数"><a href="#9-2-获取请求体参数" class="headerlink" title="9.2 获取请求体参数"></a>9.2 获取请求体参数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GatewayFilter2</span> <span class="keyword">implements</span> <span class="title">GatewayFilter</span>, <span class="title">Ordered</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line"> <span class="meta">@Override</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOrder</span><span class="params">()</span> </span>&#123;  </span><br><span class="line"> <span class="keyword">return</span> Integer.MIN_VALUE + <span class="number">1</span>;  </span><br><span class="line"> &#125;  </span><br><span class="line">  </span><br><span class="line"> <span class="meta">@Override</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line"> System.out.println(<span class="string">"通过特定过滤器2"</span>);  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//1.获取POST请求体参数  </span></span><br><span class="line"> Mono&lt;Void&gt; postBody = DataBufferUtils.join(exchange.getRequest().getBody()).flatMap(dataBuffer -&gt; &#123;  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//2.获取请求体参数  </span></span><br><span class="line"> <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[dataBuffer.readableByteCount()];  </span><br><span class="line"> dataBuffer.read(bytes);  </span><br><span class="line"> String bodyString = <span class="keyword">new</span> String(bytes, StandardCharsets.UTF_8);  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//TODO 3.在这里可以对请求体参数为所欲为了  </span></span><br><span class="line"> System.out.println(<span class="string">"bodyString:"</span> + bodyString);  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//4.释放内存  </span></span><br><span class="line"> DataBufferUtils.release(dataBuffer);  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//5.以下操作为了将请求体再次封装写回到request里  </span></span><br><span class="line"> exchange.getAttributes().put(<span class="string">"POST_BODY"</span>, bodyString);  </span><br><span class="line"> Flux&lt;DataBuffer&gt; cachedFlux = Flux.defer(() -&gt; &#123;  </span><br><span class="line"> DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);  </span><br><span class="line"> <span class="keyword">return</span> Mono.just(buffer);  </span><br><span class="line"> &#125;);  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//6.将请求体再次封装写回到request里，传到下一级，否则，由于请求体已被消费，后续的服务将取不到值  </span></span><br><span class="line"> ServerHttpRequest mutatedRequest = <span class="keyword">new</span> ServerHttpRequestDecorator(exchange.getRequest()) &#123;  </span><br><span class="line"> <span class="meta">@Override</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> Flux&lt;DataBuffer&gt; <span class="title">getBody</span><span class="params">()</span> </span>&#123;  </span><br><span class="line"> <span class="keyword">return</span> cachedFlux;  </span><br><span class="line"> &#125;  </span><br><span class="line"> &#125;;  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//7.封装request，传给下一级  </span></span><br><span class="line"> <span class="keyword">return</span> chain.filter(exchange.mutate().request(mutatedRequest).build());  </span><br><span class="line"> &#125;);  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//8.返回  </span></span><br><span class="line"> <span class="keyword">return</span> postBody;  </span><br><span class="line"> &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="9-3-为某个路由或某一组路由定制专属过滤器"><a href="#9-3-为某个路由或某一组路由定制专属过滤器" class="headerlink" title="9.3 为某个路由或某一组路由定制专属过滤器"></a>9.3 为某个路由或某一组路由定制专属过滤器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GatewayConfig</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line"> <span class="meta">@Bean</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> RouteLocator <span class="title">appRouteLocator</span><span class="params">(RouteLocatorBuilder builder)</span> </span>&#123;  </span><br><span class="line"> <span class="keyword">return</span> builder.routes().route(r -&gt; r.path(<span class="string">"/api/v1/service5/**"</span>)  </span><br><span class="line"> .filters(f -&gt; f.filter(<span class="keyword">new</span> GatewayFilter2()))  </span><br><span class="line"> .uri(<span class="string">"lb://service5"</span>)  </span><br><span class="line"> .id(<span class="string">"service5_routh"</span>))  </span><br><span class="line"> .build();  </span><br><span class="line"> &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="9-4-处理请求响应"><a href="#9-4-处理请求响应" class="headerlink" title="9.4 处理请求响应"></a>9.4 处理请求响应</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AfterGlobalFilter</span> <span class="keyword">implements</span> <span class="title">GlobalFilter</span>, <span class="title">Ordered</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line"> <span class="meta">@Override</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOrder</span><span class="params">()</span> </span>&#123;  </span><br><span class="line"> <span class="keyword">return</span> NettyWriteResponseFilter.WRITE_RESPONSE_FILTER_ORDER;  </span><br><span class="line"> &#125;  </span><br><span class="line">  </span><br><span class="line"> <span class="meta">@Override</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//1.获取字节工厂  </span></span><br><span class="line"> DataBufferFactory bufferFactory = exchange.getResponse().bufferFactory();  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//3.获取响应体  </span></span><br><span class="line"> <span class="keyword">final</span> ServerHttpResponseDecorator serverHttpResponseDecorator = <span class="keyword">new</span> ServerHttpResponseDecorator(exchange.getResponse()) &#123;  </span><br><span class="line"> <span class="meta">@Override</span>  </span><br><span class="line"> <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">writeWith</span><span class="params">(Publisher&lt;? extends DataBuffer&gt; body)</span> </span>&#123;  </span><br><span class="line"> <span class="keyword">if</span> (body <span class="keyword">instanceof</span> Flux) &#123;  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//4.返回响应  </span></span><br><span class="line"> Flux&lt;? extends DataBuffer&gt; fluxBody = (Flux&lt;? extends DataBuffer&gt;) body;  </span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">super</span>.writeWith(fluxBody.map(dataBuffer -&gt; &#123;  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//5.读取字节  </span></span><br><span class="line"> <span class="keyword">byte</span>[] content = <span class="keyword">new</span> <span class="keyword">byte</span>[dataBuffer.readableByteCount()];  </span><br><span class="line"> dataBuffer.read(content);  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//6.释放掉内存  </span></span><br><span class="line"> DataBufferUtils.release(dataBuffer);  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//7.这段代码我们可以自由发挥  </span></span><br><span class="line"> String responseStr = <span class="keyword">new</span> String(content, StandardCharsets.UTF_8);  </span><br><span class="line"> <span class="keyword">super</span>.setStatusCode(HttpStatus.valueOf(Integer.parseInt(responseStr)));  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//8.返回  </span></span><br><span class="line"> <span class="keyword">return</span> bufferFactory.wrap(content);  </span><br><span class="line"> &#125;));  </span><br><span class="line"> &#125;  </span><br><span class="line">  </span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">super</span>.writeWith(body);  </span><br><span class="line"> &#125;  </span><br><span class="line"> &#125;;  </span><br><span class="line">  </span><br><span class="line"> <span class="comment">//2.返回  </span></span><br><span class="line"> System.out.println(<span class="string">"通过响应过滤器"</span>);  </span><br><span class="line"> <span class="keyword">return</span> chain.filter(exchange.mutate().response(serverHttpResponseDecorator).build());  </span><br><span class="line"> &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2022/08/24/【数据库】索引数据存储结构B-树/" style="float: left;">
+        ← 【数据库】索引数据存储结构B+树
+    </a>
+    
+    
+    <a class="pull-right" href="/2022/07/04/【docker】常用dockerFile生成、docker-compose学习/">
+        【docker】常用dockerFile生成、docker-compose学习 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+<!--
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By XFF. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/HolyDogs" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/XFF34707256" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://weibo.com/u/5653044424" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+-->
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+            <style>
+.local-search-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: rgba(255, 255, 255, .9);
+  color: #333;
+  z-index: 9999;
+  border-radius: 5px;
+  overflow: scroll;
+}
+#local-search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #151515;
+  background-color: initial;
+}
+.search-result-list {
+  list-style: none;
+  padding-left: 0;
+}
+.search-result-list > li {
+  margin-top: 15px;
+  border-bottom: 1px solid #ddd;
+  transition: all ease .3s;
+}
+.search-result-list > li:hover {
+  border-bottom: 1px solid gray;
+}
+.search-result-title {
+  font-size: 16px;
+}
+.search-result {
+  line-height: 20px;
+}
+.search-keyword {
+  font-weight: normal;
+  color: #c00;
+}
+
+@media (min-width: 890px) {
+  .popup-btn-close {
+    position: absolute;
+    top: 15px;
+    left: 35px;
+    border: 1px solid #151515;
+    padding: 0px 10px;
+    border-top-left-radius: 8px;
+    cursor: pointer;
+    transition: all ease .3s;
+  }
+  .popup-btn-close:hover {
+    background: #151515;
+    opacity: .9;
+    color: #fff;
+  }
+}
+@media (max-width: 890px) {
+  .popup-btn-close {
+    font-size: 0;
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px #888;
+    cursor: pointer;
+  }
+  .popup-btn-close::after {
+    content: '←';
+    color: #151515;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+  }
+}
+</style>
+
+<div class="popup search-popup local-search-popup">
+  <span class="popup-btn-close">
+    ESC
+  </span>
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="local-search-header clearfix">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+          <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+        </div>
+      </div>
+      <div id="local-search-result"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // get search zip version
+    $.get('/searchVersion?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem += "<a target='_blank' href='" + articleUrl + "'>" +
+                  "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                  "...</p>" + "</a>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+      
+</body>
+</html>

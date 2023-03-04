@@ -107,31 +107,37 @@
 				    
 				    <li><a href="/categories/SpringCloud/" class="animsition-link">SpringCloud<small>(2)</small></a></li>
 				    
-				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(1)</small></a></li>
+				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(6)</small></a></li>
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(14)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(17)</small></a></li>
 				    
-				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(13)</small></a></li>
 				    
 				    <li><a href="/categories/nginx/" class="animsition-link">nginx<small>(1)</small></a></li>
 				    
+				    <li><a href="/categories/quartz/" class="animsition-link">quartz<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/redis/" class="animsition-link">redis<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
-				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(4)</small></a></li>
+				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(7)</small></a></li>
 				    
-				    <li><a href="/categories/springBoot/" class="animsition-link">springBoot<small>(1)</small></a></li>
+				    <li><a href="/categories/springBoot/" class="animsition-link">springBoot<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/springCloud/" class="animsition-link">springCloud<small>(1)</small></a></li>
 				    
 				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/swagger/" class="animsition-link">swagger<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(1)</small></a></li>
+				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(3)</small></a></li>
 				    
@@ -139,7 +145,7 @@
 				    
 				    <li><a href="/categories/前端/" class="animsition-link">前端<small>(14)</small></a></li>
 				    
-				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(14)</small></a></li>
+				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(17)</small></a></li>
 				    
 				    <li><a href="/categories/数据结构/" class="animsition-link">数据结构<small>(3)</small></a></li>
 				    
@@ -265,16 +271,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/02/21/Tomcat控制台窗口中文乱码/">Tomcat控制台窗口中文乱码</a></h3>
+                    <h3><a href="/2020/04/09/【maven】maven使用中遇到的问题记录/">【maven】maven使用中遇到的问题记录</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-02-21T07:02:35.000Z" itemprop="datePublished">
-          2019-02-21
+      <time datetime="2020-04-09T07:20:35.000Z" itemprop="datePublished">
+          2020-04-09
       </time>
     
     
     | 
-    <a href='/tags/乱码/'>乱码</a>
+    <a href='/tags/maven/'>maven</a>
     
     
 </span>
@@ -283,17 +289,16 @@
                 <div class="col-md-8">
                     <p>
                       
-                        绕了很大一个圈子今天终于解决了这个问题特地用一篇博客记录
-按网上说的改注册表、改编码格式、加参数运行都试过，全都没有用，我又是个强迫症，看不得乱码
-今天对conf目录下的logging.properties文件查看后，觉得是里面的格式UTF-8和系统的936GB2312冲突问题，于是ctrl+h把所有的UTF-8全部替换为GBK
-完美解决
-
-
+                        依赖冲突如下图解决，去除该依赖下冲突的包
+&lt;dependency&gt;
+    &lt;groupId&gt;org.flowable&lt;/groupId&gt;
+    &lt;artifactId&gt;flowable-spring-boot-starter-process&lt;/artifactId&gt;
+    &lt;version&gt;${flowable.version}&lt;/version&gt;
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/02/21/Tomcat控制台窗口中文乱码/">Read More...</a>
+                        <a href="/2020/04/09/【maven】maven使用中遇到的问题记录/">Read More...</a>
                     </p>
                     
                 </div>
@@ -305,18 +310,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/02/16/【vue】与springboot后台项目数据交互/">【vue】与springboot后台项目数据交互</a></h3>
+                    <h3><a href="/2020/04/09/【swagger-ui】通过注解生成api文档/">【swagger-ui】通过注解生成api文档</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-02-16T15:12:00.000Z" itemprop="datePublished">
-          2019-02-16
+      <time datetime="2020-04-09T00:44:14.000Z" itemprop="datePublished">
+          2020-04-09
       </time>
     
     
     | 
-    <a href='/tags/springboot/'>springboot</a>,
-    
-    <a href='/tags/axios/'>axios</a>
+    <a href='/tags/api文档/'>api文档</a>
     
     
 </span>
@@ -325,19 +328,18 @@
                 <div class="col-md-8">
                     <p>
                       
-                        最近在使用vue和springboot前后端分离的方式开发项目遇到了很多问题
-身份认证这里本可以用vuex，但是由于偏轻量级，用vuex会比较复杂，于是我在main.js里定义了一个全局变量，以达到控制身份的效果
-var state={
-    islogin:false,
-    manager:false,
-    identify:{
-        name:&apos;null&apos;,
-        email:&ap
+                        swagger-ui添加依赖
+&lt;dependency&gt;
+    &lt;groupId&gt;io.springfox&lt;/groupId&gt;
+    &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
+    &lt;version&gt;2.9.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/02/16/【vue】与springboot后台项目数据交互/">Read More...</a>
+                        <a href="/2020/04/09/【swagger-ui】通过注解生成api文档/">Read More...</a>
                     </p>
                     
                 </div>
@@ -349,18 +351,18 @@ var state={
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/31/【vue】整合surveyjs工具生成在线问卷或考试/">【vue】整合surveyjs工具生成在线问卷或考试</a></h3>
+                    <h3><a href="/2020/01/06/【Docker】docker基本使用/">【Docker】docker基本使用</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-31T06:23:29.000Z" itemprop="datePublished">
-          2019-01-31
+      <time datetime="2020-01-06T10:00:16.000Z" itemprop="datePublished">
+          2020-01-06
       </time>
     
     
     | 
-    <a href='/tags/vue/'>vue</a>,
+    <a href='/tags/linux/'>linux</a>,
     
-    <a href='/tags/surveyjs/'>surveyjs</a>
+    <a href='/tags/docker/'>docker</a>
     
     
 </span>
@@ -369,26 +371,18 @@ var state={
                 <div class="col-md-8">
                     <p>
                       
-                        本想做个问卷系统，在github上找到一个叫做surveyjs的项目，正好是我需要的东西。
-
-官网
-
-https://surveyjs.io/
-
-vue项目,surveyjseditor例子
-
-surveyjs_vue_quickstart
+                        三层概念
+仓库：类似于Github或者Gitlab，不是保存代码，而是用来保存镜像。（Docker Hub）
+镜像IMAGE：Docker镜像，相当于一个系统，容器基于镜像的环境运行，例如Ubuntu:14.04（冒号后面表示版本，可以自定义版本号名，如dev、test、prod）
+容器CONTAINER：容器是镜像运行的实体，可以被创建、启动、停止、删除、暂停等。
 
 
-可以只用单个survey页面或者把编辑器导入也行。
-这里我的是问卷生成，所以俩部分都需要使用
-
-开始本地找个空文件夹打开gitbash命令行窗口git clone https://github.
+Docker安装Docker一般都在Linux系统上运行，实际在w
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/31/【vue】整合surveyjs工具生成在线问卷或考试/">Read More...</a>
+                        <a href="/2020/01/06/【Docker】docker基本使用/">Read More...</a>
                     </p>
                     
                 </div>
@@ -400,19 +394,12 @@ surveyjs_vue_quickstart
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/29/vuejs发送异步请求/">vuejs发送异步请求</a></h3>
+                    <h3><a href="/2020/01/01/【Error】2020-7-20记录/">【Error】2020-7-20记录</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-29T08:56:23.000Z" itemprop="datePublished">
-          2019-01-29
+      <time datetime="2020-01-01T08:24:37.000Z" itemprop="datePublished">
+          2020-01-01
       </time>
-    
-    
-    | 
-    <a href='/tags/vue/'>vue</a>,
-    
-    <a href='/tags/ajax/'>ajax</a>
-    
     
 </span>
                     </span>
@@ -420,21 +407,13 @@ surveyjs_vue_quickstart
                 <div class="col-md-8">
                     <p>
                       
-                        问题使用vue时如何发送请求？
-
-答：ajax，不过vue不使用jquery，那么需要引入一些HTTP库工具，使用其中封装好的请求方法即可
-superagent或者Axios（主流）使用文档
-
-https://www.kancloud.cn/yunye/axios/234845https://www.jianshu.com/p/1432e0f29abd
-
-首先要安装相应的工具运行命令
-npm install xxx -D
-xxx替换为对
+                        指定文件输入框可以多选文件：multiple属性
+&lt;input type=&quot;file&quot; size=&quot;30&quot; name=&quot;excel&quot; multiple=&quot;multiple&quot; accept=&quot;application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spread
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/29/vuejs发送异步请求/">Read More...</a>
+                        <a href="/2020/01/01/【Error】2020-7-20记录/">Read More...</a>
                     </p>
                     
                 </div>
@@ -446,19 +425,12 @@ xxx替换为对
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/29/vuejs总体结构学习/">vuejs总体结构学习</a></h3>
+                    <h3><a href="/2019/08/20/我搬砖回来了/">我搬砖回来了~</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-29T07:50:24.000Z" itemprop="datePublished">
-          2019-01-29
+      <time datetime="2019-08-20T09:58:03.000Z" itemprop="datePublished">
+          2019-08-20
       </time>
-    
-    
-    | 
-    <a href='/tags/vue/'>vue</a>,
-    
-    <a href='/tags/js/'>js</a>
-    
     
 </span>
                     </span>
@@ -466,23 +438,15 @@ xxx替换为对
                 <div class="col-md-8">
                     <p>
                       
-                        偶然翻到一篇讲解一个vue项目的搭建的博客。全部撸完后觉得写的很好，决定在这里总结一下，原博地址
-
-https://blog.csdn.net/fungleo/article/details/77606321
-
-
-首先，看一下大体的项目结构
-
-贴代码main.js
-
-红框框起来的是必要代码，引入Vue和App模版、vue路由。然后引入全局的路由配置文件routes.js使用路由需要Vue.use(VueRouter)
-
-看一下App.v
+                        这段时间忙于毕业和工作，很久都没写博客。习惯这种东西，一断就容易断很久很久。其实也有相当大的一部分原因是自己懒。
+毕业的这段时间，自己也没有花时间学习新东西，挺惭愧的，还沉迷于炉石传说[擦汗]不能自拔。
+毕业后6月3、4号拿到毕业证学位证，10号就出差到广州，然后正式进入工作状态。第一天、第二天….都挺不安的，慢慢的自己摸、问，终于是熟悉了一些。
+很多时候觉得自己还是不要太胆小，敢做敢写，发现有问题了再改会印象深很多（当然熟悉了这样写不
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/29/vuejs总体结构学习/">Read More...</a>
+                        <a href="/2019/08/20/我搬砖回来了/">Read More...</a>
                     </p>
                     
                 </div>
@@ -494,18 +458,18 @@ https://blog.csdn.net/fungleo/article/details/77606321
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/25/【redis】jedis使用/">【redis】jedis使用</a></h3>
+                    <h3><a href="/2019/04/12/【SpringBoot】定时任务与Cron表达式/">【SpringBoot】定时任务与Cron表达式</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-25T07:57:30.000Z" itemprop="datePublished">
-          2019-01-25
+      <time datetime="2019-04-12T03:45:07.000Z" itemprop="datePublished">
+          2019-04-12
       </time>
     
     
     | 
-    <a href='/tags/jedis/'>jedis</a>,
+    <a href='/tags/定时任务/'>定时任务</a>,
     
-    <a href='/tags/java/'>java</a>
+    <a href='/tags/cron/'>cron</a>
     
     
 </span>
@@ -514,18 +478,15 @@ https://blog.csdn.net/fungleo/article/details/77606321
                 <div class="col-md-8">
                     <p>
                       
-                        使用jedis访问redis数据库创建个maven项目JedisDemo
-引入依赖
-&lt;dependencies&gt;  
-     &lt;dependency&gt; 
-        &lt;groupId&gt;redis.clients&lt;/groupId&gt;  
-         &lt;artifactId&gt;jedis&lt;/artifactId&gt;  
-         &lt;version&
+                        SpringBoot定时器SpringBoot自带定时器功能，若不考虑重复启动定时任务以及并发带来的问题，可以选择这种方式来简单快速地定义定时器。
+使用时只需要在声明定时任务的类或者启动类上添加注解@EnableScheduling配合使用在方法上的@Scheduled注解就能简单定义一个定时任务
+在启动类上加@EnableScheduling可以方便对所有任务进行开启和关闭
+在声明定时任务的类上需要加@Component将该类实例化到
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/25/【redis】jedis使用/">Read More...</a>
+                        <a href="/2019/04/12/【SpringBoot】定时任务与Cron表达式/">Read More...</a>
                     </p>
                     
                 </div>
@@ -537,16 +498,18 @@ https://blog.csdn.net/fungleo/article/details/77606321
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/25/【redis】高级话题/">【redis】高级话题</a></h3>
+                    <h3><a href="/2019/04/09/【IndexedDB】基本使用/">【IndexedDB】基本使用</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-25T06:52:28.000Z" itemprop="datePublished">
-          2019-01-25
+      <time datetime="2019-04-09T08:52:02.000Z" itemprop="datePublished">
+          2019-04-09
       </time>
     
     
     | 
-    <a href='/tags/redis/'>redis</a>
+    <a href='/tags/js/'>js</a>,
+    
+    <a href='/tags/前端/'>前端</a>
     
     
 </span>
@@ -555,18 +518,13 @@ https://blog.csdn.net/fungleo/article/details/77606321
                 <div class="col-md-8">
                     <p>
                       
-                        事务multi标记一个事务的开始，多条命令会按照先后顺序放进一个队列中，总返回OK
-exec执行所有事务块的命令事务内的所有执行语句内容，事务被打断返回nil
-discard（当事务队列内的语句写到一半不想写了）取消事务，放弃事务内的所有命令，总返回OK
-
-当遇到语法错误时，事务就会被放弃
-当语法没错，但执行会出错时，redis不会回滚，前面正确的命令会正常执行
-watch key…监视一个或多个key，如果在事务执行前这些key被其他
+                        本文来源：本人在使用网页的StackEdit时，发现这东西不用网络，不用登陆，也能保存所有写过的文章，那么这些文章存在哪了呢？Cookie？LocalStorage？好像都不适合存太长的数据，然后发现了IndexedDB这个东西，随后对其进行了探索。
+介绍IndexedDB 是一种可以让你在用户的浏览器内持久化存储数据的方法。IndexedDB 为生成 Web Application 提供了丰富的查询能力，使我们的应用在在线和离线时都可
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/25/【redis】高级话题/">Read More...</a>
+                        <a href="/2019/04/09/【IndexedDB】基本使用/">Read More...</a>
                     </p>
                     
                 </div>
@@ -578,16 +536,16 @@ watch key…监视一个或多个key，如果在事务执行前这些key被其�
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/">【redis】可视化工具以及一些基本命令对5种类型操作</a></h3>
+                    <h3><a href="/2019/03/21/【vue】引入ECharts图表和组件/">【vue】引入ECharts图表和组件</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2019-01-25T02:11:20.000Z" itemprop="datePublished">
-          2019-01-25
+      <time datetime="2019-03-21T07:20:37.000Z" itemprop="datePublished">
+          2019-03-21
       </time>
     
     
     | 
-    <a href='/tags/redis/'>redis</a>
+    <a href='/tags/echarts/'>echarts</a>
     
     
 </span>
@@ -596,37 +554,22 @@ watch key…监视一个或多个key，如果在事务执行前这些key被其�
                 <div class="col-md-8">
                     <p>
                       
-                        
-redis可视化工具安装
-redis-cli命令
-Key的五种数据类型
-基本命令
+                        如何在Vue项目中画出优雅的图表？
+ECharts文档如下
 
-字符串类型
+https://www.echartsjs.com/tutorial.html#%E5%9C%A8%20webpack%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20ECharts
 
-哈希类型hash
+引入步骤
+安装ECharts
+npm install echarts --save
 
-列表list
-
-集合类型set
-
-有序集合zset
-
-
-
-
-
-redis关闭./redis-cli shutdownkill 进程
-连接指定地址的redis./redis-cli -h 127.0.0.1 -p 6379
-
-redis desktop managerredis的可视化管理工具download
-
-http
+定义html容器用来渲染echarts图表
+&lt;div class=&quot;cha
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2019/01/25/【redis】可视化工具以及一些基本命令对5种类型操作/">Read More...</a>
+                        <a href="/2019/03/21/【vue】引入ECharts图表和组件/">Read More...</a>
                     </p>
                     
                 </div>

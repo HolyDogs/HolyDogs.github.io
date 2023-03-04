@@ -107,31 +107,37 @@
 				    
 				    <li><a href="/categories/SpringCloud/" class="animsition-link">SpringCloud<small>(2)</small></a></li>
 				    
-				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(1)</small></a></li>
+				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(6)</small></a></li>
 				    
 				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/java/" class="animsition-link">java<small>(14)</small></a></li>
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(17)</small></a></li>
 				    
-				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(1)</small></a></li>
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(13)</small></a></li>
 				    
 				    <li><a href="/categories/nginx/" class="animsition-link">nginx<small>(1)</small></a></li>
 				    
+				    <li><a href="/categories/quartz/" class="animsition-link">quartz<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/redis/" class="animsition-link">redis<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
 				    
-				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(4)</small></a></li>
+				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(7)</small></a></li>
 				    
-				    <li><a href="/categories/springBoot/" class="animsition-link">springBoot<small>(1)</small></a></li>
+				    <li><a href="/categories/springBoot/" class="animsition-link">springBoot<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/springCloud/" class="animsition-link">springCloud<small>(1)</small></a></li>
 				    
 				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/swagger/" class="animsition-link">swagger<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(1)</small></a></li>
+				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(3)</small></a></li>
 				    
@@ -139,7 +145,7 @@
 				    
 				    <li><a href="/categories/前端/" class="animsition-link">前端<small>(14)</small></a></li>
 				    
-				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(14)</small></a></li>
+				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(17)</small></a></li>
 				    
 				    <li><a href="/categories/数据结构/" class="animsition-link">数据结构<small>(3)</small></a></li>
 				    
@@ -265,17 +271,12 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2021/03/30/【spring】spring事务/">【spring】spring事务</a></h3>
+                    <h3><a href="/2022/09/04/【spring】事务回滚/">【spring】事务回滚</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2021-03-30T12:40:23.000Z" itemprop="datePublished">
-          2021-03-30
+      <time datetime="2022-09-04T07:00:48.000Z" itemprop="datePublished">
+          2022-09-04
       </time>
-    
-    
-    | 
-    <a href='/tags/事务/'>事务</a>
-    
     
 </span>
                     </span>
@@ -283,99 +284,17 @@
                 <div class="col-md-8">
                     <p>
                       
-                        spring支持声明式注解事务@Transactional注解只能用于public修饰的方法
-一个方法被事务注解后，需要等方法运行完才能提交所有的sql
-事务的ACID特征：即原子性（Atomicity，或称不可分割性）、一致性（Consistency）、隔离性（Isolation，又称独立性）、持久性（Durability）。
-rollbackFor可以指定事务回滚的异常类，一般分为两种：RuntimeException运行时异常以及
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2021/03/30/【spring】spring事务/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2021/01/20/【java】ThreadLocal应用以及理解/">【java】ThreadLocal应用以及理解</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2021-01-20T08:25:15.000Z" itemprop="datePublished">
-          2021-01-20
-      </time>
-    
-    
-    | 
-    <a href='/tags/多线程/'>多线程</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        ThreadLocal使用以线程为作用域，每个线程可以定义线程内独有的变量，不会对其它线程或者作用域造成影响。
-如某线程调用了如下方法:
-void doWork(User user){
-    functionA(user);
-    functionB(user);
-    functionC(user);
-    functionD(user);
-}
-线程中频繁地参数传递或者状态传递比较容易出现过度传参、状态不一致等问题。在上面的d
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2021/01/20/【java】ThreadLocal应用以及理解/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2021/01/11/【mybatis】多数据源实现/">【mybatis】多数据源实现</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2021-01-11T03:05:12.000Z" itemprop="datePublished">
-          2021-01-11
-      </time>
-    
-    
-    | 
-    <a href='/tags/多数据源/'>多数据源</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        Mybatis多数据库兼容
-mysql+oracle..
+                        1. 主要的三种传播机制
+https://www.cnblogs.com/xzwbl…
 
-1.mybatis配置两个数据库
-xff.mysql.datasource.driver=com.mysql.jdbc.Driver
-#xff.mysql.datasource.url=jdbc:mysql://122.***.9.**:19087/
-xff.mysql.datasource.url=jdbc:mysql://10.45.**.**:3306/testdb?us
+REQUIRED、REQUIRES_NEW、NESTED
+注意：以下所有的testA()方法与testB()方法是在两个类之中且都将bean交给spring管理，若非如此会造成事务失效问题请看第二部分
+1.1 REQUIRED（默认）当前没有事务，则新建一个事务，如存在事务，则加入此事务123456789101112131415161718// 例
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2021/01/11/【mybatis】多数据源实现/">Read More...</a>
+                        <a href="/2022/09/04/【spring】事务回滚/">Read More...</a>
                     </p>
                     
                 </div>
@@ -387,17 +306,12 @@ xff.mysql.datasource.url=jdbc:mysql://10.45.**.**:3306/testdb?us
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2020/12/30/【springBoot】多模块划分/">【springBoot】多模块划分</a></h3>
+                    <h3><a href="/2022/08/24/【数据库】索引数据存储结构B-树/">【数据库】索引数据存储结构B+树</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2020-12-30T01:48:19.000Z" itemprop="datePublished">
-          2020-12-30
+      <time datetime="2022-08-24T07:02:26.000Z" itemprop="datePublished">
+          2022-08-24
       </time>
-    
-    
-    | 
-    <a href='/tags/多模块/'>多模块</a>
-    
     
 </span>
                     </span>
@@ -405,18 +319,15 @@ xff.mysql.datasource.url=jdbc:mysql://10.45.**.**:3306/testdb?us
                 <div class="col-md-8">
                     <p>
                       
-                        最近把项目代码进行了重构，根据规范大致对进行中的项目进行了模块划分。
-多模块的优点：可维护性1.灵活架构，焦点分离2.方便模块间组合、分解3.方便单个模块功能调试、升级4.多人协作互不干扰
-springBoot多模块划分
-根据通用规范，我把项目划分为如下模块
-&lt;modules&gt;
-    &lt;module&gt;gyjc-web&lt;/module&gt;
-    &lt;module&gt;gyjc-service&l
+                        B树B树也为B-树
+阶m：一个节点最多的子节点数目根：根节点，元素个数在1到m-1之间内节点元素个数：在2到m-1之间
+B树插入针对m阶高度h的B树，插入一个元素时，首先在B树中是否存在，如果不存在，即在叶子结点处结束，然后在叶子结点中插入该新的元素。
+若该节点元素个数小于m-1，直接插入；若该节点元素个数等于m-1，引起节点分裂；以该节点中间元素为分界，取中间元素（偶数个数，中间两个随机选取）插入到父节点中；重复上面动作，直到所有节点
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2020/12/30/【springBoot】多模块划分/">Read More...</a>
+                        <a href="/2022/08/24/【数据库】索引数据存储结构B-树/">Read More...</a>
                     </p>
                     
                 </div>
@@ -428,17 +339,12 @@ springBoot多模块划分
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2020/12/15/【redis】redis的数据同步机制/">【redis】redis的数据同步机制</a></h3>
+                    <h3><a href="/2022/08/04/【springCloud】网关实现/">【springCloud】网关实现</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2020-12-15T03:43:46.000Z" itemprop="datePublished">
-          2020-12-15
+      <time datetime="2022-08-04T06:57:30.000Z" itemprop="datePublished">
+          2022-08-04
       </time>
-    
-    
-    | 
-    <a href='/tags/redis/'>redis</a>
-    
     
 </span>
                     </span>
@@ -446,18 +352,15 @@ springBoot多模块划分
                 <div class="col-md-8">
                     <p>
                       
-                        redis 与 memcache比较
-redis提供持久化
+                        1.什么是网关API 网关是一个搭建在客户端和微服务之间的服务，我们可以在 API 网关中处理一些非业务功能的逻辑，例如权限验证、监控、缓存、请求路由等。
+网关的核心作用就是路由转发 API 网关就像整个微服务系统的门面一样，是系统对外的唯一入口。有了它，客户端会先将请求发送到 API 网关，然后由 API 网关根据请求的标识信息将请求转发到微服务实例。如下图：
 
-持久化的两种方式 =》 dump.rdb1、客户端使用BGSAVE或者SAVE手动保存到数据文件中，避免使用2、配置文件中配置了一定时间内有多少key被修改了则自动进行RDB持久化
-AOF:文件追加写命令持久化即在发生写命令时追加命令到AOF文件中，可配置是否开启
-REDIS主从复制
-机制1-master同步所有slave机制2-master同步到一部分slave，然后该sl
+2. 为什么要网关在微服务架构中，一个系统往往由多个微服务组成，而这些服
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2020/12/15/【redis】redis的数据同步机制/">Read More...</a>
+                        <a href="/2022/08/04/【springCloud】网关实现/">Read More...</a>
                     </p>
                     
                 </div>
@@ -469,16 +372,16 @@ REDIS主从复制
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2020/12/07/【SpringBoot】使用webSocket主动给客户端发送消息/">【SpringBoot】使用webSocket主动给客户端发送消息</a></h3>
+                    <h3><a href="/2022/07/04/【docker】常用dockerFile生成、docker-compose学习/">【docker】常用dockerFile生成、docker-compose学习</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2020-12-07T09:22:37.000Z" itemprop="datePublished">
-          2020-12-07
+      <time datetime="2022-07-04T06:54:42.000Z" itemprop="datePublished">
+          2022-07-04
       </time>
     
     
     | 
-    <a href='/tags/webSocket/'>webSocket</a>
+    <a href='/tags/docker/'>docker</a>
     
     
 </span>
@@ -487,13 +390,13 @@ REDIS主从复制
                 <div class="col-md-8">
                     <p>
                       
-                        websocket协议与http协议相同点：建立在TCP协议之上，同http协议一样通过TCP传输数据
-不同点：HTTP协议为单向协议，只有客户端能向服务器端发送请求，服务器不能主动向客户端传递数据，包括短连接和长连接，短连接为每次http请求都要经过三次握手，长连接为建立连接后保持TCP连接维持一段时间。为了解决服务器端不能主动给客户端传输数据以及避免长连接和轮询问题，WebSocket出现了。WebSocket也需要先进行http请
+                        前言docker 官方镜像源已经有 tomcat 的镜像，运行命令 docker pull tomcat 就可以拉下来，但是如果我们想将自己的 tomcat 打成镜像，例如，我们业务需要修改了 tomcat 的源码，这时候我们想要将他打包成镜像，如何操作 ？
+一、准备前言说是我们自己修改过源码的 tomcat，那我们必须要先准备好一个已经修改了源码，并打包成 tar.gz 的压缩包 apache-tomcat-9.0.58.tar.gz
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2020/12/07/【SpringBoot】使用webSocket主动给客户端发送消息/">Read More...</a>
+                        <a href="/2022/07/04/【docker】常用dockerFile生成、docker-compose学习/">Read More...</a>
                     </p>
                     
                 </div>
@@ -505,17 +408,12 @@ REDIS主从复制
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2020/12/03/【ORACLE】sql优化记录/">【ORACLE】sql优化记录</a></h3>
+                    <h3><a href="/2022/05/24/【漏洞修复】tomcat、ng漏洞修复笔记/">【漏洞修复】tomcat、ng漏洞修复笔记</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2020-12-03T02:31:49.000Z" itemprop="datePublished">
-          2020-12-03
+      <time datetime="2022-05-24T12:59:18.000Z" itemprop="datePublished">
+          2022-05-24
       </time>
-    
-    
-    | 
-    <a href='/tags/sql优化/'>sql优化</a>
-    
     
 </span>
                     </span>
@@ -523,13 +421,17 @@ REDIS主从复制
                 <div class="col-md-8">
                     <p>
                       
-                        先看段sql
-WITH ydz AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB_CPCLJC_ZS_TJ WHERE statistic_mark = ‘月度值’ ),tb AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB_CPCLJC_ZS_TJ 
+                        1、nginx使用OPTIONS方式请求报错，暴露nginx版本
+nginx配置里加上server_tokens off;即可隐藏nginx版本
+2、tomcat404、504等等报错时，暴露tomcat版本号web.xml加上
+&lt;error-page&gt;
+    &lt;error-code&gt;404&lt;/error-code&gt;
+    &lt;location&gt;/404.html&lt;/locatio
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2020/12/03/【ORACLE】sql优化记录/">Read More...</a>
+                        <a href="/2022/05/24/【漏洞修复】tomcat、ng漏洞修复笔记/">Read More...</a>
                     </p>
                     
                 </div>
@@ -541,19 +443,12 @@ WITH ydz AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2020/10/06/【java】excel文件上传处理解析/">【java】excel文件上传处理解析</a></h3>
+                    <h3><a href="/2022/04/24/【springBoot】日志分隔/">【springBoot】日志分隔</a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2020-10-06T02:40:13.000Z" itemprop="datePublished">
-          2020-10-06
+      <time datetime="2022-04-24T06:59:53.000Z" itemprop="datePublished">
+          2022-04-24
       </time>
-    
-    
-    | 
-    <a href='/tags/文件上传/'>文件上传</a>,
-    
-    <a href='/tags/excel/'>excel</a>
-    
     
 </span>
                     </span>
@@ -561,17 +456,80 @@ WITH ydz AS ( SELECT zbmc, to_number( value ) value, jldw, nf, yforjd yf FROM ZB
                 <div class="col-md-8">
                     <p>
                       
-                        文件上传使用Element-UI上传文件控件（可以限制文件类型、文件大小等，选中多个文件上传时，该控件会将多个文件拆成多次请求到后台，每次请求是一个文件）
-&lt;template&gt;
-  &lt;div class=&quot;app-container&quot; align=&quot;center&quot;&gt;
-
-    &lt;el-upload
-      class=&quot;upload-demo&quot;
+                        springBoot项目日志分隔logging: #默认输出到 console, file 10m滚动
+  level: #trace debug info warn error 5个级别，支持不同包名设置不同级别
+    root: info #整个项目默认
+    com.zjasm.change: debug #打印sql
+    com.alibaba.nacos.client.naming: warn
+  file:
+    
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2020/10/06/【java】excel文件上传处理解析/">Read More...</a>
+                        <a href="/2022/04/24/【springBoot】日志分隔/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2022/04/06/【redisson】分布式锁实现/">【redisson】分布式锁实现</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2022-04-06T04:16:15.000Z" itemprop="datePublished">
+          2022-04-06
+      </time>
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        使用Redisson实现分布式锁
+依赖123456&lt;!-- 分布式锁Redisson --&gt;&lt;dependency&gt;    &lt;groupId&gt;org.redisson&lt;/groupId&gt;    &lt;artifactId&gt;redisson-spring-boot-starter&lt;/artifactId&gt;    &lt;version&gt;3.13.6&lt;/vers
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2022/04/06/【redisson】分布式锁实现/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2022/03/14/【数据库】乐观悲观锁记录/">【数据库】乐观悲观锁记录</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2022-03-14T03:01:29.000Z" itemprop="datePublished">
+          2022-03-14
+      </time>
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        乐观锁乐观锁实际上并没有加锁，只是一种锁思想，一般通过在行数据上添加版本号字段实现，在更新数据前，先查询出当前行数据的版本号，更新数据时，将版本号加1，并判断数据库中版本号是否等于前面我们读取出来的版本号，如果不一致，说明数据被修改过，更新失败。乐观锁的核心语句是：update table set ... version=version+1 where id=#{id} and version=#{version};
+乐观锁使用场景：比
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2022/03/14/【数据库】乐观悲观锁记录/">Read More...</a>
                     </p>
                     
                 </div>

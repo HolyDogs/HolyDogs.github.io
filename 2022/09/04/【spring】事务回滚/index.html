@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>【spring】事务回滚 | XFF&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="XFF's blog">
+    <meta name="author" content="XFF">
+    <meta name="description" content="BLOG" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="XFF&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="https://github.com/HolyDogs/Survey-Creater" target="_BLANK" class="animsition-link">Survey-Creater问卷系统</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/WriteToFutureAndUserManager" target="_BLANK" class="animsition-link">写给未来的信</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/Bank" target="_BLANK" class="animsition-link">Bank</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/PhotoUpAndDown" target="_BLANK" class="animsition-link">头像图片管理</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/RTSP-Video-Flv" target="_BLANK" class="animsition-link">javaCV转RTSP视频流</a></li>
+                    
+                        <li><a href="https://github.com/HolyDogs/VueStructDemo" target="_BLANK" class="animsition-link">VueDemo</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/ORACLE/" class="animsition-link">ORACLE<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/SpringBoot/" class="animsition-link">SpringBoot<small>(5)</small></a></li>
+				    
+				    <li><a href="/categories/SpringCloud/" class="animsition-link">SpringCloud<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/docker/" class="animsition-link">docker<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/errors/" class="animsition-link">errors<small>(6)</small></a></li>
+				    
+				    <li><a href="/categories/hexo主题/" class="animsition-link">hexo主题<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/linux/" class="animsition-link">linux<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/mybatis/" class="animsition-link">mybatis<small>(13)</small></a></li>
+				    
+				    <li><a href="/categories/nginx/" class="animsition-link">nginx<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/quartz/" class="animsition-link">quartz<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/redis/" class="animsition-link">redis<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/shiro/" class="animsition-link">shiro<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/spring/" class="animsition-link">spring<small>(7)</small></a></li>
+				    
+				    <li><a href="/categories/springBoot/" class="animsition-link">springBoot<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/springCloud/" class="animsition-link">springCloud<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/springmvc/" class="animsition-link">springmvc<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/swagger/" class="animsition-link">swagger<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/tomcat/" class="animsition-link">tomcat<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/tools/" class="animsition-link">tools<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/分布式/" class="animsition-link">分布式<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/前端/" class="animsition-link">前端<small>(14)</small></a></li>
+				    
+				    <li><a href="/categories/数据库/" class="animsition-link">数据库<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/数据结构/" class="animsition-link">数据结构<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/杂记/" class="animsition-link">杂记<small>(5)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="https://github.com/HolyDogs" class="animsition-link">holydogs</a></li>
+                    
+                    <li><a href="https://gitee.com/holydogs" class="animsition-link">码云</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="javascript:;" class="popup-trigger" title="Search"><span class="search-icon"></span>Search</a></li>
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>  
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">XFF's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/HolyDogs" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/XFF34707256" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                        <!--    
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                             	-->
+                            
+                            <li><a href="https://weibo.com/u/5653044424" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li><a href="javascript:;" class="popup-trigger" title="Search"><span class="search-icon"></span>Click To Search My Blog</a></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2022-09-04T07:00:48.000Z" itemprop="datePublished">
+          2022-09-04
+      </time>
+    
+</span>
+                <h1>【spring】事务回滚</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="1-主要的三种传播机制"><a href="#1-主要的三种传播机制" class="headerlink" title="1. 主要的三种传播机制"></a>1. 主要的三种传播机制</h2><blockquote>
+<p><a href="https://link.segmentfault.com/?enc=WisVa3PAc5mcUrGoQE0rHA%3D%3D.qBJVY9LU3Bz0dxp4void%2ByiGVVHvIoU3BD0zDDN0Lzw80yTDVObxshdTw4GuOfn1" target="_blank" rel="noopener">https://www.cnblogs.com/xzwbl…</a></p>
+</blockquote>
+<p><strong>REQUIRED、REQUIRES_NEW、NESTED</strong></p>
+<p><strong>注意：以下所有的<code>testA()</code>方法与<code>testB()</code>方法是在两个类之中且都将bean交给spring管理，若非如此会造成事务失效问题请看第二部分</strong></p>
+<h3 id="1-1-REQUIRED（默认）"><a href="#1-1-REQUIRED（默认）" class="headerlink" title="1.1 REQUIRED（默认）"></a>1.1 REQUIRED（默认）</h3><p><strong>当前没有事务，则新建一个事务，如存在事务，则加入此事务</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="comment">// A.class</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    insertDataToTableA(dataList);</span><br><span class="line">    testB();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// B.class</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testB</span><span class="params">()</span></span>&#123;</span><br><span class="line">    insertDataToTableB(dataList);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">    insertDataToTableC(dataList);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果 testB()加入testA()的事务，testB()发生异常，两个方法均回滚</span></span><br><span class="line"><span class="comment">// 如果 testA()不加事务，只有testB()加,则testA()成功,testB()回滚</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="1-2-REQUIRES-NEW"><a href="#1-2-REQUIRES-NEW" class="headerlink" title="1.2 REQUIRES_NEW"></a>1.2 REQUIRES_NEW</h3><p><strong>创建一个新事务，如果存在当前事务，则挂起该事务。即无论是否已存在事务都新建事务</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="comment">// A.class</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    insertDataToTableA(dataList);</span><br><span class="line">    testB();</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// B.class</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = Exception.class,propagation = Propagation.REQUIRES_NEW)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testB</span><span class="params">()</span></span>&#123;</span><br><span class="line">    insertDataToTableB(dataList);</span><br><span class="line">    insertDataToTableC(dataList);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果 testA() 回滚 testB() 成功，说明不是一个事务里</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-3-NESTED"><a href="#1-3-NESTED" class="headerlink" title="1.3 NESTED"></a>1.3 NESTED</h3><p><strong>如果当前事务存在，则在嵌套事务中执行（子事务），否则REQUIRED的操作一样（开启一个事务）</strong></p>
+<p>这里需要注意两点：</p>
+<ul>
+<li>和REQUIRES_NEW的区别</li>
+</ul>
+<blockquote>
+<p>REQUIRES_NEW是新建一个事务并且新开启的这个事务与原有事务无关，而NESTED则是当前存在事务时（我们把当前事务称之为父事务）会开启一个嵌套事务（称之为一个子事务）。<br>在NESTED情况下父事务回滚时，子事务也会回滚，而在REQUIRES_NEW情况下，原有事务回滚，不会影响新开启的事务。</p>
+</blockquote>
+<ul>
+<li>和REQUIRED的区别</li>
+</ul>
+<blockquote>
+<p>REQUIRED情况下，调用方存在事务时，则被调用方和调用方使用同一事务，那么被调用方出现异常时，由于共用一个事务，所以无论调用方是否catch其异常，事务都会回滚<br>而在NESTED情况下，被调用方发生异常时，调用方可以catch其异常，这样只有子事务回滚，父事务不受影响<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例子1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// A.class</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    insertDataToTableA(dataList);</span><br><span class="line">    testB();</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// B.class</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = Exception.class,propagation = Propagation.NESTED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testB</span><span class="params">()</span></span>&#123;</span><br><span class="line">    insertDataToTableB(dataList);</span><br><span class="line">    insertDataToTableC(dataList);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果 二者皆回滚，因为是嵌套的父子级事务，所以有一个有问题就都回滚</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例子2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// A.class</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    insertDataToTableA(dataList);</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">      testB();</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">      log.error(e)</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// B.class</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = Exception.class,propagation = Propagation.NESTED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testB</span><span class="params">()</span></span>&#123;</span><br><span class="line">    insertDataToTableB(dataList);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">    insertDataToTableC(dataList);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果 testA成功、testB回滚，说明相对 REQUIRED 异常可以被捕获处理</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-事务失效"><a href="#2-事务失效" class="headerlink" title="2. 事务失效"></a>2. 事务失效</h2><h3 id="2-1-内部调用问题"><a href="#2-1-内部调用问题" class="headerlink" title="2.1 内部调用问题"></a>2.1 内部调用问题</h3><h4 id="1-A带事务调B不带事务"><a href="#1-A带事务调B不带事务" class="headerlink" title="1. A带事务调B不带事务"></a>1. A带事务调B不带事务</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例0 无异常 -&gt; 两个都能顺利插入表</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 例1 A或B方法异常</span></span><br><span class="line"><span class="comment">// 结果 事务生效（A,B公用一个事务），两个方法皆回滚</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = RuntimeException.class,propagation = Propagation.REQUIRED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">insertUserInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    jdbcTemplate.execute(<span class="string">"INSERT INTO user (id, username) VALUES\n"</span> +</span><br><span class="line">            <span class="string">"(5, 'Jack5')"</span>);</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 内部调用问题</span></span><br><span class="line">    insertUserInfo2();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//@Transactional(rollbackFor = RuntimeException.class,propagation = Propagation.NESTED)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">insertUserInfo2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    jdbcTemplate.execute(<span class="string">"INSERT INTO user (id, username) VALUES\n"</span> +</span><br><span class="line">            <span class="string">"(9, 'tom9')"</span>);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例2 A方法调用完B后再异常 -&gt; 结果相同事务生效</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-A带事务调B带事务（REQUIRES-NEW）"><a href="#2-A带事务调B带事务（REQUIRES-NEW）" class="headerlink" title="2. A带事务调B带事务（REQUIRES_NEW）"></a>2. A带事务调B带事务（REQUIRES_NEW）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例1 B异常 且 B的传播机制为 REQUIRES_NEW（新建事务）</span></span><br><span class="line"><span class="comment">// 结果 B事务失败(追加到A事务里)，A,B皆回滚，说明A,B还是在一个事务里，A方法里异常时同样情况</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = RuntimeException.class,propagation = Propagation.REQUIRED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">insertUserInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    jdbcTemplate.execute(<span class="string">"INSERT INTO user (id, username) VALUES\n"</span> +</span><br><span class="line">            <span class="string">"(5, 'Jack5')"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 内部调用问题</span></span><br><span class="line">    insertUserInfo2();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = RuntimeException.class,propagation = Propagation.REQUIRES_NEW)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">insertUserInfo2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    jdbcTemplate.execute(<span class="string">"INSERT INTO user (id, username) VALUES\n"</span> +</span><br><span class="line">            <span class="string">"(9, 'tom9')"</span>);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-A带事务调B带事务（NESTED）"><a href="#3-A带事务调B带事务（NESTED）" class="headerlink" title="3. A带事务调B带事务（NESTED）"></a>3. A带事务调B带事务（NESTED）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例1 B异常 且 B的传播机制为 NESTED，在A中捕获异常</span></span><br><span class="line"><span class="comment">// 结果 A事务成功，B事务失败，异常后仍能插入数据</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = RuntimeException.class,propagation = Propagation.REQUIRED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">insertUserInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    jdbcTemplate.execute(<span class="string">"INSERT INTO user (id, username) VALUES\n"</span> +</span><br><span class="line">            <span class="string">"(5, 'Jack5')"</span>);</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 内部调用问题</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            insertUserInfo2();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = RuntimeException.class,propagation = Propagation.NESTED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">insertUserInfo2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    jdbcTemplate.execute(<span class="string">"INSERT INTO user (id, username) VALUES\n"</span> +</span><br><span class="line">            <span class="string">"(9, 'tom9')"</span>);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例2 B异常 且 B的传播机制为 NESTED，在A中不捕获异常</span></span><br><span class="line"><span class="comment">// 结果 A,B皆回滚</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 例3 A异常 且 B的传播机制为 NESTED，在A中捕获异常与否都一样</span></span><br><span class="line"><span class="comment">// 结果 A,B皆回滚</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-A不带事务调B带事务"><a href="#4-A不带事务调B带事务" class="headerlink" title="4. A不带事务调B带事务"></a>4. A不带事务调B带事务</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例0 无异常 -&gt; 两个都能顺利插入表</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 例1 B方法异常 -&gt; 事务失效，A,B都不会回滚，都会插入数据</span></span><br><span class="line"><span class="comment">// 第一部分中的三种传播机制都会是这种情况</span></span><br><span class="line"><span class="comment">//@Transactional(rollbackFor = RuntimeException.class,propagation = Propagation.REQUIRED)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">insertUserInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    jdbcTemplate.execute(<span class="string">"INSERT INTO user (id, username) VALUES\n"</span> +</span><br><span class="line">            <span class="string">"(5, 'Jack5')"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 内部调用问题</span></span><br><span class="line">    insertUserInfo2();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = RuntimeException.class,propagation = Propagation.REQUIRED)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">insertUserInfo2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    jdbcTemplate.execute(<span class="string">"INSERT INTO user (id, username) VALUES\n"</span> +</span><br><span class="line">            <span class="string">"(9, 'tom9')"</span>);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例2 A方法调用完B后异常 -&gt; 与例1相同，事务失效，A,B都不会回滚，都会插入数据</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-综述"><a href="#5-综述" class="headerlink" title="5. 综述"></a>5. 综述</h4><p>尽量避免内部调用，最多用A带事务调B不带事务，尤其是不能用A不带事务调B带</p>
+<h3 id="2-2-内部调用问题事务失败原因"><a href="#2-2-内部调用问题事务失败原因" class="headerlink" title="2.2 内部调用问题事务失败原因"></a>2.2 内部调用问题事务失败原因</h3><ol>
+<li>A带事务调B带事务：放在一个代理类里，追加到A的事务，只会代理A，然后this调用B</li>
+<li>A不带事务调B带事务：内部调用没走Spring的AOP增强代理机制，也就没做事务增强操作，本质是this实例调用</li>
+</ol>
+<p>spring事务<br>@Transactional</p>
+<h2 id="事务失效十种情况"><a href="#事务失效十种情况" class="headerlink" title="事务失效十种情况"></a>事务失效十种情况</h2><h3 id="访问权限问题"><a href="#访问权限问题" class="headerlink" title="访问权限问题"></a>访问权限问题</h3><p>只允许public修饰方法</p>
+<h3 id="方法用-final-修饰"><a href="#方法用-final-修饰" class="headerlink" title="方法用 final 修饰"></a>方法用 final 修饰</h3><p>final修饰导致事务失效</p>
+<h3 id="方法内部调用"><a href="#方法内部调用" class="headerlink" title="方法内部调用"></a>方法内部调用</h3><p>在同一个类中的方法直接内部调用，会导致事务失效。</p>
+<h3 id="未被-spring-管理"><a href="#未被-spring-管理" class="headerlink" title="未被 spring 管理"></a>未被 spring 管理</h3><p>没有加类似<code>@Service</code>注解，将类交给spring管理</p>
+<h3 id="多线程调用"><a href="#多线程调用" class="headerlink" title="多线程调用"></a>多线程调用</h3><pre><code>@Transactional  
+public void add(UserModel userModel) throws Exception {  
+    userMapper.insertUser(userModel);  
+    new Thread(() -&gt; {  
+        roleService.doOtherThing();  
+    }).start();  
+}
+</code></pre><p>insertUser与doOtherThing两个方法，doOtherThing方法是在另外新建线程去执行的，就会导致两个方法不在同一个线程中执行，获取到的是不同的数据库连接，也就会导致事务失效</p>
+<h3 id="表不支持事务"><a href="#表不支持事务" class="headerlink" title="表不支持事务"></a>表不支持事务</h3><p>数据库引擎是<code>myisam</code>，不支持事务</p>
+<h3 id="未开启事务"><a href="#未开启事务" class="headerlink" title="未开启事务"></a>未开启事务</h3><p>springboot会默认开启，传统spring需要配置事务管理器等</p>
+<h3 id="错误的传播特性"><a href="#错误的传播特性" class="headerlink" title="错误的传播特性"></a>错误的传播特性</h3><p>propagation参数，指定合适的传播特性</p>
+<h3 id="自己吞了异常"><a href="#自己吞了异常" class="headerlink" title="自己吞了异常"></a>自己吞了异常</h3><p>如果想要 spring 事务能够正常回滚，必须抛出它能够处理的异常（不能try，catch）。如果没有抛异常，则 spring 认为程序是正常的。</p>
+<h3 id="手动抛了别的异常"><a href="#手动抛了别的异常" class="headerlink" title="手动抛了别的异常"></a>手动抛了别的异常</h3><p>spring 事务，默认情况下只会回滚<code>RuntimeException</code>（运行时异常）和<code>Error</code>（错误），对于普通的 Exception（非运行时异常），它不会回滚</p>
+<h3 id="自定义了回滚异常"><a href="#自定义了回滚异常" class="headerlink" title="自定义了回滚异常"></a>自定义了回滚异常</h3><p>rollbackFor参数，指定遇到该参数指定的异常才会回滚。如果roolbackFor设置不合适，会导致发生异常不回滚</p>
+<h3 id="嵌套事务回滚多了"><a href="#嵌套事务回滚多了" class="headerlink" title="嵌套事务回滚多了"></a>嵌套事务回滚多了</h3><pre><code>@Transactional
+public void add(){
+    A();
+    B();
+}
+
+@Transactional
+public void A(){
+    XXX
+}
+
+@Transactional
+public void B(){
+    XXX
+}
+</code></pre><p>如上，B方法内发生异常时，我们希望只回滚B方法内的事务操作，但实际连A的也一起回滚了。这是因为B方法的异常抛出后没有处理，又被add方法捕获导致继续回滚。<br>可以在add方法中try-catch住B方法，不继续往上抛异常即可。</p>
+<hr>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><h3 id="大事务问题"><a href="#大事务问题" class="headerlink" title="大事务问题"></a>大事务问题</h3><p>@Transactional加到方法上会导致整个方法都包含在事务中了，如果方法调用层级深，会导致事务非常耗时。</p>
+<h3 id="编程式事务"><a href="#编程式事务" class="headerlink" title="编程式事务"></a>编程式事务</h3><p>Transactional-声明式事务</p>
+<pre><code>@Autowired  
+private TransactionTemplate transactionTemplate;  
+
+...  
+
+public void save(final User user) {  
+    queryData1();  
+    queryData2();  
+    transactionTemplate.execute((status) =&gt; {  
+        addData1();  
+        updateData2();  
+        return Boolean.TRUE;  
+    })  
+}
+</code></pre><hr>
+<p>自己类中注入自己<br>spring ioc 内部的三级缓存保证了它不会出现循环依赖问题。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2022/10/08/【centos】防火墙做端口转发/" style="float: left;">
+        ← 【centos】防火墙做端口转发
+    </a>
+    
+    
+    <a class="pull-right" href="/2022/08/24/【数据库】索引数据存储结构B-树/">
+        【数据库】索引数据存储结构B+树 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+<!--
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By XFF. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/HolyDogs" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/XFF34707256" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://weibo.com/u/5653044424" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+-->
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+            <style>
+.local-search-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: rgba(255, 255, 255, .9);
+  color: #333;
+  z-index: 9999;
+  border-radius: 5px;
+  overflow: scroll;
+}
+#local-search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #151515;
+  background-color: initial;
+}
+.search-result-list {
+  list-style: none;
+  padding-left: 0;
+}
+.search-result-list > li {
+  margin-top: 15px;
+  border-bottom: 1px solid #ddd;
+  transition: all ease .3s;
+}
+.search-result-list > li:hover {
+  border-bottom: 1px solid gray;
+}
+.search-result-title {
+  font-size: 16px;
+}
+.search-result {
+  line-height: 20px;
+}
+.search-keyword {
+  font-weight: normal;
+  color: #c00;
+}
+
+@media (min-width: 890px) {
+  .popup-btn-close {
+    position: absolute;
+    top: 15px;
+    left: 35px;
+    border: 1px solid #151515;
+    padding: 0px 10px;
+    border-top-left-radius: 8px;
+    cursor: pointer;
+    transition: all ease .3s;
+  }
+  .popup-btn-close:hover {
+    background: #151515;
+    opacity: .9;
+    color: #fff;
+  }
+}
+@media (max-width: 890px) {
+  .popup-btn-close {
+    font-size: 0;
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px #888;
+    cursor: pointer;
+  }
+  .popup-btn-close::after {
+    content: '←';
+    color: #151515;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+  }
+}
+</style>
+
+<div class="popup search-popup local-search-popup">
+  <span class="popup-btn-close">
+    ESC
+  </span>
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="local-search-header clearfix">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="local-search-input-wrapper">
+          <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+        </div>
+      </div>
+      <div id="local-search-result"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // get search zip version
+    $.get('/searchVersion?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem += "<a target='_blank' href='" + articleUrl + "'>" +
+                  "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                  "...</p>" + "</a>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+      
+</body>
+</html>
